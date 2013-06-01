@@ -11,11 +11,11 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel Margin="0,30,0,0">
-            <ToggleButton Style="{StaticResource SidebarButton}">AYAM</ToggleButton>
-            <ToggleButton Style="{StaticResource SidebarButton}">KANDANG</ToggleButton>
-            <ToggleButton Style="{StaticResource SidebarButton}">KARYAWAN</ToggleButton>
+            <ToggleButton Style="{StaticResource SidebarButton}" x:Name="tglAyam" Click="tglAyam_Click">AYAM</ToggleButton>
+            <ToggleButton Style="{StaticResource SidebarButton}" x:Name="tglKandang" Click="tglKandang_Click">KANDANG</ToggleButton>
+            <ToggleButton Style="{StaticResource SidebarButton}" x:Name="tglKaryawan" Click="tglKaryawan_Click">KARYAWAN</ToggleButton>
         </StackPanel>
-        <ScrollViewer Grid.Column="1">
+        <ScrollViewer x:Name="scrMasterContent" Grid.Column="1">
             
         </ScrollViewer>
     </Grid>

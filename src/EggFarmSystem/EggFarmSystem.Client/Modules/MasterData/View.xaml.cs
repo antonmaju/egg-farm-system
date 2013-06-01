@@ -22,6 +22,22 @@ namespace EggFarmSystem.Client.Modules.MasterData
         public View()
         {
             InitializeComponent();
+
+        }
+
+        private void tglKandang_Click(object sender, RoutedEventArgs e)
+        {
+            scrMasterContent.Content = new HenHouseForm();
+        }
+
+        private void tglAyam_Click(object sender, RoutedEventArgs e)
+        {
+            scrMasterContent.Content = new HenForm();
+        }
+
+        private void tglKaryawan_Click(object sender, RoutedEventArgs e)
+        {
+            scrMasterContent.Content = new EmployeeForm();
         }
     }
 }

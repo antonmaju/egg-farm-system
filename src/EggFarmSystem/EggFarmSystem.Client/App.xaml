@@ -8,6 +8,10 @@
                 <ResourceDictionary Source="Resources\Menu.xaml" />
                 <ResourceDictionary Source="Resources\Window.xaml" />
                 <ResourceDictionary Source="Resources\ScrollViewer.xaml" />
+                <ResourceDictionary Source="Resources\Label.xaml" />
+                <ResourceDictionary Source="Resources\TextBox.xaml" />
+                <ResourceDictionary Source="Resources\CheckBox.xaml" />
+                <ResourceDictionary Source="Resources\ComboBox.xaml" />
                 <ResourceDictionary Source="Resources\Button.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

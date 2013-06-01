@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cmd ="clr-namespace:EggFarmSystem.Client.Commands">
     
     <Style TargetType="{x:Type Window}" x:Key="Window.MainWindowKey">
         <Setter Property="WindowStyle" Value="None"  />
@@ -25,25 +26,29 @@
                                 <Run Foreground="Yellow">EGG </Run>
                                 <Run> FARM SYSTEM</Run>
                             </TextBlock>
-                            <Button Grid.Column="1">
+                            <Button Grid.Column="1" Command="cmd:ClientCommands.Minimize">
                                 <Button.Template>
-                                    <ControlTemplate>
+                                    <ControlTemplate> 
+                                        <Border Background="Transparent">                                       
                                         <Rectangle HorizontalAlignment="Stretch" 
                                         Fill="White" Height="1" Margin="5,30" />
+                                        </Border>
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
-                            <Button Grid.Column="2">
+                            <Button Grid.Column="2" Command="cmd:ClientCommands.Maximize">
                                 <Button.Template>
-                                    <ControlTemplate>
-                                        <Rectangle Margin="5,30" Stroke="White">
-                                        </Rectangle>
+                                    <ControlTemplate>                                       
+                                        <Rectangle Margin="5,30" Stroke="White" IsHitTestVisible="True"
+                                                   Fill="Transparent">
+                                        </Rectangle>                                        
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
-                            <Button Grid.Column="3">
+                            <Button Grid.Column="3" Command="ApplicationCommands.Close">
                                 <Button.Template>
                                     <ControlTemplate>
+                                        <Border Background="Transparent">
                                         <Path 
                                   Margin="7"
                                   Stroke="White"
@@ -66,6 +71,7 @@
                                                 </PathGeometry>
                                             </Path.Data>
                                         </Path>
+                                        </Border>
                                     </ControlTemplate>
                                 </Button.Template>    
                             </Button>

@@ -34,5 +34,37 @@ namespace EggFarmSystem.Client
         }
 
         #endregion
+
+        private void MinimizeCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            this.WindowState = System.Windows.WindowState.Minimized;
+        }
+
+        private void MaximizeCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            
+            this.WindowState = this.WindowState ==  System.Windows.WindowState.Maximized ?
+                System.Windows.WindowState.Normal : System.Windows.WindowState.Maximized;
+        }
+
+        private void CloseCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            this.Close();            
+        }
+
+        private void MinimizeCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void MaximizeCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CloseCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
     }
 }
