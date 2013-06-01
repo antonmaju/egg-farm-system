@@ -24,5 +24,15 @@ namespace EggFarmSystem.Client
         {
             InitializeComponent();
         }
+
+
+        #region direct event handler for prototype purpose
+
+        private void mnuMaster_Click(object sender, RoutedEventArgs e)
+        {
+            scrContent.Content = new Modules.MasterData.View();
+        }
+
+        #endregion
     }
 }

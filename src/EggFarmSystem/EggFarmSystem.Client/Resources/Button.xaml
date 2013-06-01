@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style x:Key="SidebarButton" TargetType="ToggleButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    
+                    <Grid x:Name="ButtonRoot" Margin="40,10">
+
+                        <TextBlock Name="SidebarButtonText"  Padding="10,7,0,0"
+                                   FontSize="20" Foreground="#999">
+                         <ContentPresenter RecognizesAccessKey="True"
+                             Content="{TemplateBinding Content}"
+                             ></ContentPresenter>
+                        </TextBlock>
+                        
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="SidebarButtonText" Property="Foreground" Value="White" />
+                            <Setter TargetName="SidebarButtonText" Property="Background" Value="#AAA" />
+                            <Setter TargetName="SidebarButtonText" Property="MinHeight" Value="40" />
+                            <Setter TargetName="SidebarButtonText" Property="MinWidth" Value="200" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>

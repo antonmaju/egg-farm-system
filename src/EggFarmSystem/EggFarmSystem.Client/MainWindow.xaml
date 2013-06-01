@@ -10,14 +10,16 @@
 			<RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Menu>
-            <MenuItem Header="DASHBOARD" />
-            <MenuItem Header="PAKAN" />
-            <MenuItem Header="PENYUSUTAN" />
-            <MenuItem Header="PRODUKSI" />
-            <MenuItem Header="ABSENSI" />            
-            <MenuItem Header="MASTER" IsChecked="True" />
-            <MenuItem Header="SETTINGS" />
+            <MenuItem Header="DASHBOARD" x:Name="mnuDashboard"  />
+            <MenuItem Header="PAKAN" x:Name="mnuPakan" />
+            <MenuItem Header="PENYUSUTAN" x:Name="mnuPenyusutan" />
+            <MenuItem Header="PRODUKSI" x:Name="mnuProduksi" />
+            <MenuItem Header="ABSENSI" x:Name="mnuAbsensi" />            
+            <MenuItem Header="MASTER" IsChecked="True" x:Name="mnuMaster" Click="mnuMaster_Click" />
+            <MenuItem Header="SETTINGS" x:Name="mnuSettings" />
             <MenuItem Header="LAPORAN" />
         </Menu>
+        <ScrollViewer x:Name="scrContent" Grid.Row="1" VerticalScrollBarVisibility="Auto" 
+                      HorizontalScrollBarVisibility="Auto"></ScrollViewer>
     </Grid>
 </Window>

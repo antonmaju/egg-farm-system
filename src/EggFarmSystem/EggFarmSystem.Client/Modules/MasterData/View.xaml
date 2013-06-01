@@ -7,9 +7,16 @@
              d:DesignHeight="300" d:DesignWidth="500">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="250"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
+        <StackPanel Margin="0,30,0,0">
+            <ToggleButton Style="{StaticResource SidebarButton}">AYAM</ToggleButton>
+            <ToggleButton Style="{StaticResource SidebarButton}">KANDANG</ToggleButton>
+            <ToggleButton Style="{StaticResource SidebarButton}">KARYAWAN</ToggleButton>
+        </StackPanel>
+        <ScrollViewer Grid.Column="1">
+            
+        </ScrollViewer>
     </Grid>
 </UserControl>

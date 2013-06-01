@@ -3,6 +3,7 @@
     
     <Style TargetType="{x:Type Window}" x:Key="Window.MainWindowKey">
         <Setter Property="WindowStyle" Value="None"  />
+        <Setter Property="FontFamily" Value="Calibri" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">
@@ -19,7 +20,7 @@
                                 <ColumnDefinition Width="30"></ColumnDefinition>
                                 <ColumnDefinition Width="10"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Foreground="White" FontSize="20"
+                            <TextBlock Foreground="White" FontSize="30"
                                        Margin="30,25,10,25">
                                 <Run Foreground="Yellow">EGG </Run>
                                 <Run> FARM SYSTEM</Run>
