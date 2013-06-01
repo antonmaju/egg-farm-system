@@ -7,31 +7,32 @@ using System.Text;
 
 namespace EggFarmSystem.Services
 {
-    public interface IHenService
+    public interface IFeedService
     {
-        SearchResult<Hen> Search();
+        SearchResult<Feed> Search();
 
     }
 
 
-    public class HenService : DataService<Hen>, IHenService
+    public class FeedService : DataService<Feed>, IFeedService
     {
         IDbConnectionFactory factory;
 
-        public HenService(IDbConnectionFactory factory) : base(factory)
+        public FeedService(IDbConnectionFactory factory)
+            : base(factory)
         {
             this.factory = factory;
         }
 
-        public SearchResult<Hen> Search()
+        public SearchResult<Feed> Search()
         {
-            var result = new SearchResult<Hen>();
+            var result = new SearchResult<Feed>();
 
             using (var db = factory.CreateDbConnection())
             {
                 db.Open();
-                result.Items = db.Select<Hen>().ToList();
-                result.Total = (int) db.Count<Hen>();
+                result.Items = db.Select<Feed>().ToList();
+                result.Total = (int)db.Count<Feed>();
             }
 
             return result;

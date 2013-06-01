@@ -30,6 +30,7 @@ namespace EggFarmSystem.Services
         {
             using (var db = factory.CreateDbConnection())
             {
+                db.Open();
                 return db.GetById<T>(id);
             }
         }
@@ -38,6 +39,7 @@ namespace EggFarmSystem.Services
         {
             using (var db = factory.CreateDbConnection())
             {
+                db.Open();
                 if (model.Id == Guid.Empty)
                     db.InsertParam(model);
                 else
@@ -51,6 +53,7 @@ namespace EggFarmSystem.Services
         {
             using (var db = factory.CreateDbConnection())
             {
+                db.Open();
                 db.DeleteByIdParam<T>(id);
             }
 
