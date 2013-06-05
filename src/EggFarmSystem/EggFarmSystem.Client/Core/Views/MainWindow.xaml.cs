@@ -1,39 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace EggFarmSystem.Client
+namespace EggFarmSystem.Client.Core.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IMainView
     {
-        public MainWindow()
+        private IBootstrapper bootstrapper;
+        private IMessageBroker messageBroker;
+
+        public MainWindow(IBootstrapper bootstrapper, IMessageBroker messageBroker)
         {
             InitializeComponent();
+            this.bootstrapper = bootstrapper;
+            this.messageBroker = messageBroker;    
         }
 
-
-        #region direct event handler for prototype purpose
-
-        private void mnuMaster_Click(object sender, RoutedEventArgs e)
-        {
-            scrContent.Content = new Modules.MasterData.View();
-        }
-
-        #endregion
+        #region window event
 
         private void MinimizeCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
@@ -65,6 +52,34 @@ namespace EggFarmSystem.Client
         private void CloseCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
+        }
+
+        #endregion
+
+        public void Initialize()
+        {
+            InitializeMenu();
+            InitializeContent();
+        }
+
+        void InitializeMenu()
+        {
+            mnuMain.Items.Clear();
+
+            var items = bootstrapper.GetMainMenuItems();
+            foreach (var item in items)
+                mnuMain.Items.Add(item);
+        }
+
+        void InitializeContent()
+        {
+            if(mnuMain.Items.Count > 0)
+                (mnuMain.Items.GetItemAt(0) as MenuItem).Command.Execute(null);
+        }
+
+        public void ChangeView(System.Windows.Controls.UserControl newView)
+        {
+            scrContent.Content = newView;
         }
     }
 }

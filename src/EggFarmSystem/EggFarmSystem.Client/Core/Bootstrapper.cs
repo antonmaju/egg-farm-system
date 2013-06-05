@@ -1,0 +1,102 @@
+﻿using System.Windows.Controls;
+using System.Windows.Input;
+using Autofac;
+using EggFarmSystem.Client.Core.Views;
+using EggFarmSystem.Client.Modules;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Windows;
+
+namespace EggFarmSystem.Client.Core
+{
+    public class Bootstrapper : IBootstrapper
+    {
+        IList<IModule> modules;
+        IContainer container;
+
+        public Bootstrapper()
+        {
+            modules = new List<IModule>();
+        }
+
+        public ICollection<Modules.IModule> Modules
+        {
+            get { return new ReadOnlyCollection<Modules.IModule>(modules); }
+        }
+
+        public void Register(Modules.IModule module)
+        {
+            modules.Add(module);
+        }
+
+        public void Start(Application app)
+        {
+            ContainerBuilder builder = new ContainerBuilder();
+            
+            builder.RegisterInstance(this).As<IBootstrapper>();
+            builder.RegisterType<Views.MainWindow>().As<IMainView>().SingleInstance();
+            builder.RegisterType<MessageBroker>().As<IMessageBroker>().SingleInstance();
+
+           
+
+            foreach (var module in modules)
+            {
+                builder.RegisterModule(module.Registry);
+            }
+
+            container = builder.Build();
+
+            RegisterMessageListeners();
+            
+            var mainView = container.Resolve<IMainView>();
+            mainView.Initialize();
+            var mainWindow = (Window)mainView;
+            
+            app.MainWindow = mainWindow;
+            mainWindow.Show();
+            
+        }
+
+        void RegisterMessageListeners()
+        {
+            var broker = container.Resolve<IMessageBroker>();
+            
+
+            broker.Subscribe(CommonMessages.ChangeMainView, (param) =>
+                {
+                    var type = param as Type;
+                    if (type == null)
+                        return;
+                    var view = container.Resolve(type) as UserControl;
+                    var mainView = container.Resolve<IMainView>();
+                    mainView.ChangeView(view);
+                });
+        }
+
+        public IList<System.Windows.Controls.MenuItem> GetMainMenuItems()
+        {
+            if (container == null)
+                return null;
+
+            var items = new List<MenuItem>();
+
+            foreach (var module in modules)
+            {
+                if (module.AvailableMenus == null) continue;
+                foreach (var menu in module.AvailableMenus)
+                {
+                    var menuItem = new MenuItem();
+                    menuItem.Header = menu.Title().ToUpper();
+                    if(menu.CommandType != null)
+                        menuItem.Command = container.Resolve(menu.CommandType) as ICommand;
+                    items.Add(menuItem);
+                }
+            }
+
+            return items;
+        }
+    }
+}

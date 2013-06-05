@@ -1,28 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using EggFarmSystem.Client.Modules.MasterData.ViewModels;
 
-namespace EggFarmSystem.Client.Modules.MasterData
+namespace EggFarmSystem.Client.Modules.MasterData.Views
 {
     /// <summary>
     /// Interaction logic for View.xaml
     /// </summary>
-    public partial class View : UserControl
+    public partial class View : UserControl, IMasterDataView
     {
-        public View()
+        public View(MasterDataViewModel viewModel)
         {
             InitializeComponent();
-
+            //this.DataContext = viewModel;
         }
 
         private void tglKandang_Click(object sender, RoutedEventArgs e)
@@ -39,5 +29,10 @@ namespace EggFarmSystem.Client.Modules.MasterData
         {
             scrMasterContent.Content = new EmployeeForm();
         }
+    }
+
+    public interface IMasterDataView
+    {
+        
     }
 }
