@@ -1,9 +1,10 @@
-<UserControl x:Class="EggFarmSystem.Client.Modules.MasterData.Views.HenForm"
+<views:UserControlBase x:Class="EggFarmSystem.Client.Modules.MasterData.Views.HenHouseEntryView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                        xmlns:views="clr-namespace:EggFarmSystem.Client.Core.Views"
+                                        mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
         <Grid.RowDefinitions>
@@ -22,20 +23,20 @@
         </Grid.ColumnDefinitions>
         <Label Grid.Row="1"  Style="{StaticResource FormLabel}">Nama</Label>
         <TextBox Grid.Row="1" Style="{StaticResource FormTextBox}" Grid.Column="1"  />
-
-        <Label Grid.Row="2"  Style="{StaticResource FormLabel}">Jenis</Label>
+        
+        <Label Grid.Row="2"  Style="{StaticResource FormLabel}">Biaya Pembelian</Label>
         <TextBox Grid.Row="2" Style="{StaticResource FormTextBox}" Grid.Column="1"  />
 
-        <Label Grid.Row="3"  Style="{StaticResource FormLabel}">Kandang</Label>
-        <ComboBox Grid.Row="3" Grid.Column="1" Style="{StaticResource FormComboBox}"></ComboBox>
+        <Label Grid.Row="3"  Style="{StaticResource FormLabel}">Penggunaan (Tahun)</Label> 
+        <TextBox Grid.Row="3" Style="{StaticResource FormTextBoxSmall}" Grid.Column="1"  />
 
-        <Label Grid.Row="4"  Style="{StaticResource FormLabel}">Harga Beli</Label>
+        <Label Grid.Row="4"  Style="{StaticResource FormLabel}">Penyusutan / Hari</Label>
         <TextBox Grid.Row="4" Style="{StaticResource FormTextBox}" Grid.Column="1"  />
-
+        
         <Label Grid.Row="5"  Style="{StaticResource FormLabel}">Aktif</Label>
         <CheckBox Grid.Row="5" Grid.Column="1" Style="{StaticResource FormCheckBox}" />
-
+        
         <Label Grid.Row="6"  Style="{StaticResource FormLabel}">Populasi</Label>
         <TextBox Grid.Row="6" Style="{StaticResource FormTextBoxSmall}" Grid.Column="1" IsEnabled="False"  />
     </Grid>
-</UserControl>
+</views:UserControlBase>

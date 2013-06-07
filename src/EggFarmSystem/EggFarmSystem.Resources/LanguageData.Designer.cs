@@ -106,6 +106,87 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string Hen_ActiveField {
+            get {
+                return ResourceManager.GetString("Hen_ActiveField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cost.
+        /// </summary>
+        public static string Hen_CostField {
+            get {
+                return ResourceManager.GetString("Hen_CostField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count.
+        /// </summary>
+        public static string Hen_CountField {
+            get {
+                return ResourceManager.GetString("Hen_CountField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to House.
+        /// </summary>
+        public static string Hen_HouseField {
+            get {
+                return ResourceManager.GetString("Hen_HouseField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count is invalid.
+        /// </summary>
+        public static string Hen_InvalidCount {
+            get {
+                return ResourceManager.GetString("Hen_InvalidCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Hen_NameField {
+            get {
+                return ResourceManager.GetString("Hen_NameField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is required.
+        /// </summary>
+        public static string Hen_RequireName {
+            get {
+                return ResourceManager.GetString("Hen_RequireName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type is required.
+        /// </summary>
+        public static string Hen_RequireType {
+            get {
+                return ResourceManager.GetString("Hen_RequireType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string Hen_TypeField {
+            get {
+                return ResourceManager.GetString("Hen_TypeField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Master Data.
         /// </summary>
         public static string Master_Title {

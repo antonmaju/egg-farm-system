@@ -7,11 +7,11 @@ namespace EggFarmSystem.Client.Core
 {
     public class MessageBroker : IMessageBroker
     {
-        private IDictionary<string, IList<Action<object>>> subscribers; 
+        private IDictionary<string, IList<Action<object>>> subscribers;
 
         public MessageBroker()
         {
-            subscribers = new Dictionary<string, IList<Action<object>>>();  
+            subscribers = new Dictionary<string, IList<Action<object>>>();
         }
 
         public void Subscribe(string name, Action<object> callback)
@@ -19,8 +19,8 @@ namespace EggFarmSystem.Client.Core
             if (callback == null)
                 return;
 
-            if(! subscribers.ContainsKey(name))
-                subscribers[name]=new List<Action<object>>();
+            if (!subscribers.ContainsKey(name))
+                subscribers[name] = new List<Action<object>>();
 
             subscribers[name].Add(callback);
         }
@@ -32,6 +32,15 @@ namespace EggFarmSystem.Client.Core
 
             foreach (var callback in subscribers[name])
                 callback(parameter);
+        }
+
+
+        public void Unsubscribe(string name, Action<object> callback)
+        {
+            if (!subscribers.ContainsKey(name))
+                return;
+
+            subscribers[name].Remove(callback);
         }
     }
 }

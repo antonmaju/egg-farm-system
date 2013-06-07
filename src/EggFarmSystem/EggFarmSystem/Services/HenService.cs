@@ -11,8 +11,12 @@ namespace EggFarmSystem.Services
     {
         SearchResult<Hen> Search();
 
-    }
+        Hen Get(Guid id);
 
+        bool Save(Hen model);
+
+        bool Delete(Guid id);
+    }
 
     public class HenService : DataService<Hen>, IHenService
     {

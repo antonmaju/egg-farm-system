@@ -14,5 +14,9 @@ namespace EggFarmSystem.Models
         public int Count { get; set; }
 
         public bool Active { get; set; }
+
+        public long Cost { get; set; }
+
+        public Guid HouseId { get; set; }
     }
 }

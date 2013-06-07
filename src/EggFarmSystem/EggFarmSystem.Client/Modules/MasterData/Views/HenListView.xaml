@@ -1,0 +1,38 @@
+﻿<views:UserControlBase x:Class="EggFarmSystem.Client.Modules.MasterData.Views.HenListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                        xmlns:views="clr-namespace:EggFarmSystem.Client.Core.Views"
+                                        mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        
+        <ListView Margin="10,0,30,20" x:Name="lvHenList" Grid.Row="1"
+                  AlternationCount="2" ItemsSource="{Binding Path=Hens}">
+            <ListView.View>
+                <GridView x:Name="gvHenList">
+
+                    <GridView.Columns>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}">
+
+                        </GridViewColumn>
+                        <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Path=Type}">
+
+                        </GridViewColumn>
+                        <GridViewColumn Header="Active" DisplayMemberBinding="{Binding Path=Active}">
+
+                        </GridViewColumn>
+                    </GridView.Columns>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</views:UserControlBase>

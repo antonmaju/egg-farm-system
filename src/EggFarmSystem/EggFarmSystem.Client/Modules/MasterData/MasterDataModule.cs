@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.MasterData.Commands;
 using EggFarmSystem.Resources;
 
@@ -31,5 +32,9 @@ namespace EggFarmSystem.Client.Modules.MasterData
 
         public Autofac.Module Registry { get; private set; }
 
+        public void RegisterMessageSubscriber(Core.IMessageBroker broker)
+        {
+            
+        }
     }
 }

@@ -18,7 +18,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
 			<RowDefinition></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <Menu x:Name="mnuMain">
             <MenuItem Header="DASHBOARD" x:Name="mnuDashboard"  />
             <MenuItem Header="PAKAN" x:Name="mnuPakan" />
@@ -29,7 +33,18 @@
             <MenuItem Header="SETTINGS" x:Name="mnuSettings" />
             <MenuItem Header="LAPORAN" />
         </Menu>
-        <ScrollViewer x:Name="scrContent" Grid.Row="1" VerticalScrollBarVisibility="Auto" 
-                      HorizontalScrollBarVisibility="Auto"></ScrollViewer>
+        <ScrollViewer x:Name="scrContent" Grid.Row="1" VerticalScrollBarVisibility="Auto" >
+            
+        </ScrollViewer>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition>               
+                </ColumnDefinition>
+                <ColumnDefinition Width="75"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" x:Name="stButtons" Grid.Column="1"> 
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

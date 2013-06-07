@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using EggFarmSystem.Client.Commands;
 
 namespace EggFarmSystem.Client.Core.Views
 {
@@ -12,12 +14,14 @@ namespace EggFarmSystem.Client.Core.Views
     {
         private IBootstrapper bootstrapper;
         private IMessageBroker messageBroker;
+        private IClientContext clientContext;
 
-        public MainWindow(IBootstrapper bootstrapper, IMessageBroker messageBroker)
+        public MainWindow(IBootstrapper bootstrapper, IMessageBroker messageBroker, IClientContext clientContext)
         {
             InitializeComponent();
             this.bootstrapper = bootstrapper;
-            this.messageBroker = messageBroker;    
+            this.messageBroker = messageBroker;
+            this.clientContext = clientContext;
         }
 
         #region window event
@@ -77,9 +81,25 @@ namespace EggFarmSystem.Client.Core.Views
                 (mnuMain.Items.GetItemAt(0) as MenuItem).Command.Execute(null);
         }
 
-        public void ChangeView(System.Windows.Controls.UserControl newView)
+        public void ChangeView(UserControlBase newView)
         {
+            ChangeActionCommands(newView.NavigationCommands);
             scrContent.Content = newView;
+        }
+
+        public void ChangeActionCommands(IList<CommandBase> commands)
+        {
+            stButtons.Children.Clear();
+            if (commands != null)
+            {
+                foreach (var command in commands)
+                {
+                    var button = new Button();
+                    button.Command = command;
+                    button.Content = command.Text();
+                    stButtons.Children.Add(button);
+                }
+            }
         }
     }
 }

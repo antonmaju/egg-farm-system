@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using Autofac;
+using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core.Views;
 using EggFarmSystem.Client.Modules;
 using System;
@@ -37,9 +38,10 @@ namespace EggFarmSystem.Client.Core
             ContainerBuilder builder = new ContainerBuilder();
             
             builder.RegisterInstance(this).As<IBootstrapper>();
+            builder.RegisterType<ClientContext>().As<IClientContext>().SingleInstance();
             builder.RegisterType<Views.MainWindow>().As<IMainView>().SingleInstance();
             builder.RegisterType<MessageBroker>().As<IMessageBroker>().SingleInstance();
-
+            builder.RegisterModule(new ServiceClientModule());
            
 
             foreach (var module in modules)
@@ -64,15 +66,24 @@ namespace EggFarmSystem.Client.Core
         {
             var broker = container.Resolve<IMessageBroker>();
             
-
             broker.Subscribe(CommonMessages.ChangeMainView, (param) =>
                 {
                     var type = param as Type;
                     if (type == null)
                         return;
-                    var view = container.Resolve(type) as UserControl;
+                    var context = container.Resolve<IClientContext>();
+                    context.MainViewType = type;
+                    var view = container.Resolve(type) as UserControlBase;
                     var mainView = container.Resolve<IMainView>();
                     mainView.ChangeView(view);
+                });
+
+            broker.Subscribe(CommonMessages.ChangeMainActions, param =>
+                {
+                    var commands = param as IList<CommandBase>;
+                    
+                    var mainView = container.Resolve<IMainView>();
+                    mainView.ChangeActionCommands(commands);
                 });
         }
 

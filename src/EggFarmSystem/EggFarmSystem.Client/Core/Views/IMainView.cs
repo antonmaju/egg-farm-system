@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Controls;
+using EggFarmSystem.Client.Commands;
 
 namespace EggFarmSystem.Client.Core.Views
 {
@@ -10,6 +11,8 @@ namespace EggFarmSystem.Client.Core.Views
     {
         void Initialize();
 
-        void ChangeView(UserControl newView);
+        void ChangeView(UserControlBase newView);
+
+        void ChangeActionCommands(IList<CommandBase> commands);
     }
 }

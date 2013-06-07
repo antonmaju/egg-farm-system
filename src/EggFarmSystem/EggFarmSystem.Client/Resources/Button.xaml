@@ -26,8 +26,7 @@
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
+
         </Setter>
     </Style>
-
-    
 </ResourceDictionary>

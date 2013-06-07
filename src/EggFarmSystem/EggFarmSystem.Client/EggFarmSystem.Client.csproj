@@ -41,7 +41,29 @@
     <Reference Include="Autofac.Configuration">
       <HintPath>..\packages\Autofac.3.0.2\lib\net40\Autofac.Configuration.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\packages\ServiceStack.Common.3.9.48\lib\net35\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=3.9.48.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.Common.3.9.48\lib\net35\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite, Version=3.9.45.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.3.9.45\lib\ServiceStack.OrmLite.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.SqlServer">
+      <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.3.9.45\lib\ServiceStack.OrmLite.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.45.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.Text.3.9.48\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,27 +92,43 @@
     </Compile>
     <Compile Include="Commands\ClientCommands.cs" />
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Core\Bootstrapper.cs" />
+    <Compile Include="Core\ClientContext.cs" />
     <Compile Include="Core\IBootstrapper.cs" />
+    <Compile Include="Core\IClientContext.cs" />
     <Compile Include="Core\IMessageBroker.cs" />
     <Compile Include="Core\MessageBroker.cs" />
     <Compile Include="Core\CommonMessages.cs" />
+    <Compile Include="Core\ServiceClientModule.cs" />
     <Compile Include="Core\ViewModelBase.cs" />
     <Compile Include="Core\Views\IMainView.cs" />
     <Compile Include="Core\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Modules\MasterData\Views\EmployeeForm.xaml">
+    <Page Include="Modules\MasterData\Views\EmployeeEntryView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Modules\MasterData\Views\HenForm.xaml">
+    <Page Include="Modules\MasterData\Views\EmployeeListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\MasterData\Views\HenEntryView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Modules\MasterData\Views\HenHouseForm.xaml">
+    <Page Include="Modules\MasterData\Views\HenHouseEntryView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modules\MasterData\Views\HenHouseListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\MasterData\Views\HenListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\MasterData\Views\View.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -105,6 +143,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -134,19 +176,34 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Views\UserControlBase.cs" />
     <Compile Include="Modules\IModule.cs" />
+    <Compile Include="Modules\MasterData\Commands\EditHenCommand.cs" />
+    <Compile Include="Modules\MasterData\Commands\NewHenCommand.cs" />
+    <Compile Include="Modules\MasterData\Commands\SaveHenCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\ShowMasterDataCommand.cs" />
     <Compile Include="Modules\MasterData\MasterDataModule.cs" />
     <Compile Include="Modules\MasterData\MasterDataRegistry.cs" />
+    <Compile Include="Modules\MasterData\ViewModels\HenEntryViewModel.cs" />
+    <Compile Include="Modules\MasterData\ViewModels\HenListViewModel.cs" />
     <Compile Include="Modules\MasterData\ViewModels\MasterDataViewModel.cs" />
-    <Compile Include="Modules\MasterData\Views\EmployeeForm.xaml.cs">
-      <DependentUpon>EmployeeForm.xaml</DependentUpon>
+    <Compile Include="Modules\MasterData\Views\EmployeeEntryView.xaml.cs">
+      <DependentUpon>EmployeeEntryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modules\MasterData\Views\HenForm.xaml.cs">
-      <DependentUpon>HenForm.xaml</DependentUpon>
+    <Compile Include="Modules\MasterData\Views\EmployeeListView.xaml.cs">
+      <DependentUpon>EmployeeListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modules\MasterData\Views\HenHouseForm.xaml.cs">
-      <DependentUpon>HenHouseForm.xaml</DependentUpon>
+    <Compile Include="Modules\MasterData\Views\HenEntryView.xaml.cs">
+      <DependentUpon>HenEntryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\MasterData\Views\HenHouseEntryView.xaml.cs">
+      <DependentUpon>HenHouseEntryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\MasterData\Views\HenHouseListView.xaml.cs">
+      <DependentUpon>HenHouseListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\MasterData\Views\HenListView.xaml.cs">
+      <DependentUpon>HenListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\MasterData\Views\View.xaml.cs">
       <DependentUpon>View.xaml</DependentUpon>
@@ -188,6 +245,10 @@
     <ProjectReference Include="..\EggFarmSystem.Resources\EggFarmSystem.Resources.csproj">
       <Project>{7239b659-1d39-4bc7-a9c6-132ad29c35bf}</Project>
       <Name>EggFarmSystem.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EggFarmSystem\EggFarmSystem.Core.csproj">
+      <Project>{1a94011c-d5d2-4639-9a32-b3a08b29f6f2}</Project>
+      <Name>EggFarmSystem.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

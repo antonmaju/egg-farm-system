@@ -132,6 +132,33 @@
   <data name="General_AppTitle" xml:space="preserve">
     <value>Egg Farm System</value>
   </data>
+  <data name="Hen_ActiveField" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Hen_CostField" xml:space="preserve">
+    <value>Cost</value>
+  </data>
+  <data name="Hen_CountField" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="Hen_HouseField" xml:space="preserve">
+    <value>House</value>
+  </data>
+  <data name="Hen_InvalidCount" xml:space="preserve">
+    <value>Count is invalid</value>
+  </data>
+  <data name="Hen_NameField" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Hen_RequireName" xml:space="preserve">
+    <value>Name is required</value>
+  </data>
+  <data name="Hen_RequireType" xml:space="preserve">
+    <value>Type is required</value>
+  </data>
+  <data name="Hen_TypeField" xml:space="preserve">
+    <value>Type</value>
+  </data>
   <data name="Master_Title" xml:space="preserve">
     <value>Master Data</value>
   </data>

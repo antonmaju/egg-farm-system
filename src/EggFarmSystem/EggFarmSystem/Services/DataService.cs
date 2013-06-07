@@ -41,7 +41,10 @@ namespace EggFarmSystem.Services
             {
                 db.Open();
                 if (model.Id == Guid.Empty)
+                {
+                    model.Id = Guid.NewGuid();
                     db.InsertParam(model);
+                }
                 else
                     db.UpdateParam(model);
             }

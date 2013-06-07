@@ -9,6 +9,8 @@ namespace EggFarmSystem.Client.Core
     {
         void Subscribe(string name, Action<object> callback);
 
+        void Unsubscribe(string name, Action<object> callback);
+
         void Publish(string name, object parameter);
     }
 }

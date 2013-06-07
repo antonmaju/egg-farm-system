@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using EggFarmSystem.Client.Core.Views;
 using EggFarmSystem.Client.Modules.MasterData.ViewModels;
 
 namespace EggFarmSystem.Client.Modules.MasterData.Views
@@ -7,27 +8,25 @@ namespace EggFarmSystem.Client.Modules.MasterData.Views
     /// <summary>
     /// Interaction logic for View.xaml
     /// </summary>
-    public partial class View : UserControl, IMasterDataView
+    public partial class View : UserControlBase, IMasterDataView
     {
+
         public View(MasterDataViewModel viewModel)
         {
             InitializeComponent();
-            //this.DataContext = viewModel;
+            this.DataContext = viewModel;
+            this.Loaded += View_Loaded;
         }
 
-        private void tglKandang_Click(object sender, RoutedEventArgs e)
+        void View_Loaded(object sender, RoutedEventArgs e)
         {
-            scrMasterContent.Content = new HenHouseForm();
+            (this.DataContext as MasterDataViewModel).InitializeContent();
         }
 
-        private void tglAyam_Click(object sender, RoutedEventArgs e)
+        public override void Dispose()
         {
-            scrMasterContent.Content = new HenForm();
-        }
-
-        private void tglKaryawan_Click(object sender, RoutedEventArgs e)
-        {
-            scrMasterContent.Content = new EmployeeForm();
+            this.Loaded -= View_Loaded;
+            base.Dispose();
         }
     }
 

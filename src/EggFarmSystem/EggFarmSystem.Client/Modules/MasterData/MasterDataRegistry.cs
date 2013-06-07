@@ -5,6 +5,7 @@ using System.Text;
 using Autofac;
 using EggFarmSystem.Client.Modules.MasterData.Commands;
 using EggFarmSystem.Client.Modules.MasterData.ViewModels;
+using EggFarmSystem.Client.Modules.MasterData.Views;
 
 namespace EggFarmSystem.Client.Modules.MasterData
 {
@@ -12,13 +13,39 @@ namespace EggFarmSystem.Client.Modules.MasterData
     {
         protected override void Load(Autofac.ContainerBuilder builder)
         {
-            builder.RegisterType<ShowMasterDataCommand>();
+            RegisterCommands(builder);
 
-            builder.RegisterType<MasterDataViewModel>().InstancePerDependency();
-            builder.RegisterType<Views.View>().As<Views.IMasterDataView>().InstancePerDependency();
+            RegisterViewModels(builder);
 
-            
+            RegisterViews(builder);
+          
             base.Load(builder);
+        }
+
+        void RegisterCommands(ContainerBuilder builder)
+        {
+            builder.RegisterType<ShowMasterDataCommand>().SingleInstance();
+            builder.RegisterType<NewHenCommand>().SingleInstance();
+            builder.RegisterType<EditHenCommand>().SingleInstance();
+            builder.RegisterType<SaveHenCommand>().SingleInstance();
+        }
+
+        void RegisterViewModels(ContainerBuilder builder)
+        {
+            builder.RegisterType<MasterDataViewModel>().InstancePerDependency();
+            builder.RegisterType<HenListViewModel>().InstancePerDependency();
+            builder.RegisterType<HenEntryViewModel>().InstancePerDependency();
+        }
+
+        void RegisterViews(ContainerBuilder builder)
+        {
+            builder.RegisterType<View>().As<IMasterDataView>().InstancePerDependency();
+            builder.RegisterType<EmployeeEntryView>().As<IEmployeeEntryView>().InstancePerDependency();
+            builder.RegisterType<EmployeeListView>().As<IEmployeeListView>().InstancePerDependency();
+            builder.RegisterType<HenEntryView>().As<IHenEntryView>().InstancePerDependency();
+            builder.RegisterType<HenListView>().As<IHenListView>().InstancePerDependency();
+            builder.RegisterType<HenHouseEntryView>().As<IHenHouseEntryView>().InstancePerDependency();
+            builder.RegisterType<HenHouseListView>().As<IHenHouseListView>().InstancePerDependency();
         }
     }
 }
