@@ -17,6 +17,8 @@ namespace EggFarmSystem.Client.Core
         public static string HenSavingFailed = "HenSavingFailed";
         public static string NewHenEntry = "NewHenEntry";
         public static string LoadHen = "LoadHen";
+        public static string RefreshHenList = "RefreshHenList";
+
 
     }
 }

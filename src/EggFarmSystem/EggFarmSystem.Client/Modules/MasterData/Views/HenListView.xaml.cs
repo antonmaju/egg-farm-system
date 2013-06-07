@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EggFarmSystem.Client.Core.Views;
 using EggFarmSystem.Client.Modules.MasterData.ViewModels;
+using EggFarmSystem.Models;
 
 namespace EggFarmSystem.Client.Modules.MasterData.Views
 {
@@ -40,7 +41,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.Views
 
         void lvHenList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            
+            var selectedHen = lvHenList.SelectedItem as Hen;
+            ViewModel.EditHenCommand.Execute(selectedHen.Id);
         }
 
         private void UnsetDataBindings()

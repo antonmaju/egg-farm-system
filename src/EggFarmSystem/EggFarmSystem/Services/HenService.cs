@@ -11,6 +11,8 @@ namespace EggFarmSystem.Services
     {
         SearchResult<Hen> Search();
 
+        IList<Hen> GetAll();
+            
         Hen Get(Guid id);
 
         bool Save(Hen model);

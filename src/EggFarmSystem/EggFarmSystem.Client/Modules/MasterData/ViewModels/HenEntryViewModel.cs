@@ -19,7 +19,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         private Hen hen;
         
 
-        public HenEntryViewModel(IMessageBroker messageBroker, IHenService service,
+        public HenEntryViewModel(IMessageBroker messageBroker, IHenService henService,
             SaveHenCommand saveCommand)
         {
             this.henService = henService;
@@ -182,12 +182,26 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         void SubscribeMessages()
         {
             messageBroker.Subscribe(CommonMessages.NewHenEntry, OnNewHen);
+            messageBroker.Subscribe(CommonMessages.LoadHen, OnEditHen);
             messageBroker.Subscribe(CommonMessages.HenSavingFailed, OnHenSavingFailed);
         }
 
         void OnHenSavingFailed(object param)
         {
             MessageBox.Show(param.ToString());
+        }
+
+        void OnEditHen(object param)
+        {
+            var loadedHen = henService.Get((Guid) param);
+            ///TODO: will be done with automapper
+            Id = loadedHen.Id;
+            Name = loadedHen.Name;
+            Type = loadedHen.Type;
+            Count = loadedHen.Count;
+            Active = loadedHen.Active;
+            Cost = loadedHen.Cost;
+            HouseId = loadedHen.HouseId;
         }
 
         void OnNewHen(object param)
@@ -201,10 +215,10 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             HouseId = Guid.Empty;
         }
 
-
         void UnsubscribeMessages()
         {
             messageBroker.Unsubscribe(CommonMessages.NewHenEntry, OnNewHen);
+            messageBroker.Subscribe(CommonMessages.LoadHen, OnEditHen);
             messageBroker.Unsubscribe(CommonMessages.HenSavingFailed, OnHenSavingFailed);
         }
 

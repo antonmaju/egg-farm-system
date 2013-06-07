@@ -121,13 +121,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
                     messageBroker.Publish(CommonMessages.ChangeMainActions, view.NavigationCommands);
                 },param=>true);
 
-            HenListCommand = new DelegateCommand(param =>
-                {
-                    IsHenInput = true;
-                    var view = (UserControlBase) henListProxy.Value;
-                    Content = view;
-                    messageBroker.Publish(CommonMessages.ChangeMainActions, view.NavigationCommands);
-                }, param => true);
+            HenListCommand = new DelegateCommand(OnHenListRefresh, param => true);
 
             HouseListCommand = new DelegateCommand(param =>
                 {
@@ -152,19 +146,31 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         void SetMessageListeners()
         {
             messageBroker.Subscribe(CommonMessages.NewHenView, ShowNewHen);
-            messageBroker.Subscribe(CommonMessages.HenSaved, OnHenSaved);
+            messageBroker.Subscribe(CommonMessages.EditHenView,OnHenEditRequest);
+            messageBroker.Subscribe(CommonMessages.HenSaved, OnHenListRefresh);
         }
 
         void UnsetMessageListeners()
         {
             messageBroker.Unsubscribe(CommonMessages.NewHenView, ShowNewHen);
-            messageBroker.Unsubscribe(CommonMessages.HenSaved, OnHenSaved);
+            messageBroker.Unsubscribe(CommonMessages.EditHenView, OnHenEditRequest);
+            messageBroker.Unsubscribe(CommonMessages.HenSaved, OnHenListRefresh);
         }
 
-        void OnHenSaved(object param)
+        void OnHenListRefresh(object param)
         {
+            IsHenInput = true;
             var view = henListProxy.Value as UserControlBase;
             Content = view;
+            messageBroker.Publish(CommonMessages.RefreshHenList, null);
+            messageBroker.Publish(CommonMessages.ChangeMainActions, view.NavigationCommands);
+        }
+
+        void OnHenEditRequest(object param)
+        {
+            var view = henEntryProxy.Value as UserControlBase;
+            Content = view;
+            messageBroker.Publish(CommonMessages.LoadHen,param);
             messageBroker.Publish(CommonMessages.ChangeMainActions, view.NavigationCommands);
         }
 

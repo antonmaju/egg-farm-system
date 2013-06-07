@@ -25,6 +25,14 @@ namespace EggFarmSystem.Services
             this.factory = factory;
         }
 
+        public virtual IList<T> GetAll()
+        {
+            using (var db = factory.CreateDbConnection())
+            {
+                db.Open();
+                return db.Select<T>();
+            }
+        }
 
         public T Get(Guid id)
         {

@@ -15,6 +15,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.Commands
 
         public EditHenCommand(IMessageBroker messageBroker, IClientContext clientContext)
         {
+            Text = () => "Edit";
             this.messageBroker = messageBroker;
             this.clientContext = clientContext;
         }
@@ -26,7 +27,9 @@ namespace EggFarmSystem.Client.Modules.MasterData.Commands
             if (clientContext.MainViewType != typeof(IMasterDataView))
                 messageBroker.Publish(CommonMessages.ChangeMainView, typeof(IMasterDataView));
 
-            messageBroker.Publish(CommonMessages.EditHenView, HenId);
+            Guid henId = parameter != null ? (Guid) parameter : HenId;
+
+            messageBroker.Publish(CommonMessages.EditHenView, henId);
         }
     }
 }
