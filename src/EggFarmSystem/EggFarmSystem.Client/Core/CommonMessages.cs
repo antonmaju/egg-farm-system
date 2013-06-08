@@ -18,6 +18,8 @@ namespace EggFarmSystem.Client.Core
         public static string NewHenEntry = "NewHenEntry";
         public static string LoadHen = "LoadHen";
         public static string RefreshHenList = "RefreshHenList";
+        public static string DeleteHenSuccess = "DeleteHenSuccess";
+        public static string DeleteHenFailed = "DeleteHenFailed";
 
 
     }

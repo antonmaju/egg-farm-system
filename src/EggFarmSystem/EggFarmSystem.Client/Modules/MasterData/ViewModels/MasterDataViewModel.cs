@@ -41,7 +41,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             this.employeeListProxy = employeeListProxy;
 
             this.henEntryProxy = henEntryProxy;
-            this.henHouseEntryProxy = henHouseEntryProxy;
+            this.henHouseEntryProxy = houseEntryProxy;
             this.employeeEntryProxy = employeeEntryProxy;
 
             InitializeCommand();
@@ -148,6 +148,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             messageBroker.Subscribe(CommonMessages.NewHenView, ShowNewHen);
             messageBroker.Subscribe(CommonMessages.EditHenView,OnHenEditRequest);
             messageBroker.Subscribe(CommonMessages.HenSaved, OnHenListRefresh);
+            messageBroker.Subscribe(CommonMessages.DeleteHenSuccess, OnHenListRefresh);
         }
 
         void UnsetMessageListeners()
@@ -155,6 +156,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             messageBroker.Unsubscribe(CommonMessages.NewHenView, ShowNewHen);
             messageBroker.Unsubscribe(CommonMessages.EditHenView, OnHenEditRequest);
             messageBroker.Unsubscribe(CommonMessages.HenSaved, OnHenListRefresh);
+            messageBroker.Unsubscribe(CommonMessages.DeleteHenSuccess, OnHenListRefresh);
         }
 
         void OnHenListRefresh(object param)

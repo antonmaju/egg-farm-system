@@ -31,28 +31,39 @@ namespace EggFarmSystem.Client.Modules.MasterData.Views
             ViewModel = viewModel;
             this.DataContext = ViewModel;
             this.NavigationCommands = viewModel.NavigationCommands;
-            SetDataBindings();
+            SetEventHandlers();
         }
 
-        private void SetDataBindings()
+        private void SetEventHandlers()
         {
+            lvHenList.MouseUp += lvHenList_MouseDown;
             lvHenList.MouseDoubleClick += lvHenList_MouseDoubleClick;
+        }
+
+        void lvHenList_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var selectedHen = lvHenList.SelectedItem as Hen;
+            if(selectedHen == null)
+                return;
+            
+            ViewModel.EditCommand.HenId = selectedHen.Id;
+            ViewModel.DeleteCommand.Id = selectedHen.Id;
         }
 
         void lvHenList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var selectedHen = lvHenList.SelectedItem as Hen;
-            ViewModel.EditHenCommand.Execute(selectedHen.Id);
+            ViewModel.EditCommand.Execute(null);
         }
 
-        private void UnsetDataBindings()
+        private void UnsetEventHandlers()
         {
+            lvHenList.MouseUp -= lvHenList_MouseDown;
             lvHenList.MouseDoubleClick -= lvHenList_MouseDoubleClick;  
         }
 
         public override void Dispose()
         {
-            UnsetDataBindings();
+            UnsetEventHandlers();
         }
     }
 

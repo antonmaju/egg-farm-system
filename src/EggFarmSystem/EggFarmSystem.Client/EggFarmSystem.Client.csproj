@@ -178,6 +178,7 @@
   <ItemGroup>
     <Compile Include="Core\Views\UserControlBase.cs" />
     <Compile Include="Modules\IModule.cs" />
+    <Compile Include="Modules\MasterData\Commands\DeleteHenCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\EditHenCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\NewHenCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\SaveHenCommand.cs" />

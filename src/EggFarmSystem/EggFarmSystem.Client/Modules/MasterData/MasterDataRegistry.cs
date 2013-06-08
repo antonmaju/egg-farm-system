@@ -28,6 +28,7 @@ namespace EggFarmSystem.Client.Modules.MasterData
             builder.RegisterType<NewHenCommand>().SingleInstance();
             builder.RegisterType<EditHenCommand>().SingleInstance();
             builder.RegisterType<SaveHenCommand>().SingleInstance();
+            builder.RegisterType<DeleteHenCommand>().SingleInstance();
         }
 
         void RegisterViewModels(ContainerBuilder builder)
