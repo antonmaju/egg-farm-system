@@ -7,6 +7,27 @@
                                         mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-            
+        <ListView Margin="10,50,30,30" x:Name="lvHouseList" 
+                  AlternationCount="2" ItemsSource="{Binding Path=Houses}">
+            <ListView.View>
+                <GridView x:Name="gvHouseList">
+                    <GridView.Columns>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}">
+
+                        </GridViewColumn>
+                        <GridViewColumn Header="PurchaseCost" DisplayMemberBinding="{Binding Path=PurchaseCost}">
+
+                        </GridViewColumn>
+                        <GridViewColumn Header="YearUsage" DisplayMemberBinding="{Binding Path=YearUsage}">
+
+                        </GridViewColumn>
+                        <GridViewColumn Header="Active" DisplayMemberBinding="{Binding Path=Active}">
+
+                        </GridViewColumn>
+                    </GridView.Columns>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </views:UserControlBase>

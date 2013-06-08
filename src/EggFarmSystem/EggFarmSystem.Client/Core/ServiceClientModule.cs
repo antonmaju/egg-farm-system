@@ -28,6 +28,7 @@ namespace EggFarmSystem.Client.Core
                    .As<IDbConnectionFactory>();
 
             builder.RegisterType<HenService>().As<IHenService>().SingleInstance();
+            builder.RegisterType<HenHouseService>().As<IHenHouseService>().SingleInstance();
 
         }
     }

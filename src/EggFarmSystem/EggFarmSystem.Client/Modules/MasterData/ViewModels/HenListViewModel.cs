@@ -41,9 +41,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         void OnHenRefresh(object param)
         {
-               var henList = henService.GetAll();
-                Hens = new ObservableCollection<Hen>(henList);
-         
+            var henList = henService.GetAll();
+            Hens = new ObservableCollection<Hen>(henList);         
         }
 
         void OnDeleteFailed(object param)

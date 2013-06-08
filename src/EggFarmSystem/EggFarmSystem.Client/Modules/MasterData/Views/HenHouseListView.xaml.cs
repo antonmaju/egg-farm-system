@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EggFarmSystem.Client.Core.Views;
+using EggFarmSystem.Client.Modules.MasterData.ViewModels;
+using EggFarmSystem.Models;
 
 namespace EggFarmSystem.Client.Modules.MasterData.Views
 {
@@ -20,9 +22,48 @@ namespace EggFarmSystem.Client.Modules.MasterData.Views
     /// </summary>
     public partial class HenHouseListView : UserControlBase, IHenHouseListView
     {
-        public HenHouseListView()
+        private readonly HouseListViewModel viewModel;
+
+        public HenHouseListView(HouseListViewModel viewModel)
         {
             InitializeComponent();
+            this.viewModel = viewModel;
+            this.DataContext = viewModel;
+            this.NavigationCommands = viewModel.NavigationCommands;
+            SetEventHandlers();
+        }
+
+        void SetEventHandlers()
+        {
+            lvHouseList.MouseUp += lvHouseList_MouseDown;
+            lvHouseList.MouseDoubleClick += lvHouseList_MouseDoubleClick;
+        }
+
+        void lvHouseList_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var selectedHouse = lvHouseList.SelectedItem as HenHouse;
+            if (selectedHouse == null)
+                return;
+
+            viewModel.EditCommand.HouseId = selectedHouse.Id;
+            //viewModel.DeleteCommand.Id = selectedHouse.Id;
+        }
+
+        void lvHouseList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            viewModel.EditCommand.Execute(null);
+        }
+
+        void UnsetEventHandlers()
+        {
+            lvHouseList.MouseUp -= lvHouseList_MouseDown;
+            lvHouseList.MouseDoubleClick -= lvHouseList_MouseDoubleClick;
+        }
+
+        public override void Dispose()
+        {
+            UnsetEventHandlers();
+            base.Dispose();
         }
     }
 

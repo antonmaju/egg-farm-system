@@ -22,7 +22,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         private Lazy<IHenHouseListView> houseListProxy;
         private Lazy<IEmployeeListView> employeeListProxy;
         private Lazy<IHenEntryView> henEntryProxy;
-        private Lazy<IHenHouseEntryView> henHouseEntryProxy;
+        private Lazy<IHenHouseEntryView> houseEntryProxy;
         private Lazy<IEmployeeEntryView> employeeEntryProxy;
 
         public MasterDataViewModel(
@@ -41,7 +41,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             this.employeeListProxy = employeeListProxy;
 
             this.henEntryProxy = henEntryProxy;
-            this.henHouseEntryProxy = houseEntryProxy;
+            this.houseEntryProxy = houseEntryProxy;
             this.employeeEntryProxy = employeeEntryProxy;
 
             InitializeCommand();
@@ -149,6 +149,9 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             messageBroker.Subscribe(CommonMessages.EditHenView,OnHenEditRequest);
             messageBroker.Subscribe(CommonMessages.HenSaved, OnHenListRefresh);
             messageBroker.Subscribe(CommonMessages.DeleteHenSuccess, OnHenListRefresh);
+
+            messageBroker.Subscribe(CommonMessages.NewHouseView, ShowNewHouse);
+            
         }
 
         void UnsetMessageListeners()
@@ -157,6 +160,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             messageBroker.Unsubscribe(CommonMessages.EditHenView, OnHenEditRequest);
             messageBroker.Unsubscribe(CommonMessages.HenSaved, OnHenListRefresh);
             messageBroker.Unsubscribe(CommonMessages.DeleteHenSuccess, OnHenListRefresh);
+
+            messageBroker.Unsubscribe(CommonMessages.NewHouseView, ShowNewHouse);
         }
 
         void OnHenListRefresh(object param)
@@ -181,6 +186,14 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             var view = henEntryProxy.Value as UserControlBase;
             Content = view;
             messageBroker.Publish(CommonMessages.NewHenEntry, null);
+            messageBroker.Publish(CommonMessages.ChangeMainActions, view.NavigationCommands);
+        }
+
+        void ShowNewHouse(object param)
+        {
+            var view = houseEntryProxy.Value as UserControlBase;
+            Content = view;
+            messageBroker.Publish(CommonMessages.NewHouseEntry, null);
             messageBroker.Publish(CommonMessages.ChangeMainActions, view.NavigationCommands);
         }
 

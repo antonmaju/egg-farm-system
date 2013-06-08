@@ -29,6 +29,10 @@ namespace EggFarmSystem.Client.Modules.MasterData
             builder.RegisterType<EditHenCommand>().SingleInstance();
             builder.RegisterType<SaveHenCommand>().SingleInstance();
             builder.RegisterType<DeleteHenCommand>().SingleInstance();
+            builder.RegisterType<NewHouseCommand>().SingleInstance();
+            builder.RegisterType<EditHouseCommand>().SingleInstance();
+            builder.RegisterType<DeleteHouseCommand>().SingleInstance();
+
         }
 
         void RegisterViewModels(ContainerBuilder builder)
@@ -36,6 +40,7 @@ namespace EggFarmSystem.Client.Modules.MasterData
             builder.RegisterType<MasterDataViewModel>().InstancePerDependency();
             builder.RegisterType<HenListViewModel>().InstancePerDependency();
             builder.RegisterType<HenEntryViewModel>().InstancePerDependency();
+            builder.RegisterType<HouseListViewModel>().InstancePerDependency();
         }
 
         void RegisterViews(ContainerBuilder builder)
