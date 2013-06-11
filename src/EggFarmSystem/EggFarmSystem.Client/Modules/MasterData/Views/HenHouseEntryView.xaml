@@ -21,22 +21,28 @@
             <ColumnDefinition Width="220"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="1"  Style="{StaticResource FormLabel}">Nama</Label>
-        <TextBox Grid.Row="1" Style="{StaticResource FormTextBox}" Grid.Column="1"  />
+        <Label Grid.Row="1"  Style="{StaticResource FormLabel}" Content="{Binding Path=NameField}" />
+        <TextBox Grid.Row="1" Style="{StaticResource FormTextBox}" Grid.Column="1"
+              Text="{Binding Path=Name, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}"   />
         
-        <Label Grid.Row="2"  Style="{StaticResource FormLabel}">Biaya Pembelian</Label>
-        <TextBox Grid.Row="2" Style="{StaticResource FormTextBox}" Grid.Column="1"  />
+        <Label Grid.Row="2"  Style="{StaticResource FormLabel}" Content="{Binding Path=PurchaseCostField}" />
+        <TextBox Grid.Row="2" Style="{StaticResource FormTextBox}" Grid.Column="1"
+                 Text="{Binding Path=PurchaseCost, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}"/>
 
-        <Label Grid.Row="3"  Style="{StaticResource FormLabel}">Penggunaan (Tahun)</Label> 
-        <TextBox Grid.Row="3" Style="{StaticResource FormTextBoxSmall}" Grid.Column="1"  />
+        <Label Grid.Row="3"  Style="{StaticResource FormLabel}" Content="{Binding Path=YearUsageField}" /> 
+        <TextBox Grid.Row="3" Style="{StaticResource FormTextBoxSmall}" Grid.Column="1" 
+                 Text="{Binding Path=YearUsage, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}" />
 
-        <Label Grid.Row="4"  Style="{StaticResource FormLabel}">Penyusutan / Hari</Label>
-        <TextBox Grid.Row="4" Style="{StaticResource FormTextBox}" Grid.Column="1"  />
+        <Label Grid.Row="4"  Style="{StaticResource FormLabel}" Content="{Binding Path=DepreciationField}" />
+        <TextBox Grid.Row="4" Style="{StaticResource FormTextBox}" Grid.Column="1" 
+                 Text="{Binding Path=Depreciation, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}" />
         
-        <Label Grid.Row="5"  Style="{StaticResource FormLabel}">Aktif</Label>
-        <CheckBox Grid.Row="5" Grid.Column="1" Style="{StaticResource FormCheckBox}" />
+        <Label Grid.Row="5"  Style="{StaticResource FormLabel}" Content="{Binding Path=ActiveField}" />
+        <CheckBox Grid.Row="5" Grid.Column="1" Style="{StaticResource FormCheckBox}" 
+                 IsChecked="{Binding Path=Active, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}"  />
         
-        <Label Grid.Row="6"  Style="{StaticResource FormLabel}">Populasi</Label>
-        <TextBox Grid.Row="6" Style="{StaticResource FormTextBoxSmall}" Grid.Column="1" IsEnabled="False"  />
+        <Label Grid.Row="6"  Style="{StaticResource FormLabel}" Content="{Binding Path=PopulationField}" />
+        <TextBox Grid.Row="6" Style="{StaticResource FormTextBoxSmall}" Grid.Column="1" IsEnabled="False" 
+                 Text="{Binding Path=Population, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}" />
     </Grid>
 </views:UserControlBase>

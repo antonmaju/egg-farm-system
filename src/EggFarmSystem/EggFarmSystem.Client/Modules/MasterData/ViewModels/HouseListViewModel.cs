@@ -60,6 +60,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         void OnHouseRefresh(object param)
         {
             var houseList = houseService.GetAll();
+            Houses = new ObservableCollection<HenHouse>(houseList);
         }
 
         void OnDeleteHouseFailed(object param)

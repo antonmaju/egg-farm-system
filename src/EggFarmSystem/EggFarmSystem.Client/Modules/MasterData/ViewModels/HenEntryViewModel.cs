@@ -229,5 +229,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             base.Dispose();
         }
 
+
+
     }
 }

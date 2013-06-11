@@ -24,7 +24,7 @@ namespace EggFarmSystem.Client.Core
         public static string NewHouseView = "NewHouseView";
         public static string NewHouseEntry = "NewHouseEntry";
         public static string EditHouseView = "EditHouseView";
-        public static string EditHouseENtry = "EditHouseEntry";
+        public static string EditHouseEntry = "EditHouseEntry";
         public static string DeleteHouse = "DeleteHouse";
         public static string SaveHouseSuccess = "SaveHouseSuccess";
         public static string SaveHouseFailed = "SaveHouseFailed";

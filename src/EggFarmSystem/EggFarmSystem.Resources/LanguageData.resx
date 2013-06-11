@@ -159,6 +159,36 @@
   <data name="Hen_TypeField" xml:space="preserve">
     <value>Type</value>
   </data>
+  <data name="House_ActiveField" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="House_DepreciationField" xml:space="preserve">
+    <value>Depreciation / day</value>
+  </data>
+  <data name="House_NameField" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="House_PopulationField" xml:space="preserve">
+    <value>Population</value>
+  </data>
+  <data name="House_PurchaseCostField" xml:space="preserve">
+    <value>Purchase Cost</value>
+  </data>
+  <data name="House_RequireDepreciation" xml:space="preserve">
+    <value>Depreciation is required</value>
+  </data>
+  <data name="House_RequireName" xml:space="preserve">
+    <value>Name is required</value>
+  </data>
+  <data name="House_RequirePurchaseCost" xml:space="preserve">
+    <value>Purchase cost is required</value>
+  </data>
+  <data name="House_RequireYearUsage" xml:space="preserve">
+    <value>Year usage is required</value>
+  </data>
+  <data name="House_YearUsageField" xml:space="preserve">
+    <value>Year Usage</value>
+  </data>
   <data name="Master_Title" xml:space="preserve">
     <value>Master Data</value>
   </data>

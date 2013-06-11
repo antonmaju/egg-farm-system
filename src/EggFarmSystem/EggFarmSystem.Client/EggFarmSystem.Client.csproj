@@ -185,11 +185,13 @@
     <Compile Include="Modules\MasterData\Commands\NewHenCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\NewHouseCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\SaveHenCommand.cs" />
+    <Compile Include="Modules\MasterData\Commands\SaveHenHouseCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\ShowMasterDataCommand.cs" />
     <Compile Include="Modules\MasterData\MasterDataModule.cs" />
     <Compile Include="Modules\MasterData\MasterDataRegistry.cs" />
     <Compile Include="Modules\MasterData\ViewModels\HenEntryViewModel.cs" />
     <Compile Include="Modules\MasterData\ViewModels\HenListViewModel.cs" />
+    <Compile Include="Modules\MasterData\ViewModels\HouseEntryViewModel.cs" />
     <Compile Include="Modules\MasterData\ViewModels\HouseListViewModel.cs" />
     <Compile Include="Modules\MasterData\ViewModels\MasterDataViewModel.cs" />
     <Compile Include="Modules\MasterData\Views\EmployeeEntryView.xaml.cs">

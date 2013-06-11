@@ -187,6 +187,96 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string House_ActiveField {
+            get {
+                return ResourceManager.GetString("House_ActiveField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Depreciation / day.
+        /// </summary>
+        public static string House_DepreciationField {
+            get {
+                return ResourceManager.GetString("House_DepreciationField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string House_NameField {
+            get {
+                return ResourceManager.GetString("House_NameField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Population.
+        /// </summary>
+        public static string House_PopulationField {
+            get {
+                return ResourceManager.GetString("House_PopulationField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase Cost.
+        /// </summary>
+        public static string House_PurchaseCostField {
+            get {
+                return ResourceManager.GetString("House_PurchaseCostField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Depreciation is required.
+        /// </summary>
+        public static string House_RequireDepreciation {
+            get {
+                return ResourceManager.GetString("House_RequireDepreciation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is required.
+        /// </summary>
+        public static string House_RequireName {
+            get {
+                return ResourceManager.GetString("House_RequireName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase cost is required.
+        /// </summary>
+        public static string House_RequirePurchaseCost {
+            get {
+                return ResourceManager.GetString("House_RequirePurchaseCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year usage is required.
+        /// </summary>
+        public static string House_RequireYearUsage {
+            get {
+                return ResourceManager.GetString("House_RequireYearUsage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year Usage.
+        /// </summary>
+        public static string House_YearUsageField {
+            get {
+                return ResourceManager.GetString("House_YearUsageField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Master Data.
         /// </summary>
         public static string Master_Title {

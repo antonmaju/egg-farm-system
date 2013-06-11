@@ -46,7 +46,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.Views
                 return;
 
             viewModel.EditCommand.HouseId = selectedHouse.Id;
-            //viewModel.DeleteCommand.Id = selectedHouse.Id;
+            viewModel.DeleteCommand.HouseId = selectedHouse.Id;
         }
 
         void lvHouseList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
