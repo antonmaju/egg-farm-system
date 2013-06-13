@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EggFarmSystem.Client.Core.Views;
+using EggFarmSystem.Client.Modules.MasterData.ViewModels;
+using EggFarmSystem.Models;
 
 namespace EggFarmSystem.Client.Modules.MasterData.Views
 {
@@ -20,9 +22,48 @@ namespace EggFarmSystem.Client.Modules.MasterData.Views
     /// </summary>
     public partial class EmployeeListView : UserControlBase, IEmployeeListView
     {
-        public EmployeeListView()
+        private EmployeeListViewModel viewModel;
+
+        public EmployeeListView(EmployeeListViewModel viewModel)
         {
             InitializeComponent();
+            this.viewModel = viewModel;
+            this.DataContext = viewModel;
+            this.NavigationCommands = viewModel.NavigationCommands;
+            SetEventHandlers();
+        }
+
+        void SetEventHandlers()
+        {
+            lvEmployeeList.MouseUp += lvEmployeeList_MouseUp;
+            lvEmployeeList.MouseDoubleClick += lvEmployeeList_MouseDoubleClick;
+        }
+
+        void lvEmployeeList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            viewModel.EditCommand.Execute(null);
+        }
+
+        void lvEmployeeList_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            var selectedEmployee = lvEmployeeList.SelectedItem as Employee;
+            if (selectedEmployee == null)
+                return;
+
+            viewModel.EditCommand.EmployeeId = selectedEmployee.Id;
+            viewModel.DeleteCommand.EmployeeId = selectedEmployee.Id;
+        }
+
+        void UnsetEventHandlers()
+        {
+            lvEmployeeList.MouseUp += lvEmployeeList_MouseUp;
+            lvEmployeeList.MouseDoubleClick += lvEmployeeList_MouseDoubleClick;
+        }
+
+        public override void Dispose()
+        {
+            UnsetEventHandlers();
+            base.Dispose();
         }
     }
 

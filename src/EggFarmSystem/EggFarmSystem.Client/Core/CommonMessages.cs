@@ -33,6 +33,18 @@ namespace EggFarmSystem.Client.Core
         public static string DeleteHouseSuccess = "DeleteHouseSuccess";
         public static string DeleteHouseFailed = "DeleteHouseFailed";
 
+        public static string NewEmployeeView = "NewEmployeeView";
+        public static string NewEmployeeEntry = "NewEmployeeEntry";
+        public static string EditEmployeeView = "EditEmployeeView";
+        public static string EditEmployeeEntry = "EditEmployeeEntry";
+        public static string DeleteEmployee = "DeleteEmployee";
+        public static string SaveEmployeeSuccess = "SaveEmployeeSuccess";
+        public static string SaveEmployeeFailed = "SaveEmployeeFailed";
+        public static string LoadEmployee = "LoadEmployee";
+        public static string RefreshEmployeeList = "RefreshEmployeeList";
+        public static string DeleteEmployeeSuccess = "DeleteEmployeeSuccess";
+        public static string DeleteEmployeeFailed = "DeleteEMployeeFailed";
+
 
     }
 }

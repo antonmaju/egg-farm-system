@@ -178,17 +178,23 @@
   <ItemGroup>
     <Compile Include="Core\Views\UserControlBase.cs" />
     <Compile Include="Modules\IModule.cs" />
+    <Compile Include="Modules\MasterData\Commands\DeleteEmployeeCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\DeleteHenCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\DeleteHouseCommand.cs" />
+    <Compile Include="Modules\MasterData\Commands\EditEmployeeCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\EditHenCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\EditHouseCommand.cs" />
+    <Compile Include="Modules\MasterData\Commands\NewEmployeeCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\NewHenCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\NewHouseCommand.cs" />
+    <Compile Include="Modules\MasterData\Commands\SaveEmployeeCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\SaveHenCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\SaveHenHouseCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\ShowMasterDataCommand.cs" />
     <Compile Include="Modules\MasterData\MasterDataModule.cs" />
     <Compile Include="Modules\MasterData\MasterDataRegistry.cs" />
+    <Compile Include="Modules\MasterData\ViewModels\EmployeeEntryViewModel.cs" />
+    <Compile Include="Modules\MasterData\ViewModels\EmployeeListViewModel.cs" />
     <Compile Include="Modules\MasterData\ViewModels\HenEntryViewModel.cs" />
     <Compile Include="Modules\MasterData\ViewModels\HenListViewModel.cs" />
     <Compile Include="Modules\MasterData\ViewModels\HouseEntryViewModel.cs" />

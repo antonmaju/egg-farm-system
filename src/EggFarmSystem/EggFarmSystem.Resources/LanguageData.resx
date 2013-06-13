@@ -129,6 +129,18 @@
   <data name="Depreciation_Title" xml:space="preserve">
     <value>Depreciation</value>
   </data>
+  <data name="Employee_NameField" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Employee_RequireName" xml:space="preserve">
+    <value>Name is required</value>
+  </data>
+  <data name="Employee_RequireSalary" xml:space="preserve">
+    <value>Salary is required</value>
+  </data>
+  <data name="Employee_SalaryField" xml:space="preserve">
+    <value>Salary</value>
+  </data>
   <data name="General_AppTitle" xml:space="preserve">
     <value>Egg Farm System</value>
   </data>

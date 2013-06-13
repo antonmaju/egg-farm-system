@@ -1,5 +1,6 @@
 using System.Windows.Controls;
 using EggFarmSystem.Client.Core.Views;
+using EggFarmSystem.Client.Modules.MasterData.ViewModels;
 
 namespace EggFarmSystem.Client.Modules.MasterData.Views
 {
@@ -8,9 +9,12 @@ namespace EggFarmSystem.Client.Modules.MasterData.Views
     /// </summary>
     public partial class EmployeeEntryView : UserControlBase, IEmployeeEntryView
     {
-        public EmployeeEntryView()
+        public EmployeeEntryView(EmployeeEntryViewModel viewModel)
         {
             InitializeComponent();
+
+            this.DataContext = viewModel;
+            this.NavigationCommands = viewModel.NavigationCommands;
         }
     }
 

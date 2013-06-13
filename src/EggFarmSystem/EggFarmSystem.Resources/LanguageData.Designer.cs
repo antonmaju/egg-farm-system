@@ -97,6 +97,42 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Employee_NameField {
+            get {
+                return ResourceManager.GetString("Employee_NameField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is required.
+        /// </summary>
+        public static string Employee_RequireName {
+            get {
+                return ResourceManager.GetString("Employee_RequireName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salary is required.
+        /// </summary>
+        public static string Employee_RequireSalary {
+            get {
+                return ResourceManager.GetString("Employee_RequireSalary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salary.
+        /// </summary>
+        public static string Employee_SalaryField {
+            get {
+                return ResourceManager.GetString("Employee_SalaryField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Egg Farm System.
         /// </summary>
         public static string General_AppTitle {

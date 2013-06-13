@@ -113,13 +113,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         void InitializeCommand()
         {
-            EmployeeListCommand = new DelegateCommand(param =>
-                {
-                    IsEmployeeInput = true;
-                    var view = employeeListProxy.Value as UserControlBase;
-                    Content = view;
-                    messageBroker.Publish(CommonMessages.ChangeMainActions, view.NavigationCommands);
-                },param=>true);
+            EmployeeListCommand = new DelegateCommand(OnEmployeeListRefresh,param=>true);
 
             HenListCommand = new DelegateCommand(OnHenListRefresh, param => true);
 
@@ -149,6 +143,10 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             messageBroker.Subscribe(CommonMessages.SaveHouseSuccess, OnHouseListRefresh);
             messageBroker.Subscribe(CommonMessages.DeleteHouseSuccess, OnHouseListRefresh);
 
+            messageBroker.Subscribe(CommonMessages.NewEmployeeView, ShowNewEmployee);
+            messageBroker.Subscribe(CommonMessages.EditEmployeeView, OnEmployeeEditRequest);
+            messageBroker.Subscribe(CommonMessages.SaveEmployeeSuccess, OnEmployeeListRefresh);
+            messageBroker.Subscribe(CommonMessages.DeleteEmployeeSuccess, OnEmployeeListRefresh);
         }
 
         void UnsetMessageListeners()
@@ -212,6 +210,31 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             var view = houseListProxy.Value as UserControlBase;
             Content = view;
             messageBroker.Publish(CommonMessages.RefreshHouseList, null);
+            messageBroker.Publish(CommonMessages.ChangeMainActions, view.NavigationCommands);
+        }
+
+        void ShowNewEmployee(object param)
+        {
+            var view = employeeEntryProxy.Value as UserControlBase;
+            Content = view;
+            messageBroker.Publish(CommonMessages.NewEmployeeEntry, null);
+            messageBroker.Publish(CommonMessages.ChangeMainActions, view.NavigationCommands);
+        }
+
+        void OnEmployeeEditRequest(object param)
+        {
+            var view = employeeEntryProxy.Value as UserControlBase;
+            Content = view;
+            messageBroker.Publish(CommonMessages.LoadEmployee, param);
+            messageBroker.Publish(CommonMessages.ChangeMainActions, view.NavigationCommands);
+        }
+
+        void OnEmployeeListRefresh(object param)
+        {
+            IsEmployeeInput = true;
+            var view = employeeListProxy.Value as UserControlBase;
+            Content = view;
+            messageBroker.Publish(CommonMessages.RefreshEmployeeList, null);
             messageBroker.Publish(CommonMessages.ChangeMainActions, view.NavigationCommands);
         }
 
