@@ -7,14 +7,7 @@
                                         mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-        </Grid.RowDefinitions>
-        
-        
-        <ListView Margin="10,0,30,20" x:Name="lvHenList" Grid.Row="1"
+        <ListView Margin="10,50,30,30" x:Name="lvHenList"
                   AlternationCount="2" ItemsSource="{Binding Path=Hens}">
             <ListView.View>
                 <GridView x:Name="gvHenList">

@@ -97,6 +97,7 @@ namespace EggFarmSystem.Client.Core.Views
                     var button = new Button();
                     button.Command = command;
                     button.Content = command.Text();
+                    button.Style = FindResource("NavButton") as Style;
                     stButtons.Children.Add(button);
                 }
             }
