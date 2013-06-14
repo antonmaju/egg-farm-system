@@ -27,6 +27,5 @@ namespace EggFarmSystem.Services
             this.factory = factory;
         }
 
-
     }
 }

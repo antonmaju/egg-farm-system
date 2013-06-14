@@ -65,6 +65,8 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -95,6 +97,7 @@
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Core\Bootstrapper.cs" />
     <Compile Include="Core\ClientContext.cs" />
+    <Compile Include="Core\Error.cs" />
     <Compile Include="Core\IBootstrapper.cs" />
     <Compile Include="Core\IClientContext.cs" />
     <Compile Include="Core\IMessageBroker.cs" />
@@ -106,6 +109,14 @@
     <Compile Include="Core\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Modules\MasterData\Views\ConsumableEntryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\MasterData\Views\ConsumableListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\MasterData\Views\EmployeeEntryView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -178,21 +189,31 @@
   <ItemGroup>
     <Compile Include="Core\Views\UserControlBase.cs" />
     <Compile Include="Modules\IModule.cs" />
+    <Compile Include="Modules\MasterData\Commands\DeleteConsumableCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\DeleteEmployeeCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\DeleteHenCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\DeleteHouseCommand.cs" />
+    <Compile Include="Modules\MasterData\Commands\DeleteMasterDataCommand.cs" />
+    <Compile Include="Modules\MasterData\Commands\EditConsumableCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\EditEmployeeCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\EditHenCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\EditHouseCommand.cs" />
+    <Compile Include="Modules\MasterData\Commands\EditMasterDataCommand.cs" />
+    <Compile Include="Modules\MasterData\Commands\NewConsumableCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\NewEmployeeCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\NewHenCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\NewHouseCommand.cs" />
+    <Compile Include="Modules\MasterData\Commands\NewMasterDataCommand.cs" />
+    <Compile Include="Modules\MasterData\Commands\SaveConsumableCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\SaveEmployeeCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\SaveHenCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\SaveHenHouseCommand.cs" />
+    <Compile Include="Modules\MasterData\Commands\SaveMasterDataCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\ShowMasterDataCommand.cs" />
     <Compile Include="Modules\MasterData\MasterDataModule.cs" />
     <Compile Include="Modules\MasterData\MasterDataRegistry.cs" />
+    <Compile Include="Modules\MasterData\ViewModels\ConsumableEntryViewModel.cs" />
+    <Compile Include="Modules\MasterData\ViewModels\ConsumableListViewModel.cs" />
     <Compile Include="Modules\MasterData\ViewModels\EmployeeEntryViewModel.cs" />
     <Compile Include="Modules\MasterData\ViewModels\EmployeeListViewModel.cs" />
     <Compile Include="Modules\MasterData\ViewModels\HenEntryViewModel.cs" />
@@ -200,6 +221,12 @@
     <Compile Include="Modules\MasterData\ViewModels\HouseEntryViewModel.cs" />
     <Compile Include="Modules\MasterData\ViewModels\HouseListViewModel.cs" />
     <Compile Include="Modules\MasterData\ViewModels\MasterDataViewModel.cs" />
+    <Compile Include="Modules\MasterData\Views\ConsumableEntryView.xaml.cs">
+      <DependentUpon>ConsumableEntryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\MasterData\Views\ConsumableListView.xaml.cs">
+      <DependentUpon>ConsumableListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\MasterData\Views\EmployeeEntryView.xaml.cs">
       <DependentUpon>EmployeeEntryView.xaml</DependentUpon>
     </Compile>

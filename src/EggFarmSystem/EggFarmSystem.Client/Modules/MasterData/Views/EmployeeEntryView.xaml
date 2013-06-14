@@ -18,15 +18,15 @@
             <ColumnDefinition Width="220"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="1"  Style="{StaticResource FormLabel}" 
-               Content="{Binding Path=NameText}" />
-        <TextBox Grid.Row="1" Style="{StaticResource FormTextBox}" Grid.Column="1" 
-                Text="{Binding Path=Name}" />
+        <Label Grid.Row="1" Target="{Binding ElementName=txtName}"  Style="{StaticResource FormLabel}" 
+               Content="{Binding Path=NameText}" TabIndex="0" />
+        <TextBox Grid.Row="1" Style="{StaticResource FormTextBox}" Grid.Column="1" x:Name="txtName" 
+                Text="{Binding Path=Name}" TabIndex="1" />
 
-        <Label Grid.Row="2"  Style="{StaticResource FormLabel}"
-               Content="{Binding Path=SalaryText}" />
-        <TextBox Grid.Row="2" Style="{StaticResource FormTextBox}" Grid.Column="1"
-                Text="{Binding Path=Salary}" />
+        <Label Grid.Row="2"  Style="{StaticResource FormLabel}" Target="{Binding ElementName=txtSalary}"
+               Content="{Binding Path=SalaryText}" TabIndex="2" />
+        <TextBox Grid.Row="2" Style="{StaticResource FormTextBox}" Grid.Column="1" x:Name="txtSalary"
+                Text="{Binding Path=Salary}" TabIndex="3" />
 
         
     </Grid>

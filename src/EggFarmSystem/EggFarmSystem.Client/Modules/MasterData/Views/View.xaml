@@ -15,15 +15,19 @@
             <ToggleButton Style="{StaticResource SidebarButton}" 
                           IsChecked="{Binding Path=IsHenInput}"
                           Command="{Binding Path=HenListCommand}"
-                          x:Name="tglAyam">AYAM</ToggleButton>
+                          x:Name="tglAyam" Content="{Binding Path=HenText}"></ToggleButton>
             <ToggleButton Style="{StaticResource SidebarButton}"
                           IsChecked="{Binding Path=IsHouseInput}"
                           Command="{Binding Path=HouseListCommand}"
-                          x:Name="tglKandang">KANDANG</ToggleButton>
+                          x:Name="tglKandang" Content="{Binding Path=HouseText}"></ToggleButton>
             <ToggleButton Style="{StaticResource SidebarButton}" 
                           IsChecked="{Binding Path=IsEmployeeInput}"
                           Command="{Binding Path=EmployeeListCommand}"
-                          x:Name="tglKaryawan">KARYAWAN</ToggleButton>
+                          x:Name="tglKaryawan" Content="{Binding Path=EmployeeText}" />
+            <ToggleButton Style="{StaticResource SidebarButton}" 
+                          IsChecked="{Binding Path=IsConsumableInput}"
+                          Command="{Binding Path=ConsumableListCommand}"
+                          x:Name="tglConsumable" Content="{Binding Path=ConsumableText}" />
         </StackPanel>
         <ScrollViewer Grid.Column="1" x:Name="scrMasterContent"
                       HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True"

@@ -30,6 +30,7 @@ namespace EggFarmSystem.Client.Core
             builder.RegisterType<HenService>().As<IHenService>().SingleInstance();
             builder.RegisterType<HenHouseService>().As<IHenHouseService>().SingleInstance();
             builder.RegisterType<EmployeeService>().As<IEmployeeService>().SingleInstance();
+            builder.RegisterType<ConsumableService>().As<IConsumableService>().SingleInstance();
 
         }
     }

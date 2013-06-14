@@ -47,7 +47,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.Views
                 return;
             
             ViewModel.EditCommand.HenId = selectedHen.Id;
-            ViewModel.DeleteCommand.Id = selectedHen.Id;
+            ViewModel.DeleteCommand.EntityId = selectedHen.Id;
         }
 
         void lvHenList_MouseDoubleClick(object sender, MouseButtonEventArgs e)

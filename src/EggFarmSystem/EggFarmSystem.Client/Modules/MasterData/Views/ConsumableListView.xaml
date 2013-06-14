@@ -1,0 +1,38 @@
+﻿<views:UserControlBase x:Class="EggFarmSystem.Client.Modules.MasterData.Views.ConsumableListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:views="clr-namespace:EggFarmSystem.Client.Core.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="500">
+    <Grid>
+        <ListView Margin="10,50,30,30" x:Name="lvConsumableList"
+                  AlternationCount="2" ItemsSource="{Binding Path=Consumables}">
+            <ListView.View>
+                <GridView x:Name="gvConsumableList">
+
+                    <GridView.Columns>
+                        <GridViewColumn Header="{Binding Path=NameText}" 
+                                        DisplayMemberBinding="{Binding Path=Name}">
+
+                        </GridViewColumn>
+                        <GridViewColumn Header="{Binding Path=TypeText}" 
+                                        DisplayMemberBinding="{Binding Path=Type}">
+
+                        </GridViewColumn>
+                        <GridViewColumn Header="{Binding Path=UnitPriceText}" 
+                                        DisplayMemberBinding="{Binding Path=UnitPrice}">
+
+                        </GridViewColumn>
+                        <GridViewColumn Header="{Binding Path=UnitText}" 
+                                        DisplayMemberBinding="{Binding Path=Unit}">
+
+                        </GridViewColumn>
+                    </GridView.Columns>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</views:UserControlBase>

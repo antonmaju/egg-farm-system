@@ -70,6 +70,96 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string Consumable_ActiveField {
+            get {
+                return ResourceManager.GetString("Consumable_ActiveField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Consumable_NameField {
+            get {
+                return ResourceManager.GetString("Consumable_NameField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is required.
+        /// </summary>
+        public static string Consumable_RequireName {
+            get {
+                return ResourceManager.GetString("Consumable_RequireName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit Price is required.
+        /// </summary>
+        public static string Consumable_RequireUnitPrice {
+            get {
+                return ResourceManager.GetString("Consumable_RequireUnitPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consumable.
+        /// </summary>
+        public static string Consumable_Title {
+            get {
+                return ResourceManager.GetString("Consumable_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string Consumable_TypeField {
+            get {
+                return ResourceManager.GetString("Consumable_TypeField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit.
+        /// </summary>
+        public static string Consumable_UnitField {
+            get {
+                return ResourceManager.GetString("Consumable_UnitField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit Price.
+        /// </summary>
+        public static string Consumable_UnitPriceField {
+            get {
+                return ResourceManager.GetString("Consumable_UnitPriceField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feed.
+        /// </summary>
+        public static string ConsumableType_Feed {
+            get {
+                return ResourceManager.GetString("ConsumableType_Feed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OVK.
+        /// </summary>
+        public static string ConsumableType_Ovk {
+            get {
+                return ResourceManager.GetString("ConsumableType_Ovk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Consumption.
         /// </summary>
         public static string Consumption_Title {
@@ -133,11 +223,74 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee.
+        /// </summary>
+        public static string Employee_Title {
+            get {
+                return ResourceManager.GetString("Employee_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Egg Farm System.
         /// </summary>
         public static string General_AppTitle {
             get {
                 return ResourceManager.GetString("General_AppTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General_Cancel.
+        /// </summary>
+        public static string General_Cancel {
+            get {
+                return ResourceManager.GetString("General_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string General_Delete {
+            get {
+                return ResourceManager.GetString("General_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string General_Edit {
+            get {
+                return ResourceManager.GetString("General_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string General_New {
+            get {
+                return ResourceManager.GetString("General_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string General_Refresh {
+            get {
+                return ResourceManager.GetString("General_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string General_Save {
+            get {
+                return ResourceManager.GetString("General_Save", resourceCulture);
             }
         }
         
@@ -210,6 +363,15 @@ namespace EggFarmSystem.Resources {
         public static string Hen_RequireType {
             get {
                 return ResourceManager.GetString("Hen_RequireType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hen.
+        /// </summary>
+        public static string Hen_Title {
+            get {
+                return ResourceManager.GetString("Hen_Title", resourceCulture);
             }
         }
         
@@ -300,6 +462,15 @@ namespace EggFarmSystem.Resources {
         public static string House_RequireYearUsage {
             get {
                 return ResourceManager.GetString("House_RequireYearUsage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hen House.
+        /// </summary>
+        public static string House_Title {
+            get {
+                return ResourceManager.GetString("House_Title", resourceCulture);
             }
         }
         

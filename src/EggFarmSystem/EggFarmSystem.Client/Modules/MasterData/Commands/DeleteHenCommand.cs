@@ -8,35 +8,19 @@ using System.Text;
 
 namespace EggFarmSystem.Client.Modules.MasterData.Commands
 {
-    public class DeleteHenCommand : CommandBase
+    public class DeleteHenCommand : DeleteMasterDataCommand
     {
-        private readonly IMessageBroker messageBroker;
         private readonly IHenService henService;
 
-        public DeleteHenCommand(
-            IMessageBroker messageBroker,
-            IHenService henService)
+        public DeleteHenCommand(IMessageBroker messageBroker, IHenService henService)
+            : base(messageBroker)
         {
-            Text = () => "Delete";
-            this.messageBroker = messageBroker;
             this.henService = henService;
         }
 
-        public Guid Id { get; set; }
-
-        public override void Execute(object parameter)
+        protected override void OnDeleteMasterData(Guid entityId)
         {
-            Guid id = parameter == null ? Id : (Guid) parameter;
-            
-            try
-            {
-                henService.Delete(id);
-                messageBroker.Publish(CommonMessages.DeleteHenSuccess, id);
-            }
-            catch(Exception ex)
-            {
-                messageBroker.Publish(CommonMessages.DeleteHenFailed, ex.Message);
-            }
+            henService.Delete(entityId);
         }
     }
 }

@@ -36,6 +36,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             SubscribeMessages();
         }
 
+        #region commands
+
         public NewEmployeeCommand NewCommand { get; private set; }
 
         public EditEmployeeCommand EditCommand { get; private set; }
@@ -43,6 +45,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         public DeleteEmployeeCommand DeleteCommand { get; private set; }
 
         public IList<CommandBase> NavigationCommands { get; private set; }
+
+        #endregion
 
         public ObservableCollection<Employee> Employees
         {

@@ -120,6 +120,36 @@
   <data name="Attendance_Title" xml:space="preserve">
     <value>Attendance</value>
   </data>
+  <data name="ConsumableType_Feed" xml:space="preserve">
+    <value>Feed</value>
+  </data>
+  <data name="ConsumableType_Ovk" xml:space="preserve">
+    <value>OVK</value>
+  </data>
+  <data name="Consumable_ActiveField" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Consumable_NameField" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Consumable_RequireName" xml:space="preserve">
+    <value>Name is required</value>
+  </data>
+  <data name="Consumable_RequireUnitPrice" xml:space="preserve">
+    <value>Unit Price is required</value>
+  </data>
+  <data name="Consumable_Title" xml:space="preserve">
+    <value>Consumable</value>
+  </data>
+  <data name="Consumable_TypeField" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Consumable_UnitField" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="Consumable_UnitPriceField" xml:space="preserve">
+    <value>Unit Price</value>
+  </data>
   <data name="Consumption_Title" xml:space="preserve">
     <value>Consumption</value>
   </data>
@@ -141,8 +171,29 @@
   <data name="Employee_SalaryField" xml:space="preserve">
     <value>Salary</value>
   </data>
+  <data name="Employee_Title" xml:space="preserve">
+    <value>Employee</value>
+  </data>
   <data name="General_AppTitle" xml:space="preserve">
     <value>Egg Farm System</value>
+  </data>
+  <data name="General_Cancel" xml:space="preserve">
+    <value>General_Cancel</value>
+  </data>
+  <data name="General_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="General_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="General_New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="General_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="General_Save" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="Hen_ActiveField" xml:space="preserve">
     <value>Active</value>
@@ -167,6 +218,9 @@
   </data>
   <data name="Hen_RequireType" xml:space="preserve">
     <value>Type is required</value>
+  </data>
+  <data name="Hen_Title" xml:space="preserve">
+    <value>Hen</value>
   </data>
   <data name="Hen_TypeField" xml:space="preserve">
     <value>Type</value>
@@ -197,6 +251,9 @@
   </data>
   <data name="House_RequireYearUsage" xml:space="preserve">
     <value>Year usage is required</value>
+  </data>
+  <data name="House_Title" xml:space="preserve">
+    <value>Hen House</value>
   </data>
   <data name="House_YearUsageField" xml:space="preserve">
     <value>Year Usage</value>
