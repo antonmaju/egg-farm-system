@@ -24,7 +24,7 @@ namespace EggFarmSystem.Client.Core
         {
             builder.RegisterInstance(
                 new OrmLiteConnectionFactory(ConfigurationManager.ConnectionStrings["EggFarmDb"].ConnectionString,
-                                             SqlServerDialect.Provider))
+                                             MySqlDialect.Provider))
                    .As<IDbConnectionFactory>();
 
             builder.RegisterType<HenService>().As<IHenService>().SingleInstance();

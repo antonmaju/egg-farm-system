@@ -15,11 +15,12 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
     public class HenEntryViewModel : ViewModelBase
     {
         private readonly IHenService henService;
+        private readonly IHenHouseService houseService;
         private readonly IMessageBroker messageBroker;
         private Hen hen;
         
 
-        public HenEntryViewModel(IMessageBroker messageBroker, IHenService henService,
+        public HenEntryViewModel(IMessageBroker messageBroker, IHenService henService, IHenHouseService houseService,
             SaveHenCommand saveCommand)
         {
             this.henService = henService;
@@ -34,11 +35,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             SaveCommand = saveCommand;
             saveCommand.Hen = hen;
 
-            HenHouses = new List<HenHouse>
-                {
-                    new HenHouse {Id = Guid.Empty, Name = "Select house"},
-                    new HenHouse {Id = Guid.NewGuid(), Name = "House 1"}
-                };
+            HenHouses = houseService.GetAllActive();
 
             SubscribeMessages();
         }

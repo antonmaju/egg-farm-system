@@ -13,6 +13,8 @@ namespace EggFarmSystem.Services
 
         IList<HenHouse> GetAll();
 
+        IList<HenHouse> GetAllActive();
+            
         HenHouse Get(Guid id);
 
         bool Save(HenHouse model);
@@ -34,5 +36,16 @@ namespace EggFarmSystem.Services
             throw new NotImplementedException();
         }
 
+        public IList<HenHouse> GetAllActive()
+        {
+            using (var db = factory.CreateDbConnection())
+            {
+                db.Open();
+                return db.Where<HenHouse>(new {Active = true})
+                  .OrderBy(h => h.Name)
+                  .ToList();
+
+            }
+        }
     }
 }

@@ -39,7 +39,7 @@ namespace EggFarmSystem.Services
             using (var db = factory.CreateDbConnection())
             {
                 db.Open();
-                return db.GetById<T>(id);
+                return db.GetById<T>(id.ToString());
             }
         }
 
@@ -65,7 +65,7 @@ namespace EggFarmSystem.Services
             using (var db = factory.CreateDbConnection())
             {
                 db.Open();
-                db.DeleteByIdParam<T>(id);
+                db.DeleteByIdParam<T>(id.ToString());
             }
 
             return true;
