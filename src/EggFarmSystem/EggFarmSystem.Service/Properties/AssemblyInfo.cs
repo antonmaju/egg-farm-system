@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("EggFarmSystem.Services")]
+[assembly: AssemblyTitle("EggFarmSystem.Service")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("EggFarmSystem.Services")]
+[assembly: AssemblyProduct("EggFarmSystem.Service")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("22903184-104b-4821-9cf6-b0867fa0448e")]
+[assembly: Guid("e25ebc1f-f9dd-44f2-8c40-e71abdf21d68")]
 
 // Version information for an assembly consists of the following four values:
 //
