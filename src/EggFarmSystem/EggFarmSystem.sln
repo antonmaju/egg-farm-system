@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EggFarmSystem.Core", "EggFarmSystem\EggFarmSystem.Core.csproj", "{1A94011C-D5D2-4639-9A32-B3A08B29F6F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EggFarm.FormsUI", "EggFarm.FormsUI\EggFarm.FormsUI.csproj", "{07CF498F-3D96-4FED-AC8A-75F2D5726BFD}"
@@ -12,6 +12,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EggFarmSystem.Client.Tests", "EggFarmSystem.Client.Tests\EggFarmSystem.Client.Tests.csproj", "{8A251FA7-AA89-4853-99FF-DA9ECC526379}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EggFarmSystem.Service", "EggFarmSystem.Service\EggFarmSystem.Service.csproj", "{E5BB2863-7067-4991-8404-DEE40F26FEEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{24296323-8200-4CE3-B2A6-4C03A6F25FC1}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EggFarmSystem.Service.Tests", "EggFarmSystem.Service.Tests\EggFarmSystem.Service.Tests.csproj", "{5AB64137-060B-4322-BA29-FBDF4A140CD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +52,10 @@ Global
 		{E5BB2863-7067-4991-8404-DEE40F26FEEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5BB2863-7067-4991-8404-DEE40F26FEEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5BB2863-7067-4991-8404-DEE40F26FEEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AB64137-060B-4322-BA29-FBDF4A140CD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AB64137-060B-4322-BA29-FBDF4A140CD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AB64137-060B-4322-BA29-FBDF4A140CD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AB64137-060B-4322-BA29-FBDF4A140CD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

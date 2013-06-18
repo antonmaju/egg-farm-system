@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Configuration;
 using Autofac;
 using EggFarmSystem.Services;
 using ServiceStack.OrmLite;
-using System.Configuration;
 
-namespace EggFarmSystem.Client.Core
+namespace EggFarmSystem.Client.Core.Services
 {
     public class ServiceClientModule : Module
     {
@@ -28,7 +24,8 @@ namespace EggFarmSystem.Client.Core
                    .As<IDbConnectionFactory>();
 
             builder.RegisterType<HenService>().As<IHenService>().SingleInstance();
-            builder.RegisterType<HenHouseService>().As<IHenHouseService>().SingleInstance();
+            //builder.RegisterType<HenHouseService>().As<IHenHouseService>().SingleInstance();
+            builder.RegisterType<HenHouseServiceClient>().As<IHenHouseService>().SingleInstance();
             builder.RegisterType<EmployeeService>().As<IEmployeeService>().SingleInstance();
             builder.RegisterType<ConsumableService>().As<IConsumableService>().SingleInstance();
 

@@ -9,11 +9,9 @@ namespace EggFarmSystem.Services
 {
     public interface IHenHouseService
     {
-        SearchResult<HenHouse> Search();
+        //SearchResult<HenHouse> Search();
 
         IList<HenHouse> GetAll();
-
-        IList<HenHouse> GetAllActive();
             
         HenHouse Get(Guid id);
 

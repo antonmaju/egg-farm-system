@@ -30,8 +30,14 @@ namespace EggFarmSystem.Client.Modules.MasterData.Commands
 
             try
             {
-                houseService.Save(HenHouse);
-                messageBroker.Publish(CommonMessages.SaveHouseSuccess, null);
+                if (houseService.Save(HenHouse))
+                {
+                    messageBroker.Publish(CommonMessages.SaveHouseSuccess, null);
+                }
+                else
+                {
+                    messageBroker.Publish(CommonMessages.SaveHouseFailed, null);
+                }
             }
             catch(Exception ex)
             {

@@ -34,29 +34,64 @@ namespace EggFarmSystem.Service.Controllers
             return house;
         }
 
-        public HttpResponseMessage Post(HenHouse house)
+        public HttpResponseMessage Post(HenHouse value)
         {
             if(! ModelState.IsValid)
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
 
-            houseService.Save(house);
-            var response = Request.CreateResponse<HenHouse>(HttpStatusCode.Created, house);
-            string uri = Url.Link("DefaultApi", new { id = house.Id });
-            response.Headers.Location = new Uri(uri);
+            HttpResponseMessage response = null;
+
+            try
+            {
+                houseService.Save(value);
+                response = Request.CreateResponse<HenHouse>(HttpStatusCode.Created, value);
+                string uri = Url.Link("DefaultApi", new {id = value.Id});
+                response.Headers.Location = new Uri(uri);
+            }
+            catch(Exception ex)
+            {
+                response = Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+
             return response;
         }
 
-        public void Put(Guid id,HenHouse house)
+        [HttpPut]
+        public HttpResponseMessage Put(Guid id,[FromBody] HenHouse value)
         {
-            if (!ModelState.IsValid || house.Id != id)
+            if (!ModelState.IsValid || value.Id != id)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            
-            houseService.Save(house);
+
+            HttpResponseMessage response = null;
+
+            try
+            {
+                houseService.Save(value);
+                response = Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                response = Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+
+            return response;
         }
 
-        public void Delete(Guid id)
+        public HttpResponseMessage Delete(Guid id)
         {
-            houseService.Delete(id);
+            HttpResponseMessage response = null;
+
+            try
+            {
+                houseService.Delete(id);
+                response = Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                response = Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+
+            return response;
         }
     }
 }

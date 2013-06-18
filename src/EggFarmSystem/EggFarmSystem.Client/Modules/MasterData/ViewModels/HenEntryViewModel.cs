@@ -35,7 +35,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             SaveCommand = saveCommand;
             saveCommand.Hen = hen;
 
-            HenHouses = houseService.GetAllActive();
+            HenHouses = houseService.GetAll();
 
             SubscribeMessages();
         }

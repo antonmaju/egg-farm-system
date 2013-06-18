@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using Autofac;
 using EggFarmSystem.Client.Commands;
+using EggFarmSystem.Client.Core.Services;
 using EggFarmSystem.Client.Core.Views;
 using EggFarmSystem.Client.Modules;
 using System;

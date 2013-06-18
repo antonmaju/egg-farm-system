@@ -8,5 +8,7 @@ namespace EggFarmSystem.Client.Core
     public interface IClientContext
     {
         Type MainViewType { get; set; }
+
+        string ServiceUrl { get; }
     }
 }

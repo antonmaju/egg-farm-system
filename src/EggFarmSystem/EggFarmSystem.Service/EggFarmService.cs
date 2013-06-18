@@ -23,6 +23,7 @@ namespace EggFarmSystem.Service
                                        routeTemplate: "api/{controller}/{id}",
                                        defaults: new {id = RouteParameter.Optional}
                 );
+           config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
 
             var builder = new ContainerBuilder();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());

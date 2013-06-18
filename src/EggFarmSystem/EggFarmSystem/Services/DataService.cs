@@ -9,6 +9,8 @@ namespace EggFarmSystem.Services
 {
     public interface IDataService<T> where T:new()
     {
+        IList<T> GetAll();
+
         T Get(Guid id);
 
         bool Save(T model);
