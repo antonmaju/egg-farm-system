@@ -7,17 +7,8 @@ using System.Text;
 
 namespace EggFarmSystem.Services
 {
-    public interface IHenHouseService
+    public interface IHenHouseService : IDataService<HenHouse>
     {
-        //SearchResult<HenHouse> Search();
-
-        IList<HenHouse> GetAll();
-            
-        HenHouse Get(Guid id);
-
-        bool Save(HenHouse model);
-
-        bool Delete(Guid id);
     }
 
     public class HenHouseService : DataService<HenHouse>, IHenHouseService

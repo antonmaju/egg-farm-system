@@ -87,7 +87,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\HenController.cs" />
+    <Compile Include="Controllers\ApiControllerBase.cs" />
+    <Compile Include="Controllers\ConsumablesController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\HensController.cs" />
     <Compile Include="Controllers\HenHousesController.cs" />
     <Compile Include="Core\BasicAuthHandler.cs" />
     <Compile Include="Core\Installers\ServiceModule.cs" />

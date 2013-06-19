@@ -7,15 +7,8 @@ using System.Text;
 
 namespace EggFarmSystem.Services
 {
-    public interface IEmployeeService
+    public interface IEmployeeService : IDataService<Employee>
     {
-        IList<Employee> GetAll();
-
-        Employee Get(Guid id);
-
-        bool Save(Employee model);
-
-        bool Delete(Guid id);
     }
 
     public class EmployeeService : DataService<Employee>, IEmployeeService

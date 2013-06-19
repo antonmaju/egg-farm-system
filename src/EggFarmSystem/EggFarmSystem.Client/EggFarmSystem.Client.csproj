@@ -116,7 +116,10 @@
     <Compile Include="Core\IMessageBroker.cs" />
     <Compile Include="Core\MessageBroker.cs" />
     <Compile Include="Core\CommonMessages.cs" />
+    <Compile Include="Core\Services\ConsumableServiceClient.cs" />
+    <Compile Include="Core\Services\EmployeeServiceClient.cs" />
     <Compile Include="Core\Services\HenHouseServiceClient.cs" />
+    <Compile Include="Core\Services\HenServiceClient.cs" />
     <Compile Include="Core\Services\ServiceClient.cs" />
     <Compile Include="Core\Services\ServiceClientModule.cs" />
     <Compile Include="Core\ViewModelBase.cs" />

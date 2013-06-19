@@ -74,6 +74,7 @@
     <Compile Include="Models\Hen.cs" />
     <Compile Include="Models\HenHouse.cs" />
     <Compile Include="Models\Medicine.cs" />
+    <Compile Include="Models\ErrorInfo.cs" />
     <Compile Include="Models\SearchInfo.cs" />
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\Account.cs" />
@@ -86,7 +87,6 @@
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\AccountService.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

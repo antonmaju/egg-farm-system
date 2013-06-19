@@ -10,7 +10,12 @@ namespace EggFarmSystem.Models
     {
         public Guid Id { get; set; } 
 
-        //[Ignore]
-        //public bool IsNew { get { return Id == Guid.Empty; } }
+        [Ignore]
+        public bool IsNew { get { return Id == Guid.Empty; } }
+
+        public virtual IList<ErrorInfo> Validate()
+        {
+            return null;
+        }
     }
 }

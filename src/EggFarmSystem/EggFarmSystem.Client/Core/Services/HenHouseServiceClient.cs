@@ -20,7 +20,6 @@ namespace EggFarmSystem.Client.Core.Services
             get { return "/henhouses"; }
         }
 
-
         public IList<HenHouse> GetAll()
         {
             return CreateGetAllRequest<List<HenHouse>>();
@@ -33,13 +32,12 @@ namespace EggFarmSystem.Client.Core.Services
 
         public bool Save(Models.HenHouse model)
         {
-            return model.Id == Guid.Empty ? CreatePostRequest(model) : CreatePutRequest(model.Id,model);
+            return model.IsNew ? CreatePostRequest(model) : CreatePutRequest(model.Id,model);
         }
 
         public bool Delete(Guid id)
         {
             return CreateDeleteRequest(id);
         }
-
     }
 }

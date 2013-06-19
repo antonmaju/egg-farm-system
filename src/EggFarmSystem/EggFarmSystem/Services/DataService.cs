@@ -7,7 +7,7 @@ using System.Text;
 
 namespace EggFarmSystem.Services
 {
-    public interface IDataService<T> where T:new()
+    public interface IDataService<T> where T:Entity
     {
         IList<T> GetAll();
 

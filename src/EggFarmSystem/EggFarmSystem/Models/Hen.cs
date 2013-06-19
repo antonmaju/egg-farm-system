@@ -18,5 +18,21 @@ namespace EggFarmSystem.Models
         public long Cost { get; set; }
 
         public Guid HouseId { get; set; }
+
+        public override IList<ErrorInfo> Validate()
+        {
+            var errors = new List<ErrorInfo>();
+
+            if(string.IsNullOrWhiteSpace(Name))
+                errors.Add(new ErrorInfo("Name", "Hen_RequireName"));
+
+            if(string.IsNullOrWhiteSpace(Type))
+                errors.Add(new ErrorInfo("Type","Hen_RequireType"));
+
+            if(Cost > 0)
+                errors.Add(new ErrorInfo("Cost", "Hen_RequireCost"));
+
+            return errors;
+        }
     }
 }

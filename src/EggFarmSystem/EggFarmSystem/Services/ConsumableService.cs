@@ -7,15 +7,8 @@ using System.Text;
 
 namespace EggFarmSystem.Services
 {
-    public interface IConsumableService
+    public interface IConsumableService :  IDataService<Consumable>
     {
-        IList<Consumable> GetAll();
-
-        Consumable Get(Guid id);
-
-        bool Save(Consumable model);
-
-        bool Delete(Guid id);
     }
 
     public class ConsumableService : DataService<Consumable>, IConsumableService
