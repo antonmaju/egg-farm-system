@@ -7,7 +7,7 @@ using EggFarmSystem.Services;
 
 namespace EggFarmSystem.Client.Core.Services
 {
-    public class ConsumableServiceClient : ServiceClient, IEmployeeService
+    public class ConsumableServiceClient : ServiceClient, IConsumableService
     {
         public ConsumableServiceClient(IClientContext clientContext) : base(clientContext)
         {
@@ -19,17 +19,17 @@ namespace EggFarmSystem.Client.Core.Services
             get { return "/consumables"; }
         }
 
-        public IList<Employee> GetAll()
+        public IList<Consumable> GetAll()
         {
-            return CreateGetAllRequest<List<Employee>>();
+            return CreateGetAllRequest<List<Consumable>>();
         }
 
-        public Employee Get(Guid id)
+        public Consumable Get(Guid id)
         {
-            return CreateGetRequest<Employee>(id);
+            return CreateGetRequest<Consumable>(id);
         }
 
-        public bool Save(Employee model)
+        public bool Save(Consumable model)
         {
             return model.IsNew ? CreatePostRequest(model) : CreatePutRequest(model.Id, model);
         }

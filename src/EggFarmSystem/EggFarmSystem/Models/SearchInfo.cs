@@ -11,4 +11,11 @@ namespace EggFarmSystem.Models
 
         public int PageSize { get; set; }
     }
+
+    public class ConsumableUsageSearchInfo : SearchInfo
+    {
+        public DateTime? Start { get; set; }
+
+        public DateTime? End { get; set; }
+    }
 }

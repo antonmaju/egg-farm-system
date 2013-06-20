@@ -7,8 +7,13 @@ namespace EggFarmSystem.Models
 {
     public class SearchResult<T>
     {
-        public IList<T> Items { get; set; }
+        public SearchResult()
+        {
+            Items = new List<T>();
+        }
 
-        public int Total { get; set; }
+        public List<T> Items { get; set; }
+
+        public long Total { get; set; }
     }
 }
