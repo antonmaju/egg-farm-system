@@ -26,7 +26,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.Commands
 
         public override void Execute(object parameter)
         {
-           
             if (clientContext.MainViewType != typeof(IMasterDataView))
                 messageBroker.Publish(CommonMessages.ChangeMainView, typeof(IMasterDataView));
 

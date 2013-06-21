@@ -20,7 +20,7 @@ namespace EggFarmSystem.Models.Data
 
         public Guid ConsumableId { get; set; }
 
-        public long Count { get; set; }
+        public int Count { get; set; }
 
         public long UnitPrice { get; set; }
 

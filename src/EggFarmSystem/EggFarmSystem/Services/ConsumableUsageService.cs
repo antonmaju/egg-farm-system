@@ -37,21 +37,19 @@ namespace EggFarmSystem.Services
 
             var result = new SearchResult<ConsumableUsage>();
 
-            using (var conn = factory.CreateDbConnection())
+            using (var conn = factory.OpenDbConnection())
             {
-                conn.Open();
 
                 var ev = OrmLiteConfig.DialectProvider.ExpressionVisitor<Models.Data.ConsumableUsage>();
                 
                 if (searchInfo.Start.HasValue && searchInfo.End.HasValue)
                 {
-                    ev = ev.Where(e => e.Date >= searchInfo.Start.Value.Date && e.Date <= searchInfo.Start.Value);
+                    ev = ev.Where(e => e.Date >= searchInfo.Start.Value.Date && e.Date <= searchInfo.End.Value.Date);
                 }
 
                 ev.OrderByDescending(e => e.Date).Limit(start, searchInfo.PageSize);
 
                 var usages = conn.Select(ev);
-
                 foreach (var usage in usages)
                 {
                     var list = conn.Where<Models.Data.ConsumableUsageDetail>(new { UsageId = usage.Id });
@@ -63,7 +61,7 @@ namespace EggFarmSystem.Services
                 if (searchInfo.Start.HasValue && searchInfo.End.HasValue)
                 {
                     result.Total =conn.Count<Models.Data.ConsumableUsage>(
-                        e => e.Date >= searchInfo.Start.Value.Date && e.Date <= searchInfo.Start.Value);
+                        e => e.Date >= searchInfo.Start.Value.Date && e.Date <= searchInfo.End.Value.Date);
                 }
                 else
                 {
@@ -76,10 +74,8 @@ namespace EggFarmSystem.Services
 
         public ConsumableUsage Get(Guid id)
         {
-            using (var conn = factory.CreateDbConnection())
+            using (var conn = factory.OpenDbConnection())
             {
-                conn.Open();
-
                 var usage =  conn.GetById<Models.Data.ConsumableUsage>(id);
 
                 if (usage == null)
@@ -93,9 +89,8 @@ namespace EggFarmSystem.Services
 
         public ConsumableUsage GetByDate(DateTime date)
         {
-            using (var conn = factory.CreateDbConnection())
+            using (var conn = factory.OpenDbConnection())
             {
-                conn.Open();
                 var usage = conn.FirstOrDefault<Models.Data.ConsumableUsage>(u => u.Date == date.Date);
 
                 if (usage == null)
@@ -109,10 +104,8 @@ namespace EggFarmSystem.Services
 
         public bool Save(ConsumableUsage model)
         {
-            using (var db = factory.CreateDbConnection())
+            using (var db = factory.OpenDbConnection())
             {
-                db.Open();
-
                 using (var trans = db.OpenTransaction())
                 {
                      bool isNew = model.IsNew;
@@ -143,9 +136,8 @@ namespace EggFarmSystem.Services
 
         public bool Delete(Guid id)
         {
-            using (var db = factory.CreateDbConnection())
+            using (var db = factory.OpenDbConnection())
             {
-                db.Open();
                 using (var trans = db.OpenTransaction())
                 {
                     db.Delete<Models.Data.ConsumableUsageDetail>(d => d.UsageId == id);
@@ -168,6 +160,7 @@ namespace EggFarmSystem.Services
         private ConsumableUsage MapUsageToModel(Models.Data.ConsumableUsage usage, List<Models.Data.ConsumableUsageDetail> details)
         {
             var model = new ConsumableUsage();
+            model.Id = usage.Id;
             model.Date = usage.Date;
             model.Total = usage.Total;
             model.Details = new List<ConsumableUsageDetail>();

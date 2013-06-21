@@ -68,9 +68,6 @@
     <Reference Include="ServiceStack.OrmLite.MySql">
       <HintPath>..\packages\ServiceStack.OrmLite.MySql.3.9.49\lib\ServiceStack.OrmLite.MySql.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.OrmLite.SqlServer">
-      <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.3.9.45\lib\ServiceStack.OrmLite.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="ServiceStack.Text, Version=3.9.45.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\ServiceStack.Text.3.9.49\lib\net35\ServiceStack.Text.dll</HintPath>
@@ -117,6 +114,7 @@
     <Compile Include="Core\MessageBroker.cs" />
     <Compile Include="Core\CommonMessages.cs" />
     <Compile Include="Core\Services\ConsumableServiceClient.cs" />
+    <Compile Include="Core\Services\ConsumableUsageServiceClient.cs" />
     <Compile Include="Core\Services\EmployeeServiceClient.cs" />
     <Compile Include="Core\Services\HenHouseServiceClient.cs" />
     <Compile Include="Core\Services\HenServiceClient.cs" />
@@ -206,6 +204,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Views\UserControlBase.cs" />
+    <Compile Include="Modules\Usage\Commands\DeleteUsageCommand.cs" />
+    <Compile Include="Modules\Usage\Commands\EditUsageCommand.cs" />
+    <Compile Include="Modules\Usage\Commands\NewUsageCommand.cs" />
+    <Compile Include="Modules\Usage\ConsumableUsageModule.cs" />
     <Compile Include="Modules\IModule.cs" />
     <Compile Include="Modules\MasterData\Commands\DeleteConsumableCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\DeleteEmployeeCommand.cs" />
@@ -298,6 +300,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\Dashboard\" />
+    <Folder Include="Modules\Usage\ViewModels\" />
+    <Folder Include="Modules\Usage\Views\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EggFarmSystem.Resources\EggFarmSystem.Resources.csproj">

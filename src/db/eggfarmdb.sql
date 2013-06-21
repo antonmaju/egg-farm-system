@@ -14,8 +14,6 @@ MySQL - 5.6.10-log : Database - eggfarmdb
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`eggfarmdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
-USE `eggfarmdb`;
-
 /*Table structure for table `account` */
 
 DROP TABLE IF EXISTS `account`;
@@ -40,6 +38,33 @@ CREATE TABLE `consumable` (
   `UnitPrice` bigint(20) DEFAULT NULL,
   `Active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Table structure for table `consumableusage` */
+
+DROP TABLE IF EXISTS `consumableusage`;
+
+CREATE TABLE `consumableusage` (
+  `Id` char(36) NOT NULL,
+  `Date` datetime DEFAULT NULL,
+  `Total` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Table structure for table `consumableusagedetail` */
+
+DROP TABLE IF EXISTS `consumableusagedetail`;
+
+CREATE TABLE `consumableusagedetail` (
+  `UsageId` char(36) NOT NULL,
+  `HouseId` char(36) NOT NULL,
+  `ConsumableId` char(36) NOT NULL,
+  `Count` int(11) DEFAULT NULL,
+  `UnitPrice` bigint(20) DEFAULT NULL,
+  `SubTotal` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`UsageId`,`HouseId`,`ConsumableId`),
+  KEY `HouseId` (`HouseId`),
+  KEY `ConsumableId` (`ConsumableId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `employee` */
