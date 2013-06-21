@@ -1,4 +1,6 @@
-﻿using EggFarmSystem.Client.Core;
+﻿using System.Globalization;
+using System.Threading;
+using EggFarmSystem.Client.Core;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,6 +19,9 @@ namespace EggFarmSystem.Client
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("id-ID");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("id-ID");
+
             var bootstrapper = new Bootstrapper();
             bootstrapper.Register(new MasterDataModule());
             bootstrapper.Start(this);

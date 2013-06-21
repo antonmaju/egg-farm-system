@@ -48,6 +48,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LanguageData.id-ID.resx" />
     <EmbeddedResource Include="LanguageData.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LanguageData.Designer.cs</LastGenOutput>
