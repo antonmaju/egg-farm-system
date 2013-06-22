@@ -6,6 +6,9 @@ using Autofac;
 
 namespace EggFarmSystem.Client.Commands
 {
+    /// <summary>
+    /// Contains autofac registration for commands
+    /// </summary>
     public class CoreCommandsRegistry : Module
     {
         protected override void Load(ContainerBuilder builder)

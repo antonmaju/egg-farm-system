@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Configuration;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Autofac;
 using EggFarmSystem.Client.Commands;
@@ -43,7 +44,10 @@ namespace EggFarmSystem.Client.Core
             builder.RegisterType<Views.MainWindow>().As<IMainView>().SingleInstance();
             builder.RegisterType<MessageBroker>().As<IMessageBroker>().SingleInstance();
             builder.RegisterModule<CoreCommandsRegistry>();
-            builder.RegisterModule<ServiceClientRegistry>();     
+            builder.RegisterModule(new ServiceClientRegistry()
+                {
+                    IsDirectAccess = Convert.ToBoolean(ConfigurationManager.AppSettings["IsDirectAccess"])
+                });  
 
             foreach (var module in modules)
             {
@@ -51,7 +55,6 @@ namespace EggFarmSystem.Client.Core
             }
 
             container = builder.Build();
-
             RegisterMessageListeners();
             
             var mainView = container.Resolve<IMainView>();

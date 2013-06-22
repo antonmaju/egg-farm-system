@@ -10,54 +10,24 @@ using System.Text;
 
 namespace EggFarmSystem.Client.Modules.MasterData.Commands
 {
-    public class DeleteEmployeeCommand : CommandBase
+    public class DeleteEmployeeCommand : DeleteCommand
     {
         private readonly IMessageBroker messageBroker;
         private readonly IEmployeeService employeeService;
 
         public DeleteEmployeeCommand(IMessageBroker messageBroker, IEmployeeService employeeService)
         {
-            Text = () => "Delete";
-
             this.messageBroker = messageBroker;
             this.employeeService = employeeService;
         }
 
-        public Guid EmployeeId { get; set; }
-
-        public override void Execute(object parameter)
+        protected override void OnDeleteData(Guid entityId)
         {
-            if (MessageBox.Show(LanguageData.General_DeleteConfirmation, LanguageData.General_Delete, MessageBoxButton.YesNo)
-                == MessageBoxResult.No)
-                return;
-
-            Guid id = parameter == null ? EmployeeId : (Guid) parameter;
-
-            try
-            {
-                employeeService.Delete(id);
-                messageBroker.Publish(CommonMessages.DeleteEmployeeSuccess, id);
-            }
-            catch(Exception ex)
-            {
-                messageBroker.Publish(CommonMessages.DeleteEmployeeFailed, ex.Message);
-            }
-        }
-
-        public override bool CanExecute(object parameter)
-        {
-            if (EmployeeId != Guid.Empty)
-                return true;
-
-            try
-            {
-                var paramId = (Guid) parameter;
-                return paramId != Guid.Empty;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+            if(employeeService.Delete(entityId))
+                messageBroker.Publish(CommonMessages.DeleteEmployeeSuccess, entityId);
+            else
+                messageBroker.Publish(CommonMessages.DeleteEmployeeFailed, entityId);
+        }
+       
     }
 }

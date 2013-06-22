@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Resources;
 
 namespace EggFarmSystem.Client.Commands
 {
+    /// <summary>
+    /// Represents cancel command
+    /// </summary>
     public class CancelCommand : CommandBase
     {
         private readonly IMessageBroker messageBroker;
-        
+
         public CancelCommand(IMessageBroker messageBroker)
         {
             Text = () => LanguageData.General_Cancel;

@@ -8,17 +8,35 @@ using RestSharp;
 
 namespace EggFarmSystem.Client.Core.Services
 {
+    /// <summary>
+    /// Base class for REST service client
+    /// </summary>
     public abstract class ServiceClient
     {
         private readonly IClientContext clientContext;
-    
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ServiceClient"/> class.
+        /// </summary>
+        /// <param name="clientContext">The client context.</param>
         protected ServiceClient(IClientContext clientContext)
         {
             this.clientContext = clientContext;
         }
 
+        /// <summary>
+        /// Gets the resource URL.
+        /// </summary>
+        /// <value>The resource URL.</value>
         protected abstract string ResourceUrl { get; }
 
+        /// <summary>
+        /// Creates the get request.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id">The id.</param>
+        /// <param name="url">The URL.</param>
+        /// <returns></returns>
         protected T CreateGetRequest<T>(Guid id,string url = null) where T:new()
         {
             if (string.IsNullOrWhiteSpace(url))
@@ -31,6 +49,12 @@ namespace EggFarmSystem.Client.Core.Services
             return response.Data;
         }
 
+        /// <summary>
+        /// Creates the get all request.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url">The URL.</param>
+        /// <returns></returns>
         protected T CreateGetAllRequest<T>(string url = null) where T : new()
         {
             if (string.IsNullOrWhiteSpace(url))
@@ -43,6 +67,13 @@ namespace EggFarmSystem.Client.Core.Services
             return response.Data;
         }
 
+        /// <summary>
+        /// Creates the post request.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data">The data.</param>
+        /// <param name="url">The URL.</param>
+        /// <returns><c>true</c> if post operation success, <c>false</c> otherwise</returns>
         protected bool CreatePostRequest<T>(T data, string url = null) where T : new()
         {
             if (string.IsNullOrWhiteSpace(url))
@@ -56,6 +87,14 @@ namespace EggFarmSystem.Client.Core.Services
             return response.StatusCode == HttpStatusCode.Created;
         }
 
+        /// <summary>
+        /// Creates the put request.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id">The id.</param>
+        /// <param name="data">The data.</param>
+        /// <param name="url">The URL.</param>
+        /// <returns><c>true</c> if update operation, <c>false</c> otherwise</returns>
         protected bool CreatePutRequest<T>(Guid id, T data, string url = null) where T : new()
         {
             if (string.IsNullOrWhiteSpace(url))
@@ -69,6 +108,12 @@ namespace EggFarmSystem.Client.Core.Services
             return response.StatusCode == HttpStatusCode.OK;
         }
 
+        /// <summary>
+        /// Creates the delete request.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <param name="url">The URL.</param>
+        /// <returns><c>true</c> if delete success, <c>false</c> otherwise</returns>
         protected bool CreateDeleteRequest(Guid id, string url = null)
         {
             if (string.IsNullOrWhiteSpace(url))
@@ -81,6 +126,10 @@ namespace EggFarmSystem.Client.Core.Services
             return response.StatusCode == HttpStatusCode.OK;
         }
 
+        /// <summary>
+        /// Adds the headers.
+        /// </summary>
+        /// <param name="request">The request.</param>
         protected virtual void AddHeaders(RestRequest request)
         {
             string creds = String.Format("{0}:{1}", "anton", "anton");

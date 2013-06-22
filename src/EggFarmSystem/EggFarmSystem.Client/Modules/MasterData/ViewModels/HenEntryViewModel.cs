@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -19,13 +20,15 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         private readonly IHenHouseService houseService;
         private readonly IMessageBroker messageBroker;
         private Hen hen;
-        
+
+        private ObservableCollection<HenHouse> henHouses;
 
         public HenEntryViewModel(IMessageBroker messageBroker, IHenService henService, IHenHouseService houseService,
             SaveHenCommand saveCommand, CancelCommand cancelCommand)
         {
             this.henService = henService;
             this.messageBroker = messageBroker;
+            this.houseService = houseService;
 
             NavigationCommands = new List<CommandBase>()
                 {
@@ -38,14 +41,22 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
             cancelCommand.Action = broker => messageBroker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.Hen);
 
-            HenHouses = houseService.GetAll();
+            OnRefreshHouseList(null);
 
             SubscribeMessages();
         }
 
         public SaveHenCommand SaveCommand { get; private set; }
 
-        public IList<HenHouse> HenHouses { get; private set; } 
+        public ObservableCollection<HenHouse> HenHouses
+        {
+            get { return henHouses; }
+            private set 
+            { 
+                henHouses = value;
+                OnPropertyChanged("HenHouses");
+            }
+        } 
 
         public IList<CommandBase> NavigationCommands { get; private set; }
       
@@ -184,6 +195,13 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             messageBroker.Subscribe(CommonMessages.NewHenEntry, OnNewHen);
             messageBroker.Subscribe(CommonMessages.LoadHen, OnEditHen);
             messageBroker.Subscribe(CommonMessages.HenSavingFailed, OnHenSavingFailed);
+            messageBroker.Subscribe(CommonMessages.SaveHouseSuccess, OnRefreshHouseList);
+            messageBroker.Subscribe(CommonMessages.DeleteHouseSuccess, OnRefreshHouseList);
+        }
+
+        void OnRefreshHouseList(object param)
+        {
+            HenHouses = new ObservableCollection<HenHouse>(houseService.GetAll());
         }
 
         void OnHenSavingFailed(object param)
@@ -220,6 +238,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             messageBroker.Unsubscribe(CommonMessages.NewHenEntry, OnNewHen);
             messageBroker.Subscribe(CommonMessages.LoadHen, OnEditHen);
             messageBroker.Unsubscribe(CommonMessages.HenSavingFailed, OnHenSavingFailed);
+            messageBroker.Unsubscribe(CommonMessages.SaveHouseSuccess, OnRefreshHouseList);
+            messageBroker.Unsubscribe(CommonMessages.DeleteHouseSuccess, OnRefreshHouseList);
         }
 
         public override void Dispose()

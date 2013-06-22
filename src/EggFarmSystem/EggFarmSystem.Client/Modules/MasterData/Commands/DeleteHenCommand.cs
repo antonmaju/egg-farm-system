@@ -10,27 +10,23 @@ using System.Text;
 
 namespace EggFarmSystem.Client.Modules.MasterData.Commands
 {
-    public class DeleteHenCommand : DeleteMasterDataCommand
+    public class DeleteHenCommand : DeleteCommand
     {
         private readonly IHenService henService;
         private readonly IMessageBroker messageBroker;
 
         public DeleteHenCommand(IMessageBroker messageBroker, IHenService henService)
-            : base(messageBroker)
         {
             this.henService = henService;
             this.messageBroker = messageBroker;
         }
 
-        protected override void OnDeleteMasterData(Guid entityId)
+        protected override void OnDeleteData(Guid entityId)
         {
-            if (MessageBox.Show(LanguageData.General_DeleteConfirmation, LanguageData.General_Delete, MessageBoxButton.YesNo)
-                == MessageBoxResult.No)
-                return;
-
-            messageBroker.Publish(
-              henService.Delete(entityId) ? CommonMessages.DeleteHouseSuccess : CommonMessages.DeleteHouseFailed,
-              entityId);
+            if(henService.Delete(entityId))
+                messageBroker.Publish(CommonMessages.DeleteHenSuccess, entityId);
+            else
+                messageBroker.Publish(CommonMessages.DeleteHenFailed, entityId);
         }
     }
 }

@@ -51,7 +51,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.Views
                 return;
 
             viewModel.EditCommand.EmployeeId = selectedEmployee.Id;
-            viewModel.DeleteCommand.EmployeeId = selectedEmployee.Id;
+            viewModel.DeleteCommand.EntityId = selectedEmployee.Id;
         }
 
         void UnsetEventHandlers()

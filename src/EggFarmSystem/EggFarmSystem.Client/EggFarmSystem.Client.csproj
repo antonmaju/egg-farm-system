@@ -107,6 +107,7 @@
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CoreCommandsRegistry.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Commands\DeleteCommand.cs" />
     <Compile Include="Core\Bootstrapper.cs" />
     <Compile Include="Core\ClientContext.cs" />
     <Compile Include="Core\Error.cs" />
@@ -216,7 +217,6 @@
     <Compile Include="Modules\MasterData\Commands\DeleteEmployeeCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\DeleteHenCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\DeleteHouseCommand.cs" />
-    <Compile Include="Modules\MasterData\Commands\DeleteMasterDataCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\EditConsumableCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\EditEmployeeCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\EditHenCommand.cs" />

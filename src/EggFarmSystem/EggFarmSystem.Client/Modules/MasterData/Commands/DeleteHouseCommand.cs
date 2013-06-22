@@ -10,24 +10,21 @@ using EggFarmSystem.Services;
 
 namespace EggFarmSystem.Client.Modules.MasterData.Commands
 {
-    public class DeleteHouseCommand : DeleteMasterDataCommand
+    public class DeleteHouseCommand : DeleteCommand
     {
         private readonly IHenHouseService houseService;
         private readonly IMessageBroker messageBroker;
 
         public DeleteHouseCommand(IMessageBroker messageBroker, IHenHouseService houseService)
-            :base(messageBroker)
+  
         {
             this.houseService = houseService;
             this.messageBroker = messageBroker;
         }
 
-        protected override void OnDeleteMasterData(Guid entityId)
+        protected override void OnDeleteData(Guid entityId)
         {
-            if (MessageBox.Show(LanguageData.General_DeleteConfirmation, LanguageData.General_Delete, MessageBoxButton.YesNo)
-                == MessageBoxResult.No)
-                return;
-
+           
             messageBroker.Publish(
                 houseService.Delete(entityId) ? CommonMessages.DeleteHouseSuccess : CommonMessages.DeleteHouseFailed,
                 entityId);
