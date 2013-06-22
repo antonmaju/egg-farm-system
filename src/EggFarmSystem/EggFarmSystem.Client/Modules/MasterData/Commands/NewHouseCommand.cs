@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EggFarmSystem.Resources;
 
 namespace EggFarmSystem.Client.Modules.MasterData.Commands
 {
@@ -15,7 +16,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.Commands
 
         public NewHouseCommand(IClientContext clientContext, IMessageBroker messageBroker)
         {
-            Text = () => "New";
+            Text = () => LanguageData.General_New;
 
             this.messageBroker = messageBroker;
             this.clientContext = clientContext;

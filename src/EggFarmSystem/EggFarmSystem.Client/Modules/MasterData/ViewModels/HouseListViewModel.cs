@@ -29,7 +29,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             EditCommand = editHouseCommand;
             DeleteCommand = deleteHouseCommand;
 
-            NavigationCommands = new List<CommandBase> {NewCommand, EditCommand, DeleteCommand};
+            NavigationCommands = new List<CommandBase> {NewCommand, DeleteCommand};
 
             SubscribeMessages();
         }

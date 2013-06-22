@@ -1,5 +1,7 @@
-﻿using EggFarmSystem.Client.Commands;
+﻿using System.Windows;
+using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
+using EggFarmSystem.Resources;
 using EggFarmSystem.Services;
 using System;
 using System.Collections.Generic;
@@ -25,6 +27,10 @@ namespace EggFarmSystem.Client.Modules.MasterData.Commands
 
         public override void Execute(object parameter)
         {
+            if (MessageBox.Show(LanguageData.General_DeleteConfirmation, LanguageData.General_Delete, MessageBoxButton.YesNo)
+                == MessageBoxResult.No)
+                return;
+
             Guid id = parameter == null ? EmployeeId : (Guid) parameter;
 
             try

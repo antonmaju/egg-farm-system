@@ -5,7 +5,7 @@ using ServiceStack.OrmLite;
 
 namespace EggFarmSystem.Client.Core.Services
 {
-    public class ServiceClientModule : Module
+    public class ServiceClientRegistry : Module
     {
         public bool IsDirectAccess { get; set; }
 

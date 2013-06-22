@@ -1,6 +1,7 @@
 ﻿using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.MasterData.Commands;
+using EggFarmSystem.Client.Modules.MasterData.Views;
 using EggFarmSystem.Models;
 using EggFarmSystem.Resources;
 using EggFarmSystem.Services;
@@ -19,7 +20,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         private Consumable consumable;
 
         public ConsumableEntryViewModel(IMessageBroker messageBroker, IConsumableService consumableService, 
-            SaveConsumableCommand saveCommand)
+            SaveConsumableCommand saveCommand, CancelCommand cancelCommand)
         {
             this.consumableService = consumableService;
             this.messageBroker = messageBroker;
@@ -28,13 +29,15 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             SaveCommand = saveCommand;
             saveCommand.Entity = consumable;
 
-            NavigationCommands= new List<CommandBase>(){SaveCommand};
+            NavigationCommands= new List<CommandBase>(){SaveCommand, cancelCommand};
             ConsumableTypes = new List<Tuple<byte, string>>()
                 {
                     Tuple.Create((byte)ConsumableType.Feed, LanguageData.ConsumableType_Feed),
                     Tuple.Create((byte)ConsumableType.Ovk, LanguageData.ConsumableType_Ovk)
                 };
 
+            cancelCommand.Action = broker => 
+                messageBroker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.Consumable);
 
             SubscribeMessages();
         }

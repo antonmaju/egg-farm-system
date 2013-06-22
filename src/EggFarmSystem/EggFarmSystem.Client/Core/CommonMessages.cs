@@ -9,6 +9,7 @@ namespace EggFarmSystem.Client.Core
     {
         public static string ChangeMainView = "ChangeMainView";
         public static string ChangeMainActions = "ChangeMainActions";
+        public static string ChangeMasterDataView = "ChangeMasterDataView";
 
         public static string NewHenView = "NewHenView";
         public static string EditHenView = "EditHenView";

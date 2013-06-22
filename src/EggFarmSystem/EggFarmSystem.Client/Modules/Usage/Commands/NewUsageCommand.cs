@@ -23,5 +23,7 @@ namespace EggFarmSystem.Client.Modules.Usage.Commands
         {
             messageBroker.Publish(CommonMessages.NewUsageView, null);
         }
+
+
     }
 }

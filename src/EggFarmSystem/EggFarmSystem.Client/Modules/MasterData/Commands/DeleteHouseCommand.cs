@@ -1,41 +1,38 @@
-﻿using EggFarmSystem.Client.Commands;
+﻿using System.Windows;
+using EggFarmSystem.Client.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using EggFarmSystem.Client.Core;
+using EggFarmSystem.Resources;
 using EggFarmSystem.Services;
 
 namespace EggFarmSystem.Client.Modules.MasterData.Commands
 {
-    public class DeleteHouseCommand : CommandBase
+    public class DeleteHouseCommand : DeleteMasterDataCommand
     {
-        private readonly IMessageBroker messageBroker;
         private readonly IHenHouseService houseService;
+        private readonly IMessageBroker messageBroker;
 
         public DeleteHouseCommand(IMessageBroker messageBroker, IHenHouseService houseService)
+            :base(messageBroker)
         {
-            Text = () => "Delete";
-
-            this.messageBroker = messageBroker;
             this.houseService = houseService;
+            this.messageBroker = messageBroker;
         }
 
-        public Guid HouseId { get; set; }
-
-        public override void Execute(object parameter)
+        protected override void OnDeleteMasterData(Guid entityId)
         {
-            Guid id = parameter == null ? HouseId : (Guid)parameter;
+            if (MessageBox.Show(LanguageData.General_DeleteConfirmation, LanguageData.General_Delete, MessageBoxButton.YesNo)
+                == MessageBoxResult.No)
+                return;
 
-            try
-            {
-                houseService.Delete(id);
-                messageBroker.Publish(CommonMessages.DeleteHouseSuccess, id);
-            }
-            catch (Exception ex)
-            {
-                messageBroker.Publish(CommonMessages.DeleteHouseFailed, ex.Message);
-            }
+            messageBroker.Publish(
+                houseService.Delete(entityId) ? CommonMessages.DeleteHouseSuccess : CommonMessages.DeleteHouseFailed,
+                entityId);
         }
+
+       
     }
 }

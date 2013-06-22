@@ -42,8 +42,8 @@ namespace EggFarmSystem.Client.Core
             builder.RegisterType<ClientContext>().As<IClientContext>().SingleInstance();
             builder.RegisterType<Views.MainWindow>().As<IMainView>().SingleInstance();
             builder.RegisterType<MessageBroker>().As<IMessageBroker>().SingleInstance();
-            builder.RegisterModule(new ServiceClientModule());
-           
+            builder.RegisterModule<CoreCommandsRegistry>();
+            builder.RegisterModule<ServiceClientRegistry>();     
 
             foreach (var module in modules)
             {

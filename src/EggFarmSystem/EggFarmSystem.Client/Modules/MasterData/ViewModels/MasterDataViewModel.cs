@@ -180,6 +180,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         void SetMessageListeners()
         {
+            messageBroker.Subscribe(CommonMessages.ChangeMasterDataView, OnMasterDataViewChange);
+
             messageBroker.Subscribe(CommonMessages.NewHenView, ShowNewHen);
             messageBroker.Subscribe(CommonMessages.EditHenView,OnHenEditRequest);
             messageBroker.Subscribe(CommonMessages.HenSaved, OnHenListRefresh);
@@ -203,6 +205,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         void UnsetMessageListeners()
         {
+            messageBroker.Unsubscribe(CommonMessages.ChangeMasterDataView, OnMasterDataViewChange);
+            
             messageBroker.Unsubscribe(CommonMessages.NewHenView, ShowNewHen);
             messageBroker.Unsubscribe(CommonMessages.EditHenView, OnHenEditRequest);
             messageBroker.Unsubscribe(CommonMessages.HenSaved, OnHenListRefresh);
@@ -222,6 +226,26 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             messageBroker.Unsubscribe(CommonMessages.EditConsumableView, OnConsumableEditRequest);
             messageBroker.Unsubscribe(CommonMessages.SaveConsumableSuccess, OnConsumableListRefresh);
             messageBroker.Unsubscribe(CommonMessages.DeleteConsumableSuccess, OnConsumableListRefresh);
+        }
+
+        private void OnMasterDataViewChange(object param)
+        {
+            switch ((MasterDataTypes) param)
+            {
+                case MasterDataTypes.Hen:
+                    OnHenListRefresh(null);
+                    break;
+                case MasterDataTypes.HenHouse:
+                    OnHouseListRefresh(null);
+                    break;
+                case MasterDataTypes.Employee:
+                    OnEmployeeListRefresh(null);
+                    break;
+                case MasterDataTypes.Consumable:
+                    OnConsumableListRefresh(null);
+                    break;
+
+            }
         }
 
         void OnHenListRefresh(object param)

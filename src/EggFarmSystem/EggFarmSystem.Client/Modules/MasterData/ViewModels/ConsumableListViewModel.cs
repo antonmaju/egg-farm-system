@@ -30,7 +30,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             EditCommand = editCommand;
             DeleteCommand = deleteCommand;
 
-            NavigationCommands = new List<CommandBase>(){ NewCommand, EditCommand, DeleteCommand };
+            NavigationCommands = new List<CommandBase>(){ NewCommand, DeleteCommand };
             SubscribeMessages();
         }
 

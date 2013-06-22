@@ -1,6 +1,7 @@
 ﻿using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.MasterData.Commands;
+using EggFarmSystem.Client.Modules.MasterData.Views;
 using EggFarmSystem.Models;
 using EggFarmSystem.Resources;
 using EggFarmSystem.Services;
@@ -19,7 +20,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         private readonly Employee employee;
 
         public EmployeeEntryViewModel(IMessageBroker messageBroker, IEmployeeService employeeService,
-                                      SaveEmployeeCommand saveCommand)
+                                      SaveEmployeeCommand saveCommand, CancelCommand cancelCommand)
         {
             this.employeeService = employeeService;
             this.messageBroker = messageBroker;
@@ -28,7 +29,10 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             SaveCommand = saveCommand;
             SaveCommand.Employee = employee;
 
-            NavigationCommands = new List<CommandBase>{SaveCommand};
+            NavigationCommands = new List<CommandBase>{SaveCommand, cancelCommand};
+
+            cancelCommand.Action = broker => 
+                messageBroker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.Employee);
 
             SubscribeMessages();            
         }

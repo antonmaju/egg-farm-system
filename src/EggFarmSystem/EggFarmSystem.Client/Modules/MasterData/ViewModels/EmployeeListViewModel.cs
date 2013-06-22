@@ -32,7 +32,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
             employees =new ObservableCollection<Employee>();
 
-            NavigationCommands = new List<CommandBase>() {NewCommand, EditCommand, DeleteCommand};
+            NavigationCommands = new List<CommandBase>() {NewCommand, DeleteCommand};
             SubscribeMessages();
         }
 

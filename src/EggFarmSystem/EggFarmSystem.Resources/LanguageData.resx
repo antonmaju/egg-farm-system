@@ -183,6 +183,9 @@
   <data name="General_Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="General_DeleteConfirmation" xml:space="preserve">
+    <value>Are you sure you want to delete this data?</value>
+  </data>
   <data name="General_Edit" xml:space="preserve">
     <value>Edit</value>
   </data>

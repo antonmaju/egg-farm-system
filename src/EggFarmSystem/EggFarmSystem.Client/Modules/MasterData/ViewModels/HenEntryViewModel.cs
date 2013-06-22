@@ -6,6 +6,7 @@ using System.Windows;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.MasterData.Commands;
+using EggFarmSystem.Client.Modules.MasterData.Views;
 using EggFarmSystem.Models;
 using EggFarmSystem.Resources;
 using EggFarmSystem.Services;
@@ -21,19 +22,21 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         
 
         public HenEntryViewModel(IMessageBroker messageBroker, IHenService henService, IHenHouseService houseService,
-            SaveHenCommand saveCommand)
+            SaveHenCommand saveCommand, CancelCommand cancelCommand)
         {
             this.henService = henService;
             this.messageBroker = messageBroker;
 
             NavigationCommands = new List<CommandBase>()
                 {
-                    saveCommand
+                    saveCommand, cancelCommand
                 };
 
             hen = new Hen();
             SaveCommand = saveCommand;
             saveCommand.Hen = hen;
+
+            cancelCommand.Action = broker => messageBroker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.Hen);
 
             HenHouses = houseService.GetAll();
 

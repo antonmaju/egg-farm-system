@@ -27,12 +27,10 @@ namespace EggFarmSystem.Client.Modules.MasterData.Commands
             {
                 id = parameter == null ? EntityId : (Guid)parameter;
                 OnDeleteMasterData(id);       
-                messageBroker.Publish(CommonMessages.DeleteConsumableSuccess, id);
             }
             catch (Exception ex)
             {
                 var error = new Error {Exception = ex, Data = id};
-                messageBroker.Publish(CommonMessages.DeleteConsumableFailed, error);
             }
         }
 

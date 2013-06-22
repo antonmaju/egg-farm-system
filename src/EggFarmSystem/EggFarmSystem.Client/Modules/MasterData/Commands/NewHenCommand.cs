@@ -7,6 +7,7 @@ using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.MasterData.Views;
 using EggFarmSystem.Models;
+using EggFarmSystem.Resources;
 
 namespace EggFarmSystem.Client.Modules.MasterData.Commands
 {
@@ -17,7 +18,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.Commands
 
         public NewHenCommand(IMessageBroker messageBroker, IClientContext clientContext)
         {
-            Text = () => "New";
+            Text = () => LanguageData.General_New;
             this.messageBroker = messageBroker;
             this.clientContext = clientContext;
         }

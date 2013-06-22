@@ -3,7 +3,7 @@ egg-farm-system
 
 Simple information system for my friend's egg farm. 
 
-This project is currently under early development, documentation coming soon.
+This project is currently under development, documentation coming soon.
 
 Requirements:  
 

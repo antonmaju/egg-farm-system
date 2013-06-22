@@ -102,8 +102,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\CancelCommand.cs" />
     <Compile Include="Commands\ClientCommands.cs" />
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\CoreCommandsRegistry.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Core\Bootstrapper.cs" />
     <Compile Include="Core\ClientContext.cs" />
@@ -119,7 +121,7 @@
     <Compile Include="Core\Services\HenHouseServiceClient.cs" />
     <Compile Include="Core\Services\HenServiceClient.cs" />
     <Compile Include="Core\Services\ServiceClient.cs" />
-    <Compile Include="Core\Services\ServiceClientModule.cs" />
+    <Compile Include="Core\Services\ServiceClientRegistry.cs" />
     <Compile Include="Core\ViewModelBase.cs" />
     <Compile Include="Core\Views\IMainView.cs" />
     <Compile Include="Core\Views\MainWindow.xaml.cs">
@@ -204,6 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Views\UserControlBase.cs" />
+    <Compile Include="Modules\MasterData\MasterDataTypes.cs" />
     <Compile Include="Modules\Usage\Commands\DeleteUsageCommand.cs" />
     <Compile Include="Modules\Usage\Commands\EditUsageCommand.cs" />
     <Compile Include="Modules\Usage\Commands\NewUsageCommand.cs" />

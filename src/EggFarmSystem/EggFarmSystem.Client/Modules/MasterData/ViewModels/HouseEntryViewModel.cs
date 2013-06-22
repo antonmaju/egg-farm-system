@@ -2,6 +2,7 @@
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.MasterData.Commands;
+using EggFarmSystem.Client.Modules.MasterData.Views;
 using EggFarmSystem.Models;
 using EggFarmSystem.Resources;
 using EggFarmSystem.Services;
@@ -19,7 +20,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         private readonly HenHouse house;
 
         public HouseEntryViewModel(IMessageBroker messageBroker, IHenHouseService houseService,
-            SaveHenHouseCommand saveCommand)
+            SaveHenHouseCommand saveCommand, CancelCommand cancelCommand)
         {
             this.houseService = houseService;
             this.messageBroker = messageBroker;
@@ -29,7 +30,11 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             SaveCommand.HenHouse = house;
             SubscribeMessages();
 
-            NavigationCommands = new List<CommandBase>() {SaveCommand};
+            cancelCommand.Action = broker => messageBroker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.HenHouse);
+
+           // messageBroker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.Consumable);
+
+            NavigationCommands = new List<CommandBase>() {SaveCommand, cancelCommand};
         }
 
         public IList<CommandBase> NavigationCommands { get; private set; }
