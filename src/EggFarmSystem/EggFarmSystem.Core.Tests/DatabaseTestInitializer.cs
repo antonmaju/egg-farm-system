@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Text;
+using EggFarmSystem.Mappings;
 using EggFarmSystem.Models;
 using ServiceStack.OrmLite;
 
@@ -11,6 +12,11 @@ namespace EggFarmSystem.Core.Tests
 {
     public static class DatabaseTestInitializer
     {
+        static DatabaseTestInitializer()
+        {
+            new ModelMappings().Initialize();
+        }
+
         public static IDbConnectionFactory GetConnectionFactory()
         {
             return new DummyDbConnectionFactory();

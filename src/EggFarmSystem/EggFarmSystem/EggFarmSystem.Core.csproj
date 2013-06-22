@@ -70,6 +70,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappings\IMappingRegistration.cs" />
+    <Compile Include="Mappings\ModelMappings.cs" />
     <Compile Include="Models\Consumable.cs" />
     <Compile Include="Models\ConsumableUsage.cs" />
     <Compile Include="Models\Data\ConsumableUsage.cs" />

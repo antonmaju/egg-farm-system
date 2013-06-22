@@ -27,7 +27,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.Commands
                 messageBroker.Publish(CommonMessages.DeleteEmployeeSuccess, entityId);
             else
                 messageBroker.Publish(CommonMessages.DeleteEmployeeFailed, entityId);
-        }
+        }
+
        
     }
 }

@@ -9,28 +9,68 @@ using ServiceStack.OrmLite;
 
 namespace EggFarmSystem.Services
 {
+    /// <summary>
+    /// Contains collection of methods for managing consumable usage data
+    /// </summary>
     public interface IConsumableUsageService
     {
+        /// <summary>
+        /// Searches the usage based on search criteria.
+        /// </summary>
+        /// <param name="searchInfo">The search criteria.</param>
+        /// <returns>collection of usage data and total number.</returns>
         SearchResult<ConsumableUsage> Search(ConsumableUsageSearchInfo searchInfo);
 
+        /// <summary>
+        /// Gets the specified id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns>ConsumableUsage instance.</returns>
         ConsumableUsage Get(Guid id);
 
+        /// <summary>
+        /// Gets the usage by date.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns>ConsumableUsage instance.</returns>
         ConsumableUsage GetByDate(DateTime date);
 
+        /// <summary>
+        /// Saves the specified usage.
+        /// </summary>
+        /// <param name="usage">The usage.</param>
+        /// <returns><c>true</c> if save process success, <c>false</c> otherwise</returns>
         bool Save(ConsumableUsage usage);
 
+        /// <summary>
+        /// Deletes the specified id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns><c>true</c> if delete success, <c>false</c> otherwise</returns>
         bool Delete(Guid id);
     }
 
+    /// <summary>
+    /// Contains collection of methods for managing consumable usage data
+    /// </summary>
     public class ConsumableUsageService : IConsumableUsageService
     {
         private readonly IDbConnectionFactory factory;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConsumableUsageService"/> class.
+        /// </summary>
+        /// <param name="factory">The db connection factory.</param>
         public ConsumableUsageService(IDbConnectionFactory factory)
         {
             this.factory = factory;
         }
 
+        /// <summary>
+        /// Searches the usage based on search criteria.
+        /// </summary>
+        /// <param name="searchInfo">The search criteria.</param>
+        /// <returns>collection of usage data and total number.</returns>
         public SearchResult<ConsumableUsage> Search(ConsumableUsageSearchInfo searchInfo)
         {
             int start = (searchInfo.PageIndex - 1)*searchInfo.PageSize;
@@ -72,11 +112,16 @@ namespace EggFarmSystem.Services
             return result;
         }
 
+        /// <summary>
+        /// Gets the specified id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns>ConsumableUsage instance.</returns>
         public ConsumableUsage Get(Guid id)
         {
             using (var conn = factory.OpenDbConnection())
             {
-                var usage =  conn.GetById<Models.Data.ConsumableUsage>(id);
+                var usage =  conn.GetById<Models.Data.ConsumableUsage>(id.ToString());
 
                 if (usage == null)
                     return null;
@@ -87,6 +132,11 @@ namespace EggFarmSystem.Services
             }
         }
 
+        /// <summary>
+        /// Gets the usage by date.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns>ConsumableUsage instance.</returns>
         public ConsumableUsage GetByDate(DateTime date)
         {
             using (var conn = factory.OpenDbConnection())
@@ -102,6 +152,11 @@ namespace EggFarmSystem.Services
             }
         }
 
+        /// <summary>
+        /// Saves the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns><c>true</c> if save success, <c>false</c> otherwise</returns>
         public bool Save(ConsumableUsage model)
         {
             using (var db = factory.OpenDbConnection())
@@ -134,6 +189,11 @@ namespace EggFarmSystem.Services
             return false;
         }
 
+        /// <summary>
+        /// Deletes the specified id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns><c>true</c> if delete success, <c>false</c> otherwise</returns>
         public bool Delete(Guid id)
         {
             using (var db = factory.OpenDbConnection())
