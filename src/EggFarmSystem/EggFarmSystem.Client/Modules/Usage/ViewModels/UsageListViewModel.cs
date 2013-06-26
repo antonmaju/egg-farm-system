@@ -17,8 +17,6 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
         private readonly IMessageBroker messageBroker;
         private readonly IConsumableUsageService usageService;
 
-        
-
         public UsageListViewModel(IMessageBroker messageBroker, IConsumableUsageService usageService,
             NewUsageCommand newCommand, EditUsageCommand editCommand, DeleteUsageCommand deleteCommand)
         {
@@ -118,6 +116,31 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             }
         }
 
+        private long totalRecords;
+
+        public long TotalRecords
+        {
+            get { return totalRecords; }
+            set 
+            { 
+                totalRecords = value;
+                var total = pageSize > 0 ? (long) Math.Ceiling((double)totalRecords/pageSize) : 0;
+                OnPropertyChanged("TotalRecord");
+                TotalPage = total;
+            }
+        }
+
+        private long totalPage;
+
+        public long TotalPage
+        {
+            get { return totalPage; }
+            set 
+            { 
+                totalPage = value;
+                OnPropertyChanged("TotalPage");
+            }
+        }
 
         #endregion
 
@@ -137,7 +160,9 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
                     PageIndex = pageIndex,
                     PageSize = pageSize
                 };
-            usageService.Search(searchInfo);
+            var result = usageService.Search(searchInfo);
+            UsageList = new ObservableCollection<ConsumableUsage>(usageList);
+            TotalRecords = result.Total;
         }
 
         void OnDeleteFailed(object param)
