@@ -536,5 +536,41 @@ namespace EggFarmSystem.Resources {
                 return ResourceManager.GetString("Settings_Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string Usage_DateField {
+            get {
+                return ResourceManager.GetString("Usage_DateField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usage details information is required.
+        /// </summary>
+        public static string Usage_RequireDetails {
+            get {
+                return ResourceManager.GetString("Usage_RequireDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consumable Usage.
+        /// </summary>
+        public static string Usage_Title {
+            get {
+                return ResourceManager.GetString("Usage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string Usage_TotalField {
+            get {
+                return ResourceManager.GetString("Usage_TotalField", resourceCulture);
+            }
+        }
     }
 }

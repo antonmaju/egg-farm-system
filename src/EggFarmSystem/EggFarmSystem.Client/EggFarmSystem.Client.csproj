@@ -272,6 +272,7 @@
       <DependentUpon>View.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\MenuInfo.cs" />
+    <Compile Include="Modules\Usage\ViewModels\UsageListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -303,7 +304,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\Dashboard\" />
-    <Folder Include="Modules\Usage\ViewModels\" />
     <Folder Include="Modules\Usage\Views\" />
   </ItemGroup>
   <ItemGroup>
