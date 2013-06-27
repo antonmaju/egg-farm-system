@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EggFarmSystem.Client.Modules.Usage.Views;
 
 namespace EggFarmSystem.Client.Modules.Usage
 {
@@ -21,12 +22,12 @@ namespace EggFarmSystem.Client.Modules.Usage
 
         private void RegisterViewModels(ContainerBuilder builder)
         {
-            builder.RegisterType<UsageListViewModel>().SingleInstance();
+            builder.RegisterType<UsageListViewModel>().InstancePerDependency();
         }
 
         private void RegisterViews(ContainerBuilder builder)
         {
-            
+            builder.RegisterType<UsageListView>().As<IUsageListView>().InstancePerDependency();
         }
 
         private void RegisterCommands(ContainerBuilder builder)
@@ -34,6 +35,7 @@ namespace EggFarmSystem.Client.Modules.Usage
             builder.RegisterType<NewUsageCommand>().SingleInstance();
             builder.RegisterType<EditUsageCommand>().SingleInstance();
             builder.RegisterType<DeleteUsageCommand>().SingleInstance();
+            builder.RegisterType<ShowUsageCommand>().SingleInstance();
         }
     }
 }

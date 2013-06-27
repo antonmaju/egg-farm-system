@@ -94,6 +94,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\Pager.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Core\Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -108,12 +112,16 @@
     <Compile Include="Commands\CoreCommandsRegistry.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\DeleteCommand.cs" />
+    <Compile Include="Controls\Pager.xaml.cs">
+      <DependentUpon>Pager.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Core\Bootstrapper.cs" />
     <Compile Include="Core\ClientContext.cs" />
     <Compile Include="Core\Error.cs" />
     <Compile Include="Core\IBootstrapper.cs" />
     <Compile Include="Core\IClientContext.cs" />
     <Compile Include="Core\IMessageBroker.cs" />
+    <Compile Include="Core\IPagingInfo.cs" />
     <Compile Include="Core\MessageBroker.cs" />
     <Compile Include="Core\CommonMessages.cs" />
     <Compile Include="Core\Services\ConsumableServiceClient.cs" />
@@ -164,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Modules\Usage\Views\UsageListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -211,6 +223,7 @@
     <Compile Include="Modules\Usage\Commands\DeleteUsageCommand.cs" />
     <Compile Include="Modules\Usage\Commands\EditUsageCommand.cs" />
     <Compile Include="Modules\Usage\Commands\NewUsageCommand.cs" />
+    <Compile Include="Modules\Usage\Commands\ShowUsageCommand.cs" />
     <Compile Include="Modules\Usage\ConsumableUsageModule.cs" />
     <Compile Include="Modules\IModule.cs" />
     <Compile Include="Modules\MasterData\Commands\DeleteConsumableCommand.cs" />
@@ -272,7 +285,11 @@
       <DependentUpon>View.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\MenuInfo.cs" />
+    <Compile Include="Modules\Usage\UsageRegistry.cs" />
     <Compile Include="Modules\Usage\ViewModels\UsageListViewModel.cs" />
+    <Compile Include="Modules\Usage\Views\UsageListView.xaml.cs">
+      <DependentUpon>UsageListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -304,7 +321,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\Dashboard\" />
-    <Folder Include="Modules\Usage\Views\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EggFarmSystem.Resources\EggFarmSystem.Resources.csproj">

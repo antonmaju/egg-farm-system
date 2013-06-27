@@ -12,7 +12,7 @@ using EggFarmSystem.Services;
 
 namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 {
-    public class UsageListViewModel : ViewModelBase
+    public class UsageListViewModel : ViewModelBase, IPagingInfo
     {
         private readonly IMessageBroker messageBroker;
         private readonly IConsumableUsageService usageService;
@@ -116,23 +116,23 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             }
         }
 
-        private long totalRecords;
+        private int totalRecords;
 
-        public long TotalRecords
+        public int TotalRecords
         {
             get { return totalRecords; }
             set 
             { 
                 totalRecords = value;
-                var total = pageSize > 0 ? (long) Math.Ceiling((double)totalRecords/pageSize) : 0;
+                var total = pageSize > 0 ? (int) Math.Ceiling((double)totalRecords/pageSize) : 0;
                 OnPropertyChanged("TotalRecord");
                 TotalPage = total;
             }
         }
 
-        private long totalPage;
+        private int totalPage;
 
-        public long TotalPage
+        public int TotalPage
         {
             get { return totalPage; }
             set 
@@ -162,7 +162,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
                 };
             var result = usageService.Search(searchInfo);
             UsageList = new ObservableCollection<ConsumableUsage>(usageList);
-            TotalRecords = result.Total;
+            TotalRecords =  result.Total;
         }
 
         void OnDeleteFailed(object param)

@@ -100,12 +100,12 @@ namespace EggFarmSystem.Services
 
                 if (searchInfo.Start.HasValue && searchInfo.End.HasValue)
                 {
-                    result.Total =conn.Count<Models.Data.ConsumableUsage>(
+                    result.Total =(int) conn.Count<Models.Data.ConsumableUsage>(
                         e => e.Date >= searchInfo.Start.Value.Date && e.Date <= searchInfo.End.Value.Date);
                 }
                 else
                 {
-                    result.Total =  conn.Count<Models.Data.ConsumableUsage>();
+                    result.Total = (int)  conn.Count<Models.Data.ConsumableUsage>();
                 }
             }
 

@@ -4,9 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:views="clr-namespace:EggFarmSystem.Client.Core.Views"  
+             xmlns:controls="clr-namespace:EggFarmSystem.Client.Controls"          
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
         <ListView Margin="10,50,30,30" x:Name="lvUsageList"
                   AlternationCount="2" ItemsSource="{Binding Path=UsageList}">
             <ListView.View>
@@ -25,5 +30,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <controls:Pager Grid.Row="1" x:Name="pager"></controls:Pager>
     </Grid>
 </views:UserControlBase>

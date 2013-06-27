@@ -29,8 +29,8 @@ namespace EggFarmSystem.Client.Modules.Usage.Views
 
             this.model = model;
             this.DataContext = model;
+            pager.PagingSource = model;
         }
-
 
     }
 

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using EggFarmSystem.Client.Modules.MasterData;
+using EggFarmSystem.Client.Modules.Usage;
 
 namespace EggFarmSystem.Client
 {
@@ -24,6 +25,7 @@ namespace EggFarmSystem.Client
 
             var bootstrapper = new Bootstrapper();
             bootstrapper.Register(new MasterDataModule());
+            bootstrapper.Register(new ConsumableUsageModule());
             bootstrapper.Start(this);
 
             base.OnStartup(e);
