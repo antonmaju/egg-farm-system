@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
+using EggFarmSystem.Client.Modules.Usage.Views;
 using EggFarmSystem.Resources;
 
 namespace EggFarmSystem.Client.Modules.Usage.Commands
@@ -21,7 +22,8 @@ namespace EggFarmSystem.Client.Modules.Usage.Commands
 
         public override void Execute(object parameter)
         {
-            messageBroker.Publish(CommonMessages.NewUsageView, null);
+            messageBroker.Publish(CommonMessages.ChangeMainView, typeof(IUsageEntryView));
+            messageBroker.Publish(CommonMessages.NewUsageEntry, null);
         }
 
     }

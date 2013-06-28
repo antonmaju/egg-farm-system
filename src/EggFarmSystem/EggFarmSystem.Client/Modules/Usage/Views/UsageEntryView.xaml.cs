@@ -1,6 +1,4 @@
-﻿using EggFarmSystem.Client.Core.Views;
-using EggFarmSystem.Client.Modules.Usage.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,28 +11,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using EggFarmSystem.Client.Core.Views;
+using EggFarmSystem.Client.Modules.Usage.ViewModels;
 
 namespace EggFarmSystem.Client.Modules.Usage.Views
 {
     /// <summary>
-    /// Interaction logic for UsageListView.xaml
+    /// Interaction logic for UsageEntryView.xaml
     /// </summary>
-    public partial class UsageListView : UserControlBase, IUsageListView
+    public partial class UsageEntryView : UserControlBase, IUsageEntryView
     {
-        private UsageListViewModel model;
-
-        public UsageListView(UsageListViewModel model)
+        public UsageEntryView(UsageEntryViewModel model)
         {
             InitializeComponent();
-
-            this.model = model;
             this.DataContext = model;
             this.NavigationCommands = model.NavigationCommands;
         }
-
     }
 
-    public interface IUsageListView
+    public interface  IUsageEntryView
     {
         
     }

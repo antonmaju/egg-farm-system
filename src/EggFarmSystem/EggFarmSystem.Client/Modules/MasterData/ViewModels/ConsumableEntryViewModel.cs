@@ -37,7 +37,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
                 };
 
             cancelCommand.Action = broker => 
-                messageBroker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.Consumable);
+                broker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.Consumable);
 
             SubscribeMessages();
         }

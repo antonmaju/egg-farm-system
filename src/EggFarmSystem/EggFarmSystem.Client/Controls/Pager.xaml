@@ -14,7 +14,8 @@
                  <ColumnDefinition Width="30"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Name="btnFirst"></Button>
+            <Button Name="btnFirst">
+            </Button>
             <Button Name="btnPrev" Grid.Column="1"></Button>
             <ComboBox Name="cboPage" Grid.Column="2">
                 

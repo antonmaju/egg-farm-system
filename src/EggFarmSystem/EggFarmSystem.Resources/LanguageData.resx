@@ -276,16 +276,31 @@
   <data name="Settings_Title" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="Usage_ConsumableField" xml:space="preserve">
+    <value>Consumable</value>
+  </data>
+  <data name="Usage_CountField" xml:space="preserve">
+    <value>Count</value>
+  </data>
   <data name="Usage_DateField" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="Usage_HouseField" xml:space="preserve">
+    <value>House</value>
+  </data>
   <data name="Usage_RequireDetails" xml:space="preserve">
     <value>Usage details information is required</value>
+  </data>
+  <data name="Usage_SubTotalField" xml:space="preserve">
+    <value>SubTotal</value>
   </data>
   <data name="Usage_Title" xml:space="preserve">
     <value>Consumable Usage</value>
   </data>
   <data name="Usage_TotalField" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="Usage_UnitPriceField" xml:space="preserve">
+    <value>Unit Price</value>
   </data>
 </root>

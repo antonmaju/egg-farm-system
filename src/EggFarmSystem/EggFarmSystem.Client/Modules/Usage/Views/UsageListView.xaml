@@ -12,7 +12,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
-        <ListView Margin="10,50,30,30" x:Name="lvUsageList"
+        <ListView Margin="20" x:Name="lvUsageList"
                   AlternationCount="2" ItemsSource="{Binding Path=UsageList}">
             <ListView.View>
                 <GridView x:Name="gvUsageList">
@@ -30,6 +30,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <controls:Pager Grid.Row="1" x:Name="pager"></controls:Pager>
+       
     </Grid>
 </views:UserControlBase>

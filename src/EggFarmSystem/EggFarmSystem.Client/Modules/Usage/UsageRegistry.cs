@@ -23,11 +23,13 @@ namespace EggFarmSystem.Client.Modules.Usage
         private void RegisterViewModels(ContainerBuilder builder)
         {
             builder.RegisterType<UsageListViewModel>().InstancePerDependency();
+            builder.RegisterType<UsageEntryViewModel>().InstancePerDependency();
         }
 
         private void RegisterViews(ContainerBuilder builder)
         {
             builder.RegisterType<UsageListView>().As<IUsageListView>().InstancePerDependency();
+            builder.RegisterType<UsageEntryView>().As<IUsageEntryView>().InstancePerDependency();
         }
 
         private void RegisterCommands(ContainerBuilder builder)
@@ -36,6 +38,7 @@ namespace EggFarmSystem.Client.Modules.Usage
             builder.RegisterType<EditUsageCommand>().SingleInstance();
             builder.RegisterType<DeleteUsageCommand>().SingleInstance();
             builder.RegisterType<ShowUsageCommand>().SingleInstance();
+            builder.RegisterType<SaveUsageCommand>().SingleInstance();
         }
     }
 }

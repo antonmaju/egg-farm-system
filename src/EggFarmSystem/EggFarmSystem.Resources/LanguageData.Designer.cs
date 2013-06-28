@@ -538,6 +538,24 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consumable.
+        /// </summary>
+        public static string Usage_ConsumableField {
+            get {
+                return ResourceManager.GetString("Usage_ConsumableField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count.
+        /// </summary>
+        public static string Usage_CountField {
+            get {
+                return ResourceManager.GetString("Usage_CountField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string Usage_DateField {
@@ -547,11 +565,29 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to House.
+        /// </summary>
+        public static string Usage_HouseField {
+            get {
+                return ResourceManager.GetString("Usage_HouseField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Usage details information is required.
         /// </summary>
         public static string Usage_RequireDetails {
             get {
                 return ResourceManager.GetString("Usage_RequireDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SubTotal.
+        /// </summary>
+        public static string Usage_SubTotalField {
+            get {
+                return ResourceManager.GetString("Usage_SubTotalField", resourceCulture);
             }
         }
         
@@ -570,6 +606,15 @@ namespace EggFarmSystem.Resources {
         public static string Usage_TotalField {
             get {
                 return ResourceManager.GetString("Usage_TotalField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit Price.
+        /// </summary>
+        public static string Usage_UnitPriceField {
+            get {
+                return ResourceManager.GetString("Usage_UnitPriceField", resourceCulture);
             }
         }
     }
