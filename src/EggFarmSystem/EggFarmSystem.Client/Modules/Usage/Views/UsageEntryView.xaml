@@ -47,12 +47,30 @@
                         </DataTemplate>
                     </DataGridComboBoxColumn.HeaderTemplate>
                 </DataGridComboBoxColumn>
-                <DataGridComboBoxColumn Header="Consumable"
-                    ItemsSource="{Binding 
-    RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, 
-    Path=DataContext.ConsumableList}"
-                    SelectedValueBinding="{Binding Path=ConsumableId}"
-                    />
+                <DataGridComboBoxColumn DisplayMemberPath="Name" SelectedValuePath="Id"
+                    SelectedValueBinding="{Binding Path=ConsumableId}"              
+                   >
+                    <DataGridComboBoxColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding 
+                                RelativeSource={RelativeSource AncestorType=DataGrid},
+                                Path=DataContext.ConsumableText}" />
+                        </DataTemplate>
+                    </DataGridComboBoxColumn.HeaderTemplate>
+                    <DataGridComboBoxColumn.ElementStyle>
+                        <Style TargetType="{x:Type ComboBox}">
+                            <Setter Property="ItemsSource" 
+                                    Value="{Binding Path=DataContext.ConsumableList, 
+                                RelativeSource={RelativeSource AncestorType={x:Type views:UserControlBase}}}" />
+                        </Style>
+                    </DataGridComboBoxColumn.ElementStyle>
+                    <DataGridComboBoxColumn.EditingElementStyle>
+                        <Style TargetType="{x:Type ComboBox}">
+                            <Setter Property="ItemsSource" Value="{Binding Path=DataContext.ConsumableList,
+                                RelativeSource={RelativeSource AncestorType={x:Type views:UserControlBase}}}" />
+                        </Style>
+                    </DataGridComboBoxColumn.EditingElementStyle>
+                </DataGridComboBoxColumn>
                 <DataGridTextColumn Header="Count"
                     Binding="{Binding Path=Count}" />
                 <DataGridTextColumn Header="Unit Price"
