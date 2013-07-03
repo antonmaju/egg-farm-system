@@ -29,6 +29,16 @@ namespace EggFarmSystem.Client.Commands
             if (executeAction != null)
                 executeAction(parameter);
         }
+
+        private Func<string> text; 
+
+        public new Func<string> Text 
+        { 
+            get { return text; } 
+            set { base.Text = value;text = value;}
+        } 
+
+        
     }
 
     public class DelegateCommand<T> : CommandBase<T>

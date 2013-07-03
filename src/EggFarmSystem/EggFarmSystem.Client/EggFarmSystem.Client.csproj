@@ -295,6 +295,7 @@
     </Compile>
     <Compile Include="Modules\MenuInfo.cs" />
     <Compile Include="Modules\Usage\UsageRegistry.cs" />
+    <Compile Include="Modules\Usage\ViewModels\UsageDetailViewModel.cs" />
     <Compile Include="Modules\Usage\ViewModels\UsageEntryViewModel.cs" />
     <Compile Include="Modules\Usage\ViewModels\UsageListViewModel.cs" />
     <Compile Include="Modules\Usage\Views\UsageEntryView.xaml.cs">

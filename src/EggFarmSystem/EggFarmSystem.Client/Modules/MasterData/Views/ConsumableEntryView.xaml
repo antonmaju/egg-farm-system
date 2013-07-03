@@ -20,12 +20,12 @@
                 <ColumnDefinition Width="220"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="1" Style="{StaticResource FormLabel}"
+            <Label Grid.Row="1" Style="{StaticResource MasterDataLabel}"
                Content="{Binding Path=NameText}"   />
             <TextBox Grid.Row="1" Style="{StaticResource FormTextBox}" Grid.Column="1"
                 Text="{Binding Path=Name, ValidatesOnDataErrors=True, Mode=TwoWay, 
                 NotifyOnValidationError=True}"  />
-            <Label Grid.Row="2" Style="{StaticResource FormLabel}"
+        <Label Grid.Row="2" Style="{StaticResource MasterDataLabel}"
                 Content="{Binding Path=TypeText}"   />
             <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource FormComboBox}"
                   ItemsSource="{Binding Path=ConsumableTypes}" 
@@ -33,17 +33,17 @@
                   SelectedValuePath="Item1"
                   SelectedValue="{Binding Path=Type, Mode=TwoWay, ValidatesOnDataErrors=True,
                 NotifyOnValidationError=True}"></ComboBox>
-            <Label Grid.Row="3" Style="{StaticResource FormLabel}"
+            <Label Grid.Row="3" Style="{StaticResource MasterDataLabel}"
                    Content="{Binding Path=UnitPriceText}"   />
             <TextBox Grid.Row="3" Style="{StaticResource FormTextBox}" Grid.Column="1"
                     Text="{Binding Path=UnitPrice, ValidatesOnDataErrors=True, Mode=TwoWay, 
                     NotifyOnValidationError=True}"  />
-            <Label Grid.Row="4" Style="{StaticResource FormLabel}"
+            <Label Grid.Row="4" Style="{StaticResource MasterDataLabel}"
                        Content="{Binding Path=UnitText}"   />
             <TextBox Grid.Row="4" Style="{StaticResource FormTextBox}" Grid.Column="1"
                         Text="{Binding Path=Unit, ValidatesOnDataErrors=True, Mode=TwoWay, 
                         NotifyOnValidationError=True}"  />
-            <Label Grid.Row="5" Style="{StaticResource FormLabel}"
+            <Label Grid.Row="5" Style="{StaticResource MasterDataLabel}"
                            Content="{Binding Path=ActiveText}"   />
             <CheckBox Grid.Row="5" Grid.Column="1" Style="{StaticResource FormCheckBox}"
               IsChecked="{Binding Path=Active, Mode=TwoWay}"    />

@@ -26,6 +26,34 @@ namespace EggFarmSystem.Client.Modules.Usage.Views
             InitializeComponent();
             this.DataContext = model;
             this.NavigationCommands = model.NavigationCommands;
+            SubscribeEvents();
+        }
+
+        private void SubscribeEvents()
+        {
+            dgUsage.CellEditEnding += new EventHandler<DataGridCellEditEndingEventArgs>(dgUsage_CellEditEnding);
+            dgUsage.GotFocus += new RoutedEventHandler(dgUsage_GotFocus);
+        }
+
+        void dgUsage_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (e.OriginalSource.GetType() == typeof(DataGridCell))
+            {
+                var grd = (DataGrid)sender;
+                grd.BeginEdit(e);
+            }
+        }
+
+        private bool isManualEditCommit;
+        void dgUsage_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (!isManualEditCommit)
+            {
+                isManualEditCommit = true;
+                var grid = (DataGrid)sender;
+                grid.CommitEdit(DataGridEditingUnit.Row, true);
+                isManualEditCommit = false;
+            }
         }
     }
 

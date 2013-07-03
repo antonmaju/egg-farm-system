@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Controls;
@@ -22,11 +23,12 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
         private readonly IConsumableService consumableService;
         private readonly IHenHouseService houseService;
 
-        private ConsumableUsage usage;
+        private DelegateCommand saveCommand, addDetailCommand, deleteDetailCommand;
+        private SaveUsageCommand saveUsageCommand;
 
         public UsageEntryViewModel(IMessageBroker messageBroker, IConsumableUsageService usageService,
             IHenHouseService houseService, IConsumableService consumableService,
-            SaveUsageCommand saveCommand, CancelCommand cancelCommand
+            SaveUsageCommand saveUsageCommand, CancelCommand cancelCommand
             )
         {
             this.messageBroker = messageBroker;
@@ -34,16 +36,18 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             this.houseService = houseService;
             this.consumableService = consumableService;
 
-            usage = new ConsumableUsage();
-            details = new ObservableCollection<ConsumableUsageDetail>(usage.Details);
+            this.saveUsageCommand = saveUsageCommand;
 
-            SaveCommand = saveCommand;
-            SaveCommand.Usage = usage;
+            saveCommand = new DelegateCommand(Save, CanSave);
+            saveCommand.Text = () => LanguageData.General_Save;
+
+            addDetailCommand = new DelegateCommand(AddDetail, CanAddDetail);
+            addDetailCommand.Text = () => LanguageData.General_New;
 
             CancelCommand = cancelCommand;
             cancelCommand.Action = broker => broker.Publish(CommonMessages.ChangeMainView, typeof(IUsageListView));
 
-            NavigationCommands = new List<CommandBase>(){SaveCommand, CancelCommand};
+            NavigationCommands = new List<CommandBase>(){saveCommand, CancelCommand};
 
             HouseList = new ObservableCollection<HenHouse>(houseService.GetAll());
             ConsumableList = new ObservableCollection<Consumable>(consumableService.GetAll());
@@ -51,7 +55,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             SubscribeMessages();
         }
 
-        public SaveUsageCommand SaveCommand { get; private set; }
+        public DelegateCommand AddDetailCommand { get { return addDetailCommand; } }
 
         public CancelCommand CancelCommand { get; private set; }
 
@@ -85,7 +89,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
         private DateTime date;
         private long total;
         
-        private ObservableCollection<ConsumableUsageDetail> details;
+        private ObservableCollection<UsageDetailViewModel> details;
 
         public Guid Id
         {
@@ -93,7 +97,6 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             set 
             { 
                 id = value;
-                usage.Id = value;
                 OnPropertyChanged("Id");
             }
         }
@@ -104,7 +107,6 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             set 
             { 
                 date = value;
-                usage.Date = value;
                 OnPropertyChanged("Date");
             }
         }
@@ -115,12 +117,11 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             set 
             { 
                 total = value;
-                usage.Total = value;
                 OnPropertyChanged("Total");
             }
         }
 
-        public ObservableCollection<ConsumableUsageDetail> Details
+        public ObservableCollection<UsageDetailViewModel> Details
         {
             get { return details; }
             set 
@@ -144,7 +145,8 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             Id = Guid.Empty;
             Total = 0;
             Date = DateTime.Today;
-            Details = new ObservableCollection<ConsumableUsageDetail>();
+            Details = new ObservableCollection<UsageDetailViewModel>();
+            Details.Add(new UsageDetailViewModel());
         }
 
         void OnLoadUsage(object param)
@@ -154,7 +156,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             Id = loadedUsage.Id;
             Total = loadedUsage.Total;
             Date = loadedUsage.Date;
-            Details = new ObservableCollection<ConsumableUsageDetail>(loadedUsage.Details);
+            //Details = new ObservableCollection<Us>(loadedUsage.Details);
             
         }
 
@@ -168,6 +170,27 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             messageBroker.Unsubscribe(CommonMessages.NewUsageEntry, OnNewUsage);
             messageBroker.Unsubscribe(CommonMessages.LoadUsage, OnLoadUsage);
             messageBroker.Unsubscribe(CommonMessages.SaveUsageFailed, OnSaveUsageFailed);
+        }
+
+        void Save(object param)
+        {
+            var v = details;
+            Debugger.Break();
+        }
+
+        bool CanSave(object param)
+        {
+            return true;
+        }
+
+        void AddDetail(object param)
+        {
+            details.Add(new UsageDetailViewModel());
+        }
+
+        bool CanAddDetail(object param)
+        {
+            return true;
         }
 
         public override void Dispose()
