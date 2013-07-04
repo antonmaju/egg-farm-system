@@ -84,7 +84,8 @@ namespace EggFarmSystem.Client.Core.Views
         public void ChangeView(UserControlBase newView)
         {
             ChangeActionCommands(newView.NavigationCommands);
-            scrContent.Content = newView;
+            grdContent.Children.Clear();
+            grdContent.Children.Add(newView);
         }
 
         public void ChangeActionCommands(IList<CommandBase> commands)

@@ -29,19 +29,34 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
         public long Count
         {
             get { return count; }
-            set { count = value; OnPropertyChanged("Count"); }
+            set
+            {
+                count = value; 
+                CalculateSubTotal();
+                OnPropertyChanged("Count");
+            }
         }
 
         public long UnitPrice
         {
             get { return unitPrice; }
-            set { unitPrice = value; OnPropertyChanged("UnitPrice"); }
+            set
+            {
+                unitPrice = value; 
+                CalculateSubTotal();
+                OnPropertyChanged("UnitPrice");
+            }
         }
 
         public long SubTotal
         {
             get { return subTotal; }
             set { subTotal = value; OnPropertyChanged("SubTotal"); }
+        }
+
+        public void CalculateSubTotal()
+        {
+            SubTotal = Count*UnitPrice;
         }
     }
 }

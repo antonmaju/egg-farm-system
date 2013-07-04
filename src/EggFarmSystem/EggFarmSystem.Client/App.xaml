@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="Resources\CheckBox.xaml" />
                 <ResourceDictionary Source="Resources\ComboBox.xaml" />
                 <ResourceDictionary Source="Resources\Button.xaml" />
+                <ResourceDictionary Source="Resources\DatePicker.xaml" />
                 <ResourceDictionary Source="Resources\ListView.xaml" />
                 <ResourceDictionary Source="Resources\DataGrid.xaml" />
             </ResourceDictionary.MergedDictionaries>

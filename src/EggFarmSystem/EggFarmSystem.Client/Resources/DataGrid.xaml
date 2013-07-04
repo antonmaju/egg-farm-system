@@ -116,7 +116,7 @@ ConverterParameter={x:Static DataGridHeadersVisibility.Row},
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type DataGridCell}">
+    <Style x:Key="{x:Type DataGridCell}" TargetType="{x:Type DataGridCell}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -132,6 +132,10 @@ ConverterParameter={x:Static DataGridHeadersVisibility.Row},
             </Setter.Value>
         </Setter>
     </Style>    
+    
+    <Style x:Key="NumericGridCell" TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+        <Setter Property="HorizontalAlignment" Value="Right" />
+    </Style>
 
     <Style TargetType="{x:Type DataGrid}">
         <Setter Property="CanUserAddRows" Value="False" />
@@ -139,6 +143,7 @@ ConverterParameter={x:Static DataGridHeadersVisibility.Row},
         <Setter Property="HeadersVisibility" Value="Column"></Setter>
         <Setter Property="SelectionUnit" Value="FullRow" />
         <Setter Property="IsSynchronizedWithCurrentItem" Value="True"></Setter>
+        
     </Style>    
 
 

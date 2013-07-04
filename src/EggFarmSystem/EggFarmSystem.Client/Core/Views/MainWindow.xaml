@@ -33,9 +33,10 @@
             <MenuItem Header="SETTINGS" x:Name="mnuSettings" />
             <MenuItem Header="LAPORAN" />
         </Menu>
-        <ScrollViewer x:Name="scrContent" Grid.Row="1" VerticalScrollBarVisibility="Auto" >
+        <Grid Grid.Row="1" x:Name="grdContent"></Grid>
+        <!--<ScrollViewer x:Name="scrContent" Grid.Row="1" VerticalScrollBarVisibility="Auto" >
             
-        </ScrollViewer>
+        </ScrollViewer>-->
         <Border BorderThickness="0,5,0,0" Grid.Row="2" BorderBrush="#999999">
             <Grid >
                 <Grid.ColumnDefinitions>

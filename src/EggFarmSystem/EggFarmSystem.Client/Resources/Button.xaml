@@ -65,5 +65,12 @@
             </Setter.Value>
         </Setter>
     </Style>    
+    
+    <Style x:Key="InternalButton" TargetType="Button" BasedOn="{StaticResource NavButton}">
+        <Setter Property="Height" Value="40" ></Setter>
+        <Setter Property="MinWidth" Value="100"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="Margin" Value="10,0,10,0"></Setter>       
+    </Style>
    
 </ResourceDictionary>

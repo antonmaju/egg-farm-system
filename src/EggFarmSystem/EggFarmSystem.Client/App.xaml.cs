@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Threading;
+using System.Windows.Markup;
 using EggFarmSystem.Client.Core;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,11 @@ namespace EggFarmSystem.Client
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("id-ID");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("id-ID");
+            FrameworkElement.LanguageProperty.OverrideMetadata(
+            typeof(FrameworkElement),
+            new FrameworkPropertyMetadata(
+                XmlLanguage.GetLanguage(
+                CultureInfo.CurrentCulture.IetfLanguageTag)));
 
             var bootstrapper = new Bootstrapper();
             bootstrapper.Register(new MasterDataModule());

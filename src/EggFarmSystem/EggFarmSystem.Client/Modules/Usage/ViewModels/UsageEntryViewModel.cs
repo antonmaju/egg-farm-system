@@ -81,6 +81,8 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
         public string SubTotalText { get { return LanguageData.Usage_SubTotalField; } }
 
+
+
         #endregion
 
         #region properties
@@ -146,7 +148,8 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             Total = 0;
             Date = DateTime.Today;
             Details = new ObservableCollection<UsageDetailViewModel>();
-            Details.Add(new UsageDetailViewModel());
+            
+            Details.Add(CreateNewDetail());
         }
 
         void OnLoadUsage(object param)
@@ -185,12 +188,32 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
         void AddDetail(object param)
         {
-            details.Add(new UsageDetailViewModel());
+            details.Add(CreateNewDetail());
         }
 
         bool CanAddDetail(object param)
         {
             return true;
+        }
+
+        UsageDetailViewModel CreateNewDetail()
+        {
+            var detail = new UsageDetailViewModel();
+            detail.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(detail_PropertyChanged);
+            return detail;
+        }
+
+        void detail_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "SubTotal")
+            {
+                CalculateTotal();
+            }
+        }
+
+        private void CalculateTotal()
+        {
+            Total = details.Sum(d => d.SubTotal);
         }
 
         public override void Dispose()
