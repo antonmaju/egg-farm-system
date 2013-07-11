@@ -26,7 +26,7 @@ namespace EggFarmSystem.Client.Core
             
         }
 
-        public string Error
+        public virtual string Error
         {
             get { return null; }
         }

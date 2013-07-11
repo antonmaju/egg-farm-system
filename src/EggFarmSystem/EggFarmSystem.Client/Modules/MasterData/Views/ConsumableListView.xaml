@@ -14,19 +14,23 @@
 
                     <GridView.Columns>
                         <GridViewColumn Header="{Binding Path=NameText}" 
-                                        DisplayMemberBinding="{Binding Path=Name}">
+                                        DisplayMemberBinding="{Binding Path=Name}"
+                                        Width="200">
 
                         </GridViewColumn>
                         <GridViewColumn Header="{Binding Path=TypeText}" 
-                                        DisplayMemberBinding="{Binding Path=Type}">
+                                        DisplayMemberBinding="{Binding Path=Type}"
+                                        Width="100">
 
                         </GridViewColumn>
                         <GridViewColumn Header="{Binding Path=UnitPriceText}" 
-                                        DisplayMemberBinding="{Binding Path=UnitPrice}">
+                                        DisplayMemberBinding="{Binding Path=UnitPrice}"
+                                        Width="200">
 
                         </GridViewColumn>
                         <GridViewColumn Header="{Binding Path=UnitText}" 
-                                        DisplayMemberBinding="{Binding Path=Unit}">
+                                        DisplayMemberBinding="{Binding Path=Unit}"
+                                        Width="200">
 
                         </GridViewColumn>
                     </GridView.Columns>

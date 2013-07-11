@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using EggFarmSystem.Client.Core;
+using EggFarmSystem.Resources;
 
 namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 {
@@ -23,7 +24,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
         public Guid ConsumableId
         {
             get { return consumableId; }
-            set { consumableId = value; OnPropertyChanged("HouseId"); }
+            set { consumableId = value; OnPropertyChanged("ConsumableId"); }
         }
 
         public long Count
@@ -57,6 +58,57 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
         public void CalculateSubTotal()
         {
             SubTotal = Count*UnitPrice;
+        }
+
+        public override string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+                switch (columnName)
+                {
+                    case "HouseId":
+                        if (HouseId == Guid.Empty)
+                            result = LanguageData.UsageDetail_RequireHouse;
+                        break;
+
+                    case "ConsumableId":
+                        if (ConsumableId == Guid.Empty)
+                            result = LanguageData.UsageDetail_RequireConsumable;
+                        break;
+
+                    case "Count":
+                        if (ConsumableId == Guid.Empty)
+                            result = LanguageData.UsageDetail_RequireCount;
+                        break;
+                }
+                return result;
+            }
+        }
+
+        private static readonly string[] PropertiesToValidate =
+            {
+                "HouseId",
+                "ConsumableId",
+                "Count"
+            };
+
+        public override string Error
+        {
+            get
+            {
+                string error = null;
+
+                foreach (var prop in PropertiesToValidate)
+                {
+                    error = this[prop];
+                    if (error != null)
+                        break;
+                }
+
+                return error;
+            }
+           
         }
     }
 }

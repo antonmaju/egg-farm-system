@@ -617,5 +617,32 @@ namespace EggFarmSystem.Resources {
                 return ResourceManager.GetString("Usage_UnitPriceField", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consumable is required.
+        /// </summary>
+        public static string UsageDetail_RequireConsumable {
+            get {
+                return ResourceManager.GetString("UsageDetail_RequireConsumable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count is required.
+        /// </summary>
+        public static string UsageDetail_RequireCount {
+            get {
+                return ResourceManager.GetString("UsageDetail_RequireCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to House is required.
+        /// </summary>
+        public static string UsageDetail_RequireHouse {
+            get {
+                return ResourceManager.GetString("UsageDetail_RequireHouse", resourceCulture);
+            }
+        }
     }
 }

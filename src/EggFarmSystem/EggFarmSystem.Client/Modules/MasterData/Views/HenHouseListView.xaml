@@ -12,16 +12,19 @@
             <ListView.View>
                 <GridView x:Name="gvHouseList">
                     <GridView.Columns>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}">
+                        <GridViewColumn Header="{Binding Path=NameText}" DisplayMemberBinding="{Binding Path=Name}"
+                                        Width="150">
 
                         </GridViewColumn>
-                        <GridViewColumn Header="PurchaseCost" DisplayMemberBinding="{Binding Path=PurchaseCost}">
+                        <GridViewColumn Header="{Binding Path=PurchaseCostText}" DisplayMemberBinding="{Binding Path=PurchaseCost}"
+                                        Width="200">
 
                         </GridViewColumn>
-                        <GridViewColumn Header="YearUsage" DisplayMemberBinding="{Binding Path=YearUsage}">
+                        <GridViewColumn Header="{Binding Path=YearUsageText}" DisplayMemberBinding="{Binding Path=YearUsage}"
+                                        Width="70">
 
                         </GridViewColumn>
-                        <GridViewColumn Header="Active" DisplayMemberBinding="{Binding Path=Active}">
+                        <GridViewColumn Header="{Binding Path=ActiveText}" DisplayMemberBinding="{Binding Path=Active}" Width="70">
 
                         </GridViewColumn>
                     </GridView.Columns>

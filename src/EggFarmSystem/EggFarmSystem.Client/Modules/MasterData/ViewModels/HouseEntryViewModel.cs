@@ -180,7 +180,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
                         if (Depreciation <= 0)
                             result = LanguageData.House_RequireDepreciation;
                         break;
-
+                    
                 }
 
                 return result;

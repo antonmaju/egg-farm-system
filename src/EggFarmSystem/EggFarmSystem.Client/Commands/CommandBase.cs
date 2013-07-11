@@ -60,12 +60,20 @@ namespace EggFarmSystem.Client.Commands
 
         public override bool CanExecute(object parameter)
         {
-            return this.CanExecute((T)parameter);
+            T param = default(T);
+            if (parameter != null)
+                param = (T) parameter;
+
+            return this.CanExecute(param);
         }
 
         public override void Execute(object parameter)
         {
-           Execute((T) parameter);
+            T param = default(T);
+            if (parameter != null)
+                param = (T)parameter;
+
+            Execute((T) param);
         }
     }
 }

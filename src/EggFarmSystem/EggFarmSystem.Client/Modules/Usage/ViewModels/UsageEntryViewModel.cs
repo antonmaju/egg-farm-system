@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 using System.Windows.Input;
+using AutoMapper;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.Usage.Commands;
@@ -23,7 +24,8 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
         private readonly IConsumableService consumableService;
         private readonly IHenHouseService houseService;
 
-        private DelegateCommand saveCommand, addDetailCommand, deleteDetailCommand;
+        private DelegateCommand saveCommand, addDetailCommand;
+        private DelegateCommand<int> deleteDetailCommand;
         private SaveUsageCommand saveUsageCommand;
 
         public UsageEntryViewModel(IMessageBroker messageBroker, IConsumableUsageService usageService,
@@ -38,11 +40,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
             this.saveUsageCommand = saveUsageCommand;
 
-            saveCommand = new DelegateCommand(Save, CanSave);
-            saveCommand.Text = () => LanguageData.General_Save;
-
-            addDetailCommand = new DelegateCommand(AddDetail, CanAddDetail);
-            addDetailCommand.Text = () => LanguageData.General_New;
+            InitializeDelegateCommands();
 
             CancelCommand = cancelCommand;
             cancelCommand.Action = broker => broker.Publish(CommonMessages.ChangeMainView, typeof(IUsageListView));
@@ -55,7 +53,21 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             SubscribeMessages();
         }
 
+        private void InitializeDelegateCommands()
+        {
+            saveCommand = new DelegateCommand(Save, CanSave);
+            saveCommand.Text = () => LanguageData.General_Save;
+
+            addDetailCommand = new DelegateCommand(AddDetail, CanAddDetail);
+            addDetailCommand.Text = () => LanguageData.General_New;
+
+            deleteDetailCommand = new DelegateCommand<int>(DeleteDetail, CanDeleteDetail);
+            deleteDetailCommand.Text = () => LanguageData.General_Delete;
+        }
+
         public DelegateCommand AddDetailCommand { get { return addDetailCommand; } }
+
+        public DelegateCommand<int> DeleteDetailCommand { get { return deleteDetailCommand; } }
 
         public CancelCommand CancelCommand { get; private set; }
 
@@ -81,7 +93,9 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
         public string SubTotalText { get { return LanguageData.Usage_SubTotalField; } }
 
+        public string NewText { get { return LanguageData.General_New; } }
 
+        public string DeleteText { get { return LanguageData.General_Delete; } }
 
         #endregion
 
@@ -135,6 +149,62 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
         #endregion
 
+        #region validation
+
+        public override string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+
+                switch (columnName)
+                {
+                    case "Details":
+                        if (details == null || details.Count == 0)
+                            result = LanguageData.Usage_RequireDetails;
+                        else
+                        {
+                            for (int i = 0; i < details.Count; i++)
+                            {
+                                result = details[i].Error;
+                                if(result != null)
+                                    break;
+                            }
+                        }
+                        break;
+                }
+
+                return result;
+            }
+        }
+
+        private static readonly string[] PropertiesToValidate =
+            {
+                "Date",
+                "Total",
+                "Details"
+            };
+        
+
+        private bool IsValid()
+        {
+            bool valid = true;
+
+            foreach (var prop in PropertiesToValidate)
+            {
+                if (this[prop] != null)
+                {
+                    valid = false;
+                    break;
+                }
+            }
+
+            return valid;
+        }
+
+        #endregion
+
+
         void SubscribeMessages()
         {
             messageBroker.Subscribe(CommonMessages.NewUsageEntry, OnNewUsage);
@@ -175,15 +245,19 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             messageBroker.Unsubscribe(CommonMessages.SaveUsageFailed, OnSaveUsageFailed);
         }
 
+
         void Save(object param)
         {
-            var v = details;
-            Debugger.Break();
+            var usage = Mapper.Map<UsageEntryViewModel, ConsumableUsage>(this);
+            saveUsageCommand.Usage = usage;
+            saveUsageCommand.Execute(usage);
+
         }
 
         bool CanSave(object param)
         {
-            return true;
+            var isValid = IsValid();
+            return isValid;
         }
 
         void AddDetail(object param)
@@ -196,10 +270,25 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             return true;
         }
 
+        void DeleteDetail(int param)
+        {
+            int index = Convert.ToInt32(deleteDetailCommand.Tag);
+            var detail = details[index];
+            detail.PropertyChanged -=detail_PropertyChanged;
+            details.RemoveAt(index);
+            deleteDetailCommand.Tag = -1;
+        }
+
+        bool CanDeleteDetail(int param)
+        {
+            return deleteDetailCommand.Tag > -1;
+        }
+
+
         UsageDetailViewModel CreateNewDetail()
         {
             var detail = new UsageDetailViewModel();
-            detail.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(detail_PropertyChanged);
+            detail.PropertyChanged += detail_PropertyChanged;
             return detail;
         }
 
@@ -209,11 +298,23 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             {
                 CalculateTotal();
             }
+            else if (e.PropertyName == "ConsumableId")
+            {
+                SetDefaultUnitPrice(sender as UsageDetailViewModel);
+            }
         }
 
         private void CalculateTotal()
         {
             Total = details.Sum(d => d.SubTotal);
+        }
+
+        private void SetDefaultUnitPrice(UsageDetailViewModel detail)
+        {
+            if (detail == null) return;
+
+            var consumable = consumableService.Get(detail.ConsumableId);
+            detail.UnitPrice = consumable.UnitPrice;
         }
 
         public override void Dispose()

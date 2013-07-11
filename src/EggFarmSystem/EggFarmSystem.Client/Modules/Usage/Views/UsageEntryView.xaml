@@ -82,15 +82,19 @@
                 <DataGridTextColumn Header="Unit Price" MinWidth="150"
                     Binding="{Binding Path=UnitPrice, StringFormat=N}" CellStyle="{StaticResource NumericGridCell}" />
                 <DataGridTextColumn Header="Sub Total" 
-                                    Binding="{Binding Path=SubTotal, StringFormat=N}" 
+                                    Binding="{Binding Path=SubTotal, StringFormat=N}" IsReadOnly="True" 
                                     MinWidth="150" CellStyle="{StaticResource NumericGridCell}" />
             </DataGrid.Columns>
         </DataGrid>
 
         <StackPanel Orientation="Horizontal" Grid.Row="3" >
             <Button Command="{Binding Path=AddDetailCommand}" 
-                    Style="{StaticResource InternalButton}" Margin="20,0,10,0">Add</Button>
-            <Button Style="{StaticResource InternalButton}">Delete</Button>
+                    Content="{Binding Path=NewText}"
+                    Style="{StaticResource InternalButton}" Margin="20,0,10,0" />
+            <Button Style="{StaticResource InternalButton}"
+                    Content="{Binding Path=DeleteText}"
+                    Command="{Binding Path=DeleteDetailCommand}" Margin="20,0,10,0"
+                    />
         </StackPanel>
         
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"

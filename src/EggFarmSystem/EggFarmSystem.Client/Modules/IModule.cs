@@ -15,8 +15,6 @@ namespace EggFarmSystem.Client.Modules
 
         Autofac.Module Registry { get; }
 
-        void RegisterMessageSubscriber(IMessageBroker broker);
-
-        
+        void Initialize();
     }
 }

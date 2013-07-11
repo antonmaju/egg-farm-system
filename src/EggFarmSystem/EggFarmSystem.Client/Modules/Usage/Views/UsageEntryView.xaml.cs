@@ -21,9 +21,12 @@ namespace EggFarmSystem.Client.Modules.Usage.Views
     /// </summary>
     public partial class UsageEntryView : UserControlBase, IUsageEntryView
     {
+        private UsageEntryViewModel model;
+
         public UsageEntryView(UsageEntryViewModel model)
         {
             InitializeComponent();
+            this.model = model;
             this.DataContext = model;
             this.NavigationCommands = model.NavigationCommands;
             SubscribeEvents();
@@ -31,8 +34,16 @@ namespace EggFarmSystem.Client.Modules.Usage.Views
 
         private void SubscribeEvents()
         {
-            dgUsage.CellEditEnding += new EventHandler<DataGridCellEditEndingEventArgs>(dgUsage_CellEditEnding);
-            dgUsage.GotFocus += new RoutedEventHandler(dgUsage_GotFocus);
+            dgUsage.CellEditEnding += dgUsage_CellEditEnding;
+            dgUsage.GotFocus += dgUsage_GotFocus;
+            dgUsage.SelectionChanged += dgUsage_SelectionChanged;
+        }
+
+        void dgUsage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var grid = sender as DataGrid;
+            int index = grid.Items.IndexOf(grid.SelectedItem);
+            model.DeleteDetailCommand.Tag = index;
         }
 
         void dgUsage_GotFocus(object sender, RoutedEventArgs e)

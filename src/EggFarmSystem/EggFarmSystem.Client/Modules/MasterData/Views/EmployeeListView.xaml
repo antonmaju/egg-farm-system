@@ -12,10 +12,13 @@
             <ListView.View>
                 <GridView x:Name="gvEmployeeList">
                     <GridView.Columns>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}">
+                        <GridViewColumn Header="{Binding Path=NameText}" 
+                                        DisplayMemberBinding="{Binding Path=Name}"
+                                        Width="300">
 
                         </GridViewColumn>
-                        <GridViewColumn Header="Salary" DisplayMemberBinding="{Binding Path=Salary}">
+                        <GridViewColumn Header="{Binding Path=SalaryText}" DisplayMemberBinding="{Binding Path=Salary}"
+                                        Width="200">
 
                         </GridViewColumn>
                     </GridView.Columns>

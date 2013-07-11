@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AutoMapper;
 using EggFarmSystem.Client.Modules.Usage.Commands;
+using EggFarmSystem.Client.Modules.Usage.ViewModels;
+using EggFarmSystem.Models;
 using EggFarmSystem.Resources;
 
 namespace EggFarmSystem.Client.Modules.Usage
@@ -31,9 +34,17 @@ namespace EggFarmSystem.Client.Modules.Usage
 
         public Autofac.Module Registry { get; private set; }
 
-        public void RegisterMessageSubscriber(Core.IMessageBroker broker)
+        public void Initialize()
         {
-            throw new NotImplementedException();
+            InitializeMappings();
+        }
+
+        void InitializeMappings()
+        {
+            Mapper.CreateMap<UsageDetailViewModel, ConsumableUsageDetail>();
+            Mapper.CreateMap<ConsumableUsageDetail, UsageDetailViewModel>();
+            Mapper.CreateMap<UsageEntryViewModel, ConsumableUsage>();
+            Mapper.CreateMap<ConsumableUsage, UsageEntryViewModel>();
         }
     }
 }

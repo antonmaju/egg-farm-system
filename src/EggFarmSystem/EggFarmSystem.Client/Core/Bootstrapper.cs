@@ -52,6 +52,7 @@ namespace EggFarmSystem.Client.Core
             foreach (var module in modules)
             {
                 builder.RegisterModule(module.Registry);
+                module.Initialize();
             }
 
             container = builder.Build();

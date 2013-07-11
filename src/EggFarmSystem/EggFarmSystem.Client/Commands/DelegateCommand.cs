@@ -19,7 +19,7 @@ namespace EggFarmSystem.Client.Commands
         public override bool CanExecute(object parameter)
         {
             if (canExecutePredicate != null)
-                canExecutePredicate(parameter);
+                return canExecutePredicate(parameter);
 
             return base.CanExecute(parameter);
         }
@@ -36,9 +36,7 @@ namespace EggFarmSystem.Client.Commands
         { 
             get { return text; } 
             set { base.Text = value;text = value;}
-        } 
-
-        
+        }
     }
 
     public class DelegateCommand<T> : CommandBase<T>
@@ -52,6 +50,8 @@ namespace EggFarmSystem.Client.Commands
             this.canExecuteCallback = canExecuteCallback;
         }
 
+        public T Tag { get; set; }
+
         public override bool CanExecute(T parameter)
         {
             if(canExecuteCallback != null)
@@ -64,6 +64,14 @@ namespace EggFarmSystem.Client.Commands
         {
             if(executeCallback != null)
                 executeCallback(parameter);
+        }
+
+        private Func<string> text;
+
+        public new Func<string> Text
+        {
+            get { return text; }
+            set { base.Text = value; text = value; }
         }
     }
 }

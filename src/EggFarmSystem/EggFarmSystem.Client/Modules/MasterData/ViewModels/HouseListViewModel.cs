@@ -2,6 +2,7 @@
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.MasterData.Commands;
 using EggFarmSystem.Models;
+using EggFarmSystem.Resources;
 using EggFarmSystem.Services;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,18 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
             SubscribeMessages();
         }
+
+        #region text
+
+        public string NameText { get { return LanguageData.House_NameField; } }
+
+        public string PurchaseCostText { get { return LanguageData.House_PurchaseCostField; } }
+
+        public string YearUsageText { get { return LanguageData.House_YearUsageField; } }
+
+        public string ActiveText { get { return LanguageData.House_ActiveField; } }
+
+        #endregion
 
         public NewHouseCommand NewCommand { get; private set; }
 

@@ -2,6 +2,7 @@
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.MasterData.Commands;
 using EggFarmSystem.Models;
+using EggFarmSystem.Resources;
 using EggFarmSystem.Services;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,14 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         public DeleteEmployeeCommand DeleteCommand { get; private set; }
 
         public IList<CommandBase> NavigationCommands { get; private set; }
+
+        #endregion
+
+        #region text
+
+        public string NameText { get { return LanguageData.Employee_NameField; } }
+
+        public string SalaryText { get { return LanguageData.Employee_SalaryField; } }
 
         #endregion
 

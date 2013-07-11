@@ -29,7 +29,7 @@ namespace EggFarmSystem.Models
             if(string.IsNullOrWhiteSpace(Type))
                 errors.Add(new ErrorInfo("Type","Hen_RequireType"));
 
-            if(Cost > 0)
+            if(Cost <= 0)
                 errors.Add(new ErrorInfo("Cost", "Hen_RequireCost"));
 
             return errors;

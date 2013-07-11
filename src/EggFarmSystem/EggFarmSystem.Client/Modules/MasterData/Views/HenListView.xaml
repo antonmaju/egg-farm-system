@@ -13,13 +13,16 @@
                 <GridView x:Name="gvHenList">
 
                     <GridView.Columns>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}">
+                        <GridViewColumn Header="{Binding Path=NameText}" DisplayMemberBinding="{Binding Path=Name}"
+                                        Width="200">
 
                         </GridViewColumn>
-                        <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Path=Type}">
+                        <GridViewColumn Header="{Binding Path=TypeText}" DisplayMemberBinding="{Binding Path=Type}"
+                                         Width="300">
 
                         </GridViewColumn>
-                        <GridViewColumn Header="Active" DisplayMemberBinding="{Binding Path=Active}">
+                        <GridViewColumn Header="{Binding Path=ActiveText}" DisplayMemberBinding="{Binding Path=Active}"
+                                        Width="75">
 
                         </GridViewColumn>
                     </GridView.Columns>

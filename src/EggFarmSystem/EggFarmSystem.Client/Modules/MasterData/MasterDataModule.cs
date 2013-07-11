@@ -32,9 +32,9 @@ namespace EggFarmSystem.Client.Modules.MasterData
 
         public Autofac.Module Registry { get; private set; }
 
-        public void RegisterMessageSubscriber(Core.IMessageBroker broker)
+        public void Initialize()
         {
-            
+
         }
     }
 }

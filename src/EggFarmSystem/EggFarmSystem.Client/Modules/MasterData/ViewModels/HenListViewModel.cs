@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using EggFarmSystem.Resources;
 using EggFarmSystem.Services;
 using System.Windows;
 
@@ -32,6 +33,16 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             NavigationCommands = new List<CommandBase>() {NewCommand, DeleteCommand};
             SubscribeMessages();
         }
+
+        #region text
+
+        public string NameText { get { return LanguageData.Hen_NameField; } }
+
+        public string TypeText { get { return LanguageData.Hen_TypeField; } }
+
+        public string ActiveText { get { return LanguageData.Hen_ActiveField; } }
+
+        #endregion
 
         void SubscribeMessages()
         {
