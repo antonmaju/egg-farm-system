@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EggFarmSystem.Models;
 using EggFarmSystem.Services;
 
 namespace EggFarmSystem.Client.Core.Services
@@ -15,35 +16,37 @@ namespace EggFarmSystem.Client.Core.Services
 
         protected override string ResourceUrl
         {
-            get { throw new NotImplementedException(); }
+            get { return "/usage"; }
         }
 
 
         public Models.SearchResult<Models.ConsumableUsage> Search(Models.ConsumableUsageSearchInfo searchInfo)
         {
-            throw new NotImplementedException();
+            string url = string.Format("{0}?page={1}&limit={2}&start={3}&end={4}",
+                ResourceUrl ,searchInfo.PageIndex, searchInfo.PageSize, searchInfo.Start, searchInfo.End);
+
+            return CreateGetRequest<SearchResult<ConsumableUsage>>(Guid.Empty, url);
         }
 
         public Models.ConsumableUsage Get(Guid id)
         {
-            throw new NotImplementedException();
+            return CreateGetRequest<ConsumableUsage>(id);
         }
 
         public Models.ConsumableUsage GetByDate(DateTime date)
         {
-            throw new NotImplementedException();
+            var url = string.Format("{0}?date={1}", ResourceUrl, date.ToString("yyyy-MM-dd"));
+            return CreateGetRequest<ConsumableUsage>(Guid.Empty, url);
         }
 
-        public bool Save(Models.ConsumableUsage usage)
+        public bool Save(Models.ConsumableUsage model)
         {
-            throw new NotImplementedException();
+            return model.IsNew ? CreatePostRequest(model) : CreatePutRequest(model.Id, model);
         }
 
         public bool Delete(Guid id)
         {
-            throw new NotImplementedException();
+            return CreateDeleteRequest(id);
         }
-
-       
     }
 }

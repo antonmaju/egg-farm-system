@@ -37,10 +37,11 @@ namespace EggFarmSystem.Client.Core.Services
         /// <param name="id">The id.</param>
         /// <param name="url">The URL.</param>
         /// <returns></returns>
-        protected T CreateGetRequest<T>(Guid id,string url = null) where T:new()
+        protected T CreateGetRequest<T>(Guid id, string url = null) where T:new()
         {
             if (string.IsNullOrWhiteSpace(url))
                 url = string.Format("{0}/{1}", ResourceUrl, id);
+
 
             var client = new RestClient(clientContext.ServiceUrl);
             var request = new RestRequest(url, Method.GET);

@@ -178,6 +178,7 @@ namespace EggFarmSystem.Services
                     foreach (var detailModel in model.Details)
                     {
                         var detail = Mapper.Map<ConsumableUsageDetail, Models.Data.ConsumableUsageDetail>(detailModel);
+                        detail.UsageId = usage.Id;
                         db.InsertParam(detail);
                     }
 

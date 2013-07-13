@@ -24,6 +24,7 @@ namespace EggFarmSystem.Client.Modules.Usage.Commands
         public override void Execute(object parameter)
         {
             broker.Publish(CommonMessages.ChangeMainView, typeof(IUsageListView));
+            broker.Publish(CommonMessages.RefreshUsageList, null);
         }
     }
 }

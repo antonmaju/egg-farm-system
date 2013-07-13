@@ -95,8 +95,10 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HensController.cs" />
     <Compile Include="Controllers\HenHousesController.cs" />
+    <Compile Include="Controllers\UsageController.cs" />
     <Compile Include="Core\BasicAuthHandler.cs" />
     <Compile Include="Core\Installers\ServiceModule.cs" />
+    <Compile Include="Core\MappingInitializer.cs" />
     <Compile Include="EggFarmService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -66,7 +66,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
         }
 
 
-        private int pageIndex;
+        private int pageIndex =1;
 
         public int PageIndex
         {
@@ -78,7 +78,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             }
         }
 
-        private int pageSize;
+        private int pageSize=20;
 
         public int PageSize
         {
@@ -161,7 +161,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
                     PageSize = pageSize
                 };
             var result = usageService.Search(searchInfo);
-            UsageList = new ObservableCollection<ConsumableUsage>(usageList);
+            UsageList = new ObservableCollection<ConsumableUsage>(result.Items);
             TotalRecords =  result.Total;
         }
 

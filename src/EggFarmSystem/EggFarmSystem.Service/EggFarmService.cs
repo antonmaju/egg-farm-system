@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
+using EggFarmSystem.Service.Core;
 using EggFarmSystem.Service.Core.Installers;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace EggFarmSystem.Service
                                        routeTemplate: "api/{controller}/{id}",
                                        defaults: new {id = RouteParameter.Optional}
                 );
-           config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
+            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
 
             var builder = new ContainerBuilder();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
@@ -32,6 +33,7 @@ namespace EggFarmSystem.Service
             var resolver = new AutofacWebApiDependencyResolver(container);
             config.DependencyResolver = resolver;
             server = new HttpSelfHostServer(config);
+            MappingInitializer.Initialize();
         }
 
         public void Start()

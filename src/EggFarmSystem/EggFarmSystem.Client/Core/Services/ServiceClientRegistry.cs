@@ -54,12 +54,7 @@ namespace EggFarmSystem.Client.Core.Services
             builder.RegisterType<HenHouseServiceClient>().As<IHenHouseService>().SingleInstance();
             builder.RegisterType<EmployeeServiceClient>().As<IEmployeeService>().SingleInstance();
             builder.RegisterType<ConsumableServiceClient>().As<IConsumableService>().SingleInstance();
-            //TODO: change this
-            builder.RegisterInstance(
-               new OrmLiteConnectionFactory(ConfigurationManager.ConnectionStrings["EggFarmDb"].ConnectionString,
-                                            MySqlDialect.Provider))
-                  .As<IDbConnectionFactory>();
-            builder.RegisterType<ConsumableUsageService>().As<IConsumableUsageService>().SingleInstance();
+            builder.RegisterType<ConsumableUsageServiceClient>().As<IConsumableUsageService>().SingleInstance();
         }
     }
 }

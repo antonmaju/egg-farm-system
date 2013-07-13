@@ -5,71 +5,53 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
 using EggFarmSystem.Models;
 using EggFarmSystem.Services;
 
 namespace EggFarmSystem.Service.Controllers
 {
-    public abstract class ApiControllerBase : ApiController
+    //TODO: probably need to refactor later
+    public class UsageController : ApiControllerBase
     {
-        protected void ValidateModel<T>(T entity) where T:Entity
-        {
-            if (entity == null) return;
+        private readonly IConsumableUsageService service;
 
-            var errors = entity.Validate();
-
-            if (errors == null || errors.Count == 0) return;
-
-            foreach (var modelError in errors)
-            {
-                ModelState.AddModelError(modelError.PropertyName, modelError.Message);
-            }
-        }
-
-        protected IList<ErrorInfo> GetModelErrors()
-        {
-            var errors = new List<ErrorInfo>();
-
-            foreach (var modelState in ModelState)
-            {
-                var key = modelState.Key;
-
-                foreach (var error in modelState.Value.Errors)
-                {
-                    errors.Add(new ErrorInfo(key, error.ErrorMessage));
-                }
-            }
-
-            return errors;
-        }
-    }
-
-    public abstract class ApiControllerBase<T> : ApiControllerBase where T:Entity
-    {
-        private readonly IDataService<T> service;
-
-        protected ApiControllerBase(IDataService<T> service)
+        public UsageController(IConsumableUsageService service)
         {
             this.service = service;
         }
 
-        public virtual IList<T> GetAll()
+        public SearchResult<ConsumableUsage> GetByCriteria(int page, int limit, DateTime? start=null, DateTime? end=null)
         {
-            return service.GetAll();
+            var searchInfo = new ConsumableUsageSearchInfo
+                {
+                    Start = start,
+                    End = end,
+                    PageIndex = page,
+                    PageSize = limit
+                };
+
+            return service.Search(searchInfo);
         }
 
-        public virtual T GetById(Guid id)
+        public ConsumableUsage Get(Guid id)
         {
-            var entity = service.Get(id);
-
-            if(entity == null)
+            var usage = service.Get(id);
+            if (usage == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            return entity;
+            return usage;
         }
 
-        public virtual HttpResponseMessage Post(T value)
+        public ConsumableUsage GetByDate(DateTime date)
+        {
+            var usage = service.GetByDate(date);
+            if (usage == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            return usage;
+        }
+
+        public HttpResponseMessage Post(ConsumableUsage value)
         {
             HttpResponseMessage response = null;
             ValidateModel(value);
@@ -83,7 +65,7 @@ namespace EggFarmSystem.Service.Controllers
             try
             {
                 service.Save(value);
-                response = Request.CreateResponse<T>(HttpStatusCode.Created, value);
+                response = Request.CreateResponse(HttpStatusCode.Created, value);
                 string uri = Url.Link("DefaultApi", new { id = value.Id });
                 response.Headers.Location = new Uri(uri);
             }
@@ -95,11 +77,11 @@ namespace EggFarmSystem.Service.Controllers
             return response;
         }
 
-        public virtual HttpResponseMessage Put(Guid id, T value)
+        public HttpResponseMessage Put(Guid id, ConsumableUsage value)
         {
             ValidateModel(value);
 
-            if (!ModelState.IsValid || value.Id != id)
+            if (! ModelState.IsValid || value.Id != id)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, GetModelErrors());
             }
@@ -119,7 +101,7 @@ namespace EggFarmSystem.Service.Controllers
             return response;
         }
 
-        public virtual HttpResponseMessage Delete(Guid id)
+        public HttpResponseMessage Delete(Guid id)
         {
             HttpResponseMessage response = null;
 
@@ -128,7 +110,7 @@ namespace EggFarmSystem.Service.Controllers
                 service.Delete(id);
                 response = Request.CreateResponse(HttpStatusCode.OK);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 response = Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
