@@ -112,6 +112,7 @@
     <Compile Include="Commands\CoreCommandsRegistry.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\DeleteCommand.cs" />
+    <Compile Include="Commands\RefreshCommand.cs" />
     <Compile Include="Controls\Pager.xaml.cs">
       <DependentUpon>Pager.xaml</DependentUpon>
     </Compile>

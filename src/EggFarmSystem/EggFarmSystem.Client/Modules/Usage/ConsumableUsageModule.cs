@@ -45,6 +45,9 @@ namespace EggFarmSystem.Client.Modules.Usage
             Mapper.CreateMap<ConsumableUsageDetail, UsageDetailViewModel>();
             Mapper.CreateMap<UsageEntryViewModel, ConsumableUsage>();
             Mapper.CreateMap<ConsumableUsage, UsageEntryViewModel>();
+            Mapper.CreateMap<ConsumableUsageDetail, Models.Data.ConsumableUsageDetail>();
+            Mapper.CreateMap<ConsumableUsage, Models.Data.ConsumableUsage>();
+        
         }
     }
 }

@@ -64,7 +64,10 @@ CREATE TABLE `consumableusagedetail` (
   `SubTotal` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`UsageId`,`HouseId`,`ConsumableId`),
   KEY `HouseId` (`HouseId`),
-  KEY `ConsumableId` (`ConsumableId`)
+  KEY `ConsumableId` (`ConsumableId`),
+  CONSTRAINT `consumableusagedetail_ibfk_1` FOREIGN KEY (`UsageId`) REFERENCES `consumableusage` (`Id`),
+  CONSTRAINT `consumableusagedetail_ibfk_2` FOREIGN KEY (`HouseId`) REFERENCES `henhouse` (`Id`),
+  CONSTRAINT `consumableusagedetail_ibfk_3` FOREIGN KEY (`ConsumableId`) REFERENCES `consumable` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `employee` */

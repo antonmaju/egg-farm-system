@@ -1,6 +1,7 @@
 ﻿using System;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
+using EggFarmSystem.Models;
 using EggFarmSystem.Services;
 
 namespace EggFarmSystem.Client.Modules.Usage.Commands

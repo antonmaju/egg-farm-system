@@ -294,6 +294,9 @@
   <data name="Usage_DateField" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="Usage_DuplicateDate" xml:space="preserve">
+    <value>Date is duplicate</value>
+  </data>
   <data name="Usage_HouseField" xml:space="preserve">
     <value>House</value>
   </data>

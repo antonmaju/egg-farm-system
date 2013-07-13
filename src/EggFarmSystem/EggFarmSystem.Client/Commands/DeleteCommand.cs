@@ -48,12 +48,14 @@ namespace EggFarmSystem.Client.Commands
                 id = parameter == null ? EntityId : (Guid)parameter;
                 OnDeleteData(id);       
             }
-            catch
+            catch(Exception exception)
             {
                 
             }
         }
 
         protected abstract void OnDeleteData(Guid entityId);
+
+        
     }
 }

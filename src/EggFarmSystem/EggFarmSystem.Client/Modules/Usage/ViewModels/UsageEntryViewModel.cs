@@ -27,10 +27,11 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
         private DelegateCommand saveCommand, addDetailCommand;
         private DelegateCommand<int> deleteDetailCommand;
         private SaveUsageCommand saveUsageCommand;
+        private ShowUsageCommand showListCommand;
 
         public UsageEntryViewModel(IMessageBroker messageBroker, IConsumableUsageService usageService,
             IHenHouseService houseService, IConsumableService consumableService,
-            SaveUsageCommand saveUsageCommand, CancelCommand cancelCommand
+            SaveUsageCommand saveUsageCommand, CancelCommand cancelCommand, ShowUsageCommand showListCommand
             )
         {
             this.messageBroker = messageBroker;
@@ -39,6 +40,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             this.consumableService = consumableService;
 
             this.saveUsageCommand = saveUsageCommand;
+            this.showListCommand = showListCommand;
 
             InitializeDelegateCommands();
 
@@ -209,6 +211,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
         {
             messageBroker.Subscribe(CommonMessages.NewUsageEntry, OnNewUsage);
             messageBroker.Subscribe(CommonMessages.LoadUsage, OnLoadUsage);
+            messageBroker.Subscribe(CommonMessages.SaveUsageSuccess, OnSaveUsageSuccess);
             messageBroker.Subscribe(CommonMessages.SaveUsageFailed, OnSaveUsageFailed);
         }
 
@@ -242,10 +245,15 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
         {
             messageBroker.Unsubscribe(CommonMessages.NewUsageEntry, OnNewUsage);
             messageBroker.Unsubscribe(CommonMessages.LoadUsage, OnLoadUsage);
+            messageBroker.Subscribe(CommonMessages.SaveUsageSuccess, OnSaveUsageSuccess);
             messageBroker.Unsubscribe(CommonMessages.SaveUsageFailed, OnSaveUsageFailed);
         }
 
-
+        void OnSaveUsageSuccess(object param)
+        {
+            this.showListCommand.Execute(null);
+        }
+        
         void Save(object param)
         {
             var usage = Mapper.Map<UsageEntryViewModel, ConsumableUsage>(this);

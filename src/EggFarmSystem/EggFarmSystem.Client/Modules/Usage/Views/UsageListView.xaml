@@ -19,11 +19,13 @@
 
                     <GridView.Columns>
                         <GridViewColumn Header="{Binding Path=DateText}" 
-                                        DisplayMemberBinding="{Binding Path=Date}">
+                                        DisplayMemberBinding="{Binding Path=Date, StringFormat='d MMM yyyy'}"
+                                        Width="300">
 
                         </GridViewColumn>
                         <GridViewColumn Header="{Binding Path=TotalText}" 
-                                        DisplayMemberBinding="{Binding Path=Total}">
+                                        DisplayMemberBinding="{Binding Path=Total, StringFormat='C'}"
+                                        Width="300">
 
                         </GridViewColumn>
                     </GridView.Columns>

@@ -14,6 +14,7 @@ namespace EggFarmSystem.Client.Commands
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<CancelCommand>().SingleInstance();
+            builder.RegisterType<RefreshCommand>().SingleInstance();
             base.Load(builder);
         }
     }

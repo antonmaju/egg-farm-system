@@ -164,11 +164,25 @@ namespace EggFarmSystem.Services
                 using (var trans = db.OpenTransaction())
                 {
                      bool isNew = model.IsNew;
-                
+
+                    Models.Data.ConsumableUsage usage = null;
+
+                    if (isNew)
+                    {
+                        usage = db.FirstOrDefault<Models.Data.ConsumableUsage>(u => u.Date == model.Date);
+
+                        if (usage == null)
+                        {
+                            trans.Rollback();
+                            throw new Exception("Usage_DuplicateDate");
+                        }
+                                               
+                    }
+
                     if (isNew)
                         model.Id = Guid.NewGuid();
 
-                    var usage = Mapper.Map<ConsumableUsage, Models.Data.ConsumableUsage>(model);
+                    usage = Mapper.Map<ConsumableUsage, Models.Data.ConsumableUsage>(model);
                 
                     if(isNew) db.InsertParam(usage); else db.UpdateParam(usage);
                     
@@ -201,12 +215,11 @@ namespace EggFarmSystem.Services
             {
                 using (var trans = db.OpenTransaction())
                 {
-                    db.Delete<Models.Data.ConsumableUsageDetail>(d => d.UsageId == id);
-                    db.DeleteById<Models.Data.ConsumableUsage>(id);
-
+                    db.Delete<Models.Data.ConsumableUsageDetail>(where: "UsageId = {0}".Params(id.ToString()));
+                    db.DeleteByIdParam<Models.Data.ConsumableUsage>(id.ToString());
                     trans.Commit();
-                    return true;
                 }
+                return true;
             }
 
             return false;

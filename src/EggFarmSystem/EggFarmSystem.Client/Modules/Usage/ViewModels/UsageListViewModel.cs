@@ -18,7 +18,8 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
         private readonly IConsumableUsageService usageService;
 
         public UsageListViewModel(IMessageBroker messageBroker, IConsumableUsageService usageService,
-            NewUsageCommand newCommand, EditUsageCommand editCommand, DeleteUsageCommand deleteCommand)
+            NewUsageCommand newCommand, EditUsageCommand editCommand, DeleteUsageCommand deleteCommand,
+            RefreshCommand refreshCommand)
         {
             this.messageBroker = messageBroker;
             this.usageService = usageService;
@@ -26,8 +27,11 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             NewCommand = newCommand;
             EditCommand = editCommand;
             DeleteCommand = deleteCommand;
+            RefreshCommand = refreshCommand;
 
-            NavigationCommands = new List<CommandBase>(){NewCommand, DeleteCommand};
+            RefreshCommand.MessageName = CommonMessages.RefreshUsageList;
+
+            NavigationCommands = new List<CommandBase>(){NewCommand, DeleteCommand, RefreshCommand};
 
             SubscribeMessages();
         }
@@ -41,6 +45,8 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
         public DeleteUsageCommand DeleteCommand { get; private set; }
 
         public IList<CommandBase> NavigationCommands { get; private set; }
+
+        public RefreshCommand RefreshCommand { get; private set; }
 
         #endregion
 
