@@ -232,7 +232,16 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             Id = loadedUsage.Id;
             Total = loadedUsage.Total;
             Date = loadedUsage.Date;
-            //Details = new ObservableCollection<Us>(loadedUsage.Details);
+            var loadedDetails = Mapper.Map<List<ConsumableUsageDetail>, List<UsageDetailViewModel>>(loadedUsage.Details);
+            if (loadedDetails != null)
+            {
+                foreach (var loadedDetail in loadedDetails)
+                {
+                    loadedDetail.PropertyChanged += detail_PropertyChanged;
+                }
+            }
+
+            Details = new ObservableCollection<UsageDetailViewModel>(loadedDetails);
             
         }
 

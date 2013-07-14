@@ -171,7 +171,7 @@ namespace EggFarmSystem.Services
                     {
                         usage = db.FirstOrDefault<Models.Data.ConsumableUsage>(u => u.Date == model.Date);
 
-                        if (usage == null)
+                        if (usage != null)
                         {
                             trans.Rollback();
                             throw new Exception("Usage_DuplicateDate");
@@ -187,7 +187,7 @@ namespace EggFarmSystem.Services
                     if(isNew) db.InsertParam(usage); else db.UpdateParam(usage);
                     
                     if (! isNew)
-                        db.Delete<Models.Data.ConsumableUsageDetail>(d => d.UsageId == usage.Id);
+                        db.Delete<Models.Data.ConsumableUsageDetail>(where: "UsageId = {0}".Params(usage.Id.ToString()));
                     
                     foreach (var detailModel in model.Details)
                     {
@@ -256,5 +256,4 @@ namespace EggFarmSystem.Services
         }
     }
 
-   
 }

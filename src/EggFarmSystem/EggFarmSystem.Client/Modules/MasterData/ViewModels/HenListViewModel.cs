@@ -52,7 +52,17 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         void OnHenRefresh(object param)
         {
-            var henList = henService.GetAll();
+            IList<Hen> henList = new List<Hen>();
+            //for (int i = 0; i < 20;i++ )
+            //    henList.Add(new Hen
+            //        {
+            //            Cost = 1450000,
+            //            Count = 20,
+            //            Active = true,
+            //            Name = "Hen "+i,
+            //            Type = "Type "+i
+            //        });
+            henList =  henService.GetAll();
             Hens = new ObservableCollection<Hen>(henList);         
         }
 

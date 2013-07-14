@@ -6,6 +6,7 @@ using System.Text;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.Usage.Commands;
+using EggFarmSystem.Client.Modules.Usage.Views;
 using EggFarmSystem.Models;
 using EggFarmSystem.Resources;
 using EggFarmSystem.Services;
@@ -152,6 +153,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
         void SubscribeMessages()
         {
+            messageBroker.Subscribe(CommonMessages.EditUsageView, OnEditUsage);
             messageBroker.Subscribe(CommonMessages.DeleteUsageSuccess, OnRefreshList);
             messageBroker.Subscribe(CommonMessages.DeleteUsageFailed, OnDeleteFailed);
             messageBroker.Subscribe(CommonMessages.RefreshUsageList, OnRefreshList);
@@ -176,8 +178,15 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             
         }
 
+        void OnEditUsage(object param)
+        {
+            messageBroker.Publish(CommonMessages.ChangeMainView, typeof(IUsageEntryView));
+            messageBroker.Publish(CommonMessages.LoadUsage, param);
+        }
+
         void UnsubscribeMessages()
         {
+            messageBroker.Unsubscribe(CommonMessages.EditUsageView, OnEditUsage);
             messageBroker.Unsubscribe(CommonMessages.DeleteUsageSuccess, OnRefreshList);
             messageBroker.Unsubscribe(CommonMessages.DeleteUsageFailed, OnDeleteFailed);
             messageBroker.Unsubscribe(CommonMessages.RefreshUsageList, OnRefreshList);
