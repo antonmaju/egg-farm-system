@@ -19,10 +19,15 @@ namespace EggFarmSystem.Client.Modules.Usage.Commands
 
         protected override void OnDeleteData(Guid entityId)
         {
-            if(this.usageService.Delete(entityId))
+            try
+            {
+                this.usageService.Delete(entityId);
                 broker.Publish(CommonMessages.DeleteUsageSuccess, entityId);
-            else
+            }
+            catch(ServiceException ex)
+            {
                 broker.Publish(CommonMessages.DeleteUsageFailed, entityId);
+            }   
         }
     }
 }

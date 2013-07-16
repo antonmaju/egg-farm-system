@@ -30,8 +30,9 @@ namespace EggFarmSystem.Client.Core
             if (!subscribers.ContainsKey(name))
                 return;
 
-            foreach (var callback in subscribers[name])
-                callback(parameter);
+            var callbacks = subscribers[name];
+            for (int i = 0; i < callbacks.Count; i++)
+                callbacks[i](parameter);
         }
 
 

@@ -65,6 +65,7 @@ namespace EggFarmSystem.Client.Modules.Usage.Views
         public override void Dispose()
         {
             UnsetEventHandlers();
+            model.Dispose();
             base.Dispose();
         }
     }

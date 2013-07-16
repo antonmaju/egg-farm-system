@@ -10,10 +10,12 @@ namespace EggFarmSystem.Client.Modules.MasterData.Views
     /// </summary>
     public partial class View : UserControlBase, IMasterDataView
     {
+        private MasterDataViewModel viewModel;
 
         public View(MasterDataViewModel viewModel)
         {
             InitializeComponent();
+            this.viewModel = viewModel;
             this.DataContext = viewModel;
             this.Loaded += View_Loaded;
         }
@@ -26,6 +28,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.Views
         public override void Dispose()
         {
             this.Loaded -= View_Loaded;
+            this.viewModel.Dispose();
             base.Dispose();
         }
     }

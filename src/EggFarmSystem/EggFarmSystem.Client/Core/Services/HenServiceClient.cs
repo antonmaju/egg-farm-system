@@ -29,14 +29,17 @@ namespace EggFarmSystem.Client.Core.Services
             return CreateGetRequest<Hen>(id);
         }
 
-        public bool Save(Models.Hen model)
+        public void Save(Models.Hen model)
         {
-            return model.Id == Guid.Empty ? CreatePostRequest(model) : CreatePutRequest(model.Id, model);
+            if (model.Id == Guid.Empty)
+                CreatePostRequest(model);
+            else
+                CreatePutRequest(model.Id, model);
         }
 
-        public bool Delete(Guid id)
+        public void Delete(Guid id)
         {
-            return CreateDeleteRequest(id);
+            CreateDeleteRequest(id);
         }
 
         public SearchResult<Hen> Search()

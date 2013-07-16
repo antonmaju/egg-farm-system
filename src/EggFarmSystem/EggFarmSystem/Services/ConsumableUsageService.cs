@@ -40,14 +40,14 @@ namespace EggFarmSystem.Services
         /// </summary>
         /// <param name="usage">The usage.</param>
         /// <returns><c>true</c> if save process success, <c>false</c> otherwise</returns>
-        bool Save(ConsumableUsage usage);
+        void Save(ConsumableUsage usage);
 
         /// <summary>
         /// Deletes the specified id.
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns><c>true</c> if delete success, <c>false</c> otherwise</returns>
-        bool Delete(Guid id);
+        void Delete(Guid id);
     }
 
     /// <summary>
@@ -157,7 +157,7 @@ namespace EggFarmSystem.Services
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns><c>true</c> if save success, <c>false</c> otherwise</returns>
-        public bool Save(ConsumableUsage model)
+        public void Save(ConsumableUsage model)
         {
             using (var db = factory.OpenDbConnection())
             {
@@ -174,7 +174,7 @@ namespace EggFarmSystem.Services
                         if (usage != null)
                         {
                             trans.Rollback();
-                            throw new Exception("Usage_DuplicateDate");
+                            throw new ServiceException("Usage_DuplicateDate");
                         }
                                                
                     }
@@ -195,13 +195,18 @@ namespace EggFarmSystem.Services
                         detail.UsageId = usage.Id;
                         db.InsertParam(detail);
                     }
-
-                    trans.Commit();
-                    return true;
+                    try
+                    {
+                        trans.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        throw new ServiceException(ex.Message);
+                    }
+                    
                 }
             }
-
-            return false;
         }
 
         /// <summary>
@@ -209,7 +214,7 @@ namespace EggFarmSystem.Services
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns><c>true</c> if delete success, <c>false</c> otherwise</returns>
-        public bool Delete(Guid id)
+        public void Delete(Guid id)
         {
             using (var db = factory.OpenDbConnection())
             {
@@ -219,10 +224,7 @@ namespace EggFarmSystem.Services
                     db.DeleteByIdParam<Models.Data.ConsumableUsage>(id.ToString());
                     trans.Commit();
                 }
-                return true;
             }
-
-            return false;
         }
 
         /// <summary>
@@ -243,7 +245,7 @@ namespace EggFarmSystem.Services
             {
                 var detailModel = new ConsumableUsageDetail
                     {
-                        ConsumableId = usage.Id,
+                        ConsumableId = detail.ConsumableId,
                         Count = detail.Count,
                         HouseId = detail.HouseId,
                         SubTotal = detail.SubTotal,

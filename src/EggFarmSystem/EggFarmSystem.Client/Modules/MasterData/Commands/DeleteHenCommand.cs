@@ -23,10 +23,16 @@ namespace EggFarmSystem.Client.Modules.MasterData.Commands
 
         protected override void OnDeleteData(Guid entityId)
         {
-            if(henService.Delete(entityId))
+            try
+            {
+                henService.Delete(entityId);
                 messageBroker.Publish(CommonMessages.DeleteHenSuccess, entityId);
-            else
-                messageBroker.Publish(CommonMessages.DeleteHenFailed, entityId);
+            }
+            catch(Exception ex)
+            {
+                var error = new Error(ex, entityId);
+                messageBroker.Publish(CommonMessages.DeleteHenFailed, error);
+            }              
         }
     }
 }

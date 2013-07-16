@@ -24,12 +24,16 @@ namespace EggFarmSystem.Client.Modules.MasterData.Commands
 
         protected override void OnDeleteData(Guid entityId)
         {
-           
-            messageBroker.Publish(
-                houseService.Delete(entityId) ? CommonMessages.DeleteHouseSuccess : CommonMessages.DeleteHouseFailed,
-                entityId);
+            try
+            {
+                houseService.Delete(entityId);
+                messageBroker.Publish(CommonMessages.DeleteHouseSuccess, entityId);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error(ex, entityId);
+                messageBroker.Publish(CommonMessages.DeleteHouseFailed, error);
+            }
         }
-
-       
     }
 }

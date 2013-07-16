@@ -13,9 +13,9 @@ namespace EggFarmSystem.Services
 
         T Get(Guid id);
 
-        bool Save(T model);
+        void Save(T model);
 
-        bool Delete(Guid id);
+        void Delete(Guid id);
     }
 
     public class DataService<T> : IDataService<T> where T:Entity, new()
@@ -45,7 +45,7 @@ namespace EggFarmSystem.Services
             }
         }
 
-        public bool Save(T model)
+        public void Save(T model)
         {
             using (var db = factory.CreateDbConnection())
             {
@@ -58,19 +58,15 @@ namespace EggFarmSystem.Services
                 else
                     db.UpdateParam(model);
             }
-
-            return true;
         }
 
-        public bool Delete(Guid id)
+        public void Delete(Guid id)
         {
             using (var db = factory.CreateDbConnection())
             {
                 db.Open();
                 db.DeleteByIdParam<T>(id.ToString());
             }
-
-            return true;
         }
     }
 }

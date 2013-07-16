@@ -42,10 +42,9 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             this.saveUsageCommand = saveUsageCommand;
             this.showListCommand = showListCommand;
 
-            InitializeDelegateCommands();
-
             CancelCommand = cancelCommand;
-            cancelCommand.Action = broker => broker.Publish(CommonMessages.ChangeMainView, typeof(IUsageListView));
+
+            InitializeDelegateCommands();
 
             NavigationCommands = new List<CommandBase>(){saveCommand, CancelCommand};
 
@@ -65,6 +64,8 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
             deleteDetailCommand = new DelegateCommand<int>(DeleteDetail, CanDeleteDetail);
             deleteDetailCommand.Text = () => LanguageData.General_Delete;
+
+            CancelCommand.Action = broker => showListCommand.Execute(null);
         }
 
         public DelegateCommand AddDetailCommand { get { return addDetailCommand; } }
@@ -241,8 +242,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
                 }
             }
 
-            Details = new ObservableCollection<UsageDetailViewModel>(loadedDetails);
-            
+            Details = new ObservableCollection<UsageDetailViewModel>(loadedDetails);    
         }
 
         void OnSaveUsageFailed(object param)

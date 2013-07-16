@@ -39,14 +39,17 @@ namespace EggFarmSystem.Client.Core.Services
             return CreateGetRequest<ConsumableUsage>(Guid.Empty, url);
         }
 
-        public bool Save(Models.ConsumableUsage model)
+        public void Save(Models.ConsumableUsage model)
         {
-            return model.IsNew ? CreatePostRequest(model) : CreatePutRequest(model.Id, model);
+            if(model.IsNew)
+                base.CreatePostRequest(model);
+            else
+                base.CreatePutRequest(model.Id, model);
         }
 
-        public bool Delete(Guid id)
+        public void Delete(Guid id)
         {
-            return CreateDeleteRequest(id);
+            CreateDeleteRequest(id);
         }
     }
 }

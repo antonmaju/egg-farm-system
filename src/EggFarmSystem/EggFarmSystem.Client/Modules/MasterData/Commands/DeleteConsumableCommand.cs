@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
+using EggFarmSystem.Models;
 using EggFarmSystem.Resources;
 using EggFarmSystem.Services;
 using System;
@@ -23,10 +24,16 @@ namespace EggFarmSystem.Client.Modules.MasterData.Commands
 
         protected override void OnDeleteData(Guid entityId)
         {
-            if(consumableService.Delete(entityId))
+            try
+            {
+                consumableService.Delete(entityId);
                 messageBroker.Publish(CommonMessages.DeleteConsumableSuccess, entityId);
-            else
-                messageBroker.Publish(CommonMessages.DeleteConsumableFailed, entityId);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error { Data = entityId, Exception = ex };
+                messageBroker.Publish(CommonMessages.DeleteConsumableFailed,error);
+            }
         }
     }
 }

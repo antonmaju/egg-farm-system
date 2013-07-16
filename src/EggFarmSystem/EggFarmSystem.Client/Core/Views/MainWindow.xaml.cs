@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -83,9 +84,17 @@ namespace EggFarmSystem.Client.Core.Views
 
         public void ChangeView(UserControlBase newView)
         {
+            IDisposable oldView = null;
+
+            if (grdContent.Children.Count > 0)
+                oldView = grdContent.Children[0] as IDisposable;
+
             ChangeActionCommands(newView.NavigationCommands);
             grdContent.Children.Clear();
             grdContent.Children.Add(newView);
+
+            if(oldView != null)
+                oldView.Dispose();
         }
 
         public void ChangeActionCommands(IList<CommandBase> commands)

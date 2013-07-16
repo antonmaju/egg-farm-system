@@ -75,7 +75,7 @@ namespace EggFarmSystem.Client.Core.Services
         /// <param name="data">The data.</param>
         /// <param name="url">The URL.</param>
         /// <returns><c>true</c> if post operation success, <c>false</c> otherwise</returns>
-        protected bool CreatePostRequest<T>(T data, string url = null) where T : new()
+        protected void CreatePostRequest<T>(T data, string url = null) where T : new()
         {
             if (string.IsNullOrWhiteSpace(url))
                 url = ResourceUrl;
@@ -85,7 +85,11 @@ namespace EggFarmSystem.Client.Core.Services
             AddHeaders(request);
             request.AddBody(data);
             var response = client.Execute(request);
-            return response.StatusCode == HttpStatusCode.Created;
+
+            if (response.StatusCode != HttpStatusCode.Created)
+            {
+                throw new ServiceException(response.ErrorMessage);       
+            }
         }
 
         /// <summary>
@@ -95,8 +99,7 @@ namespace EggFarmSystem.Client.Core.Services
         /// <param name="id">The id.</param>
         /// <param name="data">The data.</param>
         /// <param name="url">The URL.</param>
-        /// <returns><c>true</c> if update operation, <c>false</c> otherwise</returns>
-        protected bool CreatePutRequest<T>(Guid id, T data, string url = null) where T : new()
+        protected void CreatePutRequest<T>(Guid id, T data, string url = null) where T : new()
         {
             if (string.IsNullOrWhiteSpace(url))
                 url = string.Format("{0}/{1}", ResourceUrl, id);
@@ -106,7 +109,8 @@ namespace EggFarmSystem.Client.Core.Services
             AddHeaders(request);
             request.AddBody(data);
             var response = client.Execute(request);
-            return response.StatusCode == HttpStatusCode.OK;
+            if(response.StatusCode != HttpStatusCode.OK)
+                throw new ServiceException(response.ErrorMessage);
         }
 
         /// <summary>
@@ -115,7 +119,7 @@ namespace EggFarmSystem.Client.Core.Services
         /// <param name="id">The id.</param>
         /// <param name="url">The URL.</param>
         /// <returns><c>true</c> if delete success, <c>false</c> otherwise</returns>
-        protected bool CreateDeleteRequest(Guid id, string url = null)
+        protected void CreateDeleteRequest(Guid id, string url = null)
         {
             if (string.IsNullOrWhiteSpace(url))
                 url = string.Format("{0}/{1}", ResourceUrl, id);
@@ -124,7 +128,9 @@ namespace EggFarmSystem.Client.Core.Services
             var request = new RestRequest(url, Method.DELETE);
             AddHeaders(request);
             var response = client.Execute(request);
-            return response.StatusCode == HttpStatusCode.OK;
+
+            if(response.StatusCode != HttpStatusCode.OK)
+                throw new ServiceException(response.ErrorMessage);
         }
 
         /// <summary>

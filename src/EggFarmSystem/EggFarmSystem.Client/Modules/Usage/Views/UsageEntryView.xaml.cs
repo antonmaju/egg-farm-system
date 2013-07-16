@@ -66,6 +66,20 @@ namespace EggFarmSystem.Client.Modules.Usage.Views
                 isManualEditCommit = false;
             }
         }
+
+        public void UnsubscribeEvents()
+        {
+            dgUsage.CellEditEnding -= dgUsage_CellEditEnding;
+            dgUsage.GotFocus -= dgUsage_GotFocus;
+            dgUsage.SelectionChanged -= dgUsage_SelectionChanged;
+        }
+
+        public override void Dispose()
+        {
+            UnsubscribeEvents();
+            model.Dispose();
+            base.Dispose();
+        }
     }
 
     public interface  IUsageEntryView

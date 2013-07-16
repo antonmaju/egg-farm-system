@@ -30,14 +30,17 @@ namespace EggFarmSystem.Client.Core.Services
             return CreateGetRequest<HenHouse>(id);
         }
 
-        public bool Save(Models.HenHouse model)
+        public void Save(Models.HenHouse model)
         {
-            return model.IsNew ? CreatePostRequest(model) : CreatePutRequest(model.Id,model);
+            if (model.IsNew)
+                CreatePostRequest(model);
+            else
+                CreatePutRequest(model.Id, model);
         }
 
-        public bool Delete(Guid id)
+        public void Delete(Guid id)
         {
-            return CreateDeleteRequest(id);
+            CreateDeleteRequest(id);
         }
     }
 }
