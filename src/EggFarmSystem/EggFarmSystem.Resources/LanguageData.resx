@@ -159,6 +159,9 @@
   <data name="Depreciation_Title" xml:space="preserve">
     <value>Depreciation</value>
   </data>
+  <data name="Employee_ActiveField" xml:space="preserve">
+    <value>Active</value>
+  </data>
   <data name="Employee_NameField" xml:space="preserve">
     <value>Name</value>
   </data>

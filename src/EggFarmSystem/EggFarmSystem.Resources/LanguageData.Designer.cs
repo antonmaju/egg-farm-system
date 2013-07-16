@@ -187,6 +187,15 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string Employee_ActiveField {
+            get {
+                return ResourceManager.GetString("Employee_ActiveField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Employee_NameField {

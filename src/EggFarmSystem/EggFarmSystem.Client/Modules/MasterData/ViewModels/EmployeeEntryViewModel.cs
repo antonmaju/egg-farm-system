@@ -47,6 +47,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         public string SalaryText { get { return LanguageData.Employee_SalaryField; } }
 
+        public string ActiveText { get { return LanguageData.Employee_ActiveField; } }
+
         #endregion
 
         #region properties
@@ -54,6 +56,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         private Guid id;
         private string name;
         private long salary;
+        private bool active;
 
         public Guid Id
         {
@@ -84,6 +87,18 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
                 salary = value;
                 employee.Salary = value;
                 OnPropertyChanged("Salary");
+            }
+        }
+
+        public bool Active
+        {
+            get { return active; }
+
+            set
+            {
+                active = value;
+                employee.Active = value;
+                OnPropertyChanged("Active");
             }
         }
 
@@ -132,6 +147,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             Id = loadedEmployee.Id;
             Name = loadedEmployee.Name;
             Salary = loadedEmployee.Salary;
+            Active = loadedEmployee.Active;
         }
 
         void OnSaveEmployeeFailed(object param)

@@ -75,7 +75,9 @@
     <Compile Include="Models\Consumable.cs" />
     <Compile Include="Models\ConsumableUsage.cs" />
     <Compile Include="Models\Data\ConsumableUsage.cs" />
+    <Compile Include="Models\Data\EmployeeCost.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeeCost.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\Feed.cs" />
     <Compile Include="Models\Hen.cs" />

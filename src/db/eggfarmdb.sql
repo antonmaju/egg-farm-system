@@ -78,6 +78,7 @@ CREATE TABLE `employee` (
   `Id` char(36) NOT NULL,
   `Name` varchar(50) DEFAULT NULL,
   `Salary` bigint(20) DEFAULT NULL,
+  `Active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

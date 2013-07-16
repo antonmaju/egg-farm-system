@@ -11,6 +11,8 @@ namespace EggFarmSystem.Models
 
         public long Salary { get; set; }
 
+        public bool Active { get; set; }
+
         public override IList<ErrorInfo> Validate()
         {
             var errors = new List<ErrorInfo>();

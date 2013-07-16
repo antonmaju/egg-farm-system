@@ -21,6 +21,8 @@
                                         Width="200">
 
                         </GridViewColumn>
+                        <GridViewColumn Header="{Binding Path=ActiveText}" DisplayMemberBinding="{Binding Path=Active}"
+                                        Width="150"/>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>

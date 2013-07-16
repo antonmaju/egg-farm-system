@@ -55,6 +55,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         public string SalaryText { get { return LanguageData.Employee_SalaryField; } }
 
+        public string ActiveText { get { return LanguageData.Employee_ActiveField; } }
+
         #endregion
 
         public ObservableCollection<Employee> Employees

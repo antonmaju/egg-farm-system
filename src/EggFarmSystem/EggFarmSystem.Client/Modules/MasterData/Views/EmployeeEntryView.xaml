@@ -11,7 +11,7 @@
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -28,6 +28,10 @@
         <TextBox Grid.Row="2" Style="{StaticResource FormTextBox}" Grid.Column="1" x:Name="txtSalary"
                 Text="{Binding Path=Salary}" TabIndex="3" />
 
-        
+        <Label Grid.Row="3"  Style="{StaticResource MasterDataLabel}" Target="{Binding ElementName=chkActive}"
+              Content="{Binding Path=ActiveText}" />
+        <CheckBox Grid.Row="3" Grid.Column="1" Style="{StaticResource FormCheckBox}"
+              IsChecked="{Binding Path=Active}" Name="chkActive" />
+
     </Grid>
 </views:UserControlBase>
