@@ -110,6 +110,7 @@
     <Compile Include="DatabaseTestInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ConsumableUsageServiceTests.cs" />
+    <Compile Include="Services\EmployeeCostServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

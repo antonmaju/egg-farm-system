@@ -82,6 +82,34 @@ CREATE TABLE `employee` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/*Table structure for table `employeecost` */
+
+DROP TABLE IF EXISTS `employeecost`;
+
+CREATE TABLE `employeecost` (
+  `Id` char(36) NOT NULL,
+  `Date` datetime DEFAULT NULL,
+  `Total` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Table structure for table `employeecostdetail` */
+
+DROP TABLE IF EXISTS `employeecostdetail`;
+
+CREATE TABLE `employeecostdetail` (
+  `CostId` char(36) NOT NULL,
+  `EmployeeId` char(36) NOT NULL,
+  `Present` bit(1) DEFAULT NULL,
+  `Salary` bigint(20) DEFAULT NULL,
+  `Description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`CostId`,`EmployeeId`),
+  KEY `CostId` (`CostId`),
+  KEY `EmployeeId` (`EmployeeId`),
+  CONSTRAINT `employeecostdetail_ibfk_3` FOREIGN KEY (`CostId`) REFERENCES `employeecost` (`Id`),
+  CONSTRAINT `employeecostdetail_ibfk_4` FOREIGN KEY (`EmployeeId`) REFERENCES `employee` (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /*Table structure for table `hen` */
 
 DROP TABLE IF EXISTS `hen`;

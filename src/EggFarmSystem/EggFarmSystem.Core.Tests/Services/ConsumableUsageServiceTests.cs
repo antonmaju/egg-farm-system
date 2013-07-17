@@ -284,11 +284,11 @@ namespace EggFarmSystem.Core.Tests.Services
         {
             using (var conn = factory.OpenDbConnection())
             {
-                conn.DeleteAll<Models.Consumable>();
-                conn.DeleteAll<Models.HenHouse>();
                 conn.DeleteAll<Models.Data.ConsumableUsageDetail>();
                 conn.DeleteAll<Models.Data.ConsumableUsage>();
-            }
+                conn.DeleteAll<Models.Consumable>();
+                conn.DeleteAll<Models.HenHouse>();
+                }
         }
     }
 }

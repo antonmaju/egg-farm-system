@@ -12,7 +12,7 @@ namespace EggFarmSystem.Models
         public int PageSize { get; set; }
     }
 
-    public class DateRangeSearchInfo
+    public class DateRangeSearchInfo :SearchInfo
     {
         public DateTime? Start { get; set; }
 

@@ -241,6 +241,15 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date is duplicate.
+        /// </summary>
+        public static string EmployeeCost_DuplicateDate {
+            get {
+                return ResourceManager.GetString("EmployeeCost_DuplicateDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Egg Farm System.
         /// </summary>
         public static string General_AppTitle {

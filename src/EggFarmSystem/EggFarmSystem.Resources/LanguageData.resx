@@ -159,6 +159,9 @@
   <data name="Depreciation_Title" xml:space="preserve">
     <value>Depreciation</value>
   </data>
+  <data name="EmployeeCost_DuplicateDate" xml:space="preserve">
+    <value>Date is duplicate</value>
+  </data>
   <data name="Employee_ActiveField" xml:space="preserve">
     <value>Active</value>
   </data>

@@ -14,7 +14,11 @@ namespace EggFarmSystem.Mappings
             Mapper.CreateMap<Models.ConsumableUsageDetail, Models.Data.ConsumableUsageDetail>();
             Mapper.CreateMap<Models.Data.ConsumableUsage, Models.ConsumableUsage>();
             Mapper.CreateMap<Models.Data.ConsumableUsageDetail, Models.ConsumableUsageDetail>();
-            
+
+            Mapper.CreateMap<Models.EmployeeCost, Models.Data.EmployeeCost>();
+            Mapper.CreateMap<Models.EmployeeCostDetail, Models.Data.EmployeeCostDetail>();
+            Mapper.CreateMap<Models.Data.EmployeeCost, Models.EmployeeCost>();
+            Mapper.CreateMap<Models.Data.EmployeeCostDetail, Models.EmployeeCostDetail>();
         }
     }
 }
