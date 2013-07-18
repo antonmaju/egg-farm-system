@@ -104,10 +104,9 @@ CREATE TABLE `employeecostdetail` (
   `Salary` bigint(20) DEFAULT NULL,
   `Description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`CostId`,`EmployeeId`),
-  KEY `CostId` (`CostId`),
   KEY `EmployeeId` (`EmployeeId`),
-  CONSTRAINT `employeecostdetail_ibfk_3` FOREIGN KEY (`CostId`) REFERENCES `employeecost` (`Id`),
-  CONSTRAINT `employeecostdetail_ibfk_4` FOREIGN KEY (`EmployeeId`) REFERENCES `employee` (`Id`)
+  CONSTRAINT `employeecostdetail_ibfk_1` FOREIGN KEY (`CostId`) REFERENCES `employeecost` (`Id`),
+  CONSTRAINT `employeecostdetail_ibfk_2` FOREIGN KEY (`EmployeeId`) REFERENCES `employee` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `hen` */

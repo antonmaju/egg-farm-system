@@ -127,6 +127,7 @@
     <Compile Include="Core\CommonMessages.cs" />
     <Compile Include="Core\Services\ConsumableServiceClient.cs" />
     <Compile Include="Core\Services\ConsumableUsageServiceClient.cs" />
+    <Compile Include="Core\Services\EmployeeCostServiceClient.cs" />
     <Compile Include="Core\Services\EmployeeServiceClient.cs" />
     <Compile Include="Core\Services\HenHouseServiceClient.cs" />
     <Compile Include="Core\Services\HenServiceClient.cs" />

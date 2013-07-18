@@ -92,6 +92,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\ConsumablesController.cs" />
+    <Compile Include="Controllers\EmployeeCostController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HensController.cs" />
     <Compile Include="Controllers\HenHousesController.cs" />

@@ -135,7 +135,7 @@ namespace EggFarmSystem.Services
                     {
                         var detailData = Mapper.Map<EmployeeCostDetail, Models.Data.EmployeeCostDetail>(detail);
                         detailData.CostId = cost.Id;
-                        db.InsertParam(detail);
+                        db.InsertParam(detailData);
                     }
                     try
                     {
