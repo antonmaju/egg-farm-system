@@ -16,6 +16,8 @@ namespace EggFarmSystem.Client.Commands
 
         public Guid EntityId { get; set; }
 
+        public bool SupressPrompt { get; set; }
+
         public override bool CanExecute(object parameter)
         {
             if (EntityId != Guid.Empty)
@@ -37,10 +39,14 @@ namespace EggFarmSystem.Client.Commands
 
         public override void Execute(object parameter)
         {
-            if (MessageBox.Show(LanguageData.General_DeleteConfirmation, LanguageData.General_Delete, MessageBoxButton.YesNo)
-               == MessageBoxResult.No)
-                return;
-
+            if (! SupressPrompt)
+            {
+                if (MessageBox.Show(LanguageData.General_DeleteConfirmation, LanguageData.General_Delete, MessageBoxButton.YesNo)
+                   == MessageBoxResult.No)
+                    return;
+    
+            }
+            
             Guid id = Guid.Empty;
 
             try

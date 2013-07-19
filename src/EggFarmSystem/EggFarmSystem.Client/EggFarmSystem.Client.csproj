@@ -233,6 +233,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Views\UserControlBase.cs" />
+    <Compile Include="Modules\EmployeeCost\Commands\DeleteEmployeeCostCommand.cs" />
+    <Compile Include="Modules\EmployeeCost\Commands\EditEmployeeCostCommand.cs" />
     <Compile Include="Modules\MasterData\MasterDataTypes.cs" />
     <Compile Include="Modules\Usage\Commands\DeleteUsageCommand.cs" />
     <Compile Include="Modules\Usage\Commands\EditUsageCommand.cs" />
@@ -341,6 +343,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\Dashboard\" />
+    <Folder Include="Modules\EmployeeCost\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EggFarmSystem.Resources\EggFarmSystem.Resources.csproj">

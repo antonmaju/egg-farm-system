@@ -70,5 +70,16 @@ namespace EggFarmSystem.Client.Core
         public static string DeleteUsageSuccess = "DeleteUsageSuccess";
         public static string DeleteUsageFailed = "DeleteUsageFailed";
 
+        public static string NewEmployeeCostView = "NewEmployeeCostView";
+        public static string NewEmployeeCostEntry = "NewUsageEntry";
+        public static string EditEmployeeCostView = "EditEmployeeCostView";
+        public static string EditEmployeeCostEntry = "EditEmployeeCostEntry";
+        public static string DeleteEmployeeCost = "DeleteEmployeeCost";
+        public static string SaveEmployeeCostSuccess = "SaveEmployeeCostSuccess";
+        public static string SaveEmployeeCostFailed = "SaveEmployeeCostFailed";
+        public static string LoadEmployeeCost = "LoadEmployeeCost";
+        public static string RefreshEmployeeCostList = "RefreshEmployeeCost";
+        public static string DeleteEmployeeCostSuccess = "DeleteEmployeeCostSuccess";
+        public static string DeleteEmployeeCostFailed = "DeleteEmployeeCostFailed";
     }
 }
