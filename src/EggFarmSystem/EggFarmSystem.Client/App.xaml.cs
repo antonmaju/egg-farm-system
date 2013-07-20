@@ -9,6 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using EggFarmSystem.Client.Modules.EmployeeCost;
 using EggFarmSystem.Client.Modules.MasterData;
 using EggFarmSystem.Client.Modules.Usage;
 
@@ -30,11 +31,17 @@ namespace EggFarmSystem.Client
                 CultureInfo.CurrentCulture.IetfLanguageTag)));
 
             var bootstrapper = new Bootstrapper();
-            bootstrapper.Register(new MasterDataModule());
-            bootstrapper.Register(new ConsumableUsageModule());
+            RegisterModules(bootstrapper);
             bootstrapper.Start(this);
 
             base.OnStartup(e);
+        }
+
+        private void RegisterModules(IBootstrapper bootstrapper)
+        {
+            bootstrapper.Register(new MasterDataModule());
+            bootstrapper.Register(new ConsumableUsageModule());
+            bootstrapper.Register(new EmployeeCostModule());
         }
     }
 }

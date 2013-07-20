@@ -241,11 +241,74 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string EmployeeCost_DateField {
+            get {
+                return ResourceManager.GetString("EmployeeCost_DateField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date is duplicate.
         /// </summary>
         public static string EmployeeCost_DuplicateDate {
             get {
                 return ResourceManager.GetString("EmployeeCost_DuplicateDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee Cost.
+        /// </summary>
+        public static string EmployeeCost_Title {
+            get {
+                return ResourceManager.GetString("EmployeeCost_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string EmployeeCost_TotalField {
+            get {
+                return ResourceManager.GetString("EmployeeCost_TotalField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string EmployeeCostDetail_Description {
+            get {
+                return ResourceManager.GetString("EmployeeCostDetail_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee.
+        /// </summary>
+        public static string EmployeeCostDetail_EmployeeField {
+            get {
+                return ResourceManager.GetString("EmployeeCostDetail_EmployeeField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Present.
+        /// </summary>
+        public static string EmployeeCostDetail_PresentField {
+            get {
+                return ResourceManager.GetString("EmployeeCostDetail_PresentField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salary.
+        /// </summary>
+        public static string EmployeeCostDetail_SalaryField {
+            get {
+                return ResourceManager.GetString("EmployeeCostDetail_SalaryField", resourceCulture);
             }
         }
         

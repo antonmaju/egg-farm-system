@@ -138,6 +138,10 @@
     <Compile Include="Core\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Modules\EmployeeCost\Views\EmployeeCostListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\MasterData\Views\ConsumableEntryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -235,6 +239,15 @@
     <Compile Include="Core\Views\UserControlBase.cs" />
     <Compile Include="Modules\EmployeeCost\Commands\DeleteEmployeeCostCommand.cs" />
     <Compile Include="Modules\EmployeeCost\Commands\EditEmployeeCostCommand.cs" />
+    <Compile Include="Modules\EmployeeCost\Commands\NewEmployeeCostCommand.cs" />
+    <Compile Include="Modules\EmployeeCost\Commands\SaveEmployeeCostCommand.cs" />
+    <Compile Include="Modules\EmployeeCost\Commands\ShowEmployeeCostCommand.cs" />
+    <Compile Include="Modules\EmployeeCost\EmployeeCostModule.cs" />
+    <Compile Include="Modules\EmployeeCost\EmployeeCostRegistry.cs" />
+    <Compile Include="Modules\EmployeeCost\ViewModels\EmployeeCostListViewModel.cs" />
+    <Compile Include="Modules\EmployeeCost\Views\EmployeeCostListView.xaml.cs">
+      <DependentUpon>EmployeeCostListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\MasterData\MasterDataTypes.cs" />
     <Compile Include="Modules\Usage\Commands\DeleteUsageCommand.cs" />
     <Compile Include="Modules\Usage\Commands\EditUsageCommand.cs" />
@@ -343,7 +356,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\Dashboard\" />
-    <Folder Include="Modules\EmployeeCost\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EggFarmSystem.Resources\EggFarmSystem.Resources.csproj">

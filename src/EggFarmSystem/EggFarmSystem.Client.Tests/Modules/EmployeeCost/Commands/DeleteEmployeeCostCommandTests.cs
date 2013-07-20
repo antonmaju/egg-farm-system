@@ -26,7 +26,7 @@ namespace EggFarmSystem.Client.Tests.Modules.EmployeeCost.Commands
         }
 
         [Fact]
-        public void DeleteCommand_CanrExecuteIfNoIdSupplied()
+        public void DeleteCommand_CantExecuteIfNoIdSupplied()
         {
             Assert.False(command.CanExecute(null));
         }

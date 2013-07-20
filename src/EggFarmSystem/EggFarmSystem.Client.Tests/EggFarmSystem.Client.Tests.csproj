@@ -75,6 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Modules\EmployeeCost\Commands\DeleteEmployeeCostCommandTests.cs" />
+    <Compile Include="Modules\EmployeeCost\Commands\EditEmployeeCostCommandTests.cs" />
+    <Compile Include="Modules\EmployeeCost\Commands\NewEmployeeCostCommandTests.cs" />
+    <Compile Include="Modules\EmployeeCost\Commands\SaveEmployeeCostCommandTests.cs" />
     <Compile Include="Modules\MasterData\Commands\DeleteConsumableCommandTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

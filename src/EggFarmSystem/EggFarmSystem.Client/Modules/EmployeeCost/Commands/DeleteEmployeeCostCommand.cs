@@ -5,6 +5,7 @@ using System.Text;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Models;
+using EggFarmSystem.Resources;
 using EggFarmSystem.Services;
 
 namespace EggFarmSystem.Client.Modules.EmployeeCost.Commands
@@ -16,6 +17,8 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.Commands
 
         public DeleteEmployeeCostCommand(IMessageBroker messageBroker, IEmployeeCostService costService)
         {
+            Text = () => LanguageData.General_Delete;
+
             this.broker = messageBroker;
             this.costService = costService;
         }
