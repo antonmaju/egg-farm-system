@@ -68,7 +68,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         void OnDeleteFailed(object param)
         {
-            MessageBox.Show(param.ToString());
+            MessageBox.Show(LanguageHelper.TryGetErrorMessage(param)) ;
         }
 
         void UnsubsribeMessages()

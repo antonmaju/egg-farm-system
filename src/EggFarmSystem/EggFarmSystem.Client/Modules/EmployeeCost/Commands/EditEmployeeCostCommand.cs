@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
+using EggFarmSystem.Client.Modules.EmployeeCost.Views;
 using EggFarmSystem.Resources;
 
 namespace EggFarmSystem.Client.Modules.EmployeeCost.Commands
@@ -37,7 +38,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.Commands
         public override void Execute(object parameter)
         {
             Guid entityId = parameter != null ? (Guid) parameter : EntityId;
-            //messageBroker.Publish(CommonMessages.ChangeMainView, typeof(IEmployeeCostEntryView));
+            messageBroker.Publish(CommonMessages.ChangeMainView, typeof(IEmployeeCostEntryView));
             messageBroker.Publish(CommonMessages.LoadEmployeeCost, entityId);
         }
     }

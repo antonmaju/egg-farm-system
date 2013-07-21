@@ -4,11 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:views="clr-namespace:EggFarmSystem.Client.Core.Views"
+             xmlns:converters="clr-namespace:EggFarmSystem.Client.Modules.MasterData.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
+        
         <ListView Margin="10,50,30,30" x:Name="lvConsumableList"
                   AlternationCount="2" ItemsSource="{Binding Path=Consumables}">
+            <ListView.Resources>
+                <converters:ConsumableTypeConverter x:Key="typeConverter"></converters:ConsumableTypeConverter>
+            </ListView.Resources>
             <ListView.View>
                 <GridView x:Name="gvConsumableList">
 
@@ -19,7 +24,7 @@
 
                         </GridViewColumn>
                         <GridViewColumn Header="{Binding Path=TypeText}" 
-                                        DisplayMemberBinding="{Binding Path=Type}"
+                                        DisplayMemberBinding="{Binding Path=Type, Converter={StaticResource typeConverter}}"
                                         Width="100">
 
                         </GridViewColumn>

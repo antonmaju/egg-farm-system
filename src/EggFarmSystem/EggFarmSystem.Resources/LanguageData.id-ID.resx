@@ -303,4 +303,43 @@
   <data name="Usage_UnitPriceField" xml:space="preserve">
     <value>Harga Satuan</value>
   </data>
+  <data name="EmployeeCostDetail_Description" xml:space="preserve">
+    <value>Keterangan</value>
+  </data>
+  <data name="EmployeeCostDetail_EmployeeField" xml:space="preserve">
+    <value>Karyawan</value>
+  </data>
+  <data name="EmployeeCostDetail_PresentField" xml:space="preserve">
+    <value>Hadir</value>
+  </data>
+  <data name="EmployeeCostDetail_SalaryField" xml:space="preserve">
+    <value>Upah</value>
+  </data>
+  <data name="EmployeeCost_DateField" xml:space="preserve">
+    <value>Tanggal</value>
+  </data>
+  <data name="EmployeeCost_DuplicateDate" xml:space="preserve">
+    <value>Tanggal duplikat</value>
+  </data>
+  <data name="EmployeeCost_Title" xml:space="preserve">
+    <value>Biaya Karyawan</value>
+  </data>
+  <data name="EmployeeCost_TotalField" xml:space="preserve">
+    <value>Jumlah</value>
+  </data>
+  <data name="Employee_ActiveField" xml:space="preserve">
+    <value>Aktif</value>
+  </data>
+  <data name="UsageDetail_RequireConsumable" xml:space="preserve">
+    <value>Pakan / Ovk dibutuhkan</value>
+  </data>
+  <data name="UsageDetail_RequireCount" xml:space="preserve">
+    <value>Jumlah diperlukan</value>
+  </data>
+  <data name="UsageDetail_RequireHouse" xml:space="preserve">
+    <value>Kandang diperlukan</value>
+  </data>
+  <data name="Usage_DuplicateDate" xml:space="preserve">
+    <value>Tanggal duplikat</value>
+  </data>
 </root>

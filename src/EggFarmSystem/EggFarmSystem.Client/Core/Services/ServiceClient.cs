@@ -88,7 +88,7 @@ namespace EggFarmSystem.Client.Core.Services
 
             if (response.StatusCode != HttpStatusCode.Created)
             {
-                throw new ServiceException(response.ErrorMessage);       
+                throw new ServiceException(response.Content);       
             }
         }
 
@@ -110,7 +110,7 @@ namespace EggFarmSystem.Client.Core.Services
             request.AddBody(data);
             var response = client.Execute(request);
             if(response.StatusCode != HttpStatusCode.OK)
-                throw new ServiceException(response.ErrorMessage);
+                throw new ServiceException(response.Content);
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace EggFarmSystem.Client.Core.Services
             var response = client.Execute(request);
 
             if(response.StatusCode != HttpStatusCode.OK)
-                throw new ServiceException(response.ErrorMessage);
+                throw new ServiceException(response.Content);
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -31,10 +32,13 @@ namespace EggFarmSystem.Models
         }
     }
 
-
     public enum ConsumableType
     {
+        [Description("ConsumableType_Feed")]
         Feed,
+
+        [Description("ConsumableType_Ovk")]
         Ovk
     }
+
 }

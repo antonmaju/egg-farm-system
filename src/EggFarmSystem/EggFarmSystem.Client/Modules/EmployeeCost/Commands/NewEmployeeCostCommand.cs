@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
+using EggFarmSystem.Client.Modules.EmployeeCost.Views;
 using EggFarmSystem.Resources;
 
 namespace EggFarmSystem.Client.Modules.EmployeeCost.Commands
@@ -20,7 +21,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.Commands
 
         public override void Execute(object parameter)
         {
-            //broker.Publish(CommonMessages.ChangeMainView, typeof(IEmployeeCostEntryView));
+            broker.Publish(CommonMessages.ChangeMainView, typeof(IEmployeeCostEntryView));
             broker.Publish(CommonMessages.NewEmployeeCostEntry, null);
         }
     }

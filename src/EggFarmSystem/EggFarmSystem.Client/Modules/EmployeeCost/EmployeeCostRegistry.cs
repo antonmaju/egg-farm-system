@@ -27,16 +27,18 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost
             builder.RegisterType<NewEmployeeCostCommand>().SingleInstance();
             builder.RegisterType<SaveEmployeeCostCommand>().SingleInstance();
             builder.RegisterType<ShowEmployeeCostCommand>().SingleInstance();
-            }
+        }
 
         void RegisterViewModels(ContainerBuilder builder)
         {
             builder.RegisterType<EmployeeCostListViewModel>().InstancePerDependency();
+            builder.RegisterType<EmployeeCostEntryViewModel>().InstancePerDependency();
         }
 
         void RegisterViews(ContainerBuilder builder)
         {
             builder.RegisterType<EmployeeCostListView>().As<IEmployeeCostListView>().InstancePerDependency();
+            builder.RegisterType<EmployeeCostEntryView>().As<IEmployeeCostEntryView>().InstancePerDependency();
         }
     }
 }

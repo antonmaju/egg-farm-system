@@ -123,6 +123,7 @@
     <Compile Include="Core\IClientContext.cs" />
     <Compile Include="Core\IMessageBroker.cs" />
     <Compile Include="Core\IPagingInfo.cs" />
+    <Compile Include="Core\LanguageHelper.cs" />
     <Compile Include="Core\MessageBroker.cs" />
     <Compile Include="Core\CommonMessages.cs" />
     <Compile Include="Core\Services\ConsumableServiceClient.cs" />
@@ -138,6 +139,10 @@
     <Compile Include="Core\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Modules\EmployeeCost\Views\EmployeeCostEntryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\EmployeeCost\Views\EmployeeCostListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -244,11 +249,17 @@
     <Compile Include="Modules\EmployeeCost\Commands\ShowEmployeeCostCommand.cs" />
     <Compile Include="Modules\EmployeeCost\EmployeeCostModule.cs" />
     <Compile Include="Modules\EmployeeCost\EmployeeCostRegistry.cs" />
+    <Compile Include="Modules\EmployeeCost\ViewModels\EmployeeCostEntryViewModel.cs" />
     <Compile Include="Modules\EmployeeCost\ViewModels\EmployeeCostListViewModel.cs" />
+    <Compile Include="Modules\EmployeeCost\Views\EmployeeCostEntryView.xaml.cs">
+      <DependentUpon>EmployeeCostEntryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\EmployeeCost\Views\EmployeeCostListView.xaml.cs">
       <DependentUpon>EmployeeCostListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\MasterData\Converters\ConsumableTypeConverter.cs" />
     <Compile Include="Modules\MasterData\MasterDataTypes.cs" />
+    <Compile Include="Modules\MasterData\ModelExtensions.cs" />
     <Compile Include="Modules\Usage\Commands\DeleteUsageCommand.cs" />
     <Compile Include="Modules\Usage\Commands\EditUsageCommand.cs" />
     <Compile Include="Modules\Usage\Commands\NewUsageCommand.cs" />
@@ -315,6 +326,7 @@
       <DependentUpon>View.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\MenuInfo.cs" />
+    <Compile Include="Modules\Usage\ModelExtensions.cs" />
     <Compile Include="Modules\Usage\UsageRegistry.cs" />
     <Compile Include="Modules\Usage\ViewModels\UsageDetailViewModel.cs" />
     <Compile Include="Modules\Usage\ViewModels\UsageEntryViewModel.cs" />
