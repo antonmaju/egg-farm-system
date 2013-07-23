@@ -268,7 +268,6 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             var usage = Mapper.Map<UsageEntryViewModel, ConsumableUsage>(this);
             saveUsageCommand.Usage = usage;
             saveUsageCommand.Execute(usage);
-
         }
 
         bool CanSave(object param)

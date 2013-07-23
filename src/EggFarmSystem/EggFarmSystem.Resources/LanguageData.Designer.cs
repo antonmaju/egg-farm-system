@@ -279,9 +279,9 @@ namespace EggFarmSystem.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
-        public static string EmployeeCostDetail_Description {
+        public static string EmployeeCostDetail_DescriptionField {
             get {
-                return ResourceManager.GetString("EmployeeCostDetail_Description", resourceCulture);
+                return ResourceManager.GetString("EmployeeCostDetail_DescriptionField", resourceCulture);
             }
         }
         
@@ -300,6 +300,15 @@ namespace EggFarmSystem.Resources {
         public static string EmployeeCostDetail_PresentField {
             get {
                 return ResourceManager.GetString("EmployeeCostDetail_PresentField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee is required.
+        /// </summary>
+        public static string EmployeeCostDetail_RequireEmployee {
+            get {
+                return ResourceManager.GetString("EmployeeCostDetail_RequireEmployee", resourceCulture);
             }
         }
         

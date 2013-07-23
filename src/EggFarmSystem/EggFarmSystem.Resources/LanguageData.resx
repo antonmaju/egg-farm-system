@@ -159,7 +159,7 @@
   <data name="Depreciation_Title" xml:space="preserve">
     <value>Depreciation</value>
   </data>
-  <data name="EmployeeCostDetail_Description" xml:space="preserve">
+  <data name="EmployeeCostDetail_DescriptionField" xml:space="preserve">
     <value>Description</value>
   </data>
   <data name="EmployeeCostDetail_EmployeeField" xml:space="preserve">
@@ -167,6 +167,9 @@
   </data>
   <data name="EmployeeCostDetail_PresentField" xml:space="preserve">
     <value>Present</value>
+  </data>
+  <data name="EmployeeCostDetail_RequireEmployee" xml:space="preserve">
+    <value>Employee is required</value>
   </data>
   <data name="EmployeeCostDetail_SalaryField" xml:space="preserve">
     <value>Salary</value>

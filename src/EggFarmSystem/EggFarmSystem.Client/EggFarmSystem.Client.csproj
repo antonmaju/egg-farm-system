@@ -249,6 +249,7 @@
     <Compile Include="Modules\EmployeeCost\Commands\ShowEmployeeCostCommand.cs" />
     <Compile Include="Modules\EmployeeCost\EmployeeCostModule.cs" />
     <Compile Include="Modules\EmployeeCost\EmployeeCostRegistry.cs" />
+    <Compile Include="Modules\EmployeeCost\ViewModels\EmployeeCostDetailViewModel.cs" />
     <Compile Include="Modules\EmployeeCost\ViewModels\EmployeeCostEntryViewModel.cs" />
     <Compile Include="Modules\EmployeeCost\ViewModels\EmployeeCostListViewModel.cs" />
     <Compile Include="Modules\EmployeeCost\Views\EmployeeCostEntryView.xaml.cs">
