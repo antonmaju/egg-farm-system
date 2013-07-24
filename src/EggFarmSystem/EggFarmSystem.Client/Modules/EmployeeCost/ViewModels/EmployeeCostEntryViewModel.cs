@@ -7,6 +7,7 @@ using AutoMapper;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.EmployeeCost.Commands;
+using EggFarmSystem.Models;
 using EggFarmSystem.Resources;
 using EggFarmSystem.Services;
 
@@ -35,6 +36,10 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
             InitializeCommands();
             NavigationCommands = new List<CommandBase>{CancelCommand};
             CancelCommand.Action = broker => showListCommand.Execute(null);
+
+            Employees = new ObservableCollection<Employee>(employeeService.GetAll());
+
+            SubscribeMessages();
         }
 
         #region commands
@@ -72,7 +77,8 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
 
         void AddDetail(object param)
         {
-            
+            details.Add(CreateNewDetail());
+
         }
 
         bool CanAddDetail(object param)
@@ -82,12 +88,16 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
 
         void DeleteDetail(int param)
         {
-           
+            int index = Convert.ToInt32(DeleteDetailCommand.Tag);
+            var detail = details[index];
+            detail.PropertyChanged -= detail_PropertyChanged;
+            details.RemoveAt(index);
+            DeleteDetailCommand.Tag = -1;
         }
 
         bool CanDeleteDetail(int param)
         {
-            return true;
+            return DeleteDetailCommand.Tag > -1;
         }
 
         #endregion
@@ -142,6 +152,8 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
             get { return details; }
             set { details = value; OnPropertyChanged("Details"); }
         }
+
+        public ObservableCollection<Employee> Employees { get; private set; } 
 
         #endregion
 
@@ -224,7 +236,16 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
             Total = 0;
             Date = DateTime.Today;
             Details =new ObservableCollection<EmployeeCostDetailViewModel>();
-            Details.Add(new EmployeeCostDetailViewModel());
+
+            var activeEmployees = Employees.Where(e => e.Active).ToList();
+            foreach (var employee in activeEmployees)
+            {
+                Details.Add(new EmployeeCostDetailViewModel
+                    {
+                        EmployeeId = employee.Id,
+                        Salary = employee.Salary
+                    });
+            }
         }
 
         void OnLoadCost(object param)
@@ -241,16 +262,12 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
             {
                 foreach (var loadedDetail in loadedDatails)
                 {
-                    loadedDetail.PropertyChanged += loadedDetail_PropertyChanged;
+                    loadedDetail.PropertyChanged += detail_PropertyChanged;
                 }
             } 
         }
 
-        void loadedDetail_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            
-        }
-
+       
         void OnSaveCostSuccess(object param)
         {
             this.ShowCostListCommand.Execute(null);

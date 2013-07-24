@@ -31,8 +31,51 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.Views
             this.NavigationCommands = model.NavigationCommands;
         }
 
+        private void SubscribeEvents()
+        {
+            dgCost.CellEditEnding += dgCost_CellEditEnding;
+            dgCost.GotFocus += dgCost_GotFocus;
+            dgCost.SelectionChanged += dgCost_SelectionChanged;
+        }
+
+        void dgCost_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var grid = sender as DataGrid;
+            int index = grid.Items.IndexOf(grid.SelectedItem);
+            model.DeleteDetailCommand.Tag = index;
+        }
+
+        void dgCost_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (e.OriginalSource.GetType() == typeof(DataGridCell))
+            {
+                var grd = (DataGrid)sender;
+                grd.BeginEdit(e);
+            }
+        }
+
+        private bool isManualEditCommit;
+        void dgCost_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (!isManualEditCommit)
+            {
+                isManualEditCommit = true;
+                var grid = (DataGrid)sender;
+                grid.CommitEdit(DataGridEditingUnit.Row, true);
+                isManualEditCommit = false;
+            }
+        }
+
+        private void UnsubscribeEvents()
+        {
+            dgCost.CellEditEnding -= dgCost_CellEditEnding;
+            dgCost.GotFocus -= dgCost_GotFocus;
+            dgCost.SelectionChanged -= dgCost_SelectionChanged;
+        }
+
         public override void Dispose()
         {
+            UnsubscribeEvents();
             model.Dispose();
             base.Dispose();
         }
