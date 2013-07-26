@@ -6,7 +6,12 @@ using ServiceStack.DataAnnotations;
 
 namespace EggFarmSystem.Models
 {
-    public abstract class Entity
+    public interface IValidatable
+    {
+        IList<ErrorInfo> Validate();
+    }
+
+    public abstract class Entity : IValidatable
     {
         public Guid Id { get; set; } 
 

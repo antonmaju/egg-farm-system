@@ -29,6 +29,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.Views
             this.model = model;
             this.DataContext = model;
             this.NavigationCommands = model.NavigationCommands;
+            SubscribeEvents();
         }
 
         private void SubscribeEvents()
@@ -65,7 +66,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.Views
                 isManualEditCommit = false;
             }
         }
-
+        
         private void UnsubscribeEvents()
         {
             dgCost.CellEditEnding -= dgCost_CellEditEnding;

@@ -28,15 +28,20 @@
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   x:Name="dgCost">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Binding="{Binding Path=Present}">
-                    <DataGridCheckBoxColumn.HeaderTemplate>
+              <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding 
                                 RelativeSource={RelativeSource AncestorType=DataGrid},
-                                Path=DataContext.PresentText}" />
+                                Path=DataContext.PresentText}"  />
                         </DataTemplate>
-                    </DataGridCheckBoxColumn.HeaderTemplate>
-                </DataGridCheckBoxColumn>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                   <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Path=Present, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridComboBoxColumn DisplayMemberPath="Name" SelectedValuePath="Id"
                   SelectedValueBinding="{Binding Path=EmployeeId}" MinWidth="250"
                      >

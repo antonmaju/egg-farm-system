@@ -259,6 +259,24 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee is duplicate !.
+        /// </summary>
+        public static string EmployeeCost_DuplicateEmployee {
+            get {
+                return ResourceManager.GetString("EmployeeCost_DuplicateEmployee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details are required !.
+        /// </summary>
+        public static string EmployeeCost_RequireDetails {
+            get {
+                return ResourceManager.GetString("EmployeeCost_RequireDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee Cost.
         /// </summary>
         public static string EmployeeCost_Title {

@@ -34,6 +34,11 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost
 
         public void Initialize()
         {
+            InitializeMappings();
+        }
+
+        public void InitializeMappings()
+        {
             
         }
     }

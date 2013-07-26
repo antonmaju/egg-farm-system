@@ -174,6 +174,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
                                     break;
                             }
                         }
+
                         break;
                 }
 

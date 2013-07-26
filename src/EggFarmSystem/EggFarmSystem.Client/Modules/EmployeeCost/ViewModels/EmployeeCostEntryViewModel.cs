@@ -34,7 +34,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
 
             CancelCommand = cancelCommand;
             InitializeCommands();
-            NavigationCommands = new List<CommandBase>{CancelCommand};
+            NavigationCommands = new List<CommandBase>{SaveCommand,CancelCommand};
             CancelCommand.Action = broker => showListCommand.Execute(null);
 
             Employees = new ObservableCollection<Employee>(employeeService.GetAll());
@@ -78,7 +78,6 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
         void AddDetail(object param)
         {
             details.Add(CreateNewDetail());
-
         }
 
         bool CanAddDetail(object param)
@@ -240,11 +239,13 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
             var activeEmployees = Employees.Where(e => e.Active).ToList();
             foreach (var employee in activeEmployees)
             {
-                Details.Add(new EmployeeCostDetailViewModel
+                var detail = new EmployeeCostDetailViewModel
                     {
                         EmployeeId = employee.Id,
                         Salary = employee.Salary
-                    });
+                    };
+                detail.PropertyChanged += detail_PropertyChanged;
+                Details.Add(detail);
             }
         }
 
@@ -287,7 +288,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
 
         private void CalculateTotal()
         {
-            Total = details.Sum(d => d.Salary);
+            Total = details.Where(d =>d.Present).Sum(d => d.Salary);
         }
 
         private void SetDefaultUnitPrice(EmployeeCostDetailViewModel detail)
@@ -300,7 +301,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
 
         void detail_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Salary")
+            if (e.PropertyName == "Salary" || e.PropertyName == "Present")
             {
                CalculateTotal();
             }
