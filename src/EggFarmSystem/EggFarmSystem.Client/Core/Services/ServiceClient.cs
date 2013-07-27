@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using EggFarmSystem.Models;
 using RestSharp;
+using RestSharp.Serializers;
 
 namespace EggFarmSystem.Client.Core.Services
 {
@@ -45,6 +46,7 @@ namespace EggFarmSystem.Client.Core.Services
 
             var client = new RestClient(clientContext.ServiceUrl);
             var request = new RestRequest(url, Method.GET);
+            request.JsonSerializer = new JsonNetSerializer();
             AddHeaders(request);
             var response = client.Execute<T>(request);
             return response.Data;
@@ -63,6 +65,7 @@ namespace EggFarmSystem.Client.Core.Services
 
             var client = new RestClient(clientContext.ServiceUrl);
             var request = new RestRequest(url, Method.GET);
+            request.JsonSerializer = new JsonNetSerializer();
             AddHeaders(request);
             var response = client.Execute<T>(request);
             return response.Data;
@@ -82,6 +85,7 @@ namespace EggFarmSystem.Client.Core.Services
 
             var client = new RestClient(clientContext.ServiceUrl);
             var request = new RestRequest(url, Method.POST);
+            request.JsonSerializer = new JsonNetSerializer();
             AddHeaders(request);
             request.AddBody(data);
             var response = client.Execute(request);
@@ -105,7 +109,9 @@ namespace EggFarmSystem.Client.Core.Services
                 url = string.Format("{0}/{1}", ResourceUrl, id);
 
             var client = new RestClient(clientContext.ServiceUrl);
+ 
             var request = new RestRequest(url, Method.PUT);
+            request.JsonSerializer = new JsonNetSerializer();
             AddHeaders(request);
             request.AddBody(data);
             var response = client.Execute(request);
@@ -126,6 +132,7 @@ namespace EggFarmSystem.Client.Core.Services
 
             var client = new RestClient(clientContext.ServiceUrl);
             var request = new RestRequest(url, Method.DELETE);
+            request.JsonSerializer = new JsonNetSerializer();
             AddHeaders(request);
             var response = client.Execute(request);
 

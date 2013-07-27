@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -126,7 +127,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
         #region properties
 
         private Guid id;
-        private DateTime date=DateTime.Today;
+        private DateTime date;
         private long total;
         private ObservableCollection<EmployeeCostDetailViewModel> details;
 
@@ -140,6 +141,15 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
         {
             get { return date; }
             set { date = value.Date; OnPropertyChanged("Date"); }
+        }
+
+        public DateTime DateInUTC
+        {
+            get { return TimeZoneInfo.ConvertTimeBySystemTimeZoneId(Date, ConfigurationManager.AppSettings["Timezone"]); }
+            set
+            {
+                Date = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(value, ConfigurationManager.AppSettings["Timezone"], "UTC");
+            }
         }
 
         public long Total

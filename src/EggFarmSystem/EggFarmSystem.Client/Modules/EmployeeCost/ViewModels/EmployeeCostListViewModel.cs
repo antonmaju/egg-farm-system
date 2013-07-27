@@ -185,12 +185,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
 
         void OnDeleteFailed(object param)
         {
-            var error = param as Error;
-
-            if (error != null)
-            {
-                
-            }
+            MessageBox.Show(LanguageHelper.TryGetErrorMessage(param));
         }
 
         public override void Dispose()
