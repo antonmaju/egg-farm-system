@@ -170,14 +170,20 @@ namespace EggFarmSystem.Services
                     if (isNew)
                     {
                         usage = db.FirstOrDefault<Models.Data.ConsumableUsage>(u => u.Date == model.Date);
-
-                        if (usage != null)
-                        {
-                            trans.Rollback();
-                            throw new ServiceException("Usage_DuplicateDate");
-                        }
-                                               
                     }
+                    else
+                    {
+                        usage = db.Query<Models.Data.ConsumableUsage>("Date = @Date and Id <> @Id",
+                                                                      new {Date = model.Date, Id = model.Id.ToString()})
+                                  .FirstOrDefault();
+                    }
+
+                    if (usage != null)
+                    {
+                        trans.Rollback();
+                        throw new ServiceException("Usage_DuplicateDate");
+                    }
+                                        
 
                     if (isNew)
                         model.Id = Guid.NewGuid();

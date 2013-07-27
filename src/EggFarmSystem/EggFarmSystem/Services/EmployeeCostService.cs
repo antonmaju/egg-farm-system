@@ -113,12 +113,17 @@ namespace EggFarmSystem.Services
                     if (isNew)
                     {
                         costData = db.FirstOrDefault<Models.Data.EmployeeCost>(u => u.Date == cost.Date);
-
-                        if (costData != null)
-                        {
-                            tx.Rollback();
-                            throw new ServiceException("EmployeeCost_DuplicateDate");
-                        }
+                    }
+                    else
+                    {
+                        costData = db.Query<Models.Data.EmployeeCost>("Date = @Date and Id <> @Id",
+                                                                      new {Date = cost.Date, Id = cost.Id.ToString()})
+                                     .FirstOrDefault();
+                    }
+                    if (costData != null)
+                    {
+                        tx.Rollback();
+                        throw new ServiceException("EmployeeCost_DuplicateDate");
                     }
 
                     if (isNew)

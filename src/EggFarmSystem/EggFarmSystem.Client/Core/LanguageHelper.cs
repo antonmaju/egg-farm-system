@@ -49,7 +49,11 @@ namespace EggFarmSystem.Client.Core
             }
             else
             {
-                msg = LanguageHelper.GetValue(error.Exception.Message);
+                string errMessage = error.Exception.Message;
+                if (errMessage.StartsWith("\""))
+                    errMessage = errMessage.Replace("\"", "");
+
+                msg = LanguageHelper.GetValue(errMessage);
                
             }
 

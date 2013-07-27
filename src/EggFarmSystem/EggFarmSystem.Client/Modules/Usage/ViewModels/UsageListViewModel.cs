@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.Usage.Commands;
@@ -175,7 +176,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
         void OnDeleteFailed(object param)
         {
-            
+            MessageBox.Show(LanguageHelper.TryGetErrorMessage(param));
         }
 
         void OnEditUsage(object param)

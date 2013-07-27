@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using AutoMapper;
@@ -248,7 +249,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
         void OnSaveUsageFailed(object param)
         {
-            
+            MessageBox.Show(LanguageHelper.TryGetErrorMessage(param));
         }
 
         void UnsubscribeMessages()

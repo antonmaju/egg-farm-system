@@ -137,7 +137,7 @@
     <Compile Include="Core\Services\HenServiceClient.cs" />
     <Compile Include="Core\Services\ServiceClient.cs" />
     <Compile Include="Core\Services\ServiceClientRegistry.cs" />
-    <Compile Include="Core\Services\JsonSerializer.cs" />
+    <Compile Include="Core\Services\JsonNetSerializer.cs" />
     <Compile Include="Core\ViewModelBase.cs" />
     <Compile Include="Core\Views\IMainView.cs" />
     <Compile Include="Core\Views\MainWindow.xaml.cs">
