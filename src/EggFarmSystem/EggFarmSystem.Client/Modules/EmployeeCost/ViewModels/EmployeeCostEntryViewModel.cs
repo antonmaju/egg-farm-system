@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using AutoMapper;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
@@ -33,6 +34,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
             ActualSaveCommand = saveCostCommand;
 
             CancelCommand = cancelCommand;
+            ShowCostListCommand = showListCommand;
             InitializeCommands();
             NavigationCommands = new List<CommandBase>{SaveCommand,CancelCommand};
             CancelCommand.Action = broker => showListCommand.Execute(null);
@@ -124,7 +126,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
         #region properties
 
         private Guid id;
-        private DateTime date;
+        private DateTime date=DateTime.Today;
         private long total;
         private ObservableCollection<EmployeeCostDetailViewModel> details;
 
@@ -137,7 +139,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
         public DateTime Date
         {
             get { return date; }
-            set { date = value; OnPropertyChanged("Date"); }
+            set { date = value.Date; OnPropertyChanged("Date"); }
         }
 
         public long Total
@@ -255,7 +257,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
 
             Id = loadedCost.Id;
             Total = loadedCost.Total;
-            Date = loadedCost.Date;
+            Date = loadedCost.Date.Date;
 
             var loadedDatails = Mapper.Map<List<Models.EmployeeCostDetail>, List<EmployeeCostDetailViewModel>>(loadedCost.Details);
 
@@ -266,6 +268,8 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
                     loadedDetail.PropertyChanged += detail_PropertyChanged;
                 }
             } 
+
+            Details = new ObservableCollection<EmployeeCostDetailViewModel>(loadedDatails);
         }
 
        
@@ -276,7 +280,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
 
         void OnSaveCostFailed(object param)
         {
-            
+            MessageBox.Show(LanguageHelper.TryGetErrorMessage(param));
         }
 
         EmployeeCostDetailViewModel CreateNewDetail()
@@ -291,7 +295,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
             Total = details.Where(d =>d.Present).Sum(d => d.Salary);
         }
 
-        private void SetDefaultUnitPrice(EmployeeCostDetailViewModel detail)
+        private void SetDefaultSalary(EmployeeCostDetailViewModel detail)
         {
             if (detail == null) return;
 
@@ -305,9 +309,9 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
             {
                CalculateTotal();
             }
-            else if (e.PropertyName == "ConsumableId")
+            else if (e.PropertyName == "EmployeeId")
             {
-                SetDefaultUnitPrice(sender as EmployeeCostDetailViewModel);
+                SetDefaultSalary(sender as EmployeeCostDetailViewModel);
             }
         }
 

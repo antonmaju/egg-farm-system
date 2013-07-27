@@ -15,8 +15,12 @@ namespace EggFarmSystem.Service.Core
         public static void Initialize()
         {
             Mapper.CreateMap<Models.ConsumableUsage, Models.Data.ConsumableUsage>();
-                  
             Mapper.CreateMap<Models.ConsumableUsageDetail, Models.Data.ConsumableUsageDetail>();
+            Mapper.CreateMap<Models.EmployeeCost, Models.Data.EmployeeCost>();
+            Mapper.CreateMap<Models.EmployeeCostDetail, Models.Data.EmployeeCostDetail>();
+            Mapper.CreateMap<Models.Data.EmployeeCost, Models.EmployeeCost>();
+            Mapper.CreateMap<Models.Data.EmployeeCostDetail, Models.EmployeeCostDetail>();
+
         }
     }
 }

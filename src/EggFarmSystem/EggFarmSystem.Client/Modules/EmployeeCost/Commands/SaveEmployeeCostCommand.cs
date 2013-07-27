@@ -31,7 +31,19 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.Commands
 
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            try
+            {
+                costService.Save(Cost);
+                broker.Publish(CommonMessages.SaveEmployeeCostSuccess, Cost);
+            }
+            catch(Exception ex)
+            {
+                broker.Publish(CommonMessages.SaveEmployeeCostFailed, new Error
+                    {
+                        Data = Cost,
+                        Exception = ex
+                    });
+            }
         }
     }
 }

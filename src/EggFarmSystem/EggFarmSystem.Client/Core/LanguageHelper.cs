@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EggFarmSystem.Models;
 using EggFarmSystem.Resources;
+using ServiceStack.Text;
 
 namespace EggFarmSystem.Client.Core
 {
@@ -23,12 +25,36 @@ namespace EggFarmSystem.Client.Core
         public static string TryGetErrorMessage(object param)
         {
             var error = param as Error;
-            if (error == null)
+            if (error == null || error.Exception == null || string.IsNullOrEmpty(error.Exception.Message))
                 return null;
 
-            string msg = LanguageHelper.GetValue(error.Exception.Message);
-            if (string.IsNullOrEmpty(msg))
-                msg = error.Exception.Message;
+            string msg = null;
+            if (error.Exception.Message.StartsWith("["))
+            {
+                var serializer = new JsonSerializer<List<ErrorInfo>>();
+                try
+                {
+                    var errorList = serializer.DeserializeFromString(error.Exception.Message);
+                    var sb = new StringBuilder();
+                    foreach (var errorInfo in errorList)
+                    {
+                        sb.AppendLine(LanguageHelper.GetValue(errorInfo.Message));
+                    }
+                    msg = sb.ToString();
+                }
+                catch
+                {
+                    
+                }
+            }
+            else
+            {
+                msg = LanguageHelper.GetValue(error.Exception.Message);
+               
+            }
+
+             if (string.IsNullOrEmpty(msg))
+                    msg = error.Exception.Message;
 
             return msg;
         }

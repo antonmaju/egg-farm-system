@@ -12,7 +12,7 @@
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <ListView Margin="20" x:Name="lvCostList"
-                  AlternationCount="2" ItemsSource="{Binding Path=UsageList}">
+                  AlternationCount="2" ItemsSource="{Binding Path=CostList}">
             <ListView.View>
                 <GridView x:Name="gvCostList">
                     <GridView.Columns>
