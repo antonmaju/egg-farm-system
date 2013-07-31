@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdditionalCost_NameField" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AdditionalCost_RequireName" xml:space="preserve">
+    <value>Name is required</value>
+  </data>
+  <data name="AdditionalCost_RequireValue" xml:space="preserve">
+    <value>Value is required</value>
+  </data>
+  <data name="AdditionalCost_Title" xml:space="preserve">
+    <value>Additional Costs</value>
+  </data>
+  <data name="AdditionalCost_ValueField" xml:space="preserve">
+    <value>Value</value>
+  </data>
   <data name="Attendance_Title" xml:space="preserve">
     <value>Attendance</value>
   </data>

@@ -61,6 +61,51 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string AdditionalCost_NameField {
+            get {
+                return ResourceManager.GetString("AdditionalCost_NameField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is required.
+        /// </summary>
+        public static string AdditionalCost_RequireName {
+            get {
+                return ResourceManager.GetString("AdditionalCost_RequireName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value is required.
+        /// </summary>
+        public static string AdditionalCost_RequireValue {
+            get {
+                return ResourceManager.GetString("AdditionalCost_RequireValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Additional Costs.
+        /// </summary>
+        public static string AdditionalCost_Title {
+            get {
+                return ResourceManager.GetString("AdditionalCost_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string AdditionalCost_ValueField {
+            get {
+                return ResourceManager.GetString("AdditionalCost_ValueField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attendance.
         /// </summary>
         public static string Attendance_Title {

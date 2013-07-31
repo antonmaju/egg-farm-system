@@ -120,7 +120,7 @@ namespace EggFarmSystem.Service.Tests.Controllers
         }
 
         [Fact]
-        public void Post_ReturnsInternalServer_IfSavingFailed()
+        public void Post_ReturnsInternalServerError_IfSavingFailed()
         {
             var house = new HenHouse
             {

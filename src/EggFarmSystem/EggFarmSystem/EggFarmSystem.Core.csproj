@@ -80,6 +80,7 @@
     <Compile Include="Models\EmployeeCost.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\Feed.cs" />
+    <Compile Include="Models\AdditionalCost.cs" />
     <Compile Include="Models\Hen.cs" />
     <Compile Include="Models\HenHouse.cs" />
     <Compile Include="Models\Medicine.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\ServiceException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AdditionalCostService.cs" />
     <Compile Include="Services\ConsumableUsageService.cs" />
     <Compile Include="Services\ConsumableService.cs" />
     <Compile Include="Services\EmployeeCostService.cs" />

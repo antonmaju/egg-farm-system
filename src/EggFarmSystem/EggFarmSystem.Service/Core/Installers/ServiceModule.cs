@@ -17,6 +17,7 @@ namespace EggFarmSystem.Service.Core.Installers
             builder.RegisterType<HenHouseService>().As<IHenHouseService>().SingleInstance();
             builder.RegisterType<EmployeeService>().As<IEmployeeService>().SingleInstance();
             builder.RegisterType<ConsumableService>().As<IConsumableService>().SingleInstance();
+            builder.RegisterType<AdditionalCostService>().As<IAdditionalCostService>().SingleInstance();
             builder.RegisterType<AccountService>().As<IAccountService>().SingleInstance();
             builder.RegisterType<ConsumableUsageService>().As<IConsumableUsageService>().SingleInstance();
             builder.RegisterType<EmployeeCostService>().As<IEmployeeCostService>().SingleInstance();

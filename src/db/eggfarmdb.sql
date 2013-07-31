@@ -26,6 +26,17 @@ CREATE TABLE `account` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/*Table structure for table `additionalcost` */
+
+DROP TABLE IF EXISTS `additionalcost`;
+
+CREATE TABLE `additionalcost` (
+  `Id` char(36) NOT NULL,
+  `Name` varchar(50) DEFAULT NULL,
+  `Value` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /*Table structure for table `consumable` */
 
 DROP TABLE IF EXISTS `consumable`;
