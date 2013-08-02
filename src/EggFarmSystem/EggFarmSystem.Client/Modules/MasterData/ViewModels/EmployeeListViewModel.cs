@@ -82,7 +82,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         void OnDeleteEmployeeFailed(object param)
         {
-            MessageBox.Show(param.ToString());
+            MessageBox.Show(LanguageHelper.TryGetErrorMessage(param));
         }
 
         void UnsubscribeMessages()
