@@ -129,6 +129,7 @@
     <Compile Include="Core\LanguageHelper.cs" />
     <Compile Include="Core\MessageBroker.cs" />
     <Compile Include="Core\CommonMessages.cs" />
+    <Compile Include="Core\Services\AdditionalCostServiceClient.cs" />
     <Compile Include="Core\Services\ConsumableServiceClient.cs" />
     <Compile Include="Core\Services\ConsumableUsageServiceClient.cs" />
     <Compile Include="Core\Services\EmployeeCostServiceClient.cs" />
@@ -262,6 +263,10 @@
     <Compile Include="Modules\EmployeeCost\Views\EmployeeCostListView.xaml.cs">
       <DependentUpon>EmployeeCostListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\MasterData\Commands\DeleteAdditionalCostCommand.cs" />
+    <Compile Include="Modules\MasterData\Commands\EditAdditionalCostCommand.cs" />
+    <Compile Include="Modules\MasterData\Commands\NewAdditionalCostCommand.cs" />
+    <Compile Include="Modules\MasterData\Commands\SaveAdditionalCostCommand.cs" />
     <Compile Include="Modules\MasterData\Converters\ConsumableTypeConverter.cs" />
     <Compile Include="Modules\MasterData\MasterDataTypes.cs" />
     <Compile Include="Modules\MasterData\ModelExtensions.cs" />
