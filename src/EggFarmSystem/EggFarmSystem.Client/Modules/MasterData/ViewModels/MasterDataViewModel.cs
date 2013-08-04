@@ -25,11 +25,13 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         private Lazy<IHenHouseListView> houseListProxy;
         private Lazy<IEmployeeListView> employeeListProxy;
         private Lazy<IConsumableListView> consumableListProxy;
+        private Lazy<IAdditionalCostListView> costListView; 
 
         private Lazy<IHenEntryView> henEntryProxy;
         private Lazy<IHenHouseEntryView> houseEntryProxy;
         private Lazy<IEmployeeEntryView> employeeEntryProxy;
         private Lazy<IConsumableEntryView> consumableEntryProxy;
+        
         
         public MasterDataViewModel(
             IMessageBroker messageBroker,
@@ -37,6 +39,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             Lazy<IHenHouseListView> houseListProxy,
             Lazy<IEmployeeListView> employeeListProxy,
             Lazy<IConsumableListView> consumableListProxy,
+           // Lazy<IAd> ,
             Lazy<IHenEntryView> henEntryProxy,
             Lazy<IHenHouseEntryView>  houseEntryProxy,
             Lazy<IEmployeeEntryView> employeeEntryProxy,

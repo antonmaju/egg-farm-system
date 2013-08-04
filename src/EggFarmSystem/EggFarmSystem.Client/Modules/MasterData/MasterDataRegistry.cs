@@ -44,6 +44,12 @@ namespace EggFarmSystem.Client.Modules.MasterData
             builder.RegisterType<EditConsumableCommand>().SingleInstance();
             builder.RegisterType<DeleteConsumableCommand>().SingleInstance();
             builder.RegisterType<SaveConsumableCommand>().SingleInstance();
+
+            builder.RegisterType<NewAdditionalCostCommand>().SingleInstance();
+            builder.RegisterType<EditAdditionalCostCommand>().SingleInstance();
+            builder.RegisterType<DeleteAdditionalCostCommand>().SingleInstance();
+            builder.RegisterType<SaveAdditionalCostCommand>().SingleInstance();
+
         }
 
         void RegisterViewModels(ContainerBuilder builder)
@@ -57,6 +63,7 @@ namespace EggFarmSystem.Client.Modules.MasterData
             builder.RegisterType<EmployeeEntryViewModel>().InstancePerDependency();
             builder.RegisterType<ConsumableListViewModel>().InstancePerDependency();
             builder.RegisterType<ConsumableEntryViewModel>().InstancePerDependency();
+            builder.RegisterType<AdditionalCostListViewModel>().InstancePerDependency();
         }
 
         void RegisterViews(ContainerBuilder builder)
@@ -70,6 +77,7 @@ namespace EggFarmSystem.Client.Modules.MasterData
             builder.RegisterType<HenHouseListView>().As<IHenHouseListView>().InstancePerDependency();
             builder.RegisterType<ConsumableListView>().As<IConsumableListView>().InstancePerDependency();
             builder.RegisterType<ConsumableEntryView>().As<IConsumableEntryView>().InstancePerDependency();
+            builder.RegisterType<AdditionalCostListView>().As<IAdditionalCostListView>().InstancePerDependency();
         }
     }
 }

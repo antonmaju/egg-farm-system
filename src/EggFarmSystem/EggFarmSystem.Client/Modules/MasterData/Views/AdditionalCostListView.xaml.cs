@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EggFarmSystem.Client.Core.Views;
 using EggFarmSystem.Client.Modules.MasterData.ViewModels;
+using EggFarmSystem.Models;
 
 namespace EggFarmSystem.Client.Modules.MasterData.Views
 {
@@ -28,9 +29,43 @@ namespace EggFarmSystem.Client.Modules.MasterData.Views
             InitializeComponent();
             this.DataContext = model;
             this.viewModel = model;
+            this.NavigationCommands = viewModel.NavigationCommands;
+            SetEventHandlers();
         }
 
-        
+        void SetEventHandlers()
+        {
+            lvCostList.MouseUp +=lvCostList_MouseUp;
+            lvCostList.MouseDoubleClick += lvCostList_MouseDoubleClick;
+        }
+
+        void lvCostList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            viewModel.EditCommand.Execute(null);
+        }
+
+        void lvCostList_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            var selectedCost = lvCostList.SelectedItem as AdditionalCost;
+            if (selectedCost == null)
+                return;
+
+            viewModel.EditCommand.EntityId = selectedCost.Id;
+            viewModel.DeleteCommand.EntityId = selectedCost.Id;
+        }
+
+        void UnsetEventHandlers()
+        {
+            lvCostList.MouseUp -= lvCostList_MouseUp;
+            lvCostList.MouseDoubleClick += lvCostList_MouseDoubleClick;
+        }
+
+        public override void Dispose()
+        {
+            UnsetEventHandlers();
+            base.Dispose();
+        }
+
     }
 
     public interface IAdditionalCostListView
