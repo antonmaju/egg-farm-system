@@ -12,12 +12,16 @@ using EggFarmSystem.Resources;
 
 namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 {
+    /// <summary>
+    /// TODO: refactor duplication
+    /// </summary>
     public class MasterDataViewModel : ViewModelBase
     {
         private bool _isEmployeeInput;
         private bool _isHenInput;
         private bool _isHouseInput;
         private bool _isConsumableInput;
+        private bool _isAdditionalCostInput;
 
         private readonly IMessageBroker messageBroker;
 
@@ -25,12 +29,13 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         private Lazy<IHenHouseListView> houseListProxy;
         private Lazy<IEmployeeListView> employeeListProxy;
         private Lazy<IConsumableListView> consumableListProxy;
-        private Lazy<IAdditionalCostListView> costListView; 
+        private Lazy<IAdditionalCostListView> additionalCostListProxy; 
 
         private Lazy<IHenEntryView> henEntryProxy;
         private Lazy<IHenHouseEntryView> houseEntryProxy;
         private Lazy<IEmployeeEntryView> employeeEntryProxy;
         private Lazy<IConsumableEntryView> consumableEntryProxy;
+        private Lazy<IAdditionalCostEntryView> additionalCostEntryProxy; 
         
         
         public MasterDataViewModel(
@@ -39,7 +44,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             Lazy<IHenHouseListView> houseListProxy,
             Lazy<IEmployeeListView> employeeListProxy,
             Lazy<IConsumableListView> consumableListProxy,
-           // Lazy<IAd> ,
+            Lazy<IAdditionalCostListView> additionalCostListProxy,
+
             Lazy<IHenEntryView> henEntryProxy,
             Lazy<IHenHouseEntryView>  houseEntryProxy,
             Lazy<IEmployeeEntryView> employeeEntryProxy,
@@ -51,12 +57,12 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             this.houseListProxy = houseListProxy;
             this.employeeListProxy = employeeListProxy;
             this.consumableListProxy = consumableListProxy;
+            this.additionalCostListProxy = additionalCostListProxy;
 
             this.henEntryProxy = henEntryProxy;
             this.houseEntryProxy = houseEntryProxy;
             this.employeeEntryProxy = employeeEntryProxy;
             this.consumableEntryProxy = consumableEntryProxy;
-
 
             InitializeCommand();
             SetMessageListeners();
@@ -121,6 +127,17 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             }
         }
 
+        public bool IsAdditionalCostInput
+        {
+            get { return _isAdditionalCostInput; }
+            set {
+                _isAdditionalCostInput = value;
+                if (value)
+                    ResetSelection("AdditionalCost");
+                OnPropertyChanged("IsAdditionalCostInput");
+            }
+        }
+
         void ResetSelection(string mode)
         {
             switch (mode)
@@ -129,24 +146,36 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
                     IsEmployeeInput = false;
                     IsHouseInput = false;
                     IsConsumableInput = false;
+                    IsAdditionalCostInput = false;
                     break;
 
                 case "House":
                     IsHenInput = false;
                     IsEmployeeInput = false;
                     IsConsumableInput = false;
+                    IsAdditionalCostInput = false;
                     break;
 
                 case "Employee":
                     IsHenInput = false;
                     IsHouseInput = false;
                     IsConsumableInput = false;
+                    IsAdditionalCostInput = false;
                     break;
 
                 case "Consumable":
                     IsHenInput = false;
                     IsHouseInput = false;
                     IsEmployeeInput = false;
+                    IsAdditionalCostInput = false;
+                    break;
+
+                case "AdditionalCost":
+                    IsHenInput = false;
+                    IsConsumableInput = false;
+                    IsEmployeeInput = false;
+                    IsAdditionalCostInput = false;
+
                     break;
             }
         }
@@ -159,6 +188,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         public ICommand ConsumableListCommand { get; private set; }
 
+        public ICommand AdditionalCostListCommand { get; private set; }
+
         void InitializeCommand()
         {
             EmployeeListCommand = new DelegateCommand(OnEmployeeListRefresh,param=>true);
@@ -168,6 +199,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             HouseListCommand = new DelegateCommand(OnHouseListRefresh, param => true);
 
             ConsumableListCommand = new DelegateCommand(OnConsumableListRefresh, param => true);
+
+            AdditionalCostListCommand = new DelegateCommand(OnAdditionalCostListRefresh, param => true);
         }
 
         private UserControl content;
@@ -204,6 +237,11 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             messageBroker.Subscribe(CommonMessages.EditConsumableView, OnConsumableEditRequest);
             messageBroker.Subscribe(CommonMessages.SaveConsumableSuccess, OnConsumableListRefresh);
             messageBroker.Subscribe(CommonMessages.DeleteConsumableSuccess, OnConsumableListRefresh);
+            
+            messageBroker.Subscribe(CommonMessages.NewAdditionalCostView, ShowNewAdditionalCost);
+            messageBroker.Subscribe(CommonMessages.EditAdditionalCostView, OnAdditionalCostEditRequest);
+            messageBroker.Subscribe(CommonMessages.SaveAdditionalCostSuccess, OnAdditionalCostListRefresh);
+            messageBroker.Subscribe(CommonMessages.DeleteAdditionalCostSuccess, OnAdditionalCostListRefresh);
         }
 
         void UnsetMessageListeners()
@@ -229,6 +267,11 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             messageBroker.Unsubscribe(CommonMessages.EditConsumableView, OnConsumableEditRequest);
             messageBroker.Unsubscribe(CommonMessages.SaveConsumableSuccess, OnConsumableListRefresh);
             messageBroker.Unsubscribe(CommonMessages.DeleteConsumableSuccess, OnConsumableListRefresh);
+
+            messageBroker.Unsubscribe(CommonMessages.NewAdditionalCostView, ShowNewAdditionalCost);
+            messageBroker.Unsubscribe(CommonMessages.EditAdditionalCostView, OnAdditionalCostEditRequest);
+            messageBroker.Unsubscribe(CommonMessages.SaveAdditionalCostSuccess, OnAdditionalCostListRefresh);
+            messageBroker.Unsubscribe(CommonMessages.DeleteAdditionalCostSuccess, OnAdditionalCostListRefresh);
         }
 
         private void OnMasterDataViewChange(object param)
@@ -348,6 +391,31 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             var view = consumableEntryProxy.Value as UserControlBase;
             Content = view;
             messageBroker.Publish(CommonMessages.LoadConsumable, param);
+            messageBroker.Publish(CommonMessages.ChangeMainActions, view.NavigationCommands);
+        }
+
+        void ShowNewAdditionalCost(object param)
+        {
+            var view = additionalCostEntryProxy.Value as UserControlBase;
+            Content = view;
+            messageBroker.Publish(CommonMessages.NewAdditionalCostEntry, null);
+            messageBroker.Publish(CommonMessages.ChangeMainActions, view.NavigationCommands);
+        }
+
+        void OnAdditionalCostEditRequest(object param)
+        {
+            var view = additionalCostEntryProxy.Value as UserControlBase;
+            Content = view;
+            messageBroker.Publish(CommonMessages.LoadAdditionalCost, param);
+            messageBroker.Publish(CommonMessages.ChangeMainActions, view.NavigationCommands);
+        }
+
+        void OnAdditionalCostListRefresh(object param)
+        {
+            IsAdditionalCostInput = true;
+            var view = additionalCostListProxy.Value as UserControlBase;
+            Content = view;
+            messageBroker.Publish(CommonMessages.RefreshAdditionalCostList, null);
             messageBroker.Publish(CommonMessages.ChangeMainActions, view.NavigationCommands);
         }
 

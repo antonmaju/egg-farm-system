@@ -152,6 +152,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\MasterData\Views\AdditionalCostEntryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\MasterData\Views\AdditionalCostListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -274,7 +278,11 @@
     <Compile Include="Modules\MasterData\Converters\ConsumableTypeConverter.cs" />
     <Compile Include="Modules\MasterData\MasterDataTypes.cs" />
     <Compile Include="Modules\MasterData\ModelExtensions.cs" />
+    <Compile Include="Modules\MasterData\ViewModels\AdditionalCostEntryViewModel.cs" />
     <Compile Include="Modules\MasterData\ViewModels\AdditionalCostListViewModel.cs" />
+    <Compile Include="Modules\MasterData\Views\AdditionalCostEntryView.xaml.cs">
+      <DependentUpon>AdditionalCostEntryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\MasterData\Views\AdditionalCostListView.xaml.cs">
       <DependentUpon>AdditionalCostListView.xaml</DependentUpon>
     </Compile>
