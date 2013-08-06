@@ -28,6 +28,11 @@
                           IsChecked="{Binding Path=IsConsumableInput}"
                           Command="{Binding Path=ConsumableListCommand}"
                           x:Name="tglConsumable" Content="{Binding Path=ConsumableText}" />
+            <ToggleButton Style="{StaticResource SidebarButton}"
+                          IsChecked="{Binding Path=IsAdditionalCostInput}"
+                          Command="{Binding Path=AdditionalCostListCommand}"
+                          x:Name="lstAdditionalCost" Content="{Binding Path=AdditionalCostText}"
+                          />
         </StackPanel>
         <ScrollViewer Grid.Column="1" x:Name="scrMasterContent"
                       HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True"

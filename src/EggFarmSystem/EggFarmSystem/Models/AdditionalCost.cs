@@ -23,7 +23,7 @@ namespace EggFarmSystem.Models
             if(string.IsNullOrWhiteSpace(Name))
                 errors.Add(new ErrorInfo("Name", "AdditionalCost_RequireName"));
 
-            if(Value <= 0)
+            if(Value < 0)
                 errors.Add(new ErrorInfo("Value", "AdditionalCost_RequireValue"));
 
             return errors;

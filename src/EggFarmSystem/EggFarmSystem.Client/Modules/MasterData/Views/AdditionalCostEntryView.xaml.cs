@@ -11,17 +11,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using EggFarmSystem.Client.Core.Views;
+using EggFarmSystem.Client.Modules.MasterData.ViewModels;
 
 namespace EggFarmSystem.Client.Modules.MasterData.Views
 {
     /// <summary>
     /// Interaction logic for AdditionalCostEntryView.xaml
     /// </summary>
-    public partial class AdditionalCostEntryView : UserControl
+    public partial class AdditionalCostEntryView : UserControlBase, IAdditionalCostEntryView
     {
-        public AdditionalCostEntryView()
+        public AdditionalCostEntryView(AdditionalCostEntryViewModel model)
         {
             InitializeComponent();
+            this.DataContext = model;
+            this.NavigationCommands = model.NavigationCommands;
         }
     }
 

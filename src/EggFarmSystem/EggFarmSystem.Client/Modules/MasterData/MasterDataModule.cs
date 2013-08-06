@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AutoMapper;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.MasterData.Commands;
+using EggFarmSystem.Client.Modules.MasterData.ViewModels;
+using EggFarmSystem.Models;
 using EggFarmSystem.Resources;
 
 namespace EggFarmSystem.Client.Modules.MasterData
@@ -34,7 +37,12 @@ namespace EggFarmSystem.Client.Modules.MasterData
 
         public void Initialize()
         {
+            RegisterMappings();
+        }
 
+        void RegisterMappings()
+        {
+            Mapper.CreateMap<AdditionalCostEntryViewModel, AdditionalCost>();
         }
     }
 }

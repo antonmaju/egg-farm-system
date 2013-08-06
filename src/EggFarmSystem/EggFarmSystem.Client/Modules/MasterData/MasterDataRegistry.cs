@@ -64,6 +64,7 @@ namespace EggFarmSystem.Client.Modules.MasterData
             builder.RegisterType<ConsumableListViewModel>().InstancePerDependency();
             builder.RegisterType<ConsumableEntryViewModel>().InstancePerDependency();
             builder.RegisterType<AdditionalCostListViewModel>().InstancePerDependency();
+            builder.RegisterType<AdditionalCostEntryViewModel>().InstancePerDependency();
         }
 
         void RegisterViews(ContainerBuilder builder)
@@ -78,6 +79,7 @@ namespace EggFarmSystem.Client.Modules.MasterData
             builder.RegisterType<ConsumableListView>().As<IConsumableListView>().InstancePerDependency();
             builder.RegisterType<ConsumableEntryView>().As<IConsumableEntryView>().InstancePerDependency();
             builder.RegisterType<AdditionalCostListView>().As<IAdditionalCostListView>().InstancePerDependency();
+            builder.RegisterType<AdditionalCostEntryView>().As<IAdditionalCostEntryView>().InstancePerDependency();
         }
     }
 }

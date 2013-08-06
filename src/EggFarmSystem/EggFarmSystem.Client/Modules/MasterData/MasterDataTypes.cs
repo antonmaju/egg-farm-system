@@ -10,6 +10,7 @@ namespace EggFarmSystem.Client.Modules.MasterData
         Hen,
         HenHouse,
         Employee,
-        Consumable
+        Consumable,
+        AdditionalCost
     }
 }

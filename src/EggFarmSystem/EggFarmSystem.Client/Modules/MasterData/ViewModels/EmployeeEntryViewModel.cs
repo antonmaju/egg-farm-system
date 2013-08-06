@@ -152,7 +152,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         void OnSaveEmployeeFailed(object param)
         {
-            MessageBox.Show(param.ToString());
+            MessageBox.Show(LanguageHelper.TryGetErrorMessage(param));
         }
 
         void UnsubscribeMessages()

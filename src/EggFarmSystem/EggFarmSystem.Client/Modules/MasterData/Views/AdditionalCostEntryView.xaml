@@ -1,11 +1,30 @@
-﻿<UserControl x:Class="EggFarmSystem.Client.Modules.MasterData.Views.AdditionalCostEntryView"
+﻿<views:UserControlBase x:Class="EggFarmSystem.Client.Modules.MasterData.Views.AdditionalCostEntryView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:EggFarmSystem.Client.Core.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="1" Style="{StaticResource MasterDataLabel}" TabIndex="0"
+               Content="{Binding Path=NameText}" Target="{Binding ElementName=txtName}" />
+        <TextBox Grid.Row="1" Style="{StaticResource FormTextBox}" Grid.Column="1" x:Name="txtName" 
+                Text="{Binding Path=Name}" TabIndex="1" />
+        <Label Grid.Row="2" Style="{StaticResource MasterDataLabel}" TabIndex="2"
+               Content="{Binding Path=ValueText}" Target="{Binding ElementName=txtValue}" />
+        <TextBox Grid.Row="2" Style="{StaticResource FormTextBox}" Grid.Column="1" x:Name="txtValue"
+               Text="{Binding Path=Value}" TabIndex="3"  />
+        
     </Grid>
-</UserControl>
+</views:UserControlBase>

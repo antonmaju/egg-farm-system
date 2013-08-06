@@ -49,7 +49,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             Lazy<IHenEntryView> henEntryProxy,
             Lazy<IHenHouseEntryView>  houseEntryProxy,
             Lazy<IEmployeeEntryView> employeeEntryProxy,
-            Lazy<IConsumableEntryView> consumableEntryProxy 
+            Lazy<IConsumableEntryView> consumableEntryProxy,
+            Lazy<IAdditionalCostEntryView> additionalCostEntryProxy 
             )
         {
             this.messageBroker = messageBroker;
@@ -63,6 +64,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             this.houseEntryProxy = houseEntryProxy;
             this.employeeEntryProxy = employeeEntryProxy;
             this.consumableEntryProxy = consumableEntryProxy;
+            this.additionalCostEntryProxy = additionalCostEntryProxy;
 
             InitializeCommand();
             SetMessageListeners();
@@ -82,6 +84,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         public string EmployeeText { get { return LanguageData.Employee_Title; } }
 
         public string ConsumableText { get { return LanguageData.Consumable_Title; } }
+
+        public string AdditionalCostText { get { return LanguageData.AdditionalCost_Title; } }
         
         #endregion
 
@@ -291,6 +295,9 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
                     OnConsumableListRefresh(null);
                     break;
 
+                case MasterDataTypes.AdditionalCost:
+                    OnAdditionalCostListRefresh(null);
+                    break;
             }
         }
 
