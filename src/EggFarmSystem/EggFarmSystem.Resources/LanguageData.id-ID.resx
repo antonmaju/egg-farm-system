@@ -342,4 +342,31 @@
   <data name="Usage_DuplicateDate" xml:space="preserve">
     <value>Tanggal duplikat</value>
   </data>
+  <data name="AdditionalCost_NameField" xml:space="preserve">
+    <value>Nama</value>
+  </data>
+  <data name="AdditionalCost_RequireName" xml:space="preserve">
+    <value>Nama diperlukan</value>
+  </data>
+  <data name="AdditionalCost_RequireValue" xml:space="preserve">
+    <value>Jumlah diperlukan</value>
+  </data>
+  <data name="AdditionalCost_Title" xml:space="preserve">
+    <value>Biaya Lain-Lain</value>
+  </data>
+  <data name="AdditionalCost_ValueField" xml:space="preserve">
+    <value>Jumlah</value>
+  </data>
+  <data name="EmployeeCostDetail_DescriptionField" xml:space="preserve">
+    <value>Keterangan</value>
+  </data>
+  <data name="EmployeeCostDetail_RequireEmployee" xml:space="preserve">
+    <value>Karyawan diperlukan</value>
+  </data>
+  <data name="EmployeeCost_DuplicateEmployee" xml:space="preserve">
+    <value>Data karyawan diperlukan</value>
+  </data>
+  <data name="EmployeeCost_RequireDetails" xml:space="preserve">
+    <value>Detail diperlukan</value>
+  </data>
 </root>
