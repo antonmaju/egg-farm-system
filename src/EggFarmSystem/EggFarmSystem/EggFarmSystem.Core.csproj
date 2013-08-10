@@ -75,7 +75,9 @@
     <Compile Include="Models\Consumable.cs" />
     <Compile Include="Models\ConsumableUsage.cs" />
     <Compile Include="Models\Data\ConsumableUsage.cs" />
+    <Compile Include="Models\Data\EggProduction.cs" />
     <Compile Include="Models\Data\EmployeeCost.cs" />
+    <Compile Include="Models\EggProduction.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeCost.cs" />
     <Compile Include="Models\Entity.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Services\AdditionalCostService.cs" />
     <Compile Include="Services\ConsumableUsageService.cs" />
     <Compile Include="Services\ConsumableService.cs" />
+    <Compile Include="Services\EggProductionService.cs" />
     <Compile Include="Services\EmployeeCostService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\FeedService.cs" />

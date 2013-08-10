@@ -232,6 +232,69 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date is duplicate.
+        /// </summary>
+        public static string EggProduction_DuplicateDate {
+            get {
+                return ResourceManager.GetString("EggProduction_DuplicateDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date is invalid.
+        /// </summary>
+        public static string EggProduction_InvalidDate {
+            get {
+                return ResourceManager.GetString("EggProduction_InvalidDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details is invalid.
+        /// </summary>
+        public static string EggProduction_RequireDetails {
+            get {
+                return ResourceManager.GetString("EggProduction_RequireDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cracked egg count is required.
+        /// </summary>
+        public static string EggProductionDetail_InvalidCrackedCount {
+            get {
+                return ResourceManager.GetString("EggProductionDetail_InvalidCrackedCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fcr value is required.
+        /// </summary>
+        public static string EggProductionDetail_InvalidFcr {
+            get {
+                return ResourceManager.GetString("EggProductionDetail_InvalidFcr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good egg count is required.
+        /// </summary>
+        public static string EggProductionDetail_InvalidGoodEggCount {
+            get {
+                return ResourceManager.GetString("EggProductionDetail_InvalidGoodEggCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Retail quantity is required.
+        /// </summary>
+        public static string EggProductionDetail_InvalidRetailQuantity {
+            get {
+                return ResourceManager.GetString("EggProductionDetail_InvalidRetailQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active.
         /// </summary>
         public static string Employee_ActiveField {
