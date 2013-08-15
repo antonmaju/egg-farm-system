@@ -10,6 +10,8 @@ namespace EggFarmSystem.Services
 {
     public interface IEggProductionService
     {
+        SearchResult<EggProduction> Search(DateRangeSearchInfo searchInfo);
+
         EggProduction Get(Guid id);
 
         EggProduction GetByDate(DateTime date);

@@ -16,7 +16,7 @@ namespace EggFarmSystem.Models.Data
 
         public Guid HouseId { get; set; }
 
-        public int GoofEggCount { get; set; }
+        public int GoodEggCount { get; set; }
 
         public decimal RetailQuantity { get; set; }
 
