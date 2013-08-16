@@ -8,6 +8,7 @@
         <Setter Property="Padding" Value="3" />
         <Setter Property="Width" Value="300" />
         <Setter Property="Margin" Value="10" />
+        
     </Style>
     
    
