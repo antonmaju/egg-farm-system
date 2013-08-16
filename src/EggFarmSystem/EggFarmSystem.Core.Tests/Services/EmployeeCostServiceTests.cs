@@ -313,8 +313,8 @@ namespace EggFarmSystem.Core.Tests.Services
         {
             using (var conn = factory.OpenDbConnection())
             {
-                conn.DeleteAll<Models.EmployeeCostDetail>();
-                conn.DeleteAll<Models.EmployeeCost>();
+                conn.DeleteAll<Models.Data.EmployeeCostDetail>();
+                conn.DeleteAll<Models.Data.EmployeeCost>();
                 conn.DeleteAll<Models.Employee>();
             }
         }

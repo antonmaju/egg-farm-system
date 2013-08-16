@@ -15,9 +15,10 @@
                     <GridView.Columns>
                         <GridViewColumn Header="{Binding Path=NameText}" 
                                         DisplayMemberBinding="{Binding Path=Name}"
-                                        Width="300" />
+                                        Width="300"  />
                         <GridViewColumn Header="{Binding Path=ValueText}"
                                        DisplayMemberBinding="{Binding Path=Value}"
+                                       
                            Width="300" />
                     </GridView.Columns>
                 </GridView>
