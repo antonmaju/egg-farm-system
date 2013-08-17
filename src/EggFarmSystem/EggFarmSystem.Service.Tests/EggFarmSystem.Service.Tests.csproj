@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AdditionalCostControllerTests.cs" />
     <Compile Include="Controllers\ControllerTestBase.cs" />
+    <Compile Include="Controllers\EggProductionControllerTests.cs" />
     <Compile Include="Controllers\EmployeeCostControllerTests.cs" />
     <Compile Include="Controllers\HensControllerTests.cs" />
     <Compile Include="Controllers\HenHousesControllerTests.cs" />

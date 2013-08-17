@@ -72,7 +72,7 @@ namespace EggFarmSystem.Services
 
         public EggProduction Get(Guid id)
         {
-            using (var conn = factory.CreateDbConnection())
+            using (var conn = factory.OpenDbConnection())
             {
                 var data = conn.GetById<Models.Data.EggProduction>(id.ToString());
 
