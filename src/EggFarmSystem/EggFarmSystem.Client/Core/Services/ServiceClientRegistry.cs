@@ -44,6 +44,7 @@ namespace EggFarmSystem.Client.Core.Services
             builder.RegisterType<ConsumableUsageService>().As<IConsumableUsageService>().SingleInstance();
             builder.RegisterType<EmployeeCostService>().As<IEmployeeCostService>().SingleInstance();
             builder.RegisterType<AdditionalCostService>().As<IAdditionalCostService>().SingleInstance();
+            builder.RegisterType<EggProductionService>().As<IEggProductionService>().SingleInstance();
         }
 
         /// <summary>
@@ -59,6 +60,7 @@ namespace EggFarmSystem.Client.Core.Services
             builder.RegisterType<ConsumableUsageServiceClient>().As<IConsumableUsageService>().SingleInstance();
             builder.RegisterType<EmployeeCostServiceClient>().As<IEmployeeCostService>().SingleInstance();
             builder.RegisterType<AdditionalCostServiceClient>().As<IAdditionalCostService>().SingleInstance();
+            builder.RegisterType<EggProductionServiceClient>().As<IEggProductionService>().SingleInstance();
         }
     }
 }

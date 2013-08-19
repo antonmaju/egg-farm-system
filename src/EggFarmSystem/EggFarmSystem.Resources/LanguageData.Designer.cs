@@ -259,6 +259,15 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Egg Production.
+        /// </summary>
+        public static string EggProduction_Title {
+            get {
+                return ResourceManager.GetString("EggProduction_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cracked egg count is required.
         /// </summary>
         public static string EggProductionDetail_InvalidCrackedCount {

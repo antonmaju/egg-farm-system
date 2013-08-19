@@ -195,6 +195,9 @@
   <data name="EggProduction_RequireDetails" xml:space="preserve">
     <value>Details is invalid</value>
   </data>
+  <data name="EggProduction_Title" xml:space="preserve">
+    <value>Egg Production</value>
+  </data>
   <data name="EmployeeCostDetail_DescriptionField" xml:space="preserve">
     <value>Description</value>
   </data>
