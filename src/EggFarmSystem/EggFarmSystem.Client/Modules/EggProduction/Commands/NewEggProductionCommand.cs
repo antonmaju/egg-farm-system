@@ -13,7 +13,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.Commands
     {
         private readonly IMessageBroker broker;
     
-        public NewEggProductionCommand(IMessageBroker messageBroker)
+        public NewEggProductionCommand(IMessageBroker broker)
         {
             Text = () => LanguageData.General_New;
 
@@ -23,7 +23,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.Commands
         public override void Execute(object parameter)
         {
             //broker.Publish(CommonMessages.ChangeMainView, typeof(IEggProductionEntryView));
-            broker.Publish(CommonMessages.NewEmployeeCostEntry, null);
+            broker.Publish(CommonMessages.NewEggProductionView, null);
         } 
     }
 }

@@ -132,6 +132,7 @@
     <Compile Include="Core\Services\AdditionalCostServiceClient.cs" />
     <Compile Include="Core\Services\ConsumableServiceClient.cs" />
     <Compile Include="Core\Services\ConsumableUsageServiceClient.cs" />
+    <Compile Include="Core\Services\EggProductionServiceClient.cs" />
     <Compile Include="Core\Services\EmployeeCostServiceClient.cs" />
     <Compile Include="Core\Services\EmployeeServiceClient.cs" />
     <Compile Include="Core\Services\HenHouseServiceClient.cs" />
@@ -144,6 +145,10 @@
     <Compile Include="Core\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Modules\EggProduction\Views\EggProductionListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\EmployeeCost\Views\EmployeeCostEntryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -255,6 +260,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Views\UserControlBase.cs" />
+    <Compile Include="Modules\EggProduction\Commands\DeleteEggProductionCommand.cs" />
+    <Compile Include="Modules\EggProduction\Commands\EditEggProductionCommand.cs" />
+    <Compile Include="Modules\EggProduction\Commands\NewEggProductionCommand.cs" />
+    <Compile Include="Modules\EggProduction\Commands\SaveEggProductionCommand.cs" />
+    <Compile Include="Modules\EggProduction\Commands\ShowEggProductionCommand.cs" />
+    <Compile Include="Modules\EggProduction\EggProductionModule.cs" />
+    <Compile Include="Modules\EggProduction\EggProductionRegistry.cs" />
+    <Compile Include="Modules\EggProduction\ViewModels\EggProductionDetailViewModel.cs" />
+    <Compile Include="Modules\EggProduction\ViewModels\EggProductionEntryViewModel.cs" />
+    <Compile Include="Modules\EggProduction\ViewModels\EggProductionListViewModel.cs" />
+    <Compile Include="Modules\EggProduction\Views\EggProductionListView.xaml.cs">
+      <DependentUpon>EggProductionListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\EmployeeCost\Commands\DeleteEmployeeCostCommand.cs" />
     <Compile Include="Modules\EmployeeCost\Commands\EditEmployeeCostCommand.cs" />
     <Compile Include="Modules\EmployeeCost\Commands\NewEmployeeCostCommand.cs" />
