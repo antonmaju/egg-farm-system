@@ -18,7 +18,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction
                 {
                     new MenuInfo
                         {
-                            CommandType = typeof(ShowEggProductionCommand),
+                            CommandType = typeof(ShowEggProductionListCommand),
                             Title = () => LanguageData.EggProduction_Title
                         }
                 };

@@ -26,7 +26,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction
             builder.RegisterType<EditEggProductionCommand>().SingleInstance();
             builder.RegisterType<NewEggProductionCommand>().SingleInstance();
             builder.RegisterType<SaveEggProductionCommand>().SingleInstance();
-            builder.RegisterType<ShowEggProductionCommand>().SingleInstance();
+            builder.RegisterType<ShowEggProductionListCommand>().SingleInstance();
         }
 
         void RegisterViewModels(ContainerBuilder builder)

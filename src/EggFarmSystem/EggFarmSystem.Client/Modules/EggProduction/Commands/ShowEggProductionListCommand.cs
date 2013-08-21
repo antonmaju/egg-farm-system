@@ -10,11 +10,11 @@ using EggFarmSystem.Resources;
 
 namespace EggFarmSystem.Client.Modules.EggProduction.Commands
 {
-    public class ShowEggProductionCommand : CommandBase
+    public class ShowEggProductionListCommand : CommandBase
     {
         private readonly IMessageBroker broker;
 
-        public ShowEggProductionCommand(IMessageBroker broker)
+        public ShowEggProductionListCommand(IMessageBroker broker)
         {
             Text = () => LanguageData.EggProduction_Title;
 

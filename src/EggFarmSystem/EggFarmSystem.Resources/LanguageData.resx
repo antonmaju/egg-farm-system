@@ -174,6 +174,18 @@
   <data name="Depreciation_Title" xml:space="preserve">
     <value>Depreciation</value>
   </data>
+  <data name="EggProductionDetail_CrackedEggCountField" xml:space="preserve">
+    <value>Cracked Egg Count</value>
+  </data>
+  <data name="EggProductionDetail_FcrField" xml:space="preserve">
+    <value>Fcr</value>
+  </data>
+  <data name="EggProductionDetail_GoodEggCountField" xml:space="preserve">
+    <value>Good Egg Count</value>
+  </data>
+  <data name="EggProductionDetail_HouseField" xml:space="preserve">
+    <value>House</value>
+  </data>
   <data name="EggProductionDetail_InvalidCrackedCount" xml:space="preserve">
     <value>Cracked egg count is required</value>
   </data>
@@ -185,6 +197,12 @@
   </data>
   <data name="EggProductionDetail_InvalidRetailQuantity" xml:space="preserve">
     <value>Retail quantity is required</value>
+  </data>
+  <data name="EggProductionDetail_RetailQuantityField" xml:space="preserve">
+    <value>Retail Quantity</value>
+  </data>
+  <data name="EggProduction_DateField" xml:space="preserve">
+    <value>Date</value>
   </data>
   <data name="EggProduction_DuplicateDate" xml:space="preserve">
     <value>Date is duplicate</value>

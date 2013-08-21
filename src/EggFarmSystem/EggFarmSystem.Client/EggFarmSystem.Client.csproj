@@ -264,7 +264,7 @@
     <Compile Include="Modules\EggProduction\Commands\EditEggProductionCommand.cs" />
     <Compile Include="Modules\EggProduction\Commands\NewEggProductionCommand.cs" />
     <Compile Include="Modules\EggProduction\Commands\SaveEggProductionCommand.cs" />
-    <Compile Include="Modules\EggProduction\Commands\ShowEggProductionCommand.cs" />
+    <Compile Include="Modules\EggProduction\Commands\ShowEggProductionListCommand.cs" />
     <Compile Include="Modules\EggProduction\EggProductionModule.cs" />
     <Compile Include="Modules\EggProduction\EggProductionRegistry.cs" />
     <Compile Include="Modules\EggProduction\ViewModels\EggProductionDetailViewModel.cs" />

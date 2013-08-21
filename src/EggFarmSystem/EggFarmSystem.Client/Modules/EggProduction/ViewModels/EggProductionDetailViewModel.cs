@@ -14,6 +14,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
         private decimal retailQuantity;
         private decimal fcr;
         private int crackingEggCount;
+        private decimal feedTotal;
 
         public Guid HouseId
         {
@@ -65,6 +66,16 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
             }
         }
 
+        public decimal FeedTotal
+        {
+            get { return feedTotal; }
+            set
+            {
+                feedTotal = value;
+                OnPropertyChanged("FeedTotal");
+            }
+        }
+
         public override string this[string columnName]
         {
             get 
@@ -113,5 +124,6 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
             }
         }
 
+       
     }
 }

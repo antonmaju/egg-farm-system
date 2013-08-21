@@ -232,6 +232,15 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string EggProduction_DateField {
+            get {
+                return ResourceManager.GetString("EggProduction_DateField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date is duplicate.
         /// </summary>
         public static string EggProduction_DuplicateDate {
@@ -268,6 +277,42 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cracked Egg Count.
+        /// </summary>
+        public static string EggProductionDetail_CrackedEggCountField {
+            get {
+                return ResourceManager.GetString("EggProductionDetail_CrackedEggCountField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fcr.
+        /// </summary>
+        public static string EggProductionDetail_FcrField {
+            get {
+                return ResourceManager.GetString("EggProductionDetail_FcrField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good Egg Count.
+        /// </summary>
+        public static string EggProductionDetail_GoodEggCountField {
+            get {
+                return ResourceManager.GetString("EggProductionDetail_GoodEggCountField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to House.
+        /// </summary>
+        public static string EggProductionDetail_HouseField {
+            get {
+                return ResourceManager.GetString("EggProductionDetail_HouseField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cracked egg count is required.
         /// </summary>
         public static string EggProductionDetail_InvalidCrackedCount {
@@ -300,6 +345,15 @@ namespace EggFarmSystem.Resources {
         public static string EggProductionDetail_InvalidRetailQuantity {
             get {
                 return ResourceManager.GetString("EggProductionDetail_InvalidRetailQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Retail Quantity.
+        /// </summary>
+        public static string EggProductionDetail_RetailQuantityField {
+            get {
+                return ResourceManager.GetString("EggProductionDetail_RetailQuantityField", resourceCulture);
             }
         }
         
