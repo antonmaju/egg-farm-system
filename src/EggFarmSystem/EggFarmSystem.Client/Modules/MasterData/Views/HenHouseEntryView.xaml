@@ -28,15 +28,15 @@
               Text="{Binding Path=Name, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}"   />
 
                 <Label Grid.Row="2"  Style="{StaticResource MasterDataLabel}" Content="{Binding Path=PurchaseCostField}" />
-                <TextBox Grid.Row="2" Style="{StaticResource FormTextBox}" Grid.Column="1"
+                <TextBox Grid.Row="2" Style="{StaticResource NumericTextBox}" Grid.Column="1"
                  Text="{Binding Path=PurchaseCost, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}"/>
 
                 <Label Grid.Row="3"  Style="{StaticResource MasterDataLabel}" Content="{Binding Path=YearUsageField}" />
-                <TextBox Grid.Row="3" Style="{StaticResource FormTextBoxSmall}" Grid.Column="1" 
+                <TextBox Grid.Row="3" Style="{StaticResource NumericTextBoxSmall}" Grid.Column="1" 
                  Text="{Binding Path=YearUsage, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}" />
 
                 <Label Grid.Row="4"  Style="{StaticResource MasterDataLabel}" Content="{Binding Path=DepreciationField}" />
-                <TextBox Grid.Row="4" Style="{StaticResource FormTextBox}" Grid.Column="1" 
+                <TextBox Grid.Row="4" Style="{StaticResource NumericTextBox}" Grid.Column="1" 
                  Text="{Binding Path=Depreciation, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}" />
 
                 <Label Grid.Row="5"  Style="{StaticResource MasterDataLabel}" Content="{Binding Path=ActiveField}" />
