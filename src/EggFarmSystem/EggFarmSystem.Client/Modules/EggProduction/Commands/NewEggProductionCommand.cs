@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
-
+using EggFarmSystem.Client.Modules.EggProduction.Views;
 using EggFarmSystem.Resources;
 
 namespace EggFarmSystem.Client.Modules.EggProduction.Commands
@@ -22,7 +22,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.Commands
 
         public override void Execute(object parameter)
         {
-            //broker.Publish(CommonMessages.ChangeMainView, typeof(IEggProductionEntryView));
+            broker.Publish(CommonMessages.ChangeMainView, typeof(IEggProductionEntryView));
             broker.Publish(CommonMessages.NewEggProductionView, null);
         } 
     }

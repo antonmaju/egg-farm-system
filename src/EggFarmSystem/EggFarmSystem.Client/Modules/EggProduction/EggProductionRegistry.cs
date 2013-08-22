@@ -32,11 +32,13 @@ namespace EggFarmSystem.Client.Modules.EggProduction
         void RegisterViewModels(ContainerBuilder builder)
         {
             builder.RegisterType<EggProductionListViewModel>().InstancePerDependency();
+            builder.RegisterType<EggProductionEntryViewModel>().InstancePerDependency();
         }
 
         void RegisterViews(ContainerBuilder builder)
         {
             builder.RegisterType<EggProductionListView>().As<IEggProductionListView>().InstancePerDependency();
+            builder.RegisterType<EggProductionEntryView>().As<IEggProductionEntryView>().InstancePerDependency();
         }
     }
 }

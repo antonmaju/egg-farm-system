@@ -145,6 +145,10 @@
     <Compile Include="Core\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Modules\EggProduction\Views\EggProductionEntryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\EggProduction\Views\EggProductionListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -270,6 +274,9 @@
     <Compile Include="Modules\EggProduction\ViewModels\EggProductionDetailViewModel.cs" />
     <Compile Include="Modules\EggProduction\ViewModels\EggProductionEntryViewModel.cs" />
     <Compile Include="Modules\EggProduction\ViewModels\EggProductionListViewModel.cs" />
+    <Compile Include="Modules\EggProduction\Views\EggProductionEntryView.xaml.cs">
+      <DependentUpon>EggProductionEntryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\EggProduction\Views\EggProductionListView.xaml.cs">
       <DependentUpon>EggProductionListView.xaml</DependentUpon>
     </Compile>

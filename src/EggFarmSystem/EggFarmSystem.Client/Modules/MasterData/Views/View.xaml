@@ -37,7 +37,8 @@
         <ScrollViewer Grid.Column="1" x:Name="scrMasterContent"
                       HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True"
                        Content="{Binding Path=Content, UpdateSourceTrigger=PropertyChanged}">
-            
+
         </ScrollViewer>
+
     </Grid>
 </views:UserControlBase>
