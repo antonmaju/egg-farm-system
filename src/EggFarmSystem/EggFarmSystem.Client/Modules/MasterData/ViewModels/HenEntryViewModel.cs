@@ -119,8 +119,9 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         {
             get { return name; }
             set { name = value;
-                hen.Name = name;
                 OnPropertyChanged("Name");
+                hen.Name = name;
+                
             }
         }
 
@@ -170,6 +171,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         public override string this[string columnName]
         {
+
             get
             {
                 string result = null;
@@ -177,15 +179,14 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
                 switch (columnName)
                 {
                     case "Name":
-                        if (string.IsNullOrWhiteSpace(Name))
-                            result = LanguageData.Hen_RequireName;
+                        if (string.IsNullOrWhiteSpace(Name)) 
+                                result = LanguageData.Hen_RequireName;
                         break;
                     case "Type":
                         if (string.IsNullOrWhiteSpace(Type))
                             result = LanguageData.Hen_RequireType;
                         break;
                 }
-
                 return result;
             }
         }
@@ -224,19 +225,19 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         void OnNewHen(object param)
         {
-            Id = Guid.Empty;
-            Name = string.Empty;
-            Type = string.Empty;
-            Count = 0;
-            Active = true;
-            Cost = 0;
-            HouseId = Guid.Empty;
+           Id = Guid.Empty;
+           Name = string.Empty;
+           Type = string.Empty;
+           Count = 0;
+           Active = true;
+           Cost = 0;
+           HouseId = Guid.Empty;
         }
 
         void UnsubscribeMessages()
         {
             messageBroker.Unsubscribe(CommonMessages.NewHenEntry, OnNewHen);
-            messageBroker.Subscribe(CommonMessages.LoadHen, OnEditHen);
+            messageBroker.Unsubscribe(CommonMessages.LoadHen, OnEditHen);
             messageBroker.Unsubscribe(CommonMessages.HenSavingFailed, OnHenSavingFailed);
             messageBroker.Unsubscribe(CommonMessages.SaveHouseSuccess, OnRefreshHouseList);
             messageBroker.Unsubscribe(CommonMessages.DeleteHouseSuccess, OnRefreshHouseList);

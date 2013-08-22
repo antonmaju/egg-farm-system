@@ -23,13 +23,13 @@ namespace EggFarmSystem.Models
         {
             var errors = new List<ErrorInfo>();
 
-            if(string.IsNullOrWhiteSpace(Name))
+            if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrEmpty(Name)) 
                 errors.Add(new ErrorInfo("Name", "Hen_RequireName"));
 
             if(string.IsNullOrWhiteSpace(Type))
                 errors.Add(new ErrorInfo("Type","Hen_RequireType"));
 
-            if(Cost <= 0)
+            if(Cost==0)
                 errors.Add(new ErrorInfo("Cost", "Hen_RequireCost"));
 
             return errors;
