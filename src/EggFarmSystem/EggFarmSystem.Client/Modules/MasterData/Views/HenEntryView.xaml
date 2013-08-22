@@ -45,7 +45,7 @@
 
                 <Label Grid.Row="4"  Style="{StaticResource MasterDataLabel}"
                Content="{Binding Path=CostText}"/>
-                <TextBox Grid.Row="4" Style="{StaticResource FormTextBox}" Grid.Column="1" 
+                <TextBox Grid.Row="4" Style="{StaticResource NumericTextBox}" Grid.Column="1" 
                Text="{Binding Path=Cost, ValidatesOnDataErrors=True, Mode=TwoWay}"  />
 
                 <Label Grid.Row="5"  Style="{StaticResource MasterDataLabel}"
@@ -55,7 +55,7 @@
 
                 <Label Grid.Row="6"  Style="{StaticResource MasterDataLabel}"
                Content="{Binding Path=CountText}" />
-                <TextBox Grid.Row="6" Style="{StaticResource FormTextBoxSmall}" Grid.Column="1"
+                <TextBox Grid.Row="6" Style="{StaticResource NumericTextBoxSmall}" Grid.Column="1"
               Text="{Binding Path=Count,Mode=TwoWay, ValidatesOnDataErrors=True,
             NotifyOnValidationError=True}"   />
             </Grid>

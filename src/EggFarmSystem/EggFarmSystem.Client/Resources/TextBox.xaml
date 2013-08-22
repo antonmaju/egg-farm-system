@@ -36,4 +36,12 @@
         <Setter Property="Width" Value="100" />
     </Style>
 
+    <Style TargetType="TextBox" x:Key="NumericTextBox" BasedOn="{StaticResource FormTextBox}" >
+        <Setter Property="TextAlignment" Value="Right" />
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="NumericTextBoxSmall" BasedOn="{StaticResource FormTextBoxSmall}" >
+        <Setter Property="TextAlignment" Value="Right" />
+    </Style>
+
 </ResourceDictionary>
