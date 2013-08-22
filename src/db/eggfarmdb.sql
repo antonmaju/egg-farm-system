@@ -81,6 +81,33 @@ CREATE TABLE `consumableusagedetail` (
   CONSTRAINT `consumableusagedetail_ibfk_3` FOREIGN KEY (`ConsumableId`) REFERENCES `consumable` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/*Table structure for table `eggproduction` */
+
+DROP TABLE IF EXISTS `eggproduction`;
+
+CREATE TABLE `eggproduction` (
+  `Id` char(36) NOT NULL,
+  `Date` datetime DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Table structure for table `eggproductiondetail` */
+
+DROP TABLE IF EXISTS `eggproductiondetail`;
+
+CREATE TABLE `eggproductiondetail` (
+  `ProductionId` char(36) NOT NULL,
+  `HouseId` char(36) NOT NULL,
+  `GoodEggCount` int(11) DEFAULT NULL,
+  `RetailQuantity` decimal(10,3) DEFAULT NULL,
+  `Fcr` decimal(10,3) DEFAULT NULL,
+  `CrackedEggCount` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ProductionId`,`HouseId`),
+  KEY `HouseId` (`HouseId`),
+  CONSTRAINT `eggproductiondetail_ibfk_1` FOREIGN KEY (`ProductionId`) REFERENCES `eggproduction` (`Id`),
+  CONSTRAINT `eggproductiondetail_ibfk_2` FOREIGN KEY (`HouseId`) REFERENCES `henhouse` (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /*Table structure for table `employee` */
 
 DROP TABLE IF EXISTS `employee`;

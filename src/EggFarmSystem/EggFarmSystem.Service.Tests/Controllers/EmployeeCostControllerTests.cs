@@ -176,6 +176,5 @@ namespace EggFarmSystem.Service.Tests.Controllers
             var response = controller.Delete(id);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
-
     }
 }
