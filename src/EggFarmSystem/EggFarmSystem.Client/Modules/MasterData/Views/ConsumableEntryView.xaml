@@ -7,45 +7,49 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
-           <Grid.RowDefinitions>
-               <RowDefinition Height="30"></RowDefinition>
-               <RowDefinition Height="Auto"></RowDefinition>
-               <RowDefinition Height="Auto"></RowDefinition>
-               <RowDefinition Height="Auto"></RowDefinition>
-               <RowDefinition Height="Auto"></RowDefinition>
-               <RowDefinition Height="Auto"></RowDefinition>
-               <RowDefinition></RowDefinition>
-           </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="220"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Row="1" Style="{StaticResource MasterDataLabel}"
+        <AdornerDecorator>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="220"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="1" Style="{StaticResource MasterDataLabel}"
                Content="{Binding Path=NameText}"   />
-            <TextBox Grid.Row="1" Style="{StaticResource FormTextBox}" Grid.Column="1"
+                <TextBox Grid.Row="1" Style="{StaticResource FormTextBox}" Grid.Column="1"
                 Text="{Binding Path=Name, ValidatesOnDataErrors=True, Mode=TwoWay, 
                 NotifyOnValidationError=True}"  />
-        <Label Grid.Row="2" Style="{StaticResource MasterDataLabel}"
+                <Label Grid.Row="2" Style="{StaticResource MasterDataLabel}"
                 Content="{Binding Path=TypeText}"   />
-            <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource FormComboBox}"
+                <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource FormComboBox}"
                   ItemsSource="{Binding Path=ConsumableTypes}" 
                   DisplayMemberPath="Item2"
                   SelectedValuePath="Item1"
                   SelectedValue="{Binding Path=Type, Mode=TwoWay, ValidatesOnDataErrors=True,
                 NotifyOnValidationError=True}"></ComboBox>
-            <Label Grid.Row="3" Style="{StaticResource MasterDataLabel}"
+                <Label Grid.Row="3" Style="{StaticResource MasterDataLabel}"
                    Content="{Binding Path=UnitPriceText}"   />
-            <TextBox Grid.Row="3" Style="{StaticResource FormTextBox}" Grid.Column="1"
+                <TextBox Grid.Row="3" Style="{StaticResource NumericTextBox}" Grid.Column="1"
                     Text="{Binding Path=UnitPrice, ValidatesOnDataErrors=True, Mode=TwoWay, 
                     NotifyOnValidationError=True}"  />
-            <Label Grid.Row="4" Style="{StaticResource MasterDataLabel}"
+                <Label Grid.Row="4" Style="{StaticResource MasterDataLabel}"
                        Content="{Binding Path=UnitText}"   />
-            <TextBox Grid.Row="4" Style="{StaticResource FormTextBox}" Grid.Column="1"
+                <TextBox Grid.Row="4" Style="{StaticResource FormTextBox}" Grid.Column="1"
                         Text="{Binding Path=Unit, ValidatesOnDataErrors=True, Mode=TwoWay, 
                         NotifyOnValidationError=True}"  />
-            <Label Grid.Row="5" Style="{StaticResource MasterDataLabel}"
+                <Label Grid.Row="5" Style="{StaticResource MasterDataLabel}"
                            Content="{Binding Path=ActiveText}"   />
-            <CheckBox Grid.Row="5" Grid.Column="1" Style="{StaticResource FormCheckBox}"
+                <CheckBox Grid.Row="5" Grid.Column="1" Style="{StaticResource FormCheckBox}"
               IsChecked="{Binding Path=Active, Mode=TwoWay}"    />
+            </Grid>
+        </AdornerDecorator>
     </Grid>
 </views:UserControlBase>
