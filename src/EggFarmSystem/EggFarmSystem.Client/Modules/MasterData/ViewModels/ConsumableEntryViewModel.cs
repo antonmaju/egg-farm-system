@@ -70,6 +70,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         private string unit;
         private long unitPrice;
         private bool active;
+        private bool isUnitReadOnly;
 
         public Guid Id
         {
@@ -89,7 +90,9 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             {
                 type = value;
                 consumable.Type = value;
+                AdjustUnit();
                 OnPropertyChanged("Type");
+               
             }
         }
 
@@ -135,6 +138,16 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             }
         }
 
+        public bool IsUnitReadOnly
+        {
+            get { return isUnitReadOnly; }
+            set 
+            { 
+                isUnitReadOnly = value;
+                OnPropertyChanged("IsUnitReadOnly");
+            }
+        }
+
         #endregion
 
         public override string this[string columnName]
@@ -175,6 +188,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             Unit = string.Empty;
             UnitPrice = 0;
             Active = true;
+            AdjustUnit();
         }
 
         private void OnLoadConsumable(object param)
@@ -188,6 +202,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             Unit = loadedConsumable.Unit;
             UnitPrice = loadedConsumable.UnitPrice;
             Active = loadedConsumable.Active;
+            
+            AdjustUnit();
         }
 
         void OnSaveConsumableFailed(object param)
@@ -195,6 +211,21 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             var error = param as Error;
             if (error == null) return;
             MessageBox.Show(error.Exception.Message);
+        }
+
+        void AdjustUnit()
+        {
+            switch ((ConsumableType) type)
+            {
+                case ConsumableType.Feed:
+                    Unit = "kg";
+                    IsUnitReadOnly = true;
+                    break;
+
+                default:
+                    IsUnitReadOnly = false;
+                    break;
+            }
         }
 
         void UnsubscribeMessages()

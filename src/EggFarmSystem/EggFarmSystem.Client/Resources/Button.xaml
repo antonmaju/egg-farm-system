@@ -72,5 +72,10 @@
         <Setter Property="FontSize" Value="12"></Setter>
         <Setter Property="Margin" Value="10,0,10,0"></Setter>       
     </Style>
-   
+
+    <Style x:Key="DataGridButton" TargetType="Button" BasedOn="{StaticResource NavButton}">
+        <Setter Property="Height" Value="20" ></Setter>
+        <Setter Property="FontSize" Value="10"></Setter>
+        <Setter Property="MinWidth" Value="80"></Setter>
+    </Style>
 </ResourceDictionary>

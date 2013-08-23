@@ -26,7 +26,7 @@
                   x:Name="dgProduction">
             <DataGrid.Columns>
                 <DataGridComboBoxColumn DisplayMemberPath="Name" SelectedValuePath="Id"
-                  SelectedValueBinding="{Binding Path=HouseId}" MinWidth="250"
+                  SelectedValueBinding="{Binding Path=HouseId}" MinWidth="250" IsReadOnly="True"
                      >
                     <DataGridComboBoxColumn.ElementStyle>
                         <Style TargetType="{x:Type ComboBox}">
@@ -52,11 +52,11 @@
                         <DataTemplate>
                             <TextBlock Text="{Binding 
                        RelativeSource={RelativeSource AncestorType=DataGrid},
-                                Path=DataContext.SalaryText}" />
+                                Path=DataContext.GoodEggCountText}" />
                         </DataTemplate>
                     </DataGridTextColumn.HeaderTemplate>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Path=RetailQuantity}" MinWidth="100">
+                <DataGridTextColumn Binding="{Binding Path=RetailQuantity, StringFormat={}{0:0.##}}" MinWidth="100"  CellStyle="{StaticResource NumericGridCell}">
                     <DataGridTextColumn.HeaderTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding 
@@ -65,7 +65,7 @@
                         </DataTemplate>
                     </DataGridTextColumn.HeaderTemplate>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Path=Fcr}" MinWidth="100">
+                <DataGridTextColumn Binding="{Binding Path=Fcr, StringFormat={}{0:0.##}}" IsReadOnly="True" MinWidth="100"  CellStyle="{StaticResource NumericGridCell}">
                     <DataGridTextColumn.HeaderTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding 
@@ -73,16 +73,17 @@
                                 Path=DataContext.FcrText}"></TextBlock>
                         </DataTemplate>
                     </DataGridTextColumn.HeaderTemplate>
-                </DataGridTextColumn>  
-                <DataGridTextColumn Binding="{Binding Path=CrackedEggCount}" MinWidth="100">
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path=CrackedEggCount}" MinWidth="100"  CellStyle="{StaticResource NumericGridCell}">
                     <DataGridTextColumn.HeaderTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding 
                                 RelativeSource={RelativeSource AncestorType=DataGrid},
-                                Path=DataContext.CrackedEggCount}"></TextBlock>
+                                Path=DataContext.CrackedEggCountText}"></TextBlock>
                         </DataTemplate>
                     </DataGridTextColumn.HeaderTemplate>
                 </DataGridTextColumn>
+                
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -50,5 +50,13 @@ namespace EggFarmSystem.Client.Core.Services
         {
             CreateDeleteRequest(id);
         }
+
+        public int GetDailyFeedAmount(Guid houseId, DateTime date)
+        {
+            string url = string.Format("{0}/{1}/feed/{2}",
+                 ResourceUrl, houseId.ToString(), date);
+
+            return CreateGetRequest<int>(Guid.Empty, url);
+        }
     }
 }

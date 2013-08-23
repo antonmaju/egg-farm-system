@@ -37,6 +37,9 @@ namespace EggFarmSystem.Client.Modules.Usage.Commands
         public override void Execute(object parameter)
         {
             Guid entityId = parameter != null ? (Guid)parameter : EntityId;
+            if (entityId == Guid.Empty)
+                return;
+
             messageBroker.Publish(CommonMessages.EditUsageView, entityId);
         }
     }

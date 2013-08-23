@@ -38,6 +38,9 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.Commands
         public override void Execute(object parameter)
         {
             Guid entityId = parameter != null ? (Guid) parameter : EntityId;
+            if (entityId == Guid.Empty)
+                return;
+
             messageBroker.Publish(CommonMessages.ChangeMainView, typeof(IEmployeeCostEntryView));
             messageBroker.Publish(CommonMessages.LoadEmployeeCost, entityId);
         }

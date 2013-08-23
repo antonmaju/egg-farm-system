@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web.Http;
+
+namespace EggFarmSystem.Service.Core
+{
+    public static class RouteRegistrar
+    {
+        public static void RegisterMappings(HttpRouteCollection routes)
+        {
+            //feed consumsion
+            routes.MapHttpRoute(name:"DailyFeedAmount",
+                routeTemplate:"api/henhouses/{houseId}/feed/{date}",
+                defaults: new { controller = "Usage", action = "GetDailyFeedAmount" }
+                );
+
+
+            //default routings
+            routes.MapHttpRoute(name: "DefaultApi",
+                           routeTemplate: "api/{controller}/{id}",
+                           defaults: new { id = RouteParameter.Optional }
+    );
+        }
+    }
+}

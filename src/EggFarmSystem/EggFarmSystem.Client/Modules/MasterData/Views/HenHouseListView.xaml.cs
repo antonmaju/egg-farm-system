@@ -45,7 +45,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.Views
             if (selectedHouse == null)
                 return;
 
-            viewModel.EditCommand.HouseId = selectedHouse.Id;
+            viewModel.EditCommand.EntityId = selectedHouse.Id;
             viewModel.DeleteCommand.EntityId = selectedHouse.Id;
         }
 

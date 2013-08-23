@@ -117,5 +117,10 @@ namespace EggFarmSystem.Service.Controllers
 
             return response;
         }
+
+        public int GetDailyFeedAmount(Guid houseId, DateTime date)
+        {
+            return service.GetDailyFeedAmount(houseId, date);
+        }
     }
 }

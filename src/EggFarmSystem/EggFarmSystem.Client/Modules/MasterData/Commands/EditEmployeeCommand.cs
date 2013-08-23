@@ -8,44 +8,18 @@ using System.Text;
 
 namespace EggFarmSystem.Client.Modules.MasterData.Commands
 {
-    public class EditEmployeeCommand : CommandBase
+    public class EditEmployeeCommand : EditMasterDataCommand
     {
         private readonly IMessageBroker messageBroker;
-        private readonly IClientContext clientContext;
 
-        public EditEmployeeCommand(IMessageBroker messageBroker, IClientContext clientContext)
+        public EditEmployeeCommand(IMessageBroker messageBroker, IClientContext clientContext):base(messageBroker, clientContext)
         {
-            Text = () => "Edit";
             this.messageBroker = messageBroker;
-            this.clientContext = clientContext;
         }
 
-        public Guid EmployeeId { get; set; }
-
-        public override void Execute(object parameter)
+        protected override void OnExecute(Guid id)
         {
-            if (clientContext.MainViewType != typeof(IMasterDataView))
-                messageBroker.Publish(CommonMessages.ChangeMainView, typeof(IMasterDataView));
-
-            Guid employeeId = parameter != null ? (Guid)parameter : EmployeeId;
-
-            messageBroker.Publish(CommonMessages.EditEmployeeView, employeeId);
-        }
-
-        public override bool CanExecute(object parameter)
-        {
-            if (EmployeeId != Guid.Empty)
-                return true;
-
-            try
-            {
-                var paramId = (Guid)parameter;
-                return paramId != Guid.Empty;
-            }
-            catch
-            {
-                return false;
-            }
+            messageBroker.Publish(CommonMessages.EditEmployeeView, id);
         }
     }
 }

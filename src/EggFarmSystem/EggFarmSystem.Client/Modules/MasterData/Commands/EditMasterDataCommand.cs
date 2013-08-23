@@ -31,6 +31,9 @@ namespace EggFarmSystem.Client.Modules.MasterData.Commands
 
             Guid entityId = parameter != null ? (Guid)parameter : EntityId;
 
+            if (entityId == Guid.Empty)
+                return;
+
             OnExecute(entityId);
         }
 

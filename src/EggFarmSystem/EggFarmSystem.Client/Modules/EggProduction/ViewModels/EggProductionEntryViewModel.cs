@@ -19,32 +19,33 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
     {
         private readonly IMessageBroker broker;
         private readonly IEggProductionService service;
+        private readonly IConsumableUsageService usageService;
 
-        public EggProductionEntryViewModel(IMessageBroker broker, IEggProductionService service,
+        public EggProductionEntryViewModel(IMessageBroker broker, IEggProductionService service,IConsumableUsageService usageService,
             IHenHouseService houseService, SaveEggProductionCommand saveCommand, CancelCommand cancelCommand,
             ShowEggProductionListCommand showListCommand)
         {
             this.broker = broker;
             this.service = service;
+            this.usageService = usageService;
             ActualSaveCommand = saveCommand;
 
             CancelCommand = cancelCommand;
             ShowListCommand = showListCommand;
 
             InitializeCommands();
-            NavigationCommands =new List<CommandBase>(){SaveCommand, CancelCommand};
+            NavigationCommands =new List<CommandBase>(){SaveCommand, CancelCommand, RefreshCommand};
             CancelCommand.Action = b => showListCommand.Execute(null);
 
-            HenHouses = new ObservableCollection<HenHouse>(houseService.GetAll());
+            HenHouses = new ObservableCollection<HenHouse>(houseService.GetAll().OrderBy(h => h.Name));
 
             SubscribeMessages();
         }
 
         #region commands
 
-        public DelegateCommand AddDetailCommand { get; private set; }
-        public DelegateCommand<int> DeleteDetailCommand { get; private set; }
         public DelegateCommand SaveCommand { get; private set; }
+        public DelegateCommand RefreshCommand { get; set; }
 
         private SaveEggProductionCommand ActualSaveCommand { get; set; }
         public ShowEggProductionListCommand ShowListCommand { get; private set; }
@@ -57,10 +58,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
         private void InitializeCommands()
         {
             SaveCommand = new DelegateCommand(Save, CanSave) { Text = () => LanguageData.General_Save };
-
-            AddDetailCommand = new DelegateCommand(AddDetail, CanAddDetail) { Text = () => LanguageData.General_New };
-
-            DeleteDetailCommand = new DelegateCommand<int>(DeleteDetail, CanDeleteDetail) { Text = () => LanguageData.General_Delete };
+            RefreshCommand = new DelegateCommand(RefreshConsumption, CanRefresh) { Text = () => LanguageData.General_Refresh };
         }
 
         void Save(object param)
@@ -75,26 +73,19 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
             return IsValid();
         }
 
-        void AddDetail(object param)
+        void RefreshConsumption(object param)
         {
-            
+            if (details == null || details.Count == 0) return;
+
+            foreach (var detail in details)
+            {
+                detail.FeedTotal = usageService.GetDailyFeedAmount(detail.HouseId, Date);
+            }
         }
 
-        bool CanAddDetail(object param)
+        bool CanRefresh(object param)
         {
             return true;
-        }
-
-        void DeleteDetail(int param)
-        {
-            int index = Convert.ToInt32(DeleteDetailCommand.Tag);
-            details.RemoveAt(index);
-            DeleteDetailCommand.Tag = -1;
-        }
-
-        bool CanDeleteDetail(int param)
-        {
-            return DeleteDetailCommand.Tag > -1;
         }
 
         #endregion
@@ -105,7 +96,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
 
         public string HouseText { get { return LanguageData.EggProductionDetail_HouseField; } }
 
-        public string GoodEggCountText { get { return LanguageData.EggProductionDetail_InvalidGoodEggCount; } }
+        public string GoodEggCountText { get { return LanguageData.EggProductionDetail_GoodEggCountField; } }
 
         public string RetailQuantityText { get { return LanguageData.EggProductionDetail_RetailQuantityField; } }
 
@@ -219,16 +210,16 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
         {
             broker.Subscribe(CommonMessages.NewEggProductionView, OnNew);
             broker.Subscribe(CommonMessages.LoadEggProduction, OnLoad);
-            broker.Subscribe(CommonMessages.SaveEmployeeCostSuccess, OnSaveSuccess);
-            broker.Subscribe(CommonMessages.SaveEmployeeCostFailed, OnSaveFailed);
+            broker.Subscribe(CommonMessages.SaveEggProductionSuccess, OnSaveSuccess);
+            broker.Subscribe(CommonMessages.SaveEggProductionFailed, OnSaveFailed);
         }
 
         void UnsubscribeMessages()
         {
             broker.Unsubscribe(CommonMessages.NewEmployeeCostEntry, OnNew);
             broker.Unsubscribe(CommonMessages.LoadEmployeeCost, OnLoad);
-            broker.Unsubscribe(CommonMessages.SaveEmployeeCostSuccess, OnSaveSuccess);
-            broker.Unsubscribe(CommonMessages.SaveEmployeeCostFailed, OnSaveFailed);
+            broker.Unsubscribe(CommonMessages.SaveEggProductionSuccess, OnSaveSuccess);
+            broker.Unsubscribe(CommonMessages.SaveEggProductionFailed, OnSaveFailed);
         }
 
         void OnNew(object param)
@@ -243,8 +234,9 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
                 var detail = new EggProductionDetailViewModel
                 {
                     HouseId = house.Id,
-                    
+                    FeedTotal = usageService.GetDailyFeedAmount(house.Id, Date)
                 };
+                
                 Details.Add(detail);
             }
         }
@@ -259,6 +251,8 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
             var loadedDatails = Mapper.Map<List<Models.EggProductionDetail>, List<EggProductionDetailViewModel>>(loadedData.Details);
 
             Details = new ObservableCollection<EggProductionDetailViewModel>(loadedDatails);
+
+            RefreshConsumption(null);
         }
 
         void OnSaveSuccess(object param)

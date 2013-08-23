@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using AutoMapper;
 using EggFarmSystem.Client.Modules.EggProduction.Commands;
+using EggFarmSystem.Client.Modules.EggProduction.ViewModels;
 using EggFarmSystem.Resources;
 
 namespace EggFarmSystem.Client.Modules.EggProduction
@@ -40,7 +41,14 @@ namespace EggFarmSystem.Client.Modules.EggProduction
 
         public void InitializeMappings()
         {
-            
+            Mapper.CreateMap<EggProductionDetailViewModel, Models.EggProductionDetail>();
+            Mapper.CreateMap<Models.EggProductionDetail, EggProductionDetailViewModel>();
+            Mapper.CreateMap<EggProductionEntryViewModel, Models.EggProduction>();
+            Mapper.CreateMap<Models.EggProduction, EggProductionEntryViewModel>();
+            Mapper.CreateMap<Models.EggProductionDetail, Models.Data.EggProductionDetail>();
+            Mapper.CreateMap<Models.EggProduction, Models.Data.EggProduction>();
+            Mapper.CreateMap<Models.Data.EggProduction, Models.EggProduction>();
+            Mapper.CreateMap<Models.Data.EggProductionDetail, Models.EggProductionDetail>();
         }
     }
 }

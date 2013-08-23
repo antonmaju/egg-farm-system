@@ -369,4 +369,43 @@
   <data name="EmployeeCost_RequireDetails" xml:space="preserve">
     <value>Detail diperlukan</value>
   </data>
+  <data name="EggProductionDetail_CrackedEggCountField" xml:space="preserve">
+    <value>Jumlah Telur Retak (butir)</value>
+  </data>
+  <data name="EggProductionDetail_FcrField" xml:space="preserve">
+    <value>Fcr</value>
+  </data>
+  <data name="EggProductionDetail_GoodEggCountField" xml:space="preserve">
+    <value>Jumlah Telur Baik (Butir)</value>
+  </data>
+  <data name="EggProductionDetail_HouseField" xml:space="preserve">
+    <value>Kandang</value>
+  </data>
+  <data name="EggProductionDetail_InvalidCrackedCount" xml:space="preserve">
+    <value>Jumlah telur retak tidak valid</value>
+  </data>
+  <data name="EggProductionDetail_InvalidFcr" xml:space="preserve">
+    <value>Angka Fcr tidak valid</value>
+  </data>
+  <data name="EggProductionDetail_InvalidGoodEggCount" xml:space="preserve">
+    <value>Jumlah telur baik tidak valid</value>
+  </data>
+  <data name="EggProductionDetail_InvalidRetailQuantity" xml:space="preserve">
+    <value>Jumlah terjual diperlukan</value>
+  </data>
+  <data name="EggProductionDetail_RetailQuantityField" xml:space="preserve">
+    <value>Jumlah terjual</value>
+  </data>
+  <data name="EggProduction_DateField" xml:space="preserve">
+    <value>Tanggal</value>
+  </data>
+  <data name="EggProduction_DuplicateDate" xml:space="preserve">
+    <value>Tanggal duplikat</value>
+  </data>
+  <data name="EggProduction_InvalidDate" xml:space="preserve">
+    <value>Tanggal tidak valid</value>
+  </data>
+  <data name="EggProduction_RequireDetails" xml:space="preserve">
+    <value>Data detail diperlukan</value>
+  </data>
 </root>

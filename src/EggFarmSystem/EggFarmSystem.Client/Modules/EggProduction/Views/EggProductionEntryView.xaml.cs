@@ -36,14 +36,6 @@ namespace EggFarmSystem.Client.Modules.EggProduction.Views
         {
             dgProduction.CellEditEnding += dgProduction_CellEditEnding;
             dgProduction.GotFocus += dgProduction_GotFocus;
-            dgProduction.SelectionChanged += dgProduction_SelectionChanged;
-        }
-
-        void dgProduction_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var grid = sender as DataGrid;
-            int index = grid.Items.IndexOf(grid.SelectedItem);
-            model.DeleteDetailCommand.Tag = index;
         }
 
         void dgProduction_GotFocus(object sender, RoutedEventArgs e)
@@ -71,7 +63,6 @@ namespace EggFarmSystem.Client.Modules.EggProduction.Views
         {
             dgProduction.CellEditEnding -= dgProduction_CellEditEnding;
             dgProduction.GotFocus -= dgProduction_GotFocus;
-            dgProduction.SelectionChanged -= dgProduction_SelectionChanged;
         }
 
         public override void Dispose()
@@ -80,6 +71,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.Views
             model.Dispose();
             base.Dispose();
         }
+
     }
 
     public interface IEggProductionEntryView

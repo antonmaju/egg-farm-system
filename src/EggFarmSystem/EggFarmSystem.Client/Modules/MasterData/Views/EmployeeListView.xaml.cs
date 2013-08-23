@@ -50,7 +50,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.Views
             if (selectedEmployee == null)
                 return;
 
-            viewModel.EditCommand.EmployeeId = selectedEmployee.Id;
+            viewModel.EditCommand.EntityId = selectedEmployee.Id;
             viewModel.DeleteCommand.EntityId = selectedEmployee.Id;
         }
 

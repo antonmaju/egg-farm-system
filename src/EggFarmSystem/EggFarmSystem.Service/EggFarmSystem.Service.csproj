@@ -102,6 +102,7 @@
     <Compile Include="Core\BasicAuthHandler.cs" />
     <Compile Include="Core\Installers\ServiceModule.cs" />
     <Compile Include="Core\MappingInitializer.cs" />
+    <Compile Include="Core\RouteRegistrar.cs" />
     <Compile Include="EggFarmService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

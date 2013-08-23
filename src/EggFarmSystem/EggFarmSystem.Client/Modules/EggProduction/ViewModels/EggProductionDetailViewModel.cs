@@ -13,7 +13,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
         private int goodEggCount;
         private decimal retailQuantity;
         private decimal fcr;
-        private int crackingEggCount;
+        private int crackedEggCount;
         private decimal feedTotal;
 
         public Guid HouseId
@@ -43,6 +43,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
             {
                 retailQuantity = value;
                 OnPropertyChanged("RetailQuantity");
+                CalculateFcr();
             }
         }
 
@@ -56,13 +57,13 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
             }
         }
 
-        public int CrackingEggCount
+        public int CrackedEggCount
         {
-            get { return crackingEggCount; }
+            get { return crackedEggCount; }
             set
             {
-                crackingEggCount = value;
-                OnPropertyChanged("CrackingEggCount");
+                crackedEggCount = value;
+                OnPropertyChanged("CrackedEggCount");
             }
         }
 
@@ -73,6 +74,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
             {
                 feedTotal = value;
                 OnPropertyChanged("FeedTotal");
+                CalculateFcr();
             }
         }
 
@@ -124,6 +126,15 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
             }
         }
 
-       
+        private void CalculateFcr()
+        {
+            if (retailQuantity == 0)
+            {
+                Fcr = 0;
+                return;
+            }
+
+            Fcr = FeedTotal/retailQuantity;
+        }
     }
 }

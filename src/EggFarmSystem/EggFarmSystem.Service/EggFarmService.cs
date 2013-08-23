@@ -22,10 +22,7 @@ namespace EggFarmSystem.Service
         public EggFarmService()
         {
             var config = new HttpSelfHostConfiguration("http://localhost:3000");
-            config.Routes.MapHttpRoute(name: "DefaultApi",
-                                       routeTemplate: "api/{controller}/{id}",
-                                       defaults: new {id = RouteParameter.Optional}
-                );
+            RouteRegistrar.RegisterMappings(config.Routes);
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
 
             var builder = new ContainerBuilder();

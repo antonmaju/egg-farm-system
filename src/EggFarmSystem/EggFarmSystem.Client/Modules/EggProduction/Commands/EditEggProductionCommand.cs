@@ -38,6 +38,9 @@ namespace EggFarmSystem.Client.Modules.EggProduction.Commands
         public override void Execute(object parameter)
         {
             Guid entityId = parameter != null ? (Guid)parameter : EntityId;
+            if(entityId == Guid.Empty)
+                return;
+
             broker.Publish(CommonMessages.ChangeMainView, typeof(IEggProductionEntryView));
             broker.Publish(CommonMessages.LoadEggProduction, entityId);
         }

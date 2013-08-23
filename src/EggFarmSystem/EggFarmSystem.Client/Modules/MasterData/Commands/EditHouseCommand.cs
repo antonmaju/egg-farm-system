@@ -8,28 +8,18 @@ using System.Text;
 
 namespace EggFarmSystem.Client.Modules.MasterData.Commands
 {
-    public class EditHouseCommand :CommandBase
+    public class EditHouseCommand :EditMasterDataCommand
     {
         private readonly IMessageBroker messageBroker;
-        private readonly IClientContext clientContext;
 
-        public EditHouseCommand(IClientContext clientContext, IMessageBroker messageBroker)
+        public EditHouseCommand(IClientContext clientContext, IMessageBroker messageBroker):base(messageBroker,clientContext)
         {
-            Text = () => "Edit";
-            this.clientContext = clientContext;
             this.messageBroker = messageBroker;
         }
 
-        public Guid HouseId { get; set; }
-
-        public override void Execute(object parameter)
+        protected override void OnExecute(Guid id)
         {
-            if (clientContext.MainViewType != typeof(IMasterDataView))
-                messageBroker.Publish(CommonMessages.ChangeMainView, typeof(IMasterDataView));
-
-            Guid houseId = parameter != null ? (Guid)parameter : HouseId;
-
-            messageBroker.Publish(CommonMessages.EditHouseView, houseId);
+            messageBroker.Publish(CommonMessages.EditHouseView, id);
         }
     }
 }

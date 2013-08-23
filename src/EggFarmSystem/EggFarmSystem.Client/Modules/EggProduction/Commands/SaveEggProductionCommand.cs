@@ -38,7 +38,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.Commands
             }
             catch(Exception ex)
             {
-                broker.Publish(CommonMessages.SaveEggProductionSuccess, new Error
+                broker.Publish(CommonMessages.SaveEggProductionFailed, new Error
                     {
                         Data = Production,
                         Exception = ex

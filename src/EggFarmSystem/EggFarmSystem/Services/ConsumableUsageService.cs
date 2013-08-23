@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using AutoMapper;
 using EggFarmSystem.Models;
+using MySql.Data.MySqlClient;
 using ServiceStack.OrmLite;
 
 
@@ -34,6 +36,9 @@ namespace EggFarmSystem.Services
         /// <param name="date">The date.</param>
         /// <returns>ConsumableUsage instance.</returns>
         ConsumableUsage GetByDate(DateTime date);
+
+
+        int GetDailyFeedAmount(Guid houseId, DateTime date);
 
         /// <summary>
         /// Saves the specified usage.
@@ -261,6 +266,33 @@ namespace EggFarmSystem.Services
             }
 
             return model;
+        }
+
+
+        public int GetDailyFeedAmount(Guid houseId, DateTime date)
+        {
+            int total = 0;
+
+            using (var conn = factory.OpenDbConnection())
+            {
+                string statement = @"SELECT SUM(ConsumableUsageDetail.Count) 
+FROM ConsumableUsageDetail JOIN ConsumableUsage ON  ConsumableUsageDetail.UsageId = ConsumableUsage.Id
+JOIN Consumable ON ConsumableUsagedetail.ConsumableId = Consumable.Id WHERE  ConsumableUsageDetail.HouseId=@houseId AND ConsumableUsage.Date=@date
+AND Consumable.Type=0";
+
+                var command = conn.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = statement;
+                command.Parameters.Add(new MySqlParameter("@houseId", MySqlDbType.Guid) {Value = houseId});
+                command.Parameters.Add(new MySqlParameter("@date", MySqlDbType.DateTime) {Value = date});
+                
+                object result = command.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                    total = Convert.ToInt32(result);
+            }
+
+            return total;
         }
     }
 
