@@ -18,10 +18,14 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="SidebarButtonText" Property="Foreground" Value="White" />
-                            <Setter TargetName="SidebarButtonText" Property="Background" Value="#AAA" />
-                            <Setter TargetName="SidebarButtonText" Property="MinHeight" Value="40" />
-                            <Setter TargetName="SidebarButtonText" Property="MinWidth" Value="200" />
+                            <Setter TargetName="SidebarButtonText" Property="Foreground" Value="Orange" />
+                            <Setter TargetName="SidebarButtonText" Property="FontWeight" Value="DemiBold" />
+                            <!--<Setter TargetName="SidebarButtonText" Property="FontSize" Value="21" />-->
+                            <!--<Setter TargetName="SidebarButtonText" Property="FontStyle" Value="Oblique"/>-->
+                            <!--<Setter TargetName="SidebarButtonText" Property="Foreground" Value="Goldenrod" />-->
+                            <!--<Setter TargetName="SidebarButtonText" Property="Background" Value="#AAA" />-->
+                            <!--<Setter TargetName="SidebarButtonText" Property="MinHeight" Value="40" />
+                            <Setter TargetName="SidebarButtonText" Property="MinWidth" Value="200" />-->
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
