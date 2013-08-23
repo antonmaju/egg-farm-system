@@ -15,5 +15,7 @@ namespace EggFarmSystem.Service.Controllers
         public HensController(IHenService henService) : base(henService)
         {
         }
+
+
     }
 }

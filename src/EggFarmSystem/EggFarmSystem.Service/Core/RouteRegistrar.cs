@@ -10,6 +10,11 @@ namespace EggFarmSystem.Service.Core
     {
         public static void RegisterMappings(HttpRouteCollection routes)
         {
+            routes.MapHttpRoute(name: "GetPopulation", 
+                routeTemplate:"api/henhouses/{id}/population",
+                defaults:new {controller="HenHouses", action="GetPopulation"}
+                );
+
             //feed consumsion
             routes.MapHttpRoute(name:"DailyFeedAmount",
                 routeTemplate:"api/henhouses/{houseId}/feed/{date}",

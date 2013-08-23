@@ -12,8 +12,16 @@ namespace EggFarmSystem.Service.Controllers
 {
     public class HenHousesController : ApiControllerBase<HenHouse>
     {
+        private IHenHouseService houseService;
+
         public HenHousesController(IHenHouseService houseService) : base(houseService)
         {
-        }       
+            this.houseService = houseService;
+        }   
+    
+        public int GetPopulation(Guid id)
+        {
+            return houseService.GetPopulation(id);
+        }
     }
 }

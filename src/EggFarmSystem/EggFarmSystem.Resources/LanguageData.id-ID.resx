@@ -394,7 +394,7 @@
     <value>Jumlah terjual diperlukan</value>
   </data>
   <data name="EggProductionDetail_RetailQuantityField" xml:space="preserve">
-    <value>Jumlah terjual</value>
+    <value>Jumlah terjual (kg)</value>
   </data>
   <data name="EggProduction_DateField" xml:space="preserve">
     <value>Tanggal</value>
@@ -407,5 +407,8 @@
   </data>
   <data name="EggProduction_RequireDetails" xml:space="preserve">
     <value>Data detail diperlukan</value>
+  </data>
+  <data name="EggProduction_Title" xml:space="preserve">
+    <value>Produksi Telur</value>
   </data>
 </root>

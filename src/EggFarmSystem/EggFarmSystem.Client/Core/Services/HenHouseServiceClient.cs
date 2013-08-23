@@ -30,6 +30,13 @@ namespace EggFarmSystem.Client.Core.Services
             return CreateGetRequest<HenHouse>(id);
         }
 
+        public int GetPopulation(Guid houseId)
+        {
+            string url = string.Format("{0}/{1}/population",
+                 ResourceUrl, houseId.ToString());
+            return CreateGetRequest<int>(Guid.Empty, url);
+        }
+
         public void Save(Models.HenHouse model)
         {
             if (model.IsNew)
