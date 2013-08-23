@@ -1,4 +1,6 @@
-﻿using EggFarmSystem.Models;
+﻿using System.Data;
+using EggFarmSystem.Models;
+using MySql.Data.MySqlClient;
 using ServiceStack.OrmLite;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,7 @@ namespace EggFarmSystem.Services
 {
     public interface IHenHouseService : IDataService<HenHouse>
     {
+        int GetPopulation(Guid houseId);
     }
 
     public class HenHouseService : DataService<HenHouse>, IHenHouseService
@@ -35,6 +38,25 @@ namespace EggFarmSystem.Services
                   .ToList();
 
             }
+        }
+
+        public int GetPopulation(Guid houseId)
+        {
+            int population = 0;
+
+            using (var conn = factory.OpenDbConnection())
+            {
+                var command = conn.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "select count(*) from Hen where HouseId=@houseId";
+                command.Parameters.Add(new MySqlParameter("@houseId", MySqlDbType.Guid) {Value = houseId});
+                
+                var result = command.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                    population = Convert.ToInt32(result);                
+            }
+
+            return population;
         }
     }
 }
