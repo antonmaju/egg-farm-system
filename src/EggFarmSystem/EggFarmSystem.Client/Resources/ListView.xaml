@@ -236,6 +236,10 @@
             </Trigger>
             <Trigger Property="ItemsControl.IsFocused" Value="True">
                 <Setter Property="Background" Value="DarkOrange"></Setter>
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontWeight" Value="ExtraBold" />                
+                <Setter Property="FontStretch" Value="ExtraExpanded" />
             </Trigger>
         </Style.Triggers>
     </Style>

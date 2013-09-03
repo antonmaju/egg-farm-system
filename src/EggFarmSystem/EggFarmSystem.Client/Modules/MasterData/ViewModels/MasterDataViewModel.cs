@@ -176,9 +176,9 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
                 case "AdditionalCost":
                     IsHenInput = false;
+                    IsHouseInput = false;
                     IsConsumableInput = false;
                     IsEmployeeInput = false;
-                    IsAdditionalCostInput = false;
 
                     break;
             }
