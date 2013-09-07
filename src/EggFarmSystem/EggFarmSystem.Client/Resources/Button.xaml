@@ -18,7 +18,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="SidebarButtonText" Property="Foreground" Value="Orange" />
+                            <Setter TargetName="SidebarButtonText" Property="Foreground" Value= "Yellow"/>
                             <Setter TargetName="SidebarButtonText" Property="FontWeight" Value="DemiBold" />
                             <!--<Setter TargetName="SidebarButtonText" Property="FontSize" Value="21" />-->
                             <!--<Setter TargetName="SidebarButtonText" Property="FontStyle" Value="Oblique"/>-->
