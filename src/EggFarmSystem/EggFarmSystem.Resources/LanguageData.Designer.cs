@@ -250,6 +250,15 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to House is duplicate.
+        /// </summary>
+        public static string EggProduction_DuplicateHouse {
+            get {
+                return ResourceManager.GetString("EggProduction_DuplicateHouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date is invalid.
         /// </summary>
         public static string EggProduction_InvalidDate {
@@ -678,6 +687,123 @@ namespace EggFarmSystem.Resources {
         public static string Hen_TypeField {
             get {
                 return ResourceManager.GetString("Hen_TypeField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string HenDepreciation_DateField {
+            get {
+                return ResourceManager.GetString("HenDepreciation_DateField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date is duplicate.
+        /// </summary>
+        public static string HenDepreciation_DuplicateDate {
+            get {
+                return ResourceManager.GetString("HenDepreciation_DuplicateDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to House is duplicate.
+        /// </summary>
+        public static string HenDepreciation_DuplicateHouse {
+            get {
+                return ResourceManager.GetString("HenDepreciation_DuplicateHouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details is required.
+        /// </summary>
+        public static string HenDepreciation_RequireDetails {
+            get {
+                return ResourceManager.GetString("HenDepreciation_RequireDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Depreciation.
+        /// </summary>
+        public static string HenDepreciationDetail_DepreciationField {
+            get {
+                return ResourceManager.GetString("HenDepreciationDetail_DepreciationField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to House.
+        /// </summary>
+        public static string HenDepreciationDetail_HouseIdField {
+            get {
+                return ResourceManager.GetString("HenDepreciationDetail_HouseIdField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initial Price.
+        /// </summary>
+        public static string HenDepreciationDetail_InitialPriceField {
+            get {
+                return ResourceManager.GetString("HenDepreciationDetail_InitialPriceField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Depreciation is invalid.
+        /// </summary>
+        public static string HenDepreciationDetail_InvalidDepreciation {
+            get {
+                return ResourceManager.GetString("HenDepreciationDetail_InvalidDepreciation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initial price is required.
+        /// </summary>
+        public static string HenDepreciationDetail_InvalidInitialPrice {
+            get {
+                return ResourceManager.GetString("HenDepreciationDetail_InvalidInitialPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selling price is required.
+        /// </summary>
+        public static string HenDepreciationDetail_InvalidSellingPrice {
+            get {
+                return ResourceManager.GetString("HenDepreciationDetail_InvalidSellingPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profit.
+        /// </summary>
+        public static string HenDepreciationDetail_ProfitField {
+            get {
+                return ResourceManager.GetString("HenDepreciationDetail_ProfitField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to House is required.
+        /// </summary>
+        public static string HenDepreciationDetail_RequireHouseId {
+            get {
+                return ResourceManager.GetString("HenDepreciationDetail_RequireHouseId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selling Price.
+        /// </summary>
+        public static string HenDepreciationDetail_SellingPriceField {
+            get {
+                return ResourceManager.GetString("HenDepreciationDetail_SellingPriceField", resourceCulture);
             }
         }
         

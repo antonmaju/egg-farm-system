@@ -207,6 +207,9 @@
   <data name="EggProduction_DuplicateDate" xml:space="preserve">
     <value>Date is duplicate</value>
   </data>
+  <data name="EggProduction_DuplicateHouse" xml:space="preserve">
+    <value>House is duplicate</value>
+  </data>
   <data name="EggProduction_InvalidDate" xml:space="preserve">
     <value>Date is invalid</value>
   </data>
@@ -290,6 +293,45 @@
   </data>
   <data name="General_Save" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="HenDepreciationDetail_DepreciationField" xml:space="preserve">
+    <value>Depreciation</value>
+  </data>
+  <data name="HenDepreciationDetail_HouseIdField" xml:space="preserve">
+    <value>House</value>
+  </data>
+  <data name="HenDepreciationDetail_InitialPriceField" xml:space="preserve">
+    <value>Initial Price</value>
+  </data>
+  <data name="HenDepreciationDetail_InvalidDepreciation" xml:space="preserve">
+    <value>Depreciation is invalid</value>
+  </data>
+  <data name="HenDepreciationDetail_InvalidInitialPrice" xml:space="preserve">
+    <value>Initial price is required</value>
+  </data>
+  <data name="HenDepreciationDetail_InvalidSellingPrice" xml:space="preserve">
+    <value>Selling price is required</value>
+  </data>
+  <data name="HenDepreciationDetail_ProfitField" xml:space="preserve">
+    <value>Profit</value>
+  </data>
+  <data name="HenDepreciationDetail_RequireHouseId" xml:space="preserve">
+    <value>House is required</value>
+  </data>
+  <data name="HenDepreciationDetail_SellingPriceField" xml:space="preserve">
+    <value>Selling Price</value>
+  </data>
+  <data name="HenDepreciation_DateField" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="HenDepreciation_DuplicateDate" xml:space="preserve">
+    <value>Date is duplicate</value>
+  </data>
+  <data name="HenDepreciation_DuplicateHouse" xml:space="preserve">
+    <value>House is duplicate</value>
+  </data>
+  <data name="HenDepreciation_RequireDetails" xml:space="preserve">
+    <value>Details is required</value>
   </data>
   <data name="Hen_ActiveField" xml:space="preserve">
     <value>Active</value>

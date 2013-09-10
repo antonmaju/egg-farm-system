@@ -84,6 +84,7 @@
     <Compile Include="Models\Feed.cs" />
     <Compile Include="Models\AdditionalCost.cs" />
     <Compile Include="Models\Hen.cs" />
+    <Compile Include="Models\HenDepreciation.cs" />
     <Compile Include="Models\HenHouse.cs" />
     <Compile Include="Models\Medicine.cs" />
     <Compile Include="Models\ErrorInfo.cs" />
