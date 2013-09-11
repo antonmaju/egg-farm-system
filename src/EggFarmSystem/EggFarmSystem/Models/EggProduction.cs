@@ -62,6 +62,9 @@ namespace EggFarmSystem.Models
         {
             var errors = new List<ErrorInfo>();
 
+            if(HouseId == Guid.Empty)
+                errors.Add(new ErrorInfo("HouseId", "EggProductionDetail_RequireHouseId"));
+
             if(GoodEggCount < 0)
                 errors.Add(new ErrorInfo("GoodEggCount", "EggProductionDetail_InvalidGoodEggCount"));
 

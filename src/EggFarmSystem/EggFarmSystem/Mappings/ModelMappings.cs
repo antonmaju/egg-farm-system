@@ -24,6 +24,11 @@ namespace EggFarmSystem.Mappings
             Mapper.CreateMap<Models.Data.EggProductionDetail, Models.EggProductionDetail>();
             Mapper.CreateMap<Models.EggProductionDetail, Models.Data.EggProductionDetail>();
             Mapper.CreateMap<Models.EggProduction, Models.Data.EggProduction>();
+
+            Mapper.CreateMap<Models.Data.HenDepreciation, Models.HenDepreciation>();
+            Mapper.CreateMap<Models.Data.HenDepreciationDetail, Models.HenDepreciationDetail>();
+            Mapper.CreateMap<Models.HenDepreciationDetail, Models.Data.HenDepreciationDetail>();
+            Mapper.CreateMap<Models.HenDepreciation, Models.Data.HenDepreciation>();
         }
     }
 }

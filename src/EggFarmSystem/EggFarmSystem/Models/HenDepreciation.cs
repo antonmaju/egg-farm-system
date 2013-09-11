@@ -51,7 +51,10 @@ namespace EggFarmSystem.Models
 
         public decimal SellingPrice { get; set; }
 
-        public decimal Profit { get; set; }
+        public decimal Profit
+        {
+            get { return SellingPrice - InitialPrice; }
+        }
 
         public decimal Depreciation { get; set; }
 
