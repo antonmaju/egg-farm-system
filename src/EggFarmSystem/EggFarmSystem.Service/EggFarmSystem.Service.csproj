@@ -96,6 +96,7 @@
     <Compile Include="Controllers\EggProductionController.cs" />
     <Compile Include="Controllers\EmployeeCostController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\HenDepreciationController.cs" />
     <Compile Include="Controllers\HensController.cs" />
     <Compile Include="Controllers\HenHousesController.cs" />
     <Compile Include="Controllers\UsageController.cs" />

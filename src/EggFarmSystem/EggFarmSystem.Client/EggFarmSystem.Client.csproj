@@ -135,6 +135,7 @@
     <Compile Include="Core\Services\EggProductionServiceClient.cs" />
     <Compile Include="Core\Services\EmployeeCostServiceClient.cs" />
     <Compile Include="Core\Services\EmployeeServiceClient.cs" />
+    <Compile Include="Core\Services\HenDepreciationServiceClient.cs" />
     <Compile Include="Core\Services\HenHouseServiceClient.cs" />
     <Compile Include="Core\Services\HenServiceClient.cs" />
     <Compile Include="Core\Services\ServiceClient.cs" />

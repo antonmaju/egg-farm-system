@@ -113,6 +113,7 @@
     <Compile Include="Services\ConsumableUsageServiceTests.cs" />
     <Compile Include="Services\EggProductionServiceTests.cs" />
     <Compile Include="Services\EmployeeCostServiceTests.cs" />
+    <Compile Include="Services\HenDepreciationServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
