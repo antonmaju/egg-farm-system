@@ -303,6 +303,7 @@
     <Compile Include="Modules\HenDepreciation\Commands\SaveHenDepreciationCommand.cs" />
     <Compile Include="Modules\HenDepreciation\Commands\ShowHenDepreciationCommand.cs" />
     <Compile Include="Modules\HenDepreciation\HenDepreciationRegistry.cs" />
+    <Compile Include="Modules\HenDepreciation\ViewModels\HenDepreciationListViewModel.cs" />
     <Compile Include="Modules\MasterData\Commands\DeleteAdditionalCostCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\EditAdditionalCostCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\NewAdditionalCostCommand.cs" />
@@ -426,7 +427,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\Dashboard\" />
-    <Folder Include="Modules\HenDepreciation\ViewModels\" />
     <Folder Include="Modules\HenDepreciation\Views\" />
   </ItemGroup>
   <ItemGroup>
@@ -438,6 +438,11 @@
       <Project>{1a94011c-d5d2-4639-9a32-b3a08b29f6f2}</Project>
       <Name>EggFarmSystem.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Images\logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

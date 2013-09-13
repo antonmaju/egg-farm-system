@@ -10,7 +10,7 @@
                 <ControlTemplate TargetType="{x:Type Window}">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="80"></RowDefinition>
+                            <RowDefinition Height="36"></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid>
@@ -21,17 +21,12 @@
                                 <ColumnDefinition Width="30"></ColumnDefinition>
                                 <ColumnDefinition Width="10"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Foreground="White" FontSize="30"
-                                       Margin="30,25,10,25">
-                                <Run Foreground="Yellow">EGG </Run>
-                                <Run> FARM SYSTEM</Run>
-                            </TextBlock>
                             <Button Grid.Column="1" Command="cmd:ClientCommands.Minimize">
                                 <Button.Template>
                                     <ControlTemplate> 
                                         <Border Background="Transparent">                                       
                                         <Rectangle HorizontalAlignment="Stretch" 
-                                        Fill="White" Height="1" Margin="5,30" />
+                                        Fill="White" Height="1" Margin="4,20,3,4"  />
                                         </Border>
                                     </ControlTemplate>
                                 </Button.Template>
@@ -39,8 +34,8 @@
                             <Button Grid.Column="2" Command="cmd:ClientCommands.Maximize">
                                 <Button.Template>
                                     <ControlTemplate>                                       
-                                        <Rectangle Margin="5,30" Stroke="White" IsHitTestVisible="True"
-                                                   Fill="Transparent">
+                                        <Rectangle  Stroke="White" IsHitTestVisible="True"
+                                                   Fill="Transparent" Margin="6,10">
                                         </Rectangle>                                        
                                     </ControlTemplate>
                                 </Button.Template>
