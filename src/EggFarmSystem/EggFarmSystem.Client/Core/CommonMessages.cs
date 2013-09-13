@@ -104,5 +104,14 @@ namespace EggFarmSystem.Client.Core
         public static string DeleteEggProductionSuccess = "DeleteEggProductionSuccess";
         public static string DeleteEggProductionFailed = "DeleteEggProductFailed";
 
+        public static string NewHenDepreciationView = "NewHenDepreciationView";
+        public static string EditHenDepreciationView = "EditHenDepreciationView";
+        public static string DeleteHenDepreciation = "DeleteHenDepreciation";
+        public static string SaveHenDepreciationSuccess = "SaveHenDepreciationSuccess";
+        public static string SaveHenDepreciationFailed = "SaveHenDepreciationFailed";
+        public static string LoadHenDepreciation = "LoadHenDepreciation";
+        public static string RefreshHenDepreciationList = "RefreshHenDepreciation";
+        public static string DeleteHenDepreciationSuccess = "DeleteHenDepreciationSuccess";
+        public static string DeleteHenDepreciationFailed = "DeleteHenDepreciationFailed";
     }
 }

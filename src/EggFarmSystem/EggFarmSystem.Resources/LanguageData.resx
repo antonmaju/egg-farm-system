@@ -333,6 +333,9 @@
   <data name="HenDepreciation_RequireDetails" xml:space="preserve">
     <value>Details is required</value>
   </data>
+  <data name="HenDepreciation_Title" xml:space="preserve">
+    <value>Hen Depreciation</value>
+  </data>
   <data name="Hen_ActiveField" xml:space="preserve">
     <value>Active</value>
   </data>

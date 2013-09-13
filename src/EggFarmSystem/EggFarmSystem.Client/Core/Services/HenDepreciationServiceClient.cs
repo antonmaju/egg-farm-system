@@ -1,4 +1,5 @@
-﻿using EggFarmSystem.Services;
+﻿using EggFarmSystem.Models;
+using EggFarmSystem.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,27 +21,34 @@ namespace EggFarmSystem.Client.Core.Services
 
         public Models.SearchResult<Models.HenDepreciation> Search(Models.DateRangeSearchInfo searchInfo)
         {
-            throw new NotImplementedException();
+            string url = string.Format("{0}?page={1}&limit={2}&start={3}&end={4}",
+               ResourceUrl, searchInfo.PageIndex, searchInfo.PageSize, searchInfo.Start, searchInfo.End);
+
+            return CreateGetRequest<SearchResult<Models.HenDepreciation>>(Guid.Empty, url);
         }
 
         public Models.HenDepreciation Get(Guid id)
         {
-            throw new NotImplementedException();
+            return CreateGetRequest<Models.HenDepreciation>(id);
         }
 
         public Models.HenDepreciation GetByDate(DateTime date)
         {
-            throw new NotImplementedException();
+            var url = string.Format("{0}?date={1}", ResourceUrl, date.ToString("yyyy-MM-dd"));
+            return CreateGetRequest<Models.HenDepreciation>(Guid.Empty, url);
         }
 
         public void Save(Models.HenDepreciation depreciation)
         {
-            throw new NotImplementedException();
+            if (depreciation.IsNew)
+                CreatePostRequest(depreciation);
+            else
+                CreatePutRequest(depreciation.Id, depreciation);
         }
 
         public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            CreateDeleteRequest(id);
         }
     }
 }

@@ -727,6 +727,15 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hen Depreciation.
+        /// </summary>
+        public static string HenDepreciation_Title {
+            get {
+                return ResourceManager.GetString("HenDepreciation_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Depreciation.
         /// </summary>
         public static string HenDepreciationDetail_DepreciationField {

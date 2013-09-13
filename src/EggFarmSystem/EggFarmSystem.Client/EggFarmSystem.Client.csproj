@@ -297,6 +297,12 @@
     <Compile Include="Modules\EmployeeCost\Views\EmployeeCostListView.xaml.cs">
       <DependentUpon>EmployeeCostListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\HenDepreciation\Commands\DeleteHenDepreciationCommand.cs" />
+    <Compile Include="Modules\HenDepreciation\Commands\EditHenDepreciationCommand.cs" />
+    <Compile Include="Modules\HenDepreciation\Commands\NewHenDepreciationCommand.cs" />
+    <Compile Include="Modules\HenDepreciation\Commands\SaveHenDepreciationCommand.cs" />
+    <Compile Include="Modules\HenDepreciation\Commands\ShowHenDepreciationCommand.cs" />
+    <Compile Include="Modules\HenDepreciation\HenDepreciationRegistry.cs" />
     <Compile Include="Modules\MasterData\Commands\DeleteAdditionalCostCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\EditAdditionalCostCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\NewAdditionalCostCommand.cs" />
@@ -420,6 +426,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\Dashboard\" />
+    <Folder Include="Modules\HenDepreciation\ViewModels\" />
+    <Folder Include="Modules\HenDepreciation\Views\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EggFarmSystem.Resources\EggFarmSystem.Resources.csproj">
