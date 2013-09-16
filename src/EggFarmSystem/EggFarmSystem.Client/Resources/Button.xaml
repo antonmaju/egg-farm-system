@@ -11,8 +11,7 @@
                         <TextBlock Name="SidebarButtonText"  Padding="10,7,0,0"
                                    FontSize="20" Foreground="#999">
                          <ContentPresenter RecognizesAccessKey="True"
-                             Content="{TemplateBinding Content}"
-                             ></ContentPresenter>
+                             Content="{TemplateBinding Content}"></ContentPresenter>
                         </TextBlock>
                         
                     </Grid>

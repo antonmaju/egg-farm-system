@@ -70,17 +70,17 @@ namespace EggFarmSystem.Client.Core.Views
 
         void InitializeMenu()
         {
-            //mnuMain.Items.Clear();
+            mnuMain.Items.Clear();
 
-            //var items = bootstrapper.GetMainMenuItems();
-            //foreach (var item in items)
-            //    mnuMain.Items.Add(item);
+            var items = bootstrapper.GetMainMenuItems();
+            foreach (var item in items)
+                mnuMain.Items.Add(item);
         }
 
         void InitializeContent()
         {
-            //if(mnuMain.Items.Count > 0)
-            //    (mnuMain.Items.GetItemAt(0) as MenuItem).Command.Execute(null);
+            if (mnuMain.Items.Count > 0)
+                (mnuMain.Items.GetItemAt(0) as MenuItem).Command.Execute(null);
         }
 
         public void ChangeView(UserControlBase newView)

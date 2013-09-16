@@ -6,20 +6,42 @@
         <ResourceDictionary Source="Shared.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <LinearGradientBrush x:Key="MenuActiveBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#999999" Offset="0" ></GradientStop>
+        <GradientStop Color="#333333" Offset="0.4"></GradientStop>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="MenuNormalBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#BBBBBB" Offset="0" ></GradientStop>
+        <GradientStop Color="#EEEEEE" Offset="0.3"></GradientStop>
+        <GradientStop Color="#AEAEAE" Offset="0.8"></GradientStop>
+    </LinearGradientBrush>
+
     <Style x:Key="{x:Type Menu}" TargetType="{x:Type Menu}">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Height" Value="100"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Menu}">
-                    <Border BorderThickness="0,5,0,5">
-                        <Border.BorderBrush>
-                            <SolidColorBrush>#999999</SolidColorBrush>
-                        </Border.BorderBrush>    
-                        <StackPanel ClipToBounds="True"
+                    <Border BorderThickness="0,5,0,5" Margin="100,0,0,0" RenderOptions.EdgeMode="Aliased" >
+                        <Border.RenderTransform>
+                            <SkewTransform AngleX="-15"></SkewTransform>
+                        </Border.RenderTransform>
+                        <StackPanel Orientation="Horizontal" >
+
+                            <Border BorderBrush="#000000" BorderThickness="2" Background="#00CE02" Width="15" Margin="0,0,5,0" SnapsToDevicePixels="True"></Border>
+                            
+                            <StackPanel ClipToBounds="True"
                             Orientation="Horizontal"
-                            IsItemsHost="True" Background="#0E0E0E">
+                            IsItemsHost="True" SnapsToDevicePixels="True">
+                                <!--<StackPanel.LayoutTransform>
+                                <SkewTransform AngleX="-15"></SkewTransform>
+                            </StackPanel.LayoutTransform>-->
+                            </StackPanel>
+
                         </StackPanel>
+                        
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -28,32 +50,34 @@
 
     <ControlTemplate x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}" TargetType="{x:Type MenuItem}">
         <Grid>
-            <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" Margin="20,10,20,10"
-                              
-                              ></ContentPresenter>
+            <Border x:Name="borderMenuItem" BorderBrush="#000000" BorderThickness="2" Background="{StaticResource MenuNormalBrush}" SnapsToDevicePixels="True"
+                    >
+               
+                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" Margin="40,10,40,10"
+                              VerticalAlignment="Center" x:Name="presenterMenuItem" 
+                              >
+                    <ContentPresenter.RenderTransform>
+                        <SkewTransform AngleX="15"></SkewTransform>
+                    </ContentPresenter.RenderTransform>
+                </ContentPresenter>
+            </Border>    
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="IsHighlighted" Value="True">
-                <Setter Property="Foreground">
-                    <Setter.Value>
-                        <SolidColorBrush Color="Yellow" />
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
+            
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Foreground">
-                    <Setter.Value>
-                        <SolidColorBrush Color="Yellow" />
-                    </Setter.Value>
+                <Setter Property="Background"  TargetName="borderMenuItem" Value="{StaticResource MenuActiveBrush}">
                 </Setter>
+                <Setter Property="Foreground" Value="White" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <Style x:Key="{x:Type MenuItem}" TargetType="{x:Type MenuItem}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Foreground" Value="Black" />
         <Setter Property="FontSize" Value="19" />
+        <Setter Property="IsCheckable" Value="True"></Setter>
+
         <Setter Property="Template" 
                 Value="{StaticResource {x:Static MenuItem.TopLevelHeaderTemplateKey}}"/>
     </Style>
