@@ -165,7 +165,9 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
                 {
                     case "Details":
                         if (details == null || details.Count == 0)
+                        {
                             result = LanguageData.Usage_RequireDetails;
+                        }
                         else
                         {
                             for (int i = 0; i < details.Count; i++)
@@ -174,6 +176,11 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
                                 if(result != null)
                                     break;
                             }
+                            if (details.GroupBy(d => d.ConsumableId,d => d.HouseId).Any(g => g.Count() > 1))
+                            {
+                                result = LanguageData.UsageDetail_RequireHouse;
+                            }
+
                         }
 
                         break;
@@ -274,6 +281,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
         bool CanSave(object param)
         {
+
             var isValid = IsValid();
             return isValid;
         }
