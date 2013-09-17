@@ -19,12 +19,13 @@
                                     Width="30"
                                     Height="30"
                                     Background="White"
-                                    BorderBrush="Black" 
+                                   
                                     BorderThickness="1"
                                     ClipToBounds="True"
                                     CornerRadius="5">
                             <!--<Border.Effect>
                                 <DropShadowEffect BlurRadius="5" ShadowDepth="2"/>
+                                 BorderBrush="Black" 
                             </Border.Effect>-->
                             <Path x:Name="CheckMark"
                                   Width="20"
