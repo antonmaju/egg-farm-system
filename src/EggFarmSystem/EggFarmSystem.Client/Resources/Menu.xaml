@@ -6,14 +6,20 @@
         <ResourceDictionary Source="Shared.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <LinearGradientBrush x:Key="MenuActiveBrush" StartPoint="0,0" EndPoint="0,1">
+    <LinearGradientBrush x:Key="ActiveMenuBrush" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Color="#999999" Offset="0" ></GradientStop>
         <GradientStop Color="#333333" Offset="0.4"></GradientStop>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="MenuNormalBrush" StartPoint="0,0" EndPoint="0,1">
+    <LinearGradientBrush x:Key="HoverMenuBrush" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Color="#BBBBBB" Offset="0" ></GradientStop>
-        <GradientStop Color="#EEEEEE" Offset="0.3"></GradientStop>
+        <GradientStop Color="#FEFEFE" Offset="0.3"></GradientStop>
+        <GradientStop Color="#AEAEAE" Offset="0.8"></GradientStop>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="NormalMenuBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#9A9A9A" Offset="0" ></GradientStop>
+        <GradientStop Color="#CECECE" Offset="0.3"></GradientStop>
         <GradientStop Color="#AEAEAE" Offset="0.8"></GradientStop>
     </LinearGradientBrush>
 
@@ -24,7 +30,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Menu}">
-                    <Border BorderThickness="0,5,0,5" Margin="100,0,0,0" RenderOptions.EdgeMode="Aliased" >
+                    <Border BorderThickness="0,5,0,5" Margin="100,0,0,0" SnapsToDevicePixels="True" RenderOptions.EdgeMode="Aliased" >
                         <Border.RenderTransform>
                             <SkewTransform AngleX="-15"></SkewTransform>
                         </Border.RenderTransform>
@@ -50,11 +56,11 @@
 
     <ControlTemplate x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}" TargetType="{x:Type MenuItem}">
         <Grid>
-            <Border x:Name="borderMenuItem" BorderBrush="#000000" BorderThickness="2" Background="{StaticResource MenuNormalBrush}" SnapsToDevicePixels="True"
+            <Border x:Name="borderMenuItem" BorderBrush="#000000" BorderThickness="2" Background="{StaticResource NormalMenuBrush}" SnapsToDevicePixels="True"
                     >
                
                 <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" Margin="40,10,40,10"
-                              VerticalAlignment="Center" x:Name="presenterMenuItem" 
+                              VerticalAlignment="Center" x:Name="presenterMenuItem" SnapsToDevicePixels="True" RenderOptions.EdgeMode="Aliased"
                               >
                     <ContentPresenter.RenderTransform>
                         <SkewTransform AngleX="15"></SkewTransform>
@@ -63,9 +69,12 @@
             </Border>    
         </Grid>
         <ControlTemplate.Triggers>
-            
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background"  TargetName="borderMenuItem" Value="{StaticResource HoverButtonBrush}">
+                </Setter>
+            </Trigger>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background"  TargetName="borderMenuItem" Value="{StaticResource MenuActiveBrush}">
+                <Setter Property="Background"  TargetName="borderMenuItem" Value="{StaticResource ActiveMenuBrush}">
                 </Setter>
                 <Setter Property="Foreground" Value="White" />
             </Trigger>
@@ -77,9 +86,9 @@
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="FontSize" Value="19" />
         <Setter Property="IsCheckable" Value="True"></Setter>
-
         <Setter Property="Template" 
                 Value="{StaticResource {x:Static MenuItem.TopLevelHeaderTemplateKey}}"/>
+        
     </Style>
 
     

@@ -75,6 +75,30 @@ namespace EggFarmSystem.Client.Core.Views
             var items = bootstrapper.GetMainMenuItems();
             foreach (var item in items)
                 mnuMain.Items.Add(item);
+
+            HandleMenuItemsEvents();
+        }
+
+        void HandleMenuItemsEvents()
+        {
+            foreach (MenuItem item in mnuMain.Items)
+            {
+                item.Checked += menuItem_Checked;
+            }
+        }
+
+        void menuItem_Checked(object sender, RoutedEventArgs e)
+        {
+            var currentItem = sender as MenuItem;
+
+            if (currentItem.IsChecked)
+            {
+                foreach (MenuItem item in mnuMain.Items)
+                {
+                    if (item != currentItem)
+                        item.IsChecked = false;
+                }
+            }
         }
 
         void InitializeContent()
