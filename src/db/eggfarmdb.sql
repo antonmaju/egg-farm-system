@@ -14,6 +14,8 @@ MySQL - 5.6.10-log : Database - eggfarmdb
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`eggfarmdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
+USE `eggfarmdb`;
+
 /*Table structure for table `account` */
 
 DROP TABLE IF EXISTS `account`;
@@ -160,6 +162,33 @@ CREATE TABLE `hen` (
   `Cost` bigint(20) DEFAULT NULL,
   `HouseId` char(36) DEFAULT NULL,
   PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Table structure for table `hendepreciation` */
+
+DROP TABLE IF EXISTS `hendepreciation`;
+
+CREATE TABLE `hendepreciation` (
+  `Id` char(36) NOT NULL,
+  `Date` datetime DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Table structure for table `hendepreciationdetail` */
+
+DROP TABLE IF EXISTS `hendepreciationdetail`;
+
+CREATE TABLE `hendepreciationdetail` (
+  `DepreciationId` char(36) NOT NULL,
+  `HouseId` char(36) NOT NULL,
+  `InitialPrice` decimal(10,3) DEFAULT NULL,
+  `SellingPrice` decimal(10,3) DEFAULT NULL,
+  `Profit` decimal(10,3) DEFAULT NULL,
+  `Depreciation` decimal(10,3) DEFAULT NULL,
+  PRIMARY KEY (`DepreciationId`,`HouseId`),
+  KEY `HouseId` (`HouseId`),
+  CONSTRAINT `hendepreciationdetail_ibfk_1` FOREIGN KEY (`DepreciationId`) REFERENCES `hendepreciation` (`Id`),
+  CONSTRAINT `hendepreciationdetail_ibfk_2` FOREIGN KEY (`HouseId`) REFERENCES `henhouse` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `henhouse` */

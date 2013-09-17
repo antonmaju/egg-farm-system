@@ -135,6 +135,7 @@
     <Compile Include="Core\Services\EggProductionServiceClient.cs" />
     <Compile Include="Core\Services\EmployeeCostServiceClient.cs" />
     <Compile Include="Core\Services\EmployeeServiceClient.cs" />
+    <Compile Include="Core\Services\HenDepreciationServiceClient.cs" />
     <Compile Include="Core\Services\HenHouseServiceClient.cs" />
     <Compile Include="Core\Services\HenServiceClient.cs" />
     <Compile Include="Core\Services\ServiceClient.cs" />
@@ -296,6 +297,13 @@
     <Compile Include="Modules\EmployeeCost\Views\EmployeeCostListView.xaml.cs">
       <DependentUpon>EmployeeCostListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\HenDepreciation\Commands\DeleteHenDepreciationCommand.cs" />
+    <Compile Include="Modules\HenDepreciation\Commands\EditHenDepreciationCommand.cs" />
+    <Compile Include="Modules\HenDepreciation\Commands\NewHenDepreciationCommand.cs" />
+    <Compile Include="Modules\HenDepreciation\Commands\SaveHenDepreciationCommand.cs" />
+    <Compile Include="Modules\HenDepreciation\Commands\ShowHenDepreciationCommand.cs" />
+    <Compile Include="Modules\HenDepreciation\HenDepreciationRegistry.cs" />
+    <Compile Include="Modules\HenDepreciation\ViewModels\HenDepreciationListViewModel.cs" />
     <Compile Include="Modules\MasterData\Commands\DeleteAdditionalCostCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\EditAdditionalCostCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\NewAdditionalCostCommand.cs" />
@@ -419,6 +427,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\Dashboard\" />
+    <Folder Include="Modules\HenDepreciation\Views\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EggFarmSystem.Resources\EggFarmSystem.Resources.csproj">
@@ -429,6 +438,11 @@
       <Project>{1a94011c-d5d2-4639-9a32-b3a08b29f6f2}</Project>
       <Name>EggFarmSystem.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Images\logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

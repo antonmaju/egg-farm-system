@@ -25,6 +25,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        
     </Style>
     
     <Style TargetType="TextBox" x:Key="ErrorTextBox" BasedOn="{StaticResource FormTextBox}">

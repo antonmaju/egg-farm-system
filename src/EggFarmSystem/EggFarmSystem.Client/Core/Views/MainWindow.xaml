@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" MinHeight="500" MinWidth="1000" Background="#0C0C0C"
         WindowState="Maximized" WindowStyle="None" Style="{StaticResource Window.MainWindowKey}"
-        xmlns:cmd ="clr-namespace:EggFarmSystem.Client.Commands"
+        xmlns:cmd ="clr-namespace:EggFarmSystem.Client.Commands" UseLayoutRounding="True"
         >
     <Window.CommandBindings>
         <CommandBinding Command="cmd:ClientCommands.Minimize" Executed="MinimizeCommand_Executed"
@@ -14,30 +14,39 @@
                         CanExecute="CloseCommand_CanExecute" />
                         
     </Window.CommandBindings>
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="128"></RowDefinition>
 			<RowDefinition></RowDefinition>
-            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Menu x:Name="mnuMain">
-            <MenuItem Header="DASHBOARD" x:Name="mnuDashboard"  />
-            <MenuItem Header="PAKAN" x:Name="mnuPakan" />
-            <MenuItem Header="PENYUSUTAN" x:Name="mnuPenyusutan" />
-            <MenuItem Header="PRODUKSI" x:Name="mnuProduksi" />
-            <MenuItem Header="ABSENSI" x:Name="mnuAbsensi" />            
-            <MenuItem Header="MASTER" IsChecked="True" x:Name="mnuMaster" />
-            <MenuItem Header="SETTINGS" x:Name="mnuSettings" />
-            <MenuItem Header="LAPORAN" />
-        </Menu>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="420"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image Source="/EggFarmSystem.Client;component/Assets/Images/logo.png" SnapsToDevicePixels="True" />
+            <Menu x:Name="mnuMain" Grid.Column="1" >
+                <MenuItem Header="DASHBOARD" x:Name="mnuDashboard"  />
+                <MenuItem Header="PAKAN" x:Name="mnuPakan" />
+                <MenuItem Header="PENYUSUTAN" x:Name="mnuPenyusutan" />
+                <MenuItem Header="PRODUKSI" x:Name="mnuProduksi" />
+                <MenuItem Header="ABSENSI" x:Name="mnuAbsensi" />
+                <MenuItem Header="MASTER" IsChecked="True" x:Name="mnuMaster" />
+                <MenuItem Header="SETTINGS" x:Name="mnuSettings" />
+                <MenuItem Header="LAPORAN" />
+            </Menu>
+        </Grid>
+       
+
         <Grid Grid.Row="1" x:Name="grdContent"></Grid>
         <!--<ScrollViewer x:Name="scrContent" Grid.Row="1" VerticalScrollBarVisibility="Auto" >
             
         </ScrollViewer>-->
-        <Border BorderThickness="0,5,0,0" Grid.Row="2" BorderBrush="#999999">
+        <Border Grid.Row="2" >
             <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250"></ColumnDefinition>
@@ -45,7 +54,7 @@
                     </ColumnDefinition>
                     <ColumnDefinition Width="75"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Horizontal" x:Name="stButtons" Grid.Column="1">
+                <StackPanel Orientation="Horizontal" x:Name="stButtons" Grid.Column="1" Margin="0,0,0,25">
                 </StackPanel>
             </Grid>
         </Border>
