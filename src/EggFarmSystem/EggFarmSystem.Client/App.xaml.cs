@@ -25,6 +25,10 @@ namespace EggFarmSystem.Client
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("id-ID");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("id-ID");
+
+            var splash = new SplashScreen("Assets/Images/logo_black.jpg");
+            splash.Show(false);
+
             FrameworkElement.LanguageProperty.OverrideMetadata(
             typeof(FrameworkElement),
             new FrameworkPropertyMetadata(
@@ -32,8 +36,10 @@ namespace EggFarmSystem.Client
                 CultureInfo.CurrentCulture.IetfLanguageTag)));
 
             var bootstrapper = new Bootstrapper();
+            bootstrapper.SplashScreen = splash;
             RegisterModules(bootstrapper);
             bootstrapper.Start(this);
+            
 
             base.OnStartup(e);
         }

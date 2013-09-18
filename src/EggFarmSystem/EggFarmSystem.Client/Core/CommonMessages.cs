@@ -113,5 +113,7 @@ namespace EggFarmSystem.Client.Core
         public static string RefreshHenDepreciationList = "RefreshHenDepreciation";
         public static string DeleteHenDepreciationSuccess = "DeleteHenDepreciationSuccess";
         public static string DeleteHenDepreciationFailed = "DeleteHenDepreciationFailed";
+
+        public static string CloseSplashScreen = "CloseSplashScreen";
     }
 }

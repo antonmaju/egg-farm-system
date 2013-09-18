@@ -80,6 +80,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         {
             var consumableList = consumableService.GetAll();
             Consumables = new ObservableCollection<Consumable>(consumableList);
+            DeleteCommand.EntityId = Guid.Empty;
         }
 
         void OnDeleteConsumableFailed(object param)

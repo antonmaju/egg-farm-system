@@ -181,6 +181,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
             var result = costService.Search(searchInfo);
             CostList = new ObservableCollection<Models.EmployeeCost>(result.Items);
             TotalRecords = result.Total;
+            DeleteCommand.EntityId = Guid.Empty;
         }
 
         void OnDeleteFailed(object param)

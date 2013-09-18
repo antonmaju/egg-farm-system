@@ -179,6 +179,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
             var result = service.Search(searchInfo);
             ProductionList = new ObservableCollection<Models.EggProduction>(result.Items);
             TotalRecords = result.Total;
+            DeleteCommand.EntityId = Guid.Empty;
         }
 
         void OnDeleteFailed(object param)

@@ -25,6 +25,8 @@ namespace EggFarmSystem.Client.Core
             modules = new List<IModule>();
         }
 
+        public SplashScreen SplashScreen { get; set; }
+
         public ICollection<Modules.IModule> Modules
         {
             get { return new ReadOnlyCollection<Modules.IModule>(modules); }
@@ -61,8 +63,8 @@ namespace EggFarmSystem.Client.Core
             var mainView = container.Resolve<IMainView>();
             mainView.Initialize();
             var mainWindow = (Window)mainView;
-            
             app.MainWindow = mainWindow;
+            
             mainWindow.Show();
             
         }
@@ -89,6 +91,12 @@ namespace EggFarmSystem.Client.Core
                     
                     var mainView = container.Resolve<IMainView>();
                     mainView.ChangeActionCommands(commands);
+                });
+
+            broker.Subscribe(CommonMessages.CloseSplashScreen, param =>
+                {
+                    if(SplashScreen != null)
+                        SplashScreen.Close(TimeSpan.FromSeconds(2));
                 });
         }
 

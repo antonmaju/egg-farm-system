@@ -172,6 +172,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             var result = usageService.Search(searchInfo);
             UsageList = new ObservableCollection<ConsumableUsage>(result.Items);
             TotalRecords =  result.Total;
+            DeleteCommand.EntityId = Guid.Empty;
         }
 
         void OnDeleteFailed(object param)

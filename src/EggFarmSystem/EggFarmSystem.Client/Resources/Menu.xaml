@@ -55,7 +55,7 @@
 
     <ControlTemplate x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}" TargetType="{x:Type MenuItem}">
         <Grid>
-            <Border x:Name="borderMenuItem" BorderBrush="#000000" BorderThickness="2" Background="{StaticResource NormalMenuBrush}" SnapsToDevicePixels="True"
+            <Border x:Name="borderMenuItem" BorderBrush="#000000" BorderThickness="1" Background="{StaticResource NormalMenuBrush}" SnapsToDevicePixels="True"
                     >
 
                 <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" Margin="15,0,15,0" 
@@ -70,12 +70,11 @@
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background"  TargetName="borderMenuItem" Value="{StaticResource HoverMenuBrush}">
-                </Setter>
+                <Setter Property="Background"  TargetName="borderMenuItem" Value="{StaticResource HoverMenuBrush}" />
+                <Setter Property="Cursor" Value="Hand" />
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background"  TargetName="borderMenuItem" Value="{StaticResource ActiveMenuBrush}">
-                </Setter>
+                <Setter Property="Background"  TargetName="borderMenuItem" Value="{StaticResource ActiveMenuBrush}" />
                 <Setter Property="Foreground" Value="White" />
             </Trigger>
         </ControlTemplate.Triggers>
