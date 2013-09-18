@@ -23,10 +23,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
-                    
-                   
-
-                        <TextBlock Name="SidebarButtonText" TextWrapping="Wrap" 
+                    <TextBlock Name="SidebarButtonText" TextWrapping="Wrap" 
                                    TextAlignment="Center" 
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
@@ -40,6 +37,10 @@
                             <Setter TargetName="SidebarButtonText" Property="Foreground" Value= "#00CE02"/>
                             <Setter TargetName="SidebarButtonText" Property="FontWeight" Value="Bold" />
                             <Setter TargetName="SidebarButtonText" Property="FontSize" Value= "19"/>
+                           
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="SidebarButtonText" Property="Cursor" Value="Hand"></Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
