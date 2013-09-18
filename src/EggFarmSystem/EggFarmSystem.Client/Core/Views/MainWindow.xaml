@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" MinHeight="700" MinWidth="1000" Background="#0C0C0C"
         WindowState="Maximized" WindowStyle="None" Style="{StaticResource Window.MainWindowKey}"
-        xmlns:cmd ="clr-namespace:EggFarmSystem.Client.Commands" UseLayoutRounding="True"
+        xmlns:cmd ="clr-namespace:EggFarmSystem.Client.Commands" UseLayoutRounding="True"  
         >
     <Window.CommandBindings>
         <CommandBinding Command="cmd:ClientCommands.Minimize" Executed="MinimizeCommand_Executed"
@@ -14,6 +14,7 @@
                         CanExecute="CloseCommand_CanExecute" />
                         
     </Window.CommandBindings>
+    
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="128"></RowDefinition>

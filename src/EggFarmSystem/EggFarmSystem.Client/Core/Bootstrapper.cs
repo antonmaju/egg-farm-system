@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 using Autofac;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core.Services;
@@ -39,34 +40,32 @@ namespace EggFarmSystem.Client.Core
 
         public void Start(Application app)
         {
-            ContainerBuilder builder = new ContainerBuilder();
-            
-            builder.RegisterInstance(this).As<IBootstrapper>();
-            builder.RegisterType<ClientContext>().As<IClientContext>().SingleInstance();
-            builder.RegisterType<Views.MainWindow>().As<IMainView>().SingleInstance();
-            builder.RegisterType<MessageBroker>().As<IMessageBroker>().SingleInstance();
-            builder.RegisterModule<CoreCommandsRegistry>();
-            builder.RegisterModule(new ServiceClientRegistry()
-                {
-                    IsDirectAccess = Convert.ToBoolean(ConfigurationManager.AppSettings["IsDirectAccess"])
-                });  
+          ContainerBuilder builder = new ContainerBuilder();
 
-            foreach (var module in modules)
-            {
-                builder.RegisterModule(module.Registry);
-                module.Initialize();
-            }
+          builder.RegisterInstance(this).As<IBootstrapper>();
+          builder.RegisterType<ClientContext>().As<IClientContext>().SingleInstance();
+          builder.RegisterType<Views.MainWindow>().As<IMainView>().SingleInstance();
+          builder.RegisterType<MessageBroker>().As<IMessageBroker>().SingleInstance();
+          builder.RegisterModule<CoreCommandsRegistry>();
+          builder.RegisterModule(new ServiceClientRegistry()
+          {
+              IsDirectAccess = Convert.ToBoolean(ConfigurationManager.AppSettings["IsDirectAccess"])
+          });
 
-            container = builder.Build();
-            RegisterMessageListeners();
-            
-            var mainView = container.Resolve<IMainView>();
-            mainView.Initialize();
-            var mainWindow = (Window)mainView;
-            app.MainWindow = mainWindow;
-            
-            mainWindow.Show();
-            
+          foreach (var module in modules)
+          {
+              builder.RegisterModule(module.Registry);
+              module.Initialize();
+          }
+
+          container = builder.Build();
+          RegisterMessageListeners();
+
+          var mainView = container.Resolve<IMainView>();
+          mainView.Initialize();
+          var mainWindow = (Window)mainView;
+          app.MainWindow = mainWindow;
+          mainWindow.Show(); 
         }
 
         void RegisterMessageListeners()
