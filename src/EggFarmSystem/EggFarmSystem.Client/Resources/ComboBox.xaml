@@ -8,19 +8,10 @@
         <Setter Property="Padding" Value="3" />
         <Setter Property="Width" Value="300" />
         <Setter Property="Margin" Value="10" />
-        <!--<Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ComboBoxItem">
-                   <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="Yellow"></Setter>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                        
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>-->
+
     </Style>
+    
+    
     
    
         

@@ -69,8 +69,8 @@
             </Border>    
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="IsFocused" Value="True">
-                <Setter Property="Background"  TargetName="borderMenuItem" Value="{StaticResource HoverButtonBrush}">
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background"  TargetName="borderMenuItem" Value="{StaticResource HoverMenuBrush}">
                 </Setter>
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
