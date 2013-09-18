@@ -9,7 +9,7 @@
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
         
-        <ListView Margin="10,50,30,30" x:Name="lvConsumableList"
+        <ListView x:Name="lvConsumableList"
                   AlternationCount="2" ItemsSource="{Binding Path=Consumables}">
             <ListView.Resources>
                 <converters:ConsumableTypeConverter x:Key="typeConverter"></converters:ConsumableTypeConverter>

@@ -1,7 +1,7 @@
 <Window x:Class="EggFarmSystem.Client.Core.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" MinHeight="500" MinWidth="1000" Background="#0C0C0C"
+        Title="MainWindow" MinHeight="700" MinWidth="1000" Background="#0C0C0C"
         WindowState="Maximized" WindowStyle="None" Style="{StaticResource Window.MainWindowKey}"
         xmlns:cmd ="clr-namespace:EggFarmSystem.Client.Commands" UseLayoutRounding="True"
         >
@@ -25,33 +25,22 @@
         </Grid.ColumnDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="420"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="*" MinWidth="210" MaxWidth="420"></ColumnDefinition>
+                <ColumnDefinition Width="4.5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Image Source="/EggFarmSystem.Client;component/Assets/Images/logo.png" SnapsToDevicePixels="True" />
             <Menu x:Name="mnuMain" Grid.Column="1" >
-                <MenuItem Header="DASHBOARD" x:Name="mnuDashboard"  />
-                <MenuItem Header="PAKAN" x:Name="mnuPakan" />
-                <MenuItem Header="PENYUSUTAN" x:Name="mnuPenyusutan" />
-                <MenuItem Header="PRODUKSI" x:Name="mnuProduksi" />
-                <MenuItem Header="ABSENSI" x:Name="mnuAbsensi" />
-                <MenuItem Header="MASTER" IsChecked="True" x:Name="mnuMaster" />
-                <MenuItem Header="SETTINGS" x:Name="mnuSettings" />
-                <MenuItem Header="LAPORAN" />
             </Menu>
         </Grid>
        
 
         <Grid Grid.Row="1" x:Name="grdContent"></Grid>
-        <!--<ScrollViewer x:Name="scrContent" Grid.Row="1" VerticalScrollBarVisibility="Auto" >
-            
-        </ScrollViewer>-->
+
         <Border Grid.Row="2" >
             <Grid >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250"></ColumnDefinition>
-                    <ColumnDefinition>
-                    </ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="4.5*"></ColumnDefinition>
                     <ColumnDefinition Width="75"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" x:Name="stButtons" Grid.Column="1" Margin="0,0,0,25">

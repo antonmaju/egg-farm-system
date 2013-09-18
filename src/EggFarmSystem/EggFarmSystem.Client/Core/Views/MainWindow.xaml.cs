@@ -76,6 +76,12 @@ namespace EggFarmSystem.Client.Core.Views
             foreach (var item in items)
                 mnuMain.Items.Add(item);
 
+            //dummy
+            mnuMain.Items.Add(new MenuItem {Header = "Hen Depreciation"});
+            mnuMain.Items.Add(new MenuItem { Header = "House Depreciation" });
+            mnuMain.Items.Add(new MenuItem { Header = "Reports" });
+            
+
             HandleMenuItemsEvents();
         }
 

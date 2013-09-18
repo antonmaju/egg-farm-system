@@ -24,8 +24,8 @@
                             <!--<ColumnDefinition Width="10"/>-->
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="400"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition />
                         </Grid.RowDefinitions>
 
                         <!--<DockPanel Margin="{TemplateBinding Padding}" >-->
@@ -136,21 +136,15 @@
 
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Foreground" Value="White" />
-        <Setter Property="Padding" Value="0,5,0,5" />
-        <Setter Property="FontSize" Value="18"></Setter>
-        <Setter Property="MinHeight" Value="50"></Setter>
+        <Setter Property="Padding" Value="0,3,0,3" />
+        <Setter Property="FontSize" Value="17"></Setter>
+        <Setter Property="MinHeight" Value="30"></Setter>
         <Setter Property="Template" >
             <Setter.Value>
                 <ControlTemplate TargetType="GridViewColumnHeader">
                     <Grid Margin="0">
                         <Border Name="HeaderBorder" Padding="2,0,2,0" BorderThickness="1,1,1,1" Background="{StaticResource ListViewHeaderBrush}" BorderBrush="#242424" >
                             
-                            <!--<Border.Background>
-                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                    <GradientStop Offset="0" Color="#363636" />
-                                    <GradientStop Offset="1" Color="#101010" />
-                                </LinearGradientBrush>
-                            </Border.Background>-->
                             <ContentPresenter x:Name="HeaderContent" Margin="0,0,0,1"
                               VerticalAlignment="Center" HorizontalAlignment="Center"
                             SnapsToDevicePixels="True" />

@@ -7,7 +7,7 @@
                                         mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
-        <ListView Margin="10,50,30,30" x:Name="lvHenList"
+        <ListView x:Name="lvHenList"
                   AlternationCount="2" ItemsSource="{Binding Path=Hens}">
             <ListView.View>
                 <GridView x:Name="gvHenList">

@@ -8,33 +8,42 @@
              d:DesignHeight="300" d:DesignWidth="500">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*" MinWidth="150" MaxWidth="300"></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="0,30,0,0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" MaxHeight="50"></RowDefinition>
+                <RowDefinition Height="*" MaxHeight="50"></RowDefinition>
+                <RowDefinition Height="*" MaxHeight="50"></RowDefinition>
+                <RowDefinition Height="*" MaxHeight="50"></RowDefinition>
+                <RowDefinition Height="*" MaxHeight="50"></RowDefinition>
+                <RowDefinition ></RowDefinition>
+            </Grid.RowDefinitions>
+            
             <ToggleButton Style="{StaticResource SidebarButton}" 
                           IsChecked="{Binding Path=IsHenInput}"
                           Command="{Binding Path=HenListCommand}"
                           x:Name="tglAyam" Content="{Binding Path=HenText}"></ToggleButton>
-            <ToggleButton Style="{StaticResource SidebarButton}"
+            <ToggleButton Grid.Row="1" Style="{StaticResource SidebarButton}"
                           IsChecked="{Binding Path=IsHouseInput}"
                           Command="{Binding Path=HouseListCommand}"
                           x:Name="tglKandang" Content="{Binding Path=HouseText}"></ToggleButton>
-            <ToggleButton Style="{StaticResource SidebarButton}" 
+            <ToggleButton Grid.Row="2" Style="{StaticResource SidebarButton}" 
                           IsChecked="{Binding Path=IsEmployeeInput}"
                           Command="{Binding Path=EmployeeListCommand}"
                           x:Name="tglKaryawan" Content="{Binding Path=EmployeeText}" />
-            <ToggleButton Style="{StaticResource SidebarButton}" 
+            <ToggleButton Grid.Row="3" Style="{StaticResource SidebarButton}" 
                           IsChecked="{Binding Path=IsConsumableInput}"
                           Command="{Binding Path=ConsumableListCommand}"
                           x:Name="tglConsumable" Content="{Binding Path=ConsumableText}" />
-            <ToggleButton Style="{StaticResource SidebarButton}"
+            <ToggleButton Grid.Row="4" Style="{StaticResource SidebarButton}"
                           IsChecked="{Binding Path=IsAdditionalCostInput}"
                           Command="{Binding Path=AdditionalCostListCommand}"
                           x:Name="lstAdditionalCost" Content="{Binding Path=AdditionalCostText}"
                           />
-        </StackPanel>
-        <Border Grid.Column="1" CornerRadius="15" Background="#242424" Margin="20"  Padding="10">
+        </Grid>
+        <Border Grid.Column="1" CornerRadius="15" Background="#242424" Margin="20"  Padding="15">
             <ScrollViewer  x:Name="scrMasterContent"
                           HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True"
                            Content="{Binding Path=Content, UpdateSourceTrigger=PropertyChanged}">

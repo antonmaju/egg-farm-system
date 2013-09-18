@@ -24,25 +24,22 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
                     
-                    <Grid x:Name="ButtonRoot" Margin="40,10">
+                   
 
-                        <TextBlock Name="SidebarButtonText"  Padding="10,7,0,0"
-                                   FontSize="20" Foreground="#999">
+                        <TextBlock Name="SidebarButtonText" TextWrapping="Wrap" 
+                                   TextAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontSize="17" Foreground="#999">
                          <ContentPresenter RecognizesAccessKey="True"
                              Content="{TemplateBinding Content}"></ContentPresenter>
-                        </TextBlock>
-                        
-                    </Grid>
+                        </TextBlock>                       
+                   
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="SidebarButtonText" Property="Foreground" Value= "Yellow"/>
-                            <Setter TargetName="SidebarButtonText" Property="FontWeight" Value="DemiBold" />
-                            <!--<Setter TargetName="SidebarButtonText" Property="FontSize" Value="21" />-->
-                            <!--<Setter TargetName="SidebarButtonText" Property="FontStyle" Value="Oblique"/>-->
-                            <!--<Setter TargetName="SidebarButtonText" Property="Foreground" Value="Goldenrod" />-->
-                            <!--<Setter TargetName="SidebarButtonText" Property="Background" Value="#AAA" />-->
-                            <!--<Setter TargetName="SidebarButtonText" Property="MinHeight" Value="40" />
-                            <Setter TargetName="SidebarButtonText" Property="MinWidth" Value="200" />-->
+                            <Setter TargetName="SidebarButtonText" Property="Foreground" Value= "#00CE02"/>
+                            <Setter TargetName="SidebarButtonText" Property="FontWeight" Value="Bold" />
+                            <Setter TargetName="SidebarButtonText" Property="FontSize" Value= "19"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -54,7 +51,7 @@
     <Style x:Key="NavButton" TargetType="Button">
         <Setter Property="SnapsToDevicePixels" Value="True"></Setter>
         <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
-        <Setter Property="Height" Value="50" ></Setter>
+        <Setter Property="MinHeight" Value="50" ></Setter>
         <Setter Property="MinWidth" Value="150"></Setter>
         <Setter Property="FontSize" Value="14"></Setter>
         <Setter Property="Foreground" Value="Black"></Setter>
@@ -65,12 +62,13 @@
                     <Border x:Name="Border" CornerRadius="3" BorderThickness="1" 
                             Background="{StaticResource NormalButtonBrush}"
                             BorderBrush="{StaticResource NormalButtonBrush}">
-                 
+                        <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <ContentPresenter Margin="2"
                               HorizontalAlignment="Center"
                               VerticalAlignment="Center"
                               RecognizesAccessKey="True" />
-                 
+                        </TextBlock>
+
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
