@@ -52,7 +52,7 @@
         <Setter Property="SnapsToDevicePixels" Value="True"></Setter>
         <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
         <Setter Property="MinHeight" Value="50" ></Setter>
-        <Setter Property="MinWidth" Value="150"></Setter>
+        <Setter Property="MinWidth" Value="125"></Setter>
         <Setter Property="FontSize" Value="14"></Setter>
         <Setter Property="Foreground" Value="Black"></Setter>
         <Setter Property="Margin" Value="0,0,20,0"></Setter>

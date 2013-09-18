@@ -32,7 +32,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Menu}">
-                    <Border BorderThickness="0,5,0,5" Margin="100,0,0,0" SnapsToDevicePixels="True" >
+                    <Border BorderThickness="0,5,0,5" Margin="30,0,0,0" SnapsToDevicePixels="True" >
                         <Border.RenderTransform> 
                             <SkewTransform AngleX="-15"></SkewTransform>
                         </Border.RenderTransform>
@@ -57,8 +57,8 @@
         <Grid>
             <Border x:Name="borderMenuItem" BorderBrush="#000000" BorderThickness="2" Background="{StaticResource NormalMenuBrush}" SnapsToDevicePixels="True"
                     >
-               
-                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" Margin="15,0,15,0"
+
+                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" Margin="15,0,15,0" 
                               VerticalAlignment="Center" x:Name="presenterMenuItem" SnapsToDevicePixels="True" RenderOptions.EdgeMode="Aliased"
                                   >
                     <ContentPresenter.RenderTransform>
@@ -84,10 +84,17 @@
     <Style x:Key="{x:Type MenuItem}" TargetType="{x:Type MenuItem}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Foreground" Value="Black" />
-        <Setter Property="FontSize" Value="17" />
+        <Setter Property="FontSize" Value="14" />
         <Setter Property="IsCheckable" Value="True"></Setter>
         <Setter Property="Template" 
                 Value="{StaticResource {x:Static MenuItem.TopLevelHeaderTemplateKey}}"/>
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" Width="80" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     

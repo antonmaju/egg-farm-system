@@ -25,10 +25,11 @@
         </Grid.ColumnDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" MinWidth="210" MaxWidth="420"></ColumnDefinition>
-                <ColumnDefinition Width="4.5*"></ColumnDefinition>
+                <ColumnDefinition Width="*" MinWidth="150" MaxWidth="420"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image Source="/EggFarmSystem.Client;component/Assets/Images/logo.png" SnapsToDevicePixels="True" />
+            <Image  Source="/EggFarmSystem.Client;component/Assets/Images/logo.png" SnapsToDevicePixels="True" />
+
             <Menu x:Name="mnuMain" Grid.Column="1" >
             </Menu>
         </Grid>
@@ -39,11 +40,10 @@
         <Border Grid.Row="2" >
             <Grid >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="4.5*"></ColumnDefinition>
-                    <ColumnDefinition Width="75"></ColumnDefinition>
+                    <ColumnDefinition Width="*" MinWidth="200"></ColumnDefinition>
+                    <ColumnDefinition Width="4.75*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Horizontal" x:Name="stButtons" Grid.Column="1" Margin="0,0,0,25">
+                <StackPanel Orientation="Horizontal" x:Name="stButtons" Grid.Column="1" Margin="0,0,75,25">
                 </StackPanel>
             </Grid>
         </Border>

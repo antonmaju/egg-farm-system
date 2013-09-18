@@ -77,12 +77,12 @@ namespace EggFarmSystem.Client.Core.Views
                 mnuMain.Items.Add(item);
 
             //dummy
-            mnuMain.Items.Add(new MenuItem {Header = "Hen Depreciation"});
-            mnuMain.Items.Add(new MenuItem { Header = "House Depreciation" });
-            mnuMain.Items.Add(new MenuItem { Header = "Reports" });
+            mnuMain.Items.Add(new MenuItem {Header = "PENYUSUTAN AYAM"});
+            mnuMain.Items.Add(new MenuItem { Header = "PENYUSUTAN KANDANG" });
+            mnuMain.Items.Add(new MenuItem { Header = "LAPORAN" });
             
-
             HandleMenuItemsEvents();
+            (mnuMain.Items[0] as MenuItem).IsChecked = true;
         }
 
         void HandleMenuItemsEvents()
