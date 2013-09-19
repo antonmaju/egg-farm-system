@@ -17,9 +17,13 @@
                                         Width="300">
 
                         </GridViewColumn>
-                        <GridViewColumn Header="{Binding Path=SalaryText}" DisplayMemberBinding="{Binding Path=Salary}"
+                        <GridViewColumn Header="{Binding Path=SalaryText}"
                                         Width="200">
-
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Salary, StringFormat=C}"  Style="{StaticResource RightAlignListViewCell}"  />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="{Binding Path=ActiveText}" DisplayMemberBinding="{Binding Path=Active}"
                                         Width="150"/>

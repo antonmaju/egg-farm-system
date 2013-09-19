@@ -17,9 +17,13 @@
                                         DisplayMemberBinding="{Binding Path=Name}"
                                         Width="300"  />
                         <GridViewColumn Header="{Binding Path=ValueText}"
-                                       DisplayMemberBinding="{Binding Path=Value}"
-                                       
-                           Width="300" />
+                           Width="300" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Value, StringFormat=C}"  Style="{StaticResource RightAlignListViewCell}"  />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                       </GridViewColumn>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>  

@@ -214,6 +214,7 @@
         <Setter Property="Foreground" Value="Black"></Setter>
         <Setter Property="MinHeight" Value="40"></Setter>
         <Setter Property="FontSize" Value="17"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">

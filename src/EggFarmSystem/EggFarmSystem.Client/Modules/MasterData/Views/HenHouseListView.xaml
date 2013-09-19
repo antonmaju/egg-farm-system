@@ -16,9 +16,12 @@
                                         Width="150">
 
                         </GridViewColumn>
-                        <GridViewColumn Header="{Binding Path=PurchaseCostText}" DisplayMemberBinding="{Binding Path=PurchaseCost}"
-                                        Width="200">
-
+                        <GridViewColumn Header="{Binding Path=PurchaseCostText}" Width="200">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding PurchaseCost, StringFormat=C}" Style="{StaticResource RightAlignListViewCell}"  />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="{Binding Path=YearUsageText}" DisplayMemberBinding="{Binding Path=YearUsage}"
                                         Width="70">

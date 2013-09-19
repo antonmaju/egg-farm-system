@@ -29,9 +29,13 @@
 
                         </GridViewColumn>
                         <GridViewColumn Header="{Binding Path=UnitPriceText}" 
-                                        DisplayMemberBinding="{Binding Path=UnitPrice}"
+                                        
                                         Width="200">
-
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=UnitPrice, StringFormat=C}"  Style="{StaticResource RightAlignListViewCell}"  />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="{Binding Path=UnitText}" 
                                         DisplayMemberBinding="{Binding Path=Unit}"
