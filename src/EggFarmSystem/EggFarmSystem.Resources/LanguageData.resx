@@ -357,6 +357,9 @@
   <data name="Hen_RequireCost" xml:space="preserve">
     <value>Cost is required</value>
   </data>
+  <data name="Hen_RequireHouse" xml:space="preserve">
+    <value>House is required</value>
+  </data>
   <data name="Hen_RequireName" xml:space="preserve">
     <value>Name is required</value>
   </data>

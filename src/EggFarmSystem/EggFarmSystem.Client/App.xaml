@@ -5,6 +5,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources\Shared.xaml" />
                 <ResourceDictionary Source="Resources\Border.xaml" />
                 <ResourceDictionary Source="Resources\Menu.xaml" />
                 <ResourceDictionary Source="Resources\Window.xaml" />
