@@ -43,7 +43,7 @@
                           x:Name="lstAdditionalCost" Content="{Binding Path=AdditionalCostText}"
                           />
         </Grid>
-        <Border Grid.Column="1" CornerRadius="15" Background="#242424" Margin="20"  Padding="15">
+        <Border Grid.Column="1" Style="{StaticResource ContainerBorder}">
             <ScrollViewer  x:Name="scrMasterContent"
                           HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True"
                            Content="{Binding Path=Content, UpdateSourceTrigger=PropertyChanged}">

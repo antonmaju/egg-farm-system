@@ -78,6 +78,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         {
             var employeeList = employeeService.GetAll();
             Employees = new ObservableCollection<Employee>(employeeList);
+            DeleteCommand.EntityId = Guid.Empty;
         }
 
         void OnDeleteEmployeeFailed(object param)

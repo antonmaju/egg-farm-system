@@ -6,12 +6,13 @@
              xmlns:views="clr-namespace:EggFarmSystem.Client.Core.Views" 
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
-    <Grid>
+    <Border Style="{StaticResource ContainerBorder}">
+        <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
-        <ListView Margin="20" x:Name="lvCostList"
+        <ListView x:Name="lvCostList"
                   AlternationCount="2" ItemsSource="{Binding Path=CostList}">
             <ListView.View>
                 <GridView x:Name="gvCostList">
@@ -33,4 +34,5 @@
         </ListView>
         
     </Grid>
+    </Border>
 </views:UserControlBase>

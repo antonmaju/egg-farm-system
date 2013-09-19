@@ -20,11 +20,16 @@ namespace EggFarmSystem.Client.Core.Views
         public MainWindow(IBootstrapper bootstrapper, IMessageBroker messageBroker, IClientContext clientContext)
         {
             InitializeComponent();
+           
+            
             this.bootstrapper = bootstrapper;
             this.messageBroker = messageBroker;
             this.clientContext = clientContext;
-       
+
+            this.Loaded += new RoutedEventHandler(MainWindow_Loaded);
         }
+
+
 
         #region window event
 
@@ -58,6 +63,11 @@ namespace EggFarmSystem.Client.Core.Views
         private void CloseCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
+        }
+
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            messageBroker.Publish(CommonMessages.CloseSplashScreen, null);
         }
 
         #endregion
@@ -143,5 +153,7 @@ namespace EggFarmSystem.Client.Core.Views
                 }
             }
         }
+        
+
     }
 }

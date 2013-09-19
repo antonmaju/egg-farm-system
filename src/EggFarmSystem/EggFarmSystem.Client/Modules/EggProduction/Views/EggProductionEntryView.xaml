@@ -6,9 +6,10 @@
                                         xmlns:views="clr-namespace:EggFarmSystem.Client.Core.Views"
                                         mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <Border  Style="{StaticResource ContainerBorder}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
+            <RowDefinition Height="10" />
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition  />
             <RowDefinition Height="20"></RowDefinition>
@@ -19,7 +20,7 @@
             <DatePicker Width="250" SelectedDate="{Binding Path=Date}" Padding="10"
                 Style="{StaticResource FormDatePicker}"></DatePicker>
         </StackPanel>
-        <DataGrid Grid.Row="2" Margin="20" ScrollViewer.CanContentScroll="True"
+        <DataGrid Grid.Row="2" ScrollViewer.CanContentScroll="True"
                   ItemsSource="{Binding Path=Details}" AutoGenerateColumns="False"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -87,4 +88,5 @@
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
+    </Border>    
 </views:UserControlBase>

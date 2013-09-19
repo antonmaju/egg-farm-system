@@ -76,6 +76,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         {
             var costList = costService.GetAll();
             CostList = new ObservableCollection<AdditionalCost>(costList);
+            DeleteCommand.EntityId = Guid.Empty;
         }
 
         void OnDeleteCostFailed(object param)

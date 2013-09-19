@@ -76,6 +76,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             if(houseList == null)
                 houseList = new List<HenHouse>();
             Houses = new ObservableCollection<HenHouse>(houseList);
+            DeleteCommand.EntityId = Guid.Empty;
         }
 
         void OnDeleteHouseFailed(object param)
