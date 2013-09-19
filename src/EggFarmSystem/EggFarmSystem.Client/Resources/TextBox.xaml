@@ -8,6 +8,19 @@
         <Setter Property="Padding" Value="3" />
         <Setter Property="Width" Value="300" />
         <Setter Property="Margin" Value="10" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <Border
+                CornerRadius="{StaticResource ControlCorderRadius}"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="1" >
+                        <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Validation.ErrorTemplate">
             <!-- Thanks to the following post http://codeblitz.wordpress.com/2009/05/08/wpf-validation-made-easy-with-idataerrorinfo/ -->
             <Setter.Value>
@@ -19,13 +32,13 @@
                             </TextBlock>
                         </Border>
                         <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
-                            <Border BorderBrush="Red" BorderThickness="1" />
+                            <Border BorderBrush="Red" BorderThickness="1" CornerRadius="{StaticResource ControlCorderRadius}"/>
                         </AdornedElementPlaceholder>
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        
+       
     </Style>
     
     <Style TargetType="TextBox" x:Key="ErrorTextBox" BasedOn="{StaticResource FormTextBox}">
