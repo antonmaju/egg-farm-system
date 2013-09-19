@@ -4,14 +4,14 @@
     
     <Style TargetType="{x:Type Window}" x:Key="Window.MainWindowKey">
         <Setter Property="WindowStyle" Value="None"  />
-        <Setter Property="FontFamily" Value="Calibri" />
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="AllowsTransparency" Value="True"></Setter>
+        <Setter Property="FontFamily" Value="/EggFarmSystem.Client;component/Assets/Fonts/#PT SANS"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">
                     <Border Background="Black">
-                    <Grid>
+                        <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="36"></RowDefinition>
                             <RowDefinition></RowDefinition>
