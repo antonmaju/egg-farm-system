@@ -655,6 +655,15 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to House is required.
+        /// </summary>
+        public static string Hen_RequireHouse {
+            get {
+                return ResourceManager.GetString("Hen_RequireHouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name is required.
         /// </summary>
         public static string Hen_RequireName {

@@ -22,7 +22,7 @@
                                    
                                     BorderThickness="1"
                                     ClipToBounds="True"
-                                    CornerRadius="5">
+                                    CornerRadius="{StaticResource ControlCorderRadius}">
                             <!--<Border.Effect>
                                 <DropShadowEffect BlurRadius="5" ShadowDepth="2"/>
                                  BorderBrush="Black" 

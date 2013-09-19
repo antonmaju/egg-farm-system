@@ -64,32 +64,32 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         
         public string NameText
         {
-            get { return LanguageData.Hen_NameField.ToUpper(); }
+            get { return LanguageData.Hen_NameField; }
         }
 
         public string TypeText
         {
-            get { return LanguageData.Hen_TypeField.ToUpper(); }
+            get { return LanguageData.Hen_TypeField; }
         }
 
         public string CountText
         {
-            get { return LanguageData.Hen_CountField.ToUpper(); }
+            get { return LanguageData.Hen_CountField; }
         }
 
         public string CostText
         {
-            get { return LanguageData.Hen_CostField.ToUpper(); }
+            get { return LanguageData.Hen_CostField; }
         }
 
         public string ActiveText
         {
-            get { return LanguageData.Hen_ActiveField.ToUpper(); }
+            get { return LanguageData.Hen_ActiveField; }
         }
 
         public string HouseText
         {
-            get { return LanguageData.Hen_HouseField.ToUpper(); }
+            get { return LanguageData.Hen_HouseField; }
         }
 
         #endregion
@@ -185,6 +185,11 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
                     case "Type":
                         if (string.IsNullOrWhiteSpace(Type))
                             result = LanguageData.Hen_RequireType;
+                        break;
+
+                    case "HouseId":
+                        if (HouseId == Guid.Empty)
+                            result = LanguageData.Hen_RequireHouse;
                         break;
                 }
                 return result;
