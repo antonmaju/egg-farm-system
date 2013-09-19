@@ -36,17 +36,15 @@
                         <Border.RenderTransform> 
                             <SkewTransform AngleX="-15"></SkewTransform>
                         </Border.RenderTransform>
-                        <StackPanel Orientation="Horizontal" >
-
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"></ColumnDefinition>
+                                <ColumnDefinition Width="2.5*" MinWidth="800" MaxWidth="1600" ></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
                             <Border BorderBrush="#000000" BorderThickness="2" Background="#00CE02" Width="15"  Margin="0,0,5,0" SnapsToDevicePixels="True" ></Border>
-                            
-                            <StackPanel ClipToBounds="True"
-                            Orientation="Horizontal"
-                            IsItemsHost="True" SnapsToDevicePixels="True">
-                            </StackPanel>
-
-                        </StackPanel>
-                        
+                            <UniformGrid Rows="1" Grid.Column="1" IsItemsHost="True" SnapsToDevicePixels="True" ></UniformGrid>
+                        </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -58,7 +56,7 @@
             <Border x:Name="borderMenuItem" BorderBrush="#000000" BorderThickness="1" Background="{StaticResource NormalMenuBrush}" SnapsToDevicePixels="True"
                     >
 
-                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" Margin="15,0,15,0" 
+                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" 
                               VerticalAlignment="Center" x:Name="presenterMenuItem" SnapsToDevicePixels="True" RenderOptions.EdgeMode="Aliased"
                                   >
                     <ContentPresenter.RenderTransform>
@@ -83,14 +81,15 @@
     <Style x:Key="{x:Type MenuItem}" TargetType="{x:Type MenuItem}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Foreground" Value="Black" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontFamily" Value="/EggFarmSystem.Client;component/Assets/Fonts/#Roboto"></Setter>
         <Setter Property="IsCheckable" Value="True"></Setter>
         <Setter Property="Template" 
                 Value="{StaticResource {x:Static MenuItem.TopLevelHeaderTemplateKey}}"/>
         <Setter Property="HeaderTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <TextBlock Text="{Binding}" Width="80" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
+                    <TextBlock Text="{Binding}" Width="100" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" ></TextBlock>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
