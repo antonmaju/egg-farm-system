@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
+using EggFarmSystem.Resources;
 
 namespace EggFarmSystem.Client.Modules.HenDepreciation.Commands
 {
@@ -13,6 +14,8 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.Commands
 
         public NewHenDepreciationCommand(IMessageBroker broker)
         {
+            Text = () => LanguageData.General_New;
+
             this.broker = broker;
         }
 

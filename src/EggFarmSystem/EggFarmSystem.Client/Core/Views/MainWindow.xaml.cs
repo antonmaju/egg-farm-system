@@ -87,7 +87,6 @@ namespace EggFarmSystem.Client.Core.Views
                 mnuMain.Items.Add(item);
 
             //dummy
-            mnuMain.Items.Add(new MenuItem { Header = "PENYUSUTAN\nAYAM" });
             mnuMain.Items.Add(new MenuItem { Header = "PENYUSUTAN\nKANDANG" });
             mnuMain.Items.Add(new MenuItem { Header = "LAPORAN" });
             

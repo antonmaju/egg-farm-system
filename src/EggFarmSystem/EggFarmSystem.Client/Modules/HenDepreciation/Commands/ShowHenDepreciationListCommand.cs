@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
+using EggFarmSystem.Client.Modules.HenDepreciation.Views;
 using EggFarmSystem.Resources;
 
 namespace EggFarmSystem.Client.Modules.HenDepreciation.Commands
 {
-    public class ShowHenDepreciationCommand : CommandBase
+    public class ShowHenDepreciationListCommand : CommandBase
     {
         private readonly IMessageBroker broker;
 
-        public ShowHenDepreciationCommand(IMessageBroker broker)
+        public ShowHenDepreciationListCommand(IMessageBroker broker)
         {
             Text = () => LanguageData.HenDepreciation_Title;
 
@@ -21,7 +22,7 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.Commands
 
         public override void Execute(object parameter)
         {
-            //broker.Publish(CommonMessages.ChangeMainView, typeof(IHenDepreciationListView));
+            broker.Publish(CommonMessages.ChangeMainView, typeof(IHenDepreciationListView));
             broker.Publish(CommonMessages.RefreshHenDepreciationList, null);
         }
     }

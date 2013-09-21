@@ -162,6 +162,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\HenDepreciation\Views\HenDepreciationListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\MasterData\Views\AdditionalCostEntryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -309,9 +313,13 @@
     <Compile Include="Modules\HenDepreciation\Commands\EditHenDepreciationCommand.cs" />
     <Compile Include="Modules\HenDepreciation\Commands\NewHenDepreciationCommand.cs" />
     <Compile Include="Modules\HenDepreciation\Commands\SaveHenDepreciationCommand.cs" />
-    <Compile Include="Modules\HenDepreciation\Commands\ShowHenDepreciationCommand.cs" />
+    <Compile Include="Modules\HenDepreciation\Commands\ShowHenDepreciationListCommand.cs" />
+    <Compile Include="Modules\HenDepreciation\HenDepreciationModule.cs" />
     <Compile Include="Modules\HenDepreciation\HenDepreciationRegistry.cs" />
     <Compile Include="Modules\HenDepreciation\ViewModels\HenDepreciationListViewModel.cs" />
+    <Compile Include="Modules\HenDepreciation\Views\HenDepreciationListView.xaml.cs">
+      <DependentUpon>HenDepreciationListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\MasterData\Commands\DeleteAdditionalCostCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\EditAdditionalCostCommand.cs" />
     <Compile Include="Modules\MasterData\Commands\NewAdditionalCostCommand.cs" />
@@ -441,7 +449,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\Dashboard\" />
-    <Folder Include="Modules\HenDepreciation\Views\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EggFarmSystem.Resources\EggFarmSystem.Resources.csproj">
