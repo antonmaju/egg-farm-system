@@ -316,6 +316,8 @@
     <Compile Include="Modules\HenDepreciation\Commands\ShowHenDepreciationListCommand.cs" />
     <Compile Include="Modules\HenDepreciation\HenDepreciationModule.cs" />
     <Compile Include="Modules\HenDepreciation\HenDepreciationRegistry.cs" />
+    <Compile Include="Modules\HenDepreciation\ViewModels\HenDepreciationDetailViewModel.cs" />
+    <Compile Include="Modules\HenDepreciation\ViewModels\HenDepreciationEntryViewModel.cs" />
     <Compile Include="Modules\HenDepreciation\ViewModels\HenDepreciationListViewModel.cs" />
     <Compile Include="Modules\HenDepreciation\Views\HenDepreciationListView.xaml.cs">
       <DependentUpon>HenDepreciationListView.xaml</DependentUpon>
@@ -461,6 +463,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\logo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Images\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
