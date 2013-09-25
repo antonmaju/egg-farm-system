@@ -14,8 +14,6 @@ MySQL - 5.6.10-log : Database - eggfarmdb
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`eggfarmdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
-USE `eggfarmdb`;
-
 /*Table structure for table `account` */
 
 DROP TABLE IF EXISTS `account`;
@@ -201,6 +199,7 @@ CREATE TABLE `henhouse` (
   `PurchaseCost` bigint(20) DEFAULT NULL,
   `YearUsage` int(11) DEFAULT NULL,
   `Depreciation` bigint(20) DEFAULT NULL,
+  `ProductiveAge` int(11) DEFAULT NULL,
   `Active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

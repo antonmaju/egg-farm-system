@@ -162,6 +162,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\HenDepreciation\Views\HenDepreciationEntryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\HenDepreciation\Views\HenDepreciationListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -319,6 +323,9 @@
     <Compile Include="Modules\HenDepreciation\ViewModels\HenDepreciationDetailViewModel.cs" />
     <Compile Include="Modules\HenDepreciation\ViewModels\HenDepreciationEntryViewModel.cs" />
     <Compile Include="Modules\HenDepreciation\ViewModels\HenDepreciationListViewModel.cs" />
+    <Compile Include="Modules\HenDepreciation\Views\HenDepreciationEntryView.xaml.cs">
+      <DependentUpon>HenDepreciationEntryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\HenDepreciation\Views\HenDepreciationListView.xaml.cs">
       <DependentUpon>HenDepreciationListView.xaml</DependentUpon>
     </Compile>

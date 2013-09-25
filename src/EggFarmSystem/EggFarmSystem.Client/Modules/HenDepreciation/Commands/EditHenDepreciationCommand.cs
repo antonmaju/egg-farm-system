@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
+using EggFarmSystem.Client.Modules.HenDepreciation.Views;
 using EggFarmSystem.Resources;
 
 namespace EggFarmSystem.Client.Modules.HenDepreciation.Commands
@@ -40,7 +41,7 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.Commands
             if (entityId == Guid.Empty)
                 return;
 
-            //broker.Publish(CommonMessages.ChangeMainView, typeof(IHenDepreciationEntryView));
+            broker.Publish(CommonMessages.ChangeMainView, typeof(IHenDepreciationEntryView));
             broker.Publish(CommonMessages.LoadHenDepreciation, entityId);
         }
 

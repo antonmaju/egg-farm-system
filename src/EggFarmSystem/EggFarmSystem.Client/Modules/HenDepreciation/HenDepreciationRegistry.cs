@@ -32,11 +32,13 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation
         void RegisterViewModels(ContainerBuilder builder)
         {
             builder.RegisterType<HenDepreciationListViewModel>().InstancePerDependency();
+            builder.RegisterType<HenDepreciationEntryViewModel>().InstancePerDependency();
         }
 
         void RegisterViews(ContainerBuilder builder)
         {
             builder.RegisterType<HenDepreciationListView>().As<IHenDepreciationListView>().InstancePerDependency();
+            builder.RegisterType<HenDepreciationEntryView>().As<IHenDepreciationEntryView>().InstancePerDependency();
         }
     }
 }

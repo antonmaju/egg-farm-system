@@ -19,6 +19,8 @@ namespace EggFarmSystem.Services
         void Save(HenDepreciation depreciation);
 
         void Delete(Guid id);
+
+        HenDepreciation GetInitialValues(DateTime date);
     }
 
     public class HenDepreciationService : IHenDepreciationService
@@ -183,6 +185,12 @@ namespace EggFarmSystem.Services
             }
 
             return depreciation;
+        }
+
+
+        public HenDepreciation GetInitialValues(DateTime date)
+        {
+            return null;
         }
     }
 }

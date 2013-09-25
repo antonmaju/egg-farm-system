@@ -267,11 +267,6 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
 
         #endregion
 
-        EggProductionDetailViewModel CreateNewDetail()
-        {
-            return new EggProductionDetailViewModel();
-        }
-
         public override void Dispose()
         {
             UnsubscribeMessages();

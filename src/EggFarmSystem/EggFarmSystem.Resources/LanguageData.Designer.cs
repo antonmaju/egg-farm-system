@@ -862,6 +862,15 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hen&apos;s productive age.
+        /// </summary>
+        public static string House_ProductiveAgeField {
+            get {
+                return ResourceManager.GetString("House_ProductiveAgeField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Purchase Cost.
         /// </summary>
         public static string House_PurchaseCostField {
@@ -885,6 +894,15 @@ namespace EggFarmSystem.Resources {
         public static string House_RequireName {
             get {
                 return ResourceManager.GetString("House_RequireName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hen&apos;s productive age is required.
+        /// </summary>
+        public static string House_RequireProductiveAge {
+            get {
+                return ResourceManager.GetString("House_RequireProductiveAge", resourceCulture);
             }
         }
         

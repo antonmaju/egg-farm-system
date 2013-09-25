@@ -73,6 +73,11 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             get { return LanguageData.House_PopulationField; }
         }
 
+        public string ProductiveAgeField
+        {
+            get { return LanguageData.House_ProductiveAgeField; }
+        }
+
        
         #endregion
 
@@ -85,6 +90,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         private long depreciation;
         private bool active;
         private int population;
+        private int productiveAge;
 
         public Guid Id
         {
@@ -154,6 +160,16 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
                 OnPropertyChanged("Population"); }
         }
 
+        public int ProductiveAge
+        {
+            get { return productiveAge; }
+            set 
+            { 
+                productiveAge = value;
+                OnPropertyChanged("ProductiveAge");
+            }
+        }
+
         #endregion
 
         public override string this[string columnName]
@@ -180,7 +196,10 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
                         if (Depreciation <= 0)
                             result = LanguageData.House_RequireDepreciation;
                         break;
-                    
+                    case "ProductiveAge":
+                        if (ProductiveAge <= 0)
+                            result = LanguageData.House_RequireProductiveAge;
+                        break;
                 }
 
                 return result;
@@ -203,6 +222,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             Active = true;
             Population = 0;
             YearUsage = 0;
+            ProductiveAge = 0;
         }
 
         void OnLoadHouse(object param)
@@ -216,6 +236,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             Active = loadedHouse.Active;
             Population = 0;
             YearUsage = loadedHouse.YearUsage;
+            ProductiveAge = loadedHouse.ProductiveAge;
         }
 
         void OnHouseSavingFailed(object param)

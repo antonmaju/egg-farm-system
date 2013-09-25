@@ -4,9 +4,11 @@ using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.HenDepreciation.Commands;
+using EggFarmSystem.Models;
 using EggFarmSystem.Resources;
 using EggFarmSystem.Services;
 
@@ -14,13 +16,25 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
 {
     public class HenDepreciationEntryViewModel : ViewModelBase
     {
-        private readonly IMessageBroker messageBroker;
+        private readonly IMessageBroker broker;
         private readonly IHenDepreciationService service;
 
-        public HenDepreciationEntryViewModel(IMessageBroker messageBroker, IHenDepreciationService service)
+        public HenDepreciationEntryViewModel(IMessageBroker messageBroker, IHenDepreciationService service, IHenHouseService houseService,
+            SaveHenDepreciationCommand saveCommand, CancelCommand cancelCommand, ShowHenDepreciationListCommand showListCommand)
         {
-            this.messageBroker = messageBroker;
+            this.broker = messageBroker;
             this.service = service;
+
+            ActualSaveCommand = saveCommand;
+            
+            CancelCommand = cancelCommand;
+            CancelCommand.Action = b => showListCommand.Execute(null);
+
+            ShowListCommand = showListCommand;
+
+            HenHouses = new ObservableCollection<HenHouse>(houseService.GetAll().OrderBy(h => h.Name));
+
+            SubscribeMessages();
         }
 
         #region commands
@@ -32,6 +46,8 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
         public SaveHenDepreciationCommand ActualSaveCommand { get; private set; }
 
         public IList<CommandBase> NavigationCommands { get; private set; }
+
+        public ShowHenDepreciationListCommand ShowListCommand { get; private set; }
 
         private void InitializeCommands()
         {
@@ -90,7 +106,7 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
         private Guid id;
         private DateTime date;
 
-        private ObservableCollection<HenDepreciationEntryViewModel> details;
+        private ObservableCollection<HenDepreciationDetailViewModel> details;
 
         public Guid Id
         {
@@ -122,7 +138,7 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
             }
         }
 
-        public ObservableCollection<HenDepreciationEntryViewModel> Details
+        public ObservableCollection<HenDepreciationDetailViewModel> Details
         {
             get { return details; }
             set
@@ -131,6 +147,8 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
                 OnPropertyChanged("Details");
             }
         }
+
+        public ObservableCollection<HenHouse> HenHouses { get; private set; } 
 
         #endregion
 
@@ -157,9 +175,9 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
                         }
                         else
                         {
-                            for (int i = 0; i <details.Count; i++)
+                            foreach (HenDepreciationDetailViewModel detail in details)
                             {
-                                result = details[i].Error;
+                                result = detail.Error;
                                 if (result != null)
                                     break;
                             }
@@ -167,7 +185,7 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
                         break;
                 }
 
-                return base[columnName];
+                return result;
             }
         } 
 
@@ -193,17 +211,25 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
 
         void SubscribeMessages()
         {
-            
+            broker.Subscribe(CommonMessages.NewHenDepreciationView, OnNew);
+            broker.Subscribe(CommonMessages.LoadHenDepreciation, OnLoad);
+            broker.Subscribe(CommonMessages.SaveHenDepreciationSuccess, OnSaveSuccess);
+            broker.Subscribe(CommonMessages.SaveHenDepreciationFailed, OnSaveFailed);
         }
 
         void UnsubscribeMessages()
         {
-            
+            broker.Unsubscribe(CommonMessages.NewHenDepreciationView, OnNew);
+            broker.Unsubscribe(CommonMessages.LoadHenDepreciation, OnLoad);
+            broker.Unsubscribe(CommonMessages.SaveHenDepreciationSuccess, OnSaveSuccess);
+            broker.Unsubscribe(CommonMessages.SaveHenDepreciationFailed, OnSaveFailed);
         }
 
         void OnNew(object param)
         {
-            
+            Id = Guid.Empty;
+            Date = DateTime.Today;
+            Details = new ObservableCollection<HenDepreciationDetailViewModel>();
         }
 
         private void OnLoad(object param)
@@ -218,13 +244,14 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
 
         void OnSaveFailed(object param)
         {
-            
+            MessageBox.Show(LanguageHelper.TryGetErrorMessage(param));
         }
 
         #endregion
 
         public override void Dispose()
         {
+            UnsubscribeMessages();
             base.Dispose();
         } 
     }

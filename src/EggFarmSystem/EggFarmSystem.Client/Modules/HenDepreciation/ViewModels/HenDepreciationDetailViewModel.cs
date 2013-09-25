@@ -45,6 +45,12 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
             OnPropertyChanged("Profit");
         }
 
+        public decimal Depreciation
+        {
+            get { return depreciation; }
+            set { depreciation = value; OnPropertyChanged("Depreciation"); }
+        }
+
         public override string this[string columnName]
         {
             get
