@@ -21,6 +21,11 @@ namespace EggFarmSystem.Service.Core
                 defaults: new { controller = "Usage", action = "GetDailyFeedAmount" }
                 );
 
+            routes.MapHttpRoute(name: "HenDepreciationInitialValues",
+                                routeTemplate: "api/hendepreciation/initialvalues/{date}",
+                                defaults: new {controller = "HenDepreciation", action = "GetInitialValues"}
+                );
+
 
             //default routings
             routes.MapHttpRoute(name: "DefaultApi",

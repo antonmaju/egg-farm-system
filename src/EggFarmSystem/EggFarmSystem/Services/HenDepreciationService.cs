@@ -190,7 +190,27 @@ namespace EggFarmSystem.Services
 
         public HenDepreciation GetInitialValues(DateTime date)
         {
-            return null;
+            var depreciation = new HenDepreciation{Date = date.Date};
+
+            using (var db = factory.OpenDbConnection())
+            {
+                var houses = db.Select<HenHouse>(h => h.Active).OrderBy(h => h.Name).ToList();
+                
+                foreach (var house in houses)
+                {
+                    var detail = new HenDepreciationDetail();
+                    detail.HouseId = house.Id;
+
+                    var hens = db.Where<Hen>(new{HouseId = house.Id, Active=true}).ToList();
+                    var cost = hens.Sum(h => h.Count * h.Cost);
+
+                    detail.InitialPrice = cost;
+
+                    depreciation.Details.Add(detail);
+                }
+            }
+
+            return depreciation;
         }
     }
 }

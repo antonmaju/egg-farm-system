@@ -166,6 +166,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             set 
             { 
                 productiveAge = value;
+                house.ProductiveAge = value;
                 OnPropertyChanged("ProductiveAge");
             }
         }

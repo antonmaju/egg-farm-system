@@ -5,8 +5,10 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using AutoMapper;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
+using EggFarmSystem.Client.Modules.EggProduction.ViewModels;
 using EggFarmSystem.Client.Modules.HenDepreciation.Commands;
 using EggFarmSystem.Models;
 using EggFarmSystem.Resources;
@@ -33,6 +35,11 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
             ShowListCommand = showListCommand;
 
             HenHouses = new ObservableCollection<HenHouse>(houseService.GetAll().OrderBy(h => h.Name));
+
+            InitializeCommands();
+
+            NavigationCommands = new List<CommandBase>(){SaveCommand, CancelCommand};
+
 
             SubscribeMessages();
         }
@@ -125,6 +132,7 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
             {
                 date = value;
                 OnPropertyChanged("Date");
+                OnDateChanged();
             }
         }
 
@@ -148,7 +156,9 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
             }
         }
 
-        public ObservableCollection<HenHouse> HenHouses { get; private set; } 
+        public ObservableCollection<HenHouse> HenHouses { get; private set; }
+
+        public bool IsNew { get; private set; }
 
         #endregion
 
@@ -227,14 +237,28 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
 
         void OnNew(object param)
         {
+            IsNew = true;
             Id = Guid.Empty;
             Date = DateTime.Today;
-            Details = new ObservableCollection<HenDepreciationDetailViewModel>();
         }
 
         private void OnLoad(object param)
         {
+            IsNew = false;
 
+            Models.HenDepreciation initialValues = null;
+
+            try
+            {
+                initialValues = service.Get((Guid)param);
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+
+            var loadedDatails = Mapper.Map<List<Models.HenDepreciationDetail>, List<HenDepreciationDetailViewModel>>(initialValues.Details);
+            Details = new ObservableCollection<HenDepreciationDetailViewModel>(loadedDatails);
         }
 
         private void OnSaveSuccess(object param)
@@ -248,6 +272,25 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
         }
 
         #endregion
+
+        void OnDateChanged()
+        {
+            if (!IsNew) return;
+
+            Models.HenDepreciation initialValues = null;
+            
+            try
+            {
+                initialValues = service.GetInitialValues(Date);
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+
+            var loadedDatails = Mapper.Map<List<Models.HenDepreciationDetail>, List<HenDepreciationDetailViewModel>>(initialValues.Details);
+            Details= new ObservableCollection<HenDepreciationDetailViewModel>(loadedDatails);
+        }
 
         public override void Dispose()
         {

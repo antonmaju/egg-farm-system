@@ -50,6 +50,11 @@ namespace EggFarmSystem.Service.Controllers
             return cost;
         }
 
+        public HenDepreciation GetInitialValues(DateTime date)
+        {
+            return service.GetInitialValues(date);
+        }
+
         public HttpResponseMessage Post(HenDepreciation value)
         {
             HttpResponseMessage response = null;

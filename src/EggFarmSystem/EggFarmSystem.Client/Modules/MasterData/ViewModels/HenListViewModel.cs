@@ -62,7 +62,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             //            Name = "Hen " + i,
             //            Type = "Type " + i
             //        });
-            henList =  henService.GetAll();
+            henList =  henService.GetAll().OrderBy(h => h.Name).ToList();
             Hens = new ObservableCollection<Hen>(henList);
             DeleteCommand.EntityId = Guid.Empty;
         }
