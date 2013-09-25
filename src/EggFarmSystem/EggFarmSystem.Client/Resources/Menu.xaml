@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
->
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Shared.xaml" />
@@ -32,18 +31,18 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Menu}">
-                    <Border BorderThickness="0,5,0,5" Margin="30,0,0,0" SnapsToDevicePixels="True" >
-                        <Border.RenderTransform> 
-                            <SkewTransform AngleX="-15"></SkewTransform>
-                        </Border.RenderTransform>
+                    <Border BorderThickness="0,5,0,5" Margin="30,0,0,0" SnapsToDevicePixels="True" Background="Black">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20"></ColumnDefinition>
-                                <ColumnDefinition Width="2.5*" MinWidth="800" MaxWidth="1600" ></ColumnDefinition>
+                                <!--<ColumnDefinition Width="20"></ColumnDefinition>-->
+                                <ColumnDefinition Width="12.5*" MinWidth="800" MaxWidth="1600" ></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Border BorderBrush="#000000" BorderThickness="2" Background="#00CE02" Width="15"  Margin="0,0,5,0" SnapsToDevicePixels="True" ></Border>
-                            <UniformGrid Rows="1" Grid.Column="1" IsItemsHost="True" SnapsToDevicePixels="True" ></UniformGrid>
+                            <!--<Grid >  -->
+                            <!--<Border BorderBrush="#000000" BorderThickness="2" Background="#00CE02" Width="15"  Margin="0,0,5,0" SnapsToDevicePixels="True" />-->
+                            <UniformGrid IsItemsHost="True" Grid.Column="0" Rows="1" SnapsToDevicePixels="True" ></UniformGrid>
+                            
+                            <!--</Grid>-->
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -53,23 +52,27 @@
 
     <ControlTemplate x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}" TargetType="{x:Type MenuItem}">
         <Grid>
-            <Border x:Name="borderMenuItem" BorderBrush="#000000" BorderThickness="1" Background="{StaticResource NormalMenuBrush}" SnapsToDevicePixels="True"
-                    >
-
-                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" 
-                              VerticalAlignment="Center" x:Name="presenterMenuItem" SnapsToDevicePixels="True" RenderOptions.EdgeMode="Aliased"
-                                  >
-                    <ContentPresenter.RenderTransform>
-                        <SkewTransform AngleX="15"></SkewTransform>
-                    </ContentPresenter.RenderTransform>
+            <!--<Border BorderBrush="#000000" BorderBrush="#000000" BorderThickness="2" Background="#00CE02" Width="15"  Margin="0,0,5,0" SnapsToDevicePixels="True" Grid.Column="0" /> Background="{StaticResource NormalMenuBrush}" -->
+            <Border x:Name="borderMenuItem"  BorderBrush="#000000" BorderThickness="2" Background="{StaticResource NormalMenuBrush}" SnapsToDevicePixels="True" Grid.Column="0">
+              <Grid>
+                        <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                            <Border BorderThickness="2" BorderBrush="#00CE02" Background="#00CE02" Width="15"  Margin="0,0,5,0" SnapsToDevicePixels="True" Grid.Column="0" />
+                    <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" 
+                              VerticalAlignment="Center" x:Name="presenterMenuItem" SnapsToDevicePixels="True" RenderOptions.EdgeMode="Aliased" Grid.Column="1" >
                 </ContentPresenter>
-               
-            </Border>    
+              </Grid>
+            </Border>
+            
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
+                 <!--<Setter Property="Style" Value=""></Setter>-->
                 <Setter Property="Background"  TargetName="borderMenuItem" Value="{StaticResource HoverMenuBrush}" />
                 <Setter Property="Cursor" Value="Hand" />
+                
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Background"  TargetName="borderMenuItem" Value="{StaticResource ActiveMenuBrush}" />
@@ -81,7 +84,7 @@
     <Style x:Key="{x:Type MenuItem}" TargetType="{x:Type MenuItem}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Foreground" Value="Black" />
-        <Setter Property="FontSize" Value="15" />
+        <!--<Setter Property="FontSize" Value="15" />-->
         <Setter Property="FontFamily" Value="/EggFarmSystem.Client;component/Assets/Fonts/#Roboto"></Setter>
         <Setter Property="IsCheckable" Value="True"></Setter>
         <Setter Property="Template" 
