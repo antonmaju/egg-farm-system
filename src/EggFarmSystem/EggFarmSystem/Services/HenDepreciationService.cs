@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using AutoMapper;
 using EggFarmSystem.Models;
+using MySql.Data.MySqlClient;
 using ServiceStack.OrmLite;
 
 namespace EggFarmSystem.Services
@@ -192,6 +194,15 @@ namespace EggFarmSystem.Services
         {
             var depreciation = new HenDepreciation{Date = date.Date};
 
+            string totalFeedQuery = @"SELECT SUM(ConsumableUsageDetail.Count) 
+FROM ConsumableUsageDetail JOIN ConsumableUsage ON  ConsumableUsageDetail.UsageId = ConsumableUsage.Id
+JOIN Consumable ON ConsumableUsagedetail.ConsumableId = Consumable.Id WHERE  ConsumableUsageDetail.HouseId=@houseId AND ConsumableUsage.Date=@date
+AND Consumable.Type=0";
+
+            string retailQuantityQuery =
+                @"SELECT RetailQuantity FROM EggProductionDetail JOIN EggProduction ON EggProductionDetail.ProductionId = EggProduction.Id 
+WHERE EggProductionDetail.HouseId=@houseId AND EggProduction.Date=@date";
+
             using (var db = factory.OpenDbConnection())
             {
                 var houses = db.Select<HenHouse>(h => h.Active).OrderBy(h => h.Name).ToList();
@@ -205,6 +216,48 @@ namespace EggFarmSystem.Services
                     var cost = hens.Sum(h => h.Count * h.Cost);
 
                     detail.InitialPrice = cost;
+
+                    if (house.ProductiveAge > 0)
+                    {
+                         int totalFeed = 0;
+
+                        var command = db.CreateCommand();
+                        command.CommandType = CommandType.Text;
+                        command.CommandText = totalFeedQuery;
+                        command.Parameters.Add(new MySqlParameter("@houseId", MySqlDbType.Guid) { Value = house.Id });
+                        command.Parameters.Add(new MySqlParameter("@date", MySqlDbType.DateTime) { Value = date });
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                            totalFeed = Convert.ToInt32(result);
+
+                        if (totalFeed > 0 )
+                        {
+                            command = db.CreateCommand();
+                            command.CommandType = CommandType.Text;
+                            command.CommandText = retailQuantityQuery;
+                            command.Parameters.Add(new MySqlParameter("@houseId", MySqlDbType.Guid) { Value = house.Id });
+                            command.Parameters.Add(new MySqlParameter("@date", MySqlDbType.DateTime) { Value = date });
+
+                            result = command.ExecuteScalar();
+
+                            decimal retailQuantity = 0;
+
+                            if (result != null && result != DBNull.Value)
+                                retailQuantity = Convert.ToDecimal(result);
+
+                            if (retailQuantity > 0)
+                            {
+                               
+                                detail.Depreciation = totalFeed/retailQuantity/house.ProductiveAge;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        detail.SellingPrice = 0;
+                    }
 
                     depreciation.Details.Add(detail);
                 }

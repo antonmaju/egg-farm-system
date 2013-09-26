@@ -32,13 +32,15 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
             CancelCommand = cancelCommand;
             CancelCommand.Action = b => showListCommand.Execute(null);
 
+            RefreshCommand = new DelegateCommand(p => OnRefresh(),p => true) {Text = () => LanguageData.General_Refresh};
+
             ShowListCommand = showListCommand;
 
             HenHouses = new ObservableCollection<HenHouse>(houseService.GetAll().OrderBy(h => h.Name));
 
             InitializeCommands();
 
-            NavigationCommands = new List<CommandBase>(){SaveCommand, CancelCommand};
+            NavigationCommands = new List<CommandBase>(){SaveCommand, CancelCommand, RefreshCommand};
 
 
             SubscribeMessages();
@@ -49,6 +51,8 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
         public DelegateCommand SaveCommand { get; private set; }
 
         public CancelCommand CancelCommand { get; private set; }
+
+        public DelegateCommand RefreshCommand { get; private set; }
 
         public SaveHenDepreciationCommand ActualSaveCommand { get; private set; }
 
@@ -64,12 +68,14 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
 
         private void Save(object param)
         {
-
+            var depreciation = Mapper.Map<HenDepreciationEntryViewModel, Models.HenDepreciation>(this);
+            ActualSaveCommand.Depreciation = depreciation;
+            ActualSaveCommand.Execute(depreciation);
         }
 
         private bool CanSave(object param)
         {
-            return false;
+            return IsValid();
         }
 
         #endregion
@@ -257,13 +263,15 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
                 return;
             }
 
+            Id = initialValues.Id;
+            Date = initialValues.Date;
             var loadedDatails = Mapper.Map<List<Models.HenDepreciationDetail>, List<HenDepreciationDetailViewModel>>(initialValues.Details);
             Details = new ObservableCollection<HenDepreciationDetailViewModel>(loadedDatails);
         }
 
         private void OnSaveSuccess(object param)
         {
-
+            ShowListCommand.Execute(null);
         }
 
         void OnSaveFailed(object param)
@@ -285,12 +293,33 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
             }
             catch (Exception ex)
             {
+                //TODO find the best way to refactor error
                 return;
             }
 
             var loadedDatails = Mapper.Map<List<Models.HenDepreciationDetail>, List<HenDepreciationDetailViewModel>>(initialValues.Details);
             Details= new ObservableCollection<HenDepreciationDetailViewModel>(loadedDatails);
         }
+ 
+        void OnRefresh()
+        {
+            Models.HenDepreciation initialValues = service.GetInitialValues(Date);
+            
+
+            //retain current selling price
+            foreach (var newDetail in initialValues.Details)
+            {
+                var detail = Details.FirstOrDefault(d => d.HouseId == newDetail.HouseId);
+
+                if (detail == null) continue;
+
+                newDetail.SellingPrice = detail.SellingPrice;
+            }
+
+            var loadedDatails = Mapper.Map<List<Models.HenDepreciationDetail>, List<HenDepreciationDetailViewModel>>(initialValues.Details);
+            Details = new ObservableCollection<HenDepreciationDetailViewModel>(loadedDatails);
+        }
+
 
         public override void Dispose()
         {

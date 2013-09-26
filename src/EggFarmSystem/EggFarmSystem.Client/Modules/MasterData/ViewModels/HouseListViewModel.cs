@@ -72,7 +72,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         
         void OnHouseRefresh(object param)
         {
-            var houseList = houseService.GetAll();
+            var houseList = houseService.GetAll().OrderBy(h =>h.Name).ToList();
             if(houseList == null)
                 houseList = new List<HenHouse>();
             Houses = new ObservableCollection<HenHouse>(houseList);

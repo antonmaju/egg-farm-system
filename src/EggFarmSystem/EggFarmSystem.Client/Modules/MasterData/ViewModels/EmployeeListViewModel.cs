@@ -76,7 +76,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         void OnEmployeeRefresh(object param)
         {
-            var employeeList = employeeService.GetAll();
+            var employeeList = employeeService.GetAll().OrderBy(e =>e.Name);
             Employees = new ObservableCollection<Employee>(employeeList);
             DeleteCommand.EntityId = Guid.Empty;
         }

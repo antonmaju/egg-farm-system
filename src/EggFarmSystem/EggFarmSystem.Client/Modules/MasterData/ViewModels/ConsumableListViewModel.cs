@@ -78,7 +78,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         void OnConsumableRefresh(object param)
         {
-            var consumableList = consumableService.GetAll();
+            var consumableList = consumableService.GetAll().OrderBy(c =>c.Name);
             Consumables = new ObservableCollection<Consumable>(consumableList);
             DeleteCommand.EntityId = Guid.Empty;
         }

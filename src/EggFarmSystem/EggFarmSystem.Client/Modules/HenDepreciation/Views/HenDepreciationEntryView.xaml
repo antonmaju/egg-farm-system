@@ -45,7 +45,7 @@
                             </DataTemplate>
                         </DataGridComboBoxColumn.HeaderTemplate>
                     </DataGridComboBoxColumn>
-                    <DataGridTextColumn Binding="{Binding Path=InitialPrice, StringFormat={}{0:0.##}}" MinWidth="100"  CellStyle="{StaticResource NumericGridCell}">
+                    <DataGridTextColumn Binding="{Binding Path=InitialPrice, StringFormat={}{0:0.##}}" MinWidth="100"  CellStyle="{StaticResource NumericGridCell}"  IsReadOnly="True">
                         <DataGridTextColumn.HeaderTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.InitialPriceText}" />
