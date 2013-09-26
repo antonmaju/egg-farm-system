@@ -28,6 +28,11 @@ namespace EggFarmSystem.Services
             throw new NotImplementedException();
         }
 
+        public override IList<HenHouse> GetAll()
+        {
+            return base.GetAll().OrderBy(h => h.Name).ToList();
+        }
+
         public IList<HenHouse> GetAllActive()
         {
             using (var db = factory.CreateDbConnection())

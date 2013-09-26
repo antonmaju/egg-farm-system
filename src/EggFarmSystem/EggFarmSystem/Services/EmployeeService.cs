@@ -20,5 +20,10 @@ namespace EggFarmSystem.Services
             this.factory = factory;
         }
 
+        public override IList<Employee> GetAll()
+        {
+            return base.GetAll().OrderBy(e => e.Name).ToList();
+        }
+
     }
 }
