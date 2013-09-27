@@ -13,7 +13,6 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
@@ -85,21 +84,13 @@
                 </DataGridTextColumn>                
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Orientation="Horizontal" Grid.Row="3" >
-            <Button Command="{Binding Path=AddDetailCommand}" 
-                    Content="{Binding Path=NewText}"
-                    Style="{StaticResource InternalButton}" Margin="20,0,10,0" />
-            <Button Style="{StaticResource InternalButton}"
-                    Content="{Binding Path=DeleteText}"
-                    Command="{Binding Path=DeleteDetailCommand}" Margin="20,0,10,0"
-                    />
-        </StackPanel>
+
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
-                     Grid.Row="4">
-            <Label Grid.Row="4" Content="{Binding Path=TotalText}" 
+                     Grid.Row="3">
+            <Label Content="{Binding Path=TotalText}" 
                    Style="{StaticResource FormLabel}"/>
 
-            <Label Grid.Row="4" Grid.Column="1" Content="{Binding Path=Total}" ContentStringFormat="C" 
+            <Label  Content="{Binding Path=Total}" ContentStringFormat="C" 
                    Style="{StaticResource FormLabel}" />
         </StackPanel>
     </Grid>

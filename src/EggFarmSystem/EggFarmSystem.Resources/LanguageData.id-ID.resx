@@ -414,4 +414,55 @@
   <data name="EggProduction_DuplicateHouse" xml:space="preserve">
     <value>Kandang Duplikat</value>
   </data>
+  <data name="HenDepreciationDetail_DepreciationField" xml:space="preserve">
+    <value>Penyusutan</value>
+  </data>
+  <data name="HenDepreciationDetail_HouseIdField" xml:space="preserve">
+    <value>Kandang</value>
+  </data>
+  <data name="HenDepreciationDetail_InitialPriceField" xml:space="preserve">
+    <value>Harga Awal</value>
+  </data>
+  <data name="HenDepreciationDetail_InvalidDepreciation" xml:space="preserve">
+    <value>Penyusutan tidak valid</value>
+  </data>
+  <data name="HenDepreciationDetail_InvalidInitialPrice" xml:space="preserve">
+    <value>Harga awal diperlukan</value>
+  </data>
+  <data name="HenDepreciationDetail_InvalidSellingPrice" xml:space="preserve">
+    <value>Harga jual diperlukan</value>
+  </data>
+  <data name="HenDepreciationDetail_ProfitField" xml:space="preserve">
+    <value>Keuntungan</value>
+  </data>
+  <data name="HenDepreciationDetail_RequireHouseId" xml:space="preserve">
+    <value>Kandang diperlukan</value>
+  </data>
+  <data name="HenDepreciationDetail_SellingPriceField" xml:space="preserve">
+    <value>Harga Jual</value>
+  </data>
+  <data name="HenDepreciation_DateField" xml:space="preserve">
+    <value>Tanggal</value>
+  </data>
+  <data name="HenDepreciation_DuplicateDate" xml:space="preserve">
+    <value>Tanggal duplikat</value>
+  </data>
+  <data name="HenDepreciation_DuplicateHouse" xml:space="preserve">
+    <value>Kandang duplikat</value>
+  </data>
+  <data name="HenDepreciation_RequireDetails" xml:space="preserve">
+    <value>Detail diperlukan</value>
+  </data>
+  <data name="HenDepreciation_Title" xml:space="preserve">
+    <value>Penyusutan Ayam</value>
+  </data>
+  <data name="Hen_RequireHouse" xml:space="preserve">
+    <value>Kandang diperlukan</value>
+  </data>
+  <data name="House_ProductiveAgeField" xml:space="preserve">
+    <value>Usia Produktif Ayam</value>
+  </data>
+  <data name="House_RequireProductiveAge" xml:space="preserve">
+    <value>Usia produktif ayam diperlukan</value>
+  </data>
 </root>

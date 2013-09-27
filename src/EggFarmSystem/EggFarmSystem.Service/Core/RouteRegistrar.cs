@@ -12,13 +12,18 @@ namespace EggFarmSystem.Service.Core
         {
             routes.MapHttpRoute(name: "GetPopulation", 
                 routeTemplate:"api/henhouses/{id}/population",
-                defaults:new {controller="HenHouses", action="GetPopulation"}
+                defaults:new {controller="HenHousePopulation", action="Get"}
                 );
 
             //feed consumsion
             routes.MapHttpRoute(name:"DailyFeedAmount",
                 routeTemplate:"api/henhouses/{houseId}/feed/{date}",
                 defaults: new { controller = "Usage", action = "GetDailyFeedAmount" }
+                );
+
+            routes.MapHttpRoute(name: "HenDepreciationInitialValues",
+                                routeTemplate: "api/hendepreciation/initialvalues/{date}",
+                                defaults: new {controller = "HenDepreciation", action = "GetInitialValues"}
                 );
 
 

@@ -17,6 +17,7 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -39,12 +40,16 @@
                 <TextBox Grid.Row="4" Style="{StaticResource NumericTextBox}" Grid.Column="1" 
                  Text="{Binding Path=Depreciation, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}" />
 
-                <Label Grid.Row="5"  Style="{StaticResource MasterDataLabel}" Content="{Binding Path=ActiveField}" />
-                <CheckBox Grid.Row="5" Grid.Column="1" Style="{StaticResource FormCheckBox}" 
+                <Label Grid.Row="5" Style="{StaticResource MasterDataLabel}" Content="{Binding Path=ProductiveAgeField}" />
+                <TextBox Grid.Row="5" Style="{StaticResource NumericTextBox}" Grid.Column="1" 
+                 Text="{Binding Path=ProductiveAge, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}" />
+                                
+                <Label Grid.Row="6"  Style="{StaticResource MasterDataLabel}" Content="{Binding Path=ActiveField}" />
+                <CheckBox Grid.Row="6" Grid.Column="1" Style="{StaticResource FormCheckBox}" 
                  IsChecked="{Binding Path=Active, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}"  />
 
-                <Label Grid.Row="6"  Style="{StaticResource MasterDataLabel}" Content="{Binding Path=PopulationField}" />
-                <TextBox Grid.Row="6" Style="{StaticResource FormTextBoxSmall}" Grid.Column="1" IsEnabled="False" 
+                <Label Grid.Row="7"  Style="{StaticResource MasterDataLabel}" Content="{Binding Path=PopulationField}" />
+                <TextBox Grid.Row="7" Style="{StaticResource FormTextBoxSmall}" TextAlignment="Right" Grid.Column="1" IsEnabled="False" 
                  Text="{Binding Path=Population, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}" />
             </Grid>
         </AdornerDecorator>

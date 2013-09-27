@@ -47,7 +47,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
             InitializeDelegateCommands();
 
-            NavigationCommands = new List<CommandBase>(){saveCommand, CancelCommand};
+            NavigationCommands = new List<CommandBase>(){AddDetailCommand, DeleteDetailCommand, saveCommand, CancelCommand};
 
             HouseList = new ObservableCollection<HenHouse>(houseService.GetAll());
             ConsumableList = new ObservableCollection<Consumable>(consumableService.GetAll());
@@ -176,7 +176,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
                                 if(result != null)
                                     break;
                             }
-                            if (details.GroupBy(d => d.ConsumableId,d => d.HouseId).Any(g => g.Count() > 1))
+                            if (details.GroupBy(d => d.ConsumableId +"-"+ d.HouseId).Any(g => g.Count() > 1))
                             {
                                 result = LanguageData.UsageDetail_RequireHouse;
                             }

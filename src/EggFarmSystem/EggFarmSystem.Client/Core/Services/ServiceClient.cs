@@ -38,7 +38,7 @@ namespace EggFarmSystem.Client.Core.Services
         /// <param name="id">The id.</param>
         /// <param name="url">The URL.</param>
         /// <returns></returns>
-        protected T CreateGetRequest<T>(Guid id, string url = null) where T:new()
+        protected T CreateGetRequest<T>(Guid id, string url = null, bool isSimpleContent=false) where T:new()
         {
             if (string.IsNullOrWhiteSpace(url))
                 url = string.Format("{0}/{1}", ResourceUrl, id);
@@ -48,8 +48,15 @@ namespace EggFarmSystem.Client.Core.Services
             var request = new RestRequest(url, Method.GET);
             request.JsonSerializer = new JsonNetSerializer();
             AddHeaders(request);
-            var response = client.Execute<T>(request);
-            return response.Data;
+
+            if (! isSimpleContent)
+            {
+                var response = client.Execute<T>(request);
+                return response.Data;
+            }
+
+            var simpleResponse = client.Execute(request);
+            return (T)Convert.ChangeType(simpleResponse.Content, typeof(T));
         }
 
         /// <summary>

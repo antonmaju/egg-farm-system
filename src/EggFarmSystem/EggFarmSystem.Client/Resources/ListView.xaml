@@ -1,12 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <LinearGradientBrush x:Key="ListViewHeaderBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#000000" Offset="0" />
-        <GradientStop Color="#3F3F3F" Offset="0.15" />
-        <GradientStop Color="#1D1D1D" Offset="0.8" />            
-        <GradientStop Color="#000000" Offset="1" />
-    </LinearGradientBrush>
+   
 
     <SolidColorBrush x:Key="ListViewGripBrush" Color="#686A69"></SolidColorBrush>
 
@@ -143,7 +138,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="GridViewColumnHeader">
                     <Grid Margin="0">
-                        <Border Name="HeaderBorder" Padding="2,0,2,0" BorderThickness="1,1,1,1" Background="{StaticResource ListViewHeaderBrush}" BorderBrush="#242424" >
+                        <Border Name="HeaderBorder" Padding="2,0,2,0" BorderThickness="1,1,1,1" Background="{StaticResource ListHeaderBrush}" BorderBrush="#242424" >
                             
                             <ContentPresenter x:Name="HeaderContent" Margin="0,0,0,1"
                               VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -185,7 +180,7 @@
         </Style.Triggers>
     </Style>
 
-        <Style x:Key="{x:Type ListView}" TargetType="ListView">
+    <Style x:Key="{x:Type ListView}" TargetType="ListView">    
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
@@ -215,6 +210,7 @@
         <Setter Property="MinHeight" Value="40"></Setter>
         <Setter Property="FontSize" Value="17"></Setter>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">
@@ -250,15 +246,14 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                <Setter Property="Background" Value="#CACACA"></Setter>
+                <Setter Property="Background" Value="{StaticResource ListFirstRowBrush}"></Setter>
             </Trigger>
             
             <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-                <Setter Property="Background" Value="#ACACAC"></Setter>
+                <Setter Property="Background" Value="{StaticResource ListSecondRowBrush}"></Setter>
             </Trigger>
             <Trigger Property="ItemsControl.IsFocused" Value="True">
-                <Setter Property="Background" Value="#343434"></Setter>
-                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Background" Value="{StaticResource ListSelectedBrush}"></Setter>
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="FontWeight" Value="ExtraBold" />                
                 <Setter Property="FontStretch" Value="ExtraExpanded" />

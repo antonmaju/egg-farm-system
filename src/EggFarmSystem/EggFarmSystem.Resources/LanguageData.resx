@@ -384,6 +384,9 @@
   <data name="House_PopulationField" xml:space="preserve">
     <value>Population</value>
   </data>
+  <data name="House_ProductiveAgeField" xml:space="preserve">
+    <value>Hen's productive age</value>
+  </data>
   <data name="House_PurchaseCostField" xml:space="preserve">
     <value>Purchase Cost</value>
   </data>
@@ -392,6 +395,9 @@
   </data>
   <data name="House_RequireName" xml:space="preserve">
     <value>Name is required</value>
+  </data>
+  <data name="House_RequireProductiveAge" xml:space="preserve">
+    <value>Hen's productive age is required</value>
   </data>
   <data name="House_RequirePurchaseCost" xml:space="preserve">
     <value>Purchase cost is required</value>

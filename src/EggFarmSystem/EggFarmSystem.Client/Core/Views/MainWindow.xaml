@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="*" MinWidth="150" MaxWidth="420"></ColumnDefinition>
                 <ColumnDefinition Width="5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image  Source="/EggFarmSystem.Client;component/Assets/Images/logo.png" SnapsToDevicePixels="True" />
+            <Image  Source="/EggFarmSystem.Client;component/Assets/Images/logo.jpg" RenderOptions.BitmapScalingMode="HighQuality"  SnapsToDevicePixels="True" />
 
             <Menu x:Name="mnuMain" Grid.Column="1" >
             </Menu>
@@ -42,8 +42,9 @@
         <Border Grid.Row="2" >
             <Grid >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" MinWidth="200"></ColumnDefinition>
-                    <ColumnDefinition Width="4.75*"></ColumnDefinition>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" x:Name="stButtons" Grid.Column="1" Margin="0,0,75,25">
                 </StackPanel>

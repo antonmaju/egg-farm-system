@@ -19,6 +19,8 @@ namespace EggFarmSystem.Models
 
         public bool Active { get; set; }
 
+        public int ProductiveAge { get; set; }
+
         public override IList<ErrorInfo> Validate()
         {
             var errors = new List<ErrorInfo>();
@@ -34,6 +36,9 @@ namespace EggFarmSystem.Models
 
             if(Depreciation <= 0)
                 errors.Add(new ErrorInfo("Depreciation", "House_RequireDepreciation"));
+
+            if(ProductiveAge <= 0)
+                errors.Add(new ErrorInfo("ProductiveAge","House_ProductiveAge"));
 
             return errors;
         }

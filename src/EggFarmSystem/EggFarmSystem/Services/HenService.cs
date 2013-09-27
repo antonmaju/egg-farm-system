@@ -34,5 +34,10 @@ namespace EggFarmSystem.Services
 
             return result;
         }
+
+        public override IList<Hen> GetAll()
+        {
+            return base.GetAll().OrderBy(h => h.Name).ToList();
+        }
     }
 }

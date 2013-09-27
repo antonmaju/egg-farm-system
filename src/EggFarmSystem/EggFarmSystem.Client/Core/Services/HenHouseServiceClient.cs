@@ -34,7 +34,7 @@ namespace EggFarmSystem.Client.Core.Services
         {
             string url = string.Format("{0}/{1}/population",
                  ResourceUrl, houseId.ToString());
-            return CreateGetRequest<int>(Guid.Empty, url);
+            return CreateGetRequest<int>(Guid.Empty, url, true);
         }
 
         public void Save(Models.HenHouse model)

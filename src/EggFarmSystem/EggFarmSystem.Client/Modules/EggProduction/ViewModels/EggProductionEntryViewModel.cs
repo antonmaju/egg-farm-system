@@ -120,13 +120,13 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
         public Guid Id
         {
             get { return id; }
-            set { id = value; }
+            set { id = value; OnPropertyChanged("Id"); }
         }
 
         public DateTime Date
         {
             get { return date; }
-            set { date = value; }
+            set { date = value; OnPropertyChanged("Date"); }
         }
 
         public DateTime DateInUTC
@@ -266,11 +266,6 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
         }
 
         #endregion
-
-        EggProductionDetailViewModel CreateNewDetail()
-        {
-            return new EggProductionDetailViewModel();
-        }
 
         public override void Dispose()
         {

@@ -18,5 +18,9 @@ namespace EggFarmSystem.Services
         {
 
         }
+        public override IList<AdditionalCost> GetAll()
+        {
+            return base.GetAll().OrderBy(c => c.Name).ToList();
+        }
     }
 }

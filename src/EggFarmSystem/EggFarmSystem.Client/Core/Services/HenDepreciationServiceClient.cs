@@ -38,6 +38,12 @@ namespace EggFarmSystem.Client.Core.Services
             return CreateGetRequest<Models.HenDepreciation>(Guid.Empty, url);
         }
 
+        public HenDepreciation GetInitialValues(DateTime date)
+        {
+            string url = string.Format("{0}/initialvalues/{1}", ResourceUrl, date.ToString("yyyy-MM-dd"));
+            return CreateGetRequest<Models.HenDepreciation>(Guid.Empty, url);
+        }
+
         public void Save(Models.HenDepreciation depreciation)
         {
             if (depreciation.IsNew)
@@ -50,5 +56,6 @@ namespace EggFarmSystem.Client.Core.Services
         {
             CreateDeleteRequest(id);
         }
+
     }
 }

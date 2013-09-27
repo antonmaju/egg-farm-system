@@ -28,6 +28,11 @@ namespace EggFarmSystem.Services
             throw new NotImplementedException();
         }
 
+        public override IList<HenHouse> GetAll()
+        {
+            return base.GetAll().OrderBy(h => h.Name).ToList();
+        }
+
         public IList<HenHouse> GetAllActive()
         {
             using (var db = factory.CreateDbConnection())
@@ -48,7 +53,7 @@ namespace EggFarmSystem.Services
             {
                 var command = conn.CreateCommand();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "select count(*) from Hen where HouseId=@houseId";
+                command.CommandText = "select Sum(Count) from Hen where HouseId=@houseId";
                 command.Parameters.Add(new MySqlParameter("@houseId", MySqlDbType.Guid) {Value = houseId});
                 
                 var result = command.ExecuteScalar();

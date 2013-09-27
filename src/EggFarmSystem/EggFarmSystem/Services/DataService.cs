@@ -27,6 +27,7 @@ namespace EggFarmSystem.Services
             this.factory = factory;
         }
 
+
         public virtual IList<T> GetAll()
         {
             using (var db = factory.CreateDbConnection())
