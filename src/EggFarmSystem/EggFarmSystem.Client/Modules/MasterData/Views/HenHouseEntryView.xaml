@@ -49,7 +49,7 @@
                  IsChecked="{Binding Path=Active, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}"  />
 
                 <Label Grid.Row="7"  Style="{StaticResource MasterDataLabel}" Content="{Binding Path=PopulationField}" />
-                <TextBox Grid.Row="7" Style="{StaticResource FormTextBoxSmall}" Grid.Column="1" IsEnabled="False" 
+                <TextBox Grid.Row="7" Style="{StaticResource FormTextBoxSmall}" TextAlignment="Right" Grid.Column="1" IsEnabled="False" 
                  Text="{Binding Path=Population, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}" />
             </Grid>
         </AdornerDecorator>

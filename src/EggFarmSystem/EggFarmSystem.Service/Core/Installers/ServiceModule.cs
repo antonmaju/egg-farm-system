@@ -22,6 +22,8 @@ namespace EggFarmSystem.Service.Core.Installers
             builder.RegisterType<ConsumableUsageService>().As<IConsumableUsageService>().SingleInstance();
             builder.RegisterType<EmployeeCostService>().As<IEmployeeCostService>().SingleInstance();
             builder.RegisterType<EggProductionService>().As<IEggProductionService>().SingleInstance();
+            builder.RegisterType<HenDepreciationService>().As<IHenDepreciationService>().SingleInstance();
+
             base.Load(builder);
         }
     }

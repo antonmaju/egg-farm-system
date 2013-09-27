@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using AutoMapper;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.MasterData.Commands;
@@ -18,18 +19,22 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
     {
         private readonly IMessageBroker messageBroker;
         private readonly IHenService henService;
-        private ObservableCollection<Hen> hens; 
+        private readonly IHenHouseService houseService;
+        private ObservableCollection<HenListItem> hens; 
 
-        public HenListViewModel(IMessageBroker messageBroker,IHenService henService, 
+        public HenListViewModel(IMessageBroker messageBroker,IHenService henService, IHenHouseService houseService,
             NewHenCommand newHenCommand,EditHenCommand editHenCommand, DeleteHenCommand deleteCommand)
         {
             this.henService = henService;
             this.messageBroker = messageBroker;
+            this.houseService = houseService;
+
             NewCommand = newHenCommand;
             EditCommand = editHenCommand;
             DeleteCommand = deleteCommand;
 
-            hens = new ObservableCollection<Hen>();
+
+            hens = new ObservableCollection<HenListItem>();
             NavigationCommands = new List<CommandBase>() {NewCommand, DeleteCommand};
             SubscribeMessages();
         }
@@ -40,7 +45,11 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         public string TypeText { get { return LanguageData.Hen_TypeField; } }
 
+        public string CountText { get { return LanguageData.Hen_CountField; } }
+
         public string ActiveText { get { return LanguageData.Hen_ActiveField; } }
+
+        public string HouseText { get { return LanguageData.Hen_HouseField; } }
 
         #endregion
 
@@ -52,7 +61,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         void OnHenRefresh(object param)
         {
-            IList<Hen> henList = new List<Hen>();
+            IList<Hen> henList = null;
             //for (int i = 0; i < 20; i++)
             //    henList.Add(new Hen
             //        {
@@ -63,7 +72,18 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             //            Type = "Type " + i
             //        });
             henList =  henService.GetAll();
-            Hens = new ObservableCollection<Hen>(henList);
+            var henListItem = Mapper.Map<IList<Hen>, IList<HenListItem>>(henList);
+            var houseList = houseService.GetAll();
+            
+            foreach (var listItem in henListItem)
+            {
+                var house = houseList.FirstOrDefault(h => h.Id == listItem.HouseId);
+                if (house == null) continue;
+
+                listItem.HouseName = house.Name;
+            }
+
+            Hens = new ObservableCollection<HenListItem>(henListItem);
             DeleteCommand.EntityId = Guid.Empty;
         }
 
@@ -84,7 +104,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         public DeleteHenCommand DeleteCommand { get; private set; }
 
-        public ObservableCollection<Hen> Hens
+        public ObservableCollection<HenListItem> Hens
         {
             get { return hens; }
             private set { 
@@ -100,5 +120,10 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             UnsubsribeMessages();
             base.Dispose();
         }
+    }
+
+    public class HenListItem : Models.Hen
+    {
+        public string HouseName { get; set; } 
     }
 }

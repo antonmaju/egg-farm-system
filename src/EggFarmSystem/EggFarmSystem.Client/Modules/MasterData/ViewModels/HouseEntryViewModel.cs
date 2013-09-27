@@ -235,9 +235,10 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             PurchaseCost = loadedHouse.PurchaseCost;
             Depreciation = loadedHouse.Depreciation;
             Active = loadedHouse.Active;
-            Population = 0;
             YearUsage = loadedHouse.YearUsage;
             ProductiveAge = loadedHouse.ProductiveAge;
+
+            Population = houseService.GetPopulation(loadedHouse.Id);
         }
 
         void OnHouseSavingFailed(object param)

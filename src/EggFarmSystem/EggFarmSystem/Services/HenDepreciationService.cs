@@ -194,7 +194,7 @@ namespace EggFarmSystem.Services
         {
             var depreciation = new HenDepreciation{Date = date.Date};
 
-            string totalFeedQuery = @"SELECT SUM(ConsumableUsageDetail.Count) 
+            string totalFeedQuery = @"SELECT SUM(ConsumableUsageDetail.Count * COnsumableUsageDetail.UnitPrice) 
 FROM ConsumableUsageDetail JOIN ConsumableUsage ON  ConsumableUsageDetail.UsageId = ConsumableUsage.Id
 JOIN Consumable ON ConsumableUsagedetail.ConsumableId = Consumable.Id WHERE  ConsumableUsageDetail.HouseId=@houseId AND ConsumableUsage.Date=@date
 AND Consumable.Type=0";

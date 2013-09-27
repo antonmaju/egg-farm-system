@@ -12,7 +12,7 @@ namespace EggFarmSystem.Service.Core
         {
             routes.MapHttpRoute(name: "GetPopulation", 
                 routeTemplate:"api/henhouses/{id}/population",
-                defaults:new {controller="HenHouses", action="GetPopulation"}
+                defaults:new {controller="HenHousePopulation", action="Get"}
                 );
 
             //feed consumsion

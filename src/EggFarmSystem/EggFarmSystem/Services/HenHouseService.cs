@@ -53,7 +53,7 @@ namespace EggFarmSystem.Services
             {
                 var command = conn.CreateCommand();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "select count(*) from Hen where HouseId=@houseId";
+                command.CommandText = "select Sum(Count) from Hen where HouseId=@houseId";
                 command.Parameters.Add(new MySqlParameter("@houseId", MySqlDbType.Guid) {Value = houseId});
                 
                 var result = command.ExecuteScalar();

@@ -24,8 +24,12 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="{Binding Path=YearUsageText}" DisplayMemberBinding="{Binding Path=YearUsage}"
-                                        Width="70">
-
+                                        Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding YearUsage}" Style="{StaticResource RightAlignListViewCell}"  />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="{Binding Path=ActiveText}" DisplayMemberBinding="{Binding Path=Active}" Width="70">
 
