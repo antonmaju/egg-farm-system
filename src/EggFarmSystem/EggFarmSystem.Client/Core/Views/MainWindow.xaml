@@ -42,8 +42,9 @@
         <Border Grid.Row="2" >
             <Grid >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" MinWidth="200"></ColumnDefinition>
-                    <ColumnDefinition Width="4.75*"></ColumnDefinition>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" x:Name="stButtons" Grid.Column="1" Margin="0,0,75,25">
                 </StackPanel>

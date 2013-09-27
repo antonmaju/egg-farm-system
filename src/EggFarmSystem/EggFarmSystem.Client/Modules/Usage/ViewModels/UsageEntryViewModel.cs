@@ -47,7 +47,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
             InitializeDelegateCommands();
 
-            NavigationCommands = new List<CommandBase>(){saveCommand, CancelCommand};
+            NavigationCommands = new List<CommandBase>(){AddDetailCommand, DeleteDetailCommand, saveCommand, CancelCommand};
 
             HouseList = new ObservableCollection<HenHouse>(houseService.GetAll());
             ConsumableList = new ObservableCollection<Consumable>(consumableService.GetAll());
