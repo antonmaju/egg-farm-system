@@ -179,10 +179,10 @@ DROP TABLE IF EXISTS `hendepreciationdetail`;
 CREATE TABLE `hendepreciationdetail` (
   `DepreciationId` char(36) NOT NULL,
   `HouseId` char(36) NOT NULL,
-  `InitialPrice` decimal(10,3) DEFAULT NULL,
-  `SellingPrice` decimal(10,3) DEFAULT NULL,
-  `Profit` decimal(10,3) DEFAULT NULL,
-  `Depreciation` decimal(10,3) DEFAULT NULL,
+  `InitialPrice` decimal(15,3) DEFAULT NULL,
+  `SellingPrice` decimal(15,3) DEFAULT NULL,
+  `Profit` decimal(15,3) DEFAULT NULL,
+  `Depreciation` decimal(15,3) DEFAULT NULL,
   PRIMARY KEY (`DepreciationId`,`HouseId`),
   KEY `HouseId` (`HouseId`),
   CONSTRAINT `hendepreciationdetail_ibfk_1` FOREIGN KEY (`DepreciationId`) REFERENCES `hendepreciation` (`Id`),
@@ -198,8 +198,9 @@ CREATE TABLE `henhouse` (
   `Name` varchar(50) DEFAULT NULL,
   `PurchaseCost` bigint(20) DEFAULT NULL,
   `YearUsage` int(11) DEFAULT NULL,
-  `Depreciation` bigint(20) DEFAULT NULL,
   `ProductiveAge` int(11) DEFAULT NULL,
+  `Weight` decimal(15,3) DEFAULT NULL,
+  `Depreciation` decimal(15,3) DEFAULT NULL,
   `Active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

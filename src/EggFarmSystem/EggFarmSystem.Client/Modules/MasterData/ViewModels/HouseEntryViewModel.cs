@@ -78,7 +78,12 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             get { return LanguageData.House_ProductiveAgeField; }
         }
 
-       
+        public string WeightField
+        {
+            get { return LanguageData.House_WeightField; }
+        }
+
+
         #endregion
 
         #region properties
@@ -87,10 +92,11 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         private string name;
         private long purchaseCost;
         private int yearUsage;
-        private long depreciation;
+        private decimal depreciation;
         private bool active;
         private int population;
         private int productiveAge;
+        private decimal weight;
 
         public Guid Id
         {
@@ -119,7 +125,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             {
                 purchaseCost = value;
                 house.PurchaseCost = value;
-                OnPropertyChanged("PurchaseCost");
+                OnPropertyChanged("PurchaseCost");CalculateDepreciation();
             }
         }
 
@@ -132,7 +138,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
                 OnPropertyChanged("YearUsage"); }
         }
 
-        public long Depreciation
+        public decimal Depreciation
         {
             get { return depreciation; }
             set
@@ -157,7 +163,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         {
             get { return population; }
             set { population = value; 
-                OnPropertyChanged("Population"); }
+                OnPropertyChanged("Population"); CalculateDepreciation(); }
         }
 
         public int ProductiveAge
@@ -171,7 +177,28 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             }
         }
 
+        public decimal Weight
+        {
+            get { return weight; }
+            set { 
+                weight = value;
+                house.Weight = value;
+                OnPropertyChanged("Weight");CalculateDepreciation();
+            }
+        }
+
         #endregion
+
+        private void CalculateDepreciation()
+        {
+            if (Population == 0)
+            {
+                Depreciation = 0;
+                return;
+            }
+
+            Depreciation = Weight*PurchaseCost/Population;
+        }
 
         public override string this[string columnName]
         {
@@ -192,10 +219,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
                     case "YearUsage":
                         if (YearUsage <= 0)
                             result = LanguageData.House_RequireYearUsage;
-                        break;
-                    case "Depreciation":
-                        if (Depreciation <= 0)
-                            result = LanguageData.House_RequireDepreciation;
                         break;
                     case "ProductiveAge":
                         if (ProductiveAge <= 0)
@@ -223,6 +246,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             Active = true;
             Population = 0;
             YearUsage = 0;
+            Weight = 0;
             ProductiveAge = 0;
         }
 
@@ -237,6 +261,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             Active = loadedHouse.Active;
             YearUsage = loadedHouse.YearUsage;
             ProductiveAge = loadedHouse.ProductiveAge;
+            Weight = loadedHouse.Weight;
 
             Population = houseService.GetPopulation(loadedHouse.Id);
         }

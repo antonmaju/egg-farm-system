@@ -18,6 +18,7 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -36,9 +37,9 @@
                 <TextBox Grid.Row="3" Style="{StaticResource NumericTextBoxSmall}" Grid.Column="1" 
                  Text="{Binding Path=YearUsage, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}" />
 
-                <Label Grid.Row="4"  Style="{StaticResource MasterDataLabel}" Content="{Binding Path=DepreciationField}" />
+                <Label Grid.Row="4"  Style="{StaticResource MasterDataLabel}" Content="{Binding Path=WeightField}" />
                 <TextBox Grid.Row="4" Style="{StaticResource NumericTextBox}" Grid.Column="1" 
-                 Text="{Binding Path=Depreciation, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}" />
+                 Text="{Binding Path=Weight, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True, StringFormat={}{0:0.##}}" />
 
                 <Label Grid.Row="5" Style="{StaticResource MasterDataLabel}" Content="{Binding Path=ProductiveAgeField}" />
                 <TextBox Grid.Row="5" Style="{StaticResource NumericTextBox}" Grid.Column="1" 
@@ -51,6 +52,10 @@
                 <Label Grid.Row="7"  Style="{StaticResource MasterDataLabel}" Content="{Binding Path=PopulationField}" />
                 <TextBox Grid.Row="7" Style="{StaticResource FormTextBoxSmall}" TextAlignment="Right" Grid.Column="1" IsEnabled="False" 
                  Text="{Binding Path=Population, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+                <Label Grid.Row="8"  Style="{StaticResource MasterDataLabel}" Content="{Binding Path=DepreciationField}" />
+                <TextBox Grid.Row="8" Style="{StaticResource NumericTextBox}" Grid.Column="1" 
+                 Text="{Binding Path=Depreciation, StringFormat={}{0:0.##}}" IsReadOnly="True" />
             </Grid>
         </AdornerDecorator>
     </Grid>
