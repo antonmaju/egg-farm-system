@@ -79,7 +79,7 @@
     <Style x:Key="{x:Type MenuItem}" TargetType="{x:Type MenuItem}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Foreground" Value="Black" />
-        <Setter Property="FontSize" Value="15" />
+        <!--<Setter Property="FontSize" Value="15" />-->
         <Setter Property="FontFamily" Value="/EggFarmSystem.Client;component/Assets/Fonts/#Roboto"></Setter>
         <Setter Property="IsCheckable" Value="True"></Setter>
         <Setter Property="Template" 
