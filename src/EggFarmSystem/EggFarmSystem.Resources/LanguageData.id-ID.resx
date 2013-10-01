@@ -232,7 +232,7 @@
     <value>Aktif</value>
   </data>
   <data name="House_DepreciationField" xml:space="preserve">
-    <value>Penyusutan / hari</value>
+    <value>Penyusutan</value>
   </data>
   <data name="House_NameField" xml:space="preserve">
     <value>Nama</value>
@@ -464,5 +464,11 @@
   </data>
   <data name="House_RequireProductiveAge" xml:space="preserve">
     <value>Usia produktif ayam diperlukan</value>
+  </data>
+  <data name="House_RequireWeight" xml:space="preserve">
+    <value>Berat diperlukan</value>
+  </data>
+  <data name="House_WeightField" xml:space="preserve">
+    <value>Berat</value>
   </data>
 </root>

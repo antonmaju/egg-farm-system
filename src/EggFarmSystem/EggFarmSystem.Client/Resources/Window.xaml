@@ -12,75 +12,89 @@
                 <ControlTemplate TargetType="{x:Type Window}">
                     <Border Background="Black">
                         <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="36"></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition Width="30"></ColumnDefinition>
-                                <ColumnDefinition Width="30"></ColumnDefinition>
-                                <ColumnDefinition Width="30"></ColumnDefinition>
-                                <ColumnDefinition Width="10"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Button Grid.Column="1" Command="cmd:ClientCommands.Minimize">
-                                <Button.Template>
-                                    <ControlTemplate> 
-                                        <Border Background="Transparent">                                       
-                                        <Rectangle HorizontalAlignment="Stretch" 
-                                        Fill="White" Height="1" Margin="4,20,3,4"  />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                            <Button Grid.Column="2" Command="cmd:ClientCommands.Maximize">
-                                <Button.Template>
-                                    <ControlTemplate>                                       
-                                        <Rectangle  Stroke="White" IsHitTestVisible="True"
-                                                   Fill="Transparent" Margin="6,10">
-                                        </Rectangle>                                        
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                            <Button Grid.Column="3" Command="ApplicationCommands.Close">
-                                <Button.Template>
-                                    <ControlTemplate>
-                                        <Border Background="Transparent">
-                                        <Path 
-                                  Margin="7"
-                                  Stroke="White"
-                                  StrokeThickness="1.5"
-                                  StrokeStartLineCap="Square"
-                                  StrokeEndLineCap="Square"
-                                  Stretch="Uniform"
-                                  VerticalAlignment="Center"
-                                  HorizontalAlignment="Center">
-                                            <Path.Data>
-                                                <PathGeometry>
-                                                    <PathGeometry.Figures>
-                                                        <PathFigure StartPoint="0,0">
-                                                            <LineSegment Point="25,25"/>
-                                                        </PathFigure>
-                                                        <PathFigure StartPoint="0,25">
-                                                            <LineSegment Point="25,0"/>
-                                                        </PathFigure>
-                                                    </PathGeometry.Figures>
-                                                </PathGeometry>
-                                            </Path.Data>
-                                        </Path>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>    
-                            </Button>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="36"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition Width="30"></ColumnDefinition>
+                                        <ColumnDefinition Width="30"></ColumnDefinition>
+                                        <ColumnDefinition Width="30"></ColumnDefinition>
+                                        <ColumnDefinition Width="10"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                        <Rectangle x:Name="moveHandler" Fill="Transparent"
+                                                   Grid.Row="0" Grid.Column="0"/>
+                                        <Button Grid.Column="1" Command="cmd:ClientCommands.Minimize">
+                                        <Button.Template>
+                                            <ControlTemplate> 
+                                                <Border Background="Transparent">                                       
+                                                <Rectangle HorizontalAlignment="Stretch" 
+                                                Fill="White" Height="1" Margin="4,20,3,4"  />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                    <Button Grid.Column="2" Command="cmd:ClientCommands.Maximize">
+                                        <Button.Template>
+                                            <ControlTemplate>                                       
+                                                <Rectangle  Stroke="White" IsHitTestVisible="True"
+                                                           Fill="Transparent" Margin="6,10">
+                                                </Rectangle>                                        
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                    <Button Grid.Column="3" Command="ApplicationCommands.Close">
+                                        <Button.Template>
+                                            <ControlTemplate>
+                                                <Border Background="Transparent">
+                                                <Path 
+                                          Margin="7"
+                                          Stroke="White"
+                                          StrokeThickness="1.5"
+                                          StrokeStartLineCap="Square"
+                                          StrokeEndLineCap="Square"
+                                          Stretch="Uniform"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center">
+                                                    <Path.Data>
+                                                        <PathGeometry>
+                                                            <PathGeometry.Figures>
+                                                                <PathFigure StartPoint="0,0">
+                                                                    <LineSegment Point="25,25"/>
+                                                                </PathFigure>
+                                                                <PathFigure StartPoint="0,25">
+                                                                    <LineSegment Point="25,0"/>
+                                                                </PathFigure>
+                                                            </PathGeometry.Figures>
+                                                        </PathGeometry>
+                                                    </Path.Data>
+                                                </Path>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>    
+                                    </Button>
                             
-                        </Grid>                 
-                        <AdornerDecorator Grid.Row="1">
-                            <ContentPresenter
-                            Content="{TemplateBinding Content}" 
-                            Margin="{TemplateBinding Margin}" />
-                        </AdornerDecorator>
-                    </Grid>
+                                </Grid>                 
+                                <AdornerDecorator Grid.Row="1">
+                                    <ContentPresenter
+                                    Content="{TemplateBinding Content}" 
+                                    Margin="{TemplateBinding Margin}" />
+                                </AdornerDecorator>
+                            </Grid>
+                            <Grid x:Name="resizeGrid">
+                                <Rectangle Stroke="{x:Null}" Fill="Transparent" VerticalAlignment="Top" Height="5" x:Name="topResizeRectangle" Margin="5,0,5,0" />
+                                <Rectangle Stroke="{x:Null}" Fill="Transparent" x:Name="bottomResizeRectangle" Height="5" VerticalAlignment="Bottom" Margin="5,0,5,0" />
+                                <Rectangle Stroke="{x:Null}" Fill="Transparent" HorizontalAlignment="Left" Margin="0,5,0,5" Width="5" x:Name="leftResizeRectangle"/>
+                                <Rectangle Stroke="{x:Null}" Fill="Transparent" Margin="0,5,0,5" Width="5" HorizontalAlignment="Right" x:Name="rightResizeRectangle" />
+                                <Rectangle Stroke="{x:Null}" Fill="Transparent" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="5" Height="5" x:Name="bottomLeftResizeRectangle" />
+                                <Rectangle Stroke="{x:Null}" Fill="Transparent" VerticalAlignment="Bottom" Height="5" Width="5" HorizontalAlignment="Right" x:Name="bottomRightResizeRectangle" />
+                                <Rectangle Stroke="{x:Null}" Fill="Transparent" HorizontalAlignment="Right" Width="5" Height="5" VerticalAlignment="Top" x:Name="topRightResizeRectangle" />
+                                <Rectangle Stroke="{x:Null}" Fill="Transparent" HorizontalAlignment="Left" Width="6" VerticalAlignment="Top" Height="5" x:Name="topLeftResizeRectangle" />
+                            </Grid>
+                        </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

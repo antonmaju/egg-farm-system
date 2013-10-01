@@ -15,11 +15,13 @@ namespace EggFarmSystem.Models
         
         public int YearUsage { get; set; }
 
-        public long Depreciation { get; set; }
-
         public bool Active { get; set; }
 
         public int ProductiveAge { get; set; }
+
+        public decimal Weight { get; set; }
+
+        public decimal Depreciation { get; set; }
 
         public override IList<ErrorInfo> Validate()
         {
@@ -34,11 +36,11 @@ namespace EggFarmSystem.Models
             if(YearUsage <= 0)
                 errors.Add(new ErrorInfo("YearUsage", "House_RequireYearUsage"));
 
-            if(Depreciation <= 0)
-                errors.Add(new ErrorInfo("Depreciation", "House_RequireDepreciation"));
-
             if(ProductiveAge <= 0)
-                errors.Add(new ErrorInfo("ProductiveAge","House_ProductiveAge"));
+                errors.Add(new ErrorInfo("ProductiveAge", "House_RequireProductiveAge"));
+
+            if(Weight <= 0)
+                errors.Add(new ErrorInfo("Weight","House_RequireWeight"));
 
             return errors;
         }

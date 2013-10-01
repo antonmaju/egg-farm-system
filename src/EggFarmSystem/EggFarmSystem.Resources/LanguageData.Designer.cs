@@ -916,6 +916,15 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Weight is required.
+        /// </summary>
+        public static string House_RequireWeight {
+            get {
+                return ResourceManager.GetString("House_RequireWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Year usage is required.
         /// </summary>
         public static string House_RequireYearUsage {
@@ -930,6 +939,15 @@ namespace EggFarmSystem.Resources {
         public static string House_Title {
             get {
                 return ResourceManager.GetString("House_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weight.
+        /// </summary>
+        public static string House_WeightField {
+            get {
+                return ResourceManager.GetString("House_WeightField", resourceCulture);
             }
         }
         

@@ -402,11 +402,17 @@
   <data name="House_RequirePurchaseCost" xml:space="preserve">
     <value>Purchase cost is required</value>
   </data>
+  <data name="House_RequireWeight" xml:space="preserve">
+    <value>Weight is required</value>
+  </data>
   <data name="House_RequireYearUsage" xml:space="preserve">
     <value>Year usage is required</value>
   </data>
   <data name="House_Title" xml:space="preserve">
     <value>Hen House</value>
+  </data>
+  <data name="House_WeightField" xml:space="preserve">
+    <value>Weight</value>
   </data>
   <data name="House_YearUsageField" xml:space="preserve">
     <value>Year Usage</value>
