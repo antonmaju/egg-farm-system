@@ -36,8 +36,9 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.Views
 
         void SetEventHandlers()
         {
-            lvCostList.MouseUp += new MouseButtonEventHandler(lvCostList_MouseUp);
-            lvCostList.MouseDoubleClick += new MouseButtonEventHandler(lvCostList_MouseDoubleClick);
+            lvCostList.MouseUp += lvCostList_MouseUp;
+            lvCostList.MouseDoubleClick += lvCostList_MouseDoubleClick;
+            pager.PageIndexChanged += pager_PageIndexChanged;
         }
 
         void lvCostList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -55,10 +56,16 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.Views
             model.DeleteCommand.EntityId = selectedCost.Id;
         }
 
+        void pager_PageIndexChanged(object sender, Controls.PagerEventArgs args)
+        {
+            model.PageIndex = args.PageIndex;
+        }
+
         void UnsetEventHandlers()
         {
-            lvCostList.MouseUp -= new MouseButtonEventHandler(lvCostList_MouseUp);
-            lvCostList.MouseDoubleClick -= new MouseButtonEventHandler(lvCostList_MouseDoubleClick);
+            lvCostList.MouseUp -= lvCostList_MouseUp;
+            lvCostList.MouseDoubleClick -= lvCostList_MouseDoubleClick;
+            pager.PageIndexChanged -= pager_PageIndexChanged;
         }
 
         public override void Dispose()
