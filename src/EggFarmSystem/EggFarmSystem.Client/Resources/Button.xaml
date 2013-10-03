@@ -113,10 +113,11 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" SourceName="pagerBorder" Value="True">
-                            <Setter TargetName="pagerBorder" Property="Cursor" Value="Hand"></Setter>
+                            <Setter TargetName="pagerBorder" Property="Cursor" Value="Hand" />
+                            <Setter Property="FontWeight" Value="Bold" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Foreground" Value="#555555"></Setter>
+                            <Setter Property="Foreground" Value="#555555" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>    
