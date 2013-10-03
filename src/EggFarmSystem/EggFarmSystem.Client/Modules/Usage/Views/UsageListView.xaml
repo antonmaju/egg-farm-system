@@ -8,34 +8,37 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Border Style="{StaticResource ContainerBorder}">
-    <Grid>
+        <Grid>
         
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
         
-        <ListView x:Name="lvUsageList"
-                  AlternationCount="2" ItemsSource="{Binding Path=UsageList}">
-            <ListView.View>
-                <GridView x:Name="gvUsageList">
+            <ListView x:Name="lvUsageList"
+                      AlternationCount="2" ItemsSource="{Binding Path=UsageList}">
+                <ListView.View>
+                    <GridView x:Name="gvUsageList">
 
-                    <GridView.Columns>
-                        <GridViewColumn Header="{Binding Path=DateText}" 
-                                        DisplayMemberBinding="{Binding Path=Date, StringFormat='d MMM yyyy'}"
-                                        Width="300">
+                        <GridView.Columns>
+                            <GridViewColumn Header="{Binding Path=DateText}" 
+                                            DisplayMemberBinding="{Binding Path=Date, StringFormat='d MMM yyyy'}"
+                                            Width="300">
 
-                        </GridViewColumn>
-                        <GridViewColumn Header="{Binding Path=TotalText}" 
-                                        DisplayMemberBinding="{Binding Path=Total, StringFormat='C'}"
-                                        Width="300">
+                            </GridViewColumn>
+                            <GridViewColumn Header="{Binding Path=TotalText}" 
+                                            DisplayMemberBinding="{Binding Path=Total, StringFormat='C'}"
+                                            Width="300">
 
-                        </GridViewColumn>
-                    </GridView.Columns>
-                </GridView>
-            </ListView.View>
-        </ListView>
-
-        </Grid>
+                            </GridViewColumn>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+           
+            <controls:Pager x:Name="pager" PageIndex="{Binding Path=PageIndex}" TotalPage="{Binding Path=TotalPage}" Grid.Row="1"></controls:Pager>
+           
+                      
+        </Grid> 
     </Border>
 </views:UserControlBase>

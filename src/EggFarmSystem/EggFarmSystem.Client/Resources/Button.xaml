@@ -98,4 +98,30 @@
         <Setter Property="FontSize" Value="10"></Setter>
         <Setter Property="MinWidth" Value="80"></Setter>
     </Style>
+    
+    <Style x:Key="PagerButton" TargetType="Button">
+        <Setter Property="Foreground " Value="White"></Setter>
+        <Setter Property="Width" Value="35"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="Transparent" Padding="10,7,10,7" BorderThickness="1" Width="{TemplateBinding Property=Width}" x:Name="pagerBorder">
+                        <ContentPresenter 
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              RecognizesAccessKey="True" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" SourceName="pagerBorder" Value="True">
+                            <Setter TargetName="pagerBorder" Property="Cursor" Value="Hand"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="#555555"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>    
+            </Setter.Value>
+        </Setter>    
+    </Style>
+    
 </ResourceDictionary>

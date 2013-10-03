@@ -74,7 +74,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
         }
 
 
-        private int pageIndex =1;
+        private int pageIndex =20;
 
         public int PageIndex
         {
@@ -83,10 +83,11 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             {
                 pageIndex = value;
                 OnPropertyChanged("PageIndex");
+                OnRefreshList(null);
             }
         }
 
-        private int pageSize=20;
+        private int pageSize=1;
 
         public int PageSize
         {
@@ -95,6 +96,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             { 
                 pageSize = value;
                 OnPropertyChanged("PageSize");
+                OnRefreshList(null);
             }
         }
 
@@ -108,6 +110,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             { 
                 startDate = value;
                 OnPropertyChanged("StartDate");
+                OnRefreshList(null);
             }
         }
 
@@ -121,6 +124,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             {
                 endDate = value;
                 OnPropertyChanged("EndDate");
+                OnRefreshList(null);
             }
         }
 
@@ -162,6 +166,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
         void OnRefreshList(object param)
         {
+
             var searchInfo = new ConsumableUsageSearchInfo
                 {
                     Start = startDate,

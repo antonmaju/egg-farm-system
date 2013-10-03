@@ -23,45 +23,61 @@ namespace EggFarmSystem.Client.Controls
     /// </summary>
     public partial class Pager : UserControl
     {
-        private IPagingInfo pagingInfo;
         private DelegateCommand firstCommand;
         private DelegateCommand prevCommand;
         private DelegateCommand nextCommand;
         private DelegateCommand lastCommand;
-        private ObservableCollection<int> numbers;
 
         public Pager()
         {
             InitializeComponent();
-            numbers = new ObservableCollection<int>();
             SetCommandBindings();
         }
 
-        public IPagingInfo PagingSource
+        public static readonly DependencyProperty PagesProperty = DependencyProperty.Register("Pages",
+                                                                                      typeof (ObservableCollection<int>),
+                                                                                      typeof (Pager));
+
+        public ObservableCollection<int> Pages
         {
-            get { return pagingInfo; }
-            set 
-            { 
-                ClearBindings();
-                pagingInfo = value;
-                this.DataContext = value;
-                SetBindings();
-            }
+            get { return GetValue(PagesProperty) as ObservableCollection<int>; }
+            set { SetValue(PagesProperty, value); }
+        }
+
+        public static readonly DependencyProperty PageIndexProperty = DependencyProperty.Register("PageIndex",
+                                                                                                     typeof (int),
+                                                                                                     typeof(Pager), new PropertyMetadata(0, OnPageIndexChanged));
+
+        public int PageIndex
+        {
+            get { return (int) GetValue(PageIndexProperty); }
+            set { SetValue(PageIndexProperty, value); }
+        }
+
+        public static readonly DependencyProperty TotalPageProperty = DependencyProperty.Register("TotalPage",
+                                                                                                     typeof(int),
+                                                                                                     typeof(Pager),
+                                                                                                     new PropertyMetadata(0,OnTotalPageChanged));
+
+        public int TotalPage
+        {
+            get { return (int)GetValue(TotalPageProperty); }
+            set { SetValue(TotalPageProperty, value); }
         }
 
         private void SetCommandBindings()
         {
              firstCommand = new DelegateCommand(param => TriggerPageIndexChanged(1),
-                 param => pagingInfo != null);
+                 param => PageIndex > 1);
 
-             prevCommand = new DelegateCommand(param => TriggerPageIndexChanged(pagingInfo.PageIndex - 1),
-                 param => pagingInfo != null && pagingInfo.PageIndex > 1);
+             prevCommand = new DelegateCommand(param => TriggerPageIndexChanged(PageIndex - 1),
+                 param => PageIndex > 1);
 
-             nextCommand = new DelegateCommand(param => TriggerPageIndexChanged(pagingInfo.PageIndex + 1),
-                 param => pagingInfo != null && pagingInfo.PageIndex < pagingInfo.TotalPage);
+             nextCommand = new DelegateCommand(param => TriggerPageIndexChanged(PageIndex + 1),
+                 param => PageIndex < TotalPage);
 
-             lastCommand = new DelegateCommand(param => TriggerPageIndexChanged(pagingInfo.TotalPage),
-                 param => pagingInfo != null);
+             lastCommand = new DelegateCommand(param => TriggerPageIndexChanged(TotalPage),
+                 param => PageIndex < TotalPage);
 
             btnFirst.Command = firstCommand;
             btnPrev.Command = prevCommand;
@@ -70,27 +86,37 @@ namespace EggFarmSystem.Client.Controls
 
         }
 
-        private void SetBindings()
+        private static void OnPageIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var sourceBinding = new Binding();
-            sourceBinding.Source = numbers;
-            BindingOperations.SetBinding(cboPage, ComboBox.ItemsSourceProperty, sourceBinding);
-            var indexBinding = new Binding("PageIndex");
-            indexBinding.Mode = BindingMode.OneWay;
-            BindingOperations.SetBinding(cboPage, ComboBox.SelectedValueProperty, indexBinding);
+            var pager = d as Pager;
+
+            if (pager == null) return;
+
+            if (pager.PageIndexChanged != null)
+            {
+                pager.PageIndexChanged(pager, new PagerEventArgs { PageIndex = pager.PageIndex });
+            }
+        }
+        
+
+        private static void OnTotalPageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var pager = d as Pager;
+
+            if (pager == null)
+                return;
+
+            pager.Pages = new ObservableCollection<int>(Enumerable.Range(1,pager.TotalPage));
+
+            if(pager.TotalPage <= 1)
+                pager.Visibility = Visibility.Hidden; 
+
         }
 
-        private void ClearBindings()
-        {
-            BindingOperations.ClearAllBindings(cboPage);
-        }
 
         private void TriggerPageIndexChanged(int pageIndex)
         {
-            if (PageIndexChanged != null)
-            {
-                PageIndexChanged(this, new PagerEventArgs{PageIndex = pageIndex});
-            }
+            PageIndex = pageIndex;
         }
 
         public event PagerHandler PageIndexChanged;
