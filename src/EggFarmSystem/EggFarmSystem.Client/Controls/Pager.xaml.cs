@@ -108,9 +108,7 @@ namespace EggFarmSystem.Client.Controls
 
             pager.Pages = new ObservableCollection<int>(Enumerable.Range(1,pager.TotalPage));
 
-            if(pager.TotalPage <= 1)
-                pager.Visibility = Visibility.Hidden; 
-
+            pager.Visibility = pager.TotalPage <= 1 ? Visibility.Hidden : Visibility.Visible;
         }
 
 
