@@ -9,6 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using EggFarmSystem.Client.Modules.Dashboard;
 using EggFarmSystem.Client.Modules.EggProduction;
 using EggFarmSystem.Client.Modules.EmployeeCost;
 using EggFarmSystem.Client.Modules.HenDepreciation;
@@ -48,8 +49,9 @@ namespace EggFarmSystem.Client
         private void RegisterModules(IBootstrapper bootstrapper)
         {
             bootstrapper.Register(new MasterDataModule());
-            bootstrapper.Register(new ConsumableUsageModule());
+            bootstrapper.Register(new DashboardModule());
             bootstrapper.Register(new EmployeeCostModule());
+            bootstrapper.Register(new ConsumableUsageModule());
             bootstrapper.Register(new EggProductionModule());
             bootstrapper.Register(new HenDepreciationModule());
         }

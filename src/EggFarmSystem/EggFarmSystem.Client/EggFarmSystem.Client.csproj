@@ -120,6 +120,7 @@
     <Compile Include="Controls\Pager.xaml.cs">
       <DependentUpon>Pager.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProgressBarTaskHelper.cs" />
     <Compile Include="Core\Bootstrapper.cs" />
     <Compile Include="Core\ClientContext.cs" />
     <Compile Include="Core\Error.cs" />
@@ -147,6 +148,14 @@
     <Compile Include="Core\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Modules\Dashboard\Views\DashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Dashboard\Views\ProgressStageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\EggProduction\Views\EggProductionEntryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -282,6 +291,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Views\UserControlBase.cs" />
+    <Compile Include="Modules\Dashboard\Commands\ShowDashboardCommand.cs" />
+    <Compile Include="Modules\Dashboard\DashboardMessages.cs" />
+    <Compile Include="Modules\Dashboard\DashboardModule.cs" />
+    <Compile Include="Modules\Dashboard\DashboardRegistry.cs" />
+    <Compile Include="Modules\Dashboard\ViewModels\DashboardViewModel.cs" />
+    <Compile Include="Modules\Dashboard\ViewModels\ProgressStageViewModel.cs" />
+    <Compile Include="Modules\Dashboard\Views\DashboardView.xaml.cs">
+      <DependentUpon>DashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Dashboard\Views\ProgressStageView.xaml.cs">
+      <DependentUpon>ProgressStageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\EggProduction\Commands\DeleteEggProductionCommand.cs" />
     <Compile Include="Modules\EggProduction\Commands\EditEggProductionCommand.cs" />
     <Compile Include="Modules\EggProduction\Commands\NewEggProductionCommand.cs" />
@@ -457,9 +478,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\Dashboard\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\EggFarmSystem.Resources\EggFarmSystem.Resources.csproj">
       <Project>{7239b659-1d39-4bc7-a9c6-132ad29c35bf}</Project>
