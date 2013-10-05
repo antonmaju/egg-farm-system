@@ -6,7 +6,8 @@
         <Setter Property="WindowStyle" Value="None"  />
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="AllowsTransparency" Value="True"></Setter>
-        <Setter Property="FontFamily" Value="/EggFarmSystem.Client;component/Assets/Fonts/#PT SANS"></Setter>
+        <Setter Property="FontSize" Value="18"></Setter>
+        <Setter Property="FontFamily" Value="{StaticResource Raleway}"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">

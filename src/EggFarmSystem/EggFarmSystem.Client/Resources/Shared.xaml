@@ -86,5 +86,8 @@
         <GradientStop Color="#000000" Offset="1" />
     </LinearGradientBrush>
 
-
+    <FontFamily x:Key="RalewayBold">/EggFarmSystem.Client;component/Assets/Fonts/#Raleway Bold</FontFamily>
+    <FontFamily x:Key="Raleway">/EggFarmSystem.Client;component/Assets/Fonts/#Raleway</FontFamily>
+    <FontFamily x:Key="QuattrocentoSansBold">/EggFarmSystem.Client;component/Assets/Fonts/#Quattrocento Sans Bold</FontFamily>
+    <FontFamily x:Key="QuattrocentoSans">/EggFarmSystem.Client;component/Assets/Fonts/#Quattrocento Sans</FontFamily>
 </ResourceDictionary>

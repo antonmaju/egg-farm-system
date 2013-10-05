@@ -70,6 +70,7 @@
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Background"  TargetName="borderMenuItem" Value="{StaticResource ActiveMenuBrush}" />
                 <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontFamily" Value="{StaticResource Raleway}"></Setter>
                 <Setter TargetName="borderActiveItem" Property="BorderBrush" Value="#00CE02"></Setter>
                 <Setter TargetName="borderActiveItem" Property="Background" Value="#00CE02"></Setter>
             </Trigger>
@@ -79,8 +80,8 @@
     <Style x:Key="{x:Type MenuItem}" TargetType="{x:Type MenuItem}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Foreground" Value="Black" />
-        <Setter Property="FontSize" Value="15" />
-        <Setter Property="FontFamily" Value="/EggFarmSystem.Client;component/Assets/Fonts/#Roboto"></Setter>
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontFamily" Value="{StaticResource Raleway}"></Setter>
         <Setter Property="IsCheckable" Value="True"></Setter>
         <Setter Property="Template" 
                 Value="{StaticResource {x:Static MenuItem.TopLevelHeaderTemplateKey}}"/>
