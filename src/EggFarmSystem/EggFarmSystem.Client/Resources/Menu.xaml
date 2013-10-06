@@ -6,20 +6,21 @@
     </ResourceDictionary.MergedDictionaries>
 
     <LinearGradientBrush x:Key="ActiveMenuBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#999999" Offset="0" ></GradientStop>
-        <GradientStop Color="#333333" Offset="0.4"></GradientStop>
+        <GradientStop Color="#9B9B9B" Offset="0" ></GradientStop>
+        <GradientStop Color="#727272" Offset="0.3"></GradientStop>
+        <GradientStop Color="#2A2A2A" Offset="0.95"></GradientStop>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="HoverMenuBrush" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Color="#BBBBBB" Offset="0" ></GradientStop>
         <GradientStop Color="#FEFEFE" Offset="0.3"></GradientStop>
-        <GradientStop Color="#AEAEAE" Offset="0.8"></GradientStop>
+        <GradientStop Color="#AEAEAE" Offset="0.95"></GradientStop>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="NormalMenuBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#9A9A9A" Offset="0" ></GradientStop>
-        <GradientStop Color="#CECECE" Offset="0.3"></GradientStop>
-        <GradientStop Color="#AEAEAE" Offset="0.8"></GradientStop>
+        <GradientStop Color="#ACACAC" Offset="0" ></GradientStop>
+        <GradientStop Color="#DDDDDD" Offset="0.3"></GradientStop>
+        <GradientStop Color="#878787" Offset="0.95"></GradientStop>
     </LinearGradientBrush>
 
     <Style x:Key="{x:Type Menu}" TargetType="{x:Type Menu}">
@@ -34,7 +35,7 @@
                     <Border BorderThickness="0,5,0,5" Margin="30,0,0,0" SnapsToDevicePixels="True" Background="Black">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="12.5*" MinWidth="800" MaxWidth="1600" ></ColumnDefinition>
+                                <ColumnDefinition Width="12.5*" MinWidth="750" MaxWidth="1600" ></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <UniformGrid IsItemsHost="True" Grid.Column="0" Rows="1" SnapsToDevicePixels="True" ></UniformGrid>
@@ -51,11 +52,11 @@
               <Grid>
                         <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Border x:Name="borderActiveItem" BorderThickness="2" BorderBrush="{StaticResource NormalMenuBrush}" Background="{StaticResource NormalMenuBrush}"  Width="15" Margin="0,0,5,0" SnapsToDevicePixels="True" Grid.Column="0" >
+                    <Border x:Name="borderActiveItem" Visibility="Collapsed" BorderThickness="2" BorderBrush="{StaticResource NormalMenuBrush}" Background="{StaticResource NormalMenuBrush}"  Width="15" Margin="0,0,5,0" SnapsToDevicePixels="True" Grid.Column="0" >
                     </Border>
-                        <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" 
+                        <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" HorizontalAlignment="Center" 
                               VerticalAlignment="Center" x:Name="presenterMenuItem" SnapsToDevicePixels="True" RenderOptions.EdgeMode="Aliased" Grid.Column="1">
                 </ContentPresenter>
               </Grid>
@@ -68,12 +69,14 @@
                 <Setter Property="Cursor" Value="Hand" />    
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Visibility" TargetName="borderActiveItem" Value="Visible"></Setter>
                 <Setter Property="Background"  TargetName="borderMenuItem" Value="{StaticResource ActiveMenuBrush}" />
                 <Setter Property="Foreground" Value="White" />
                 <Setter Property="FontFamily" Value="{StaticResource Raleway}"></Setter>
-                <Setter TargetName="borderActiveItem" Property="BorderBrush" Value="#00CE02"></Setter>
-                <Setter TargetName="borderActiveItem" Property="Background" Value="#00CE02"></Setter>
+                <Setter TargetName="borderActiveItem" Property="BorderBrush" Value="#00CC00"></Setter>
+                <Setter TargetName="borderActiveItem" Property="Background" Value="#00CC00"></Setter>
             </Trigger>
+            
         </ControlTemplate.Triggers>
     </ControlTemplate>
 

@@ -77,12 +77,11 @@
 
     <SolidColorBrush Color="#CACACA" x:Key="ListFirstRowBrush"></SolidColorBrush>
     <SolidColorBrush Color="#ACACAC" x:Key="ListSecondRowBrush"></SolidColorBrush>
-    <SolidColorBrush Color="#FE9900" x:Key="ListSelectedBrush"></SolidColorBrush>
+    <SolidColorBrush Color="#F7941D" x:Key="ListSelectedBrush"></SolidColorBrush>
 
     <LinearGradientBrush x:Key="ListHeaderBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#000000" Offset="0" />
-        <GradientStop Color="#3F3F3F" Offset="0.15" />
-        <GradientStop Color="#1D1D1D" Offset="0.8" />
+        <GradientStop Color="#222222" Offset="0" />
+        <GradientStop Color="#434343" Offset="0.4" />
         <GradientStop Color="#000000" Offset="1" />
     </LinearGradientBrush>
 

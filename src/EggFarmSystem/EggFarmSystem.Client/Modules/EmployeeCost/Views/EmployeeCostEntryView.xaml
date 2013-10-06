@@ -87,13 +87,13 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
                      Grid.Row="2">
             <Label Content="{Binding Path=TotalText}" 
-                   Style="{StaticResource FormLabel}"/>
+                   Style="{StaticResource SummaryLabel}"/>
 
             <Label  Content="{Binding Path=Total}" ContentStringFormat="C" 
-                   Style="{StaticResource FormLabel}" />
+                   Style="{StaticResource SummaryLabel}" />
         </StackPanel>
     </Grid>
     </Border>    

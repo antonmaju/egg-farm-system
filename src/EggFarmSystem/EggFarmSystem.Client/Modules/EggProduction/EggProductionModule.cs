@@ -20,7 +20,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction
                     new MenuInfo
                         {
                             CommandType = typeof(ShowEggProductionListCommand),
-                            Title = () => LanguageData.EggProduction_Title
+                            Title = () => LanguageData.EggProduction_Title.Replace(" ", "\n")
                         }
                 };
         }

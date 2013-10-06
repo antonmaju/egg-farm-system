@@ -20,7 +20,7 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation
                      new MenuInfo
                         {
                             CommandType = typeof(ShowHenDepreciationListCommand),
-                            Title = () => LanguageData.HenDepreciation_Title
+                            Title = () => LanguageData.HenDepreciation_Title.Replace(" ", "\n")
                         }
                 };
         }

@@ -134,7 +134,7 @@
         <Setter Property="Padding" Value="0,3,0,3" />
         <Setter Property="FontSize" Value="18"></Setter>
         <Setter Property="FontFamily" Value="{StaticResource QuattrocentoSans}" />
-        <Setter Property="MinHeight" Value="30"></Setter>
+        <Setter Property="MinHeight" Value="35"></Setter>
         <Setter Property="Template" >
             <Setter.Value>
                 <ControlTemplate TargetType="GridViewColumnHeader">

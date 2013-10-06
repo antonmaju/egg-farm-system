@@ -117,6 +117,7 @@
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\DeleteCommand.cs" />
     <Compile Include="Commands\RefreshCommand.cs" />
+    <Compile Include="Controls\ToggleButtonHelper.cs" />
     <Compile Include="Controls\Pager.xaml.cs">
       <DependentUpon>Pager.xaml</DependentUpon>
     </Compile>
@@ -477,12 +478,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Images\consumable-menu.png" />
+    <Resource Include="Assets\Images\cost-menu.png" />
     <Content Include="Assets\Images\date-picker.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\logo.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Assets\Images\employee-menu.png" />
+    <Resource Include="Assets\Images\hen-menu.png" />
+    <Resource Include="Assets\Images\house-menu.png" />
     <Content Include="Assets\Images\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

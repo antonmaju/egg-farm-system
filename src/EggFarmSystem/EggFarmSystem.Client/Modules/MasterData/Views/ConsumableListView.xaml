@@ -39,7 +39,7 @@
                         </GridViewColumn>
                         <GridViewColumn Header="{Binding Path=UnitText}" 
                                         DisplayMemberBinding="{Binding Path=Unit}"
-                                        Width="200">
+                                        Width="100">
 
                         </GridViewColumn>
                     </GridView.Columns>

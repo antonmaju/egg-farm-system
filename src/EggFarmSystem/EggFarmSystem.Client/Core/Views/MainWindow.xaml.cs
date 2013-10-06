@@ -227,12 +227,15 @@ namespace EggFarmSystem.Client.Core.Views
         void InitializeMenu()
         {
             mnuMain.Items.Clear();
+           
+
 
             var items = bootstrapper.GetMainMenuItems();
             foreach (var item in items)
                 mnuMain.Items.Add(item);
 
             //dummy
+            mnuMain.Items.Add(new MenuItem { Header = "DASHBOARD" });
             mnuMain.Items.Add(new MenuItem { Header = "LAPORAN" });
             
             HandleMenuItemsEvents();

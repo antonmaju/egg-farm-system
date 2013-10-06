@@ -27,10 +27,10 @@
         
         <Grid Margin="0,10,0,20">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" MinWidth="150" MaxWidth="420"></ColumnDefinition>
-                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="*" MinWidth="200" MaxWidth="420"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image  Source="/EggFarmSystem.Client;component/Assets/Images/logo.jpg" RenderOptions.BitmapScalingMode="HighQuality"  SnapsToDevicePixels="True" />
+            <Image Margin="30,0,0,0"  Source="/EggFarmSystem.Client;component/Assets/Images/logo.png" RenderOptions.BitmapScalingMode="HighQuality"  SnapsToDevicePixels="True" />
 
             <Menu x:Name="mnuMain" Grid.Column="1" >
             </Menu>
