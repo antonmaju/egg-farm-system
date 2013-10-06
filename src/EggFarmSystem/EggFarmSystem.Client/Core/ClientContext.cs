@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using EggFarmSystem.Client.Properties;
 
 namespace EggFarmSystem.Client.Core
 {
@@ -13,6 +14,28 @@ namespace EggFarmSystem.Client.Core
         public string ServiceUrl
         {
             get { return ConfigurationManager.AppSettings["ServiceUrl"]; }
+        }
+
+
+        public int PageSize
+        {
+            get { return Settings.Default.PageSize; }
+            set
+            {
+                Settings.Default.PageSize = value;
+            }
+        }
+
+        public string Culture
+        {
+            get
+            {
+                return  Settings.Default.Culture;
+            }
+            set
+            {
+                Settings.Default.Culture = value;
+            }
         }
     }
 }

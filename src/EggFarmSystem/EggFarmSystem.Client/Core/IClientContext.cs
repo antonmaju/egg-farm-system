@@ -10,5 +10,9 @@ namespace EggFarmSystem.Client.Core
         Type MainViewType { get; set; }
 
         string ServiceUrl { get; }
+
+        int PageSize { get; set; }
+
+        string Culture { get; set; }
     }
 }

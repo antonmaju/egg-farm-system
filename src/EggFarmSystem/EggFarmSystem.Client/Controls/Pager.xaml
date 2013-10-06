@@ -5,22 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="300">
-    <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30"></ColumnDefinition>
-                <ColumnDefinition Width="30"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                 <ColumnDefinition Width="30"></ColumnDefinition>
-                 <ColumnDefinition Width="30"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button Name="btnFirst">
-            </Button>
-            <Button Name="btnPrev" Grid.Column="1"></Button>
-            <ComboBox Name="cboPage" Grid.Column="2">
-                
-            </ComboBox>
-            <Button Name="btnNext" Grid.Column="3"></Button>
-            <Button Name="btnLast" Grid.Column="4"></Button>      
-    </Grid>
+    
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button Name="btnFirst" Content="&lt;&lt;" Style="{StaticResource PagerButton}"></Button>
+        <Button Name="btnPrev" Content="&lt;" Style="{StaticResource PagerButton}"></Button>
+        <ComboBox Name="cboPage" Style="{StaticResource PagerComboBox}"  ItemsSource="{Binding Path=Pages, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                  SelectedValue="{Binding Path=PageIndex, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                 ></ComboBox>
+        <Button Name="btnNext" Content="&gt;" Style="{StaticResource PagerButton}"></Button>
+        <Button Name="btnLast" Content="&gt;&gt;" Style="{StaticResource PagerButton}"></Button>
+    </StackPanel>
+    
 </UserControl>

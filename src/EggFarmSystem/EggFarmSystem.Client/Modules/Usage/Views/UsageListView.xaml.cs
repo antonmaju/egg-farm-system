@@ -37,8 +37,14 @@ namespace EggFarmSystem.Client.Modules.Usage.Views
 
         private void SetEventHandlers()
         {
-            lvUsageList.MouseUp += new MouseButtonEventHandler(lvUsageList_MouseUp);
-            lvUsageList.MouseDoubleClick += new MouseButtonEventHandler(lvUsageList_MouseDoubleClick);
+            lvUsageList.MouseUp += lvUsageList_MouseUp;
+            lvUsageList.MouseDoubleClick += lvUsageList_MouseDoubleClick;
+            pager.PageIndexChanged += pager_PageIndexChanged;
+        }
+
+        void pager_PageIndexChanged(object sender, Controls.PagerEventArgs args)
+        {
+            model.PageIndex = args.PageIndex;
         }
 
         void lvUsageList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -58,8 +64,9 @@ namespace EggFarmSystem.Client.Modules.Usage.Views
 
         private void UnsetEventHandlers()
         {
-            lvUsageList.MouseUp -= new MouseButtonEventHandler(lvUsageList_MouseUp);
-            lvUsageList.MouseDoubleClick -= new MouseButtonEventHandler(lvUsageList_MouseDoubleClick);
+            lvUsageList.MouseUp -= lvUsageList_MouseUp;
+            lvUsageList.MouseDoubleClick -= lvUsageList_MouseDoubleClick;
+            pager.PageIndexChanged -= pager_PageIndexChanged;
         }
 
         public override void Dispose()

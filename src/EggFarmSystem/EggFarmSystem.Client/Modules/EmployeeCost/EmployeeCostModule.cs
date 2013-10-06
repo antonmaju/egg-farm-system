@@ -20,7 +20,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost
                     new MenuInfo
                         {
                             CommandType = typeof(ShowEmployeeCostCommand),
-                            Title = () => LanguageData.EmployeeCost_Title
+                            Title = () => LanguageData.EmployeeCost_Title.Replace(" ", "\n")
                         }
                 };
         }

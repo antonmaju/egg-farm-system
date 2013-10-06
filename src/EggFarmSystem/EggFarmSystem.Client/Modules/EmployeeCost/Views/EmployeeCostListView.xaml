@@ -3,36 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:views="clr-namespace:EggFarmSystem.Client.Core.Views" 
+             xmlns:views="clr-namespace:EggFarmSystem.Client.Core.Views"
+             xmlns:controls="clr-namespace:EggFarmSystem.Client.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Border Style="{StaticResource ContainerBorder}">
         <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-        </Grid.RowDefinitions>
-        <ListView x:Name="lvCostList"
-                  AlternationCount="2" ItemsSource="{Binding Path=CostList}">
-            <ListView.View>
-                <GridView x:Name="gvCostList">
-                    <GridView.Columns>
-                        <GridViewColumn Header="{Binding Path=DateText}" 
-                                        DisplayMemberBinding="{Binding Path=Date, StringFormat='d MMM yyyy'}"
-                                        Width="300">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ListView x:Name="lvCostList"
+                      AlternationCount="2" ItemsSource="{Binding Path=CostList}">
+                <ListView.View>
+                    <GridView x:Name="gvCostList">
+                        <GridView.Columns>
+                            <GridViewColumn Header="{Binding Path=DateText}" 
+                                            DisplayMemberBinding="{Binding Path=Date, StringFormat='d MMM yyyy'}"
+                                            Width="300">
 
-                        </GridViewColumn>
-                        <GridViewColumn Header="{Binding Path=TotalText}" 
-                                        DisplayMemberBinding="{Binding Path=Total, StringFormat='C'}"
-                                        Width="300">
+                            </GridViewColumn>
+                            <GridViewColumn Header="{Binding Path=TotalText}" 
+                                            DisplayMemberBinding="{Binding Path=Total, StringFormat='C'}"
+                                            Width="300">
 
-                        </GridViewColumn>
-                    </GridView.Columns>
-                </GridView>
-            </ListView.View>
+                            </GridViewColumn>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
             
-        </ListView>
-        
-    </Grid>
+            </ListView>
+            <controls:Pager x:Name="pager" PageIndex="{Binding Path=PageIndex}" TotalPage="{Binding Path=TotalPage}" Grid.Row="1"></controls:Pager>
+
+        </Grid>
     </Border>
 </views:UserControlBase>
