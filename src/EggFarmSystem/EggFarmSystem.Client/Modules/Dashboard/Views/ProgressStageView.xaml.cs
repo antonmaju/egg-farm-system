@@ -31,7 +31,6 @@ namespace EggFarmSystem.Client.Modules.Dashboard.Views
             this.DataContext = model;
         }
 
-
         public override void Dispose()
         {
             model.Dispose();

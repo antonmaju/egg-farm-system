@@ -235,7 +235,6 @@ namespace EggFarmSystem.Client.Core.Views
                 mnuMain.Items.Add(item);
 
             //dummy
-            mnuMain.Items.Add(new MenuItem { Header = "DASHBOARD" });
             mnuMain.Items.Add(new MenuItem { Header = "LAPORAN" });
             
             HandleMenuItemsEvents();
@@ -262,6 +261,7 @@ namespace EggFarmSystem.Client.Core.Views
                         item.IsChecked = false;
                 }
             }
+            
         }
 
         void InitializeContent()

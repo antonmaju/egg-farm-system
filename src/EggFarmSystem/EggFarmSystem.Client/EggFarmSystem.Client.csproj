@@ -121,7 +121,6 @@
     <Compile Include="Controls\Pager.xaml.cs">
       <DependentUpon>Pager.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ProgressBarTaskHelper.cs" />
     <Compile Include="Core\Bootstrapper.cs" />
     <Compile Include="Core\ClientContext.cs" />
     <Compile Include="Core\Error.cs" />
@@ -298,6 +297,7 @@
     <Compile Include="Modules\Dashboard\DashboardRegistry.cs" />
     <Compile Include="Modules\Dashboard\ViewModels\DashboardViewModel.cs" />
     <Compile Include="Modules\Dashboard\ViewModels\ProgressStageViewModel.cs" />
+    <Compile Include="Modules\Dashboard\ViewModels\ProgressTaskInfo.cs" />
     <Compile Include="Modules\Dashboard\Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
     </Compile>

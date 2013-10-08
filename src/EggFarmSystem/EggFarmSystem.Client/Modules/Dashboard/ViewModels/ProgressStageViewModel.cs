@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Windows.Media.Imaging;
 using EggFarmSystem.Client.Controls;
 using EggFarmSystem.Client.Core;
 
@@ -17,12 +19,47 @@ namespace EggFarmSystem.Client.Modules.Dashboard.ViewModels
         {
             this.broker = broker;
 
+            //TODO: change icons
+
+            TaskList = new List<ProgressBarTaskInfo>()
+                {
+                    new ProgressBarTaskInfo{
+                        TaskId="EmployeeCost", 
+                        Description = "Manages employee cost", 
+                        Done = true, 
+                        Image = new BitmapImage(new Uri(@"/EggFarmSystem.Client;component/Assets/Images/employee-menu.png", UriKind.Relative))
+                    },
+                    new ProgressBarTaskInfo{
+                        TaskId="Usage", 
+                        Description = "Manages usage", 
+                        Done = false,
+                        Image =new BitmapImage(new Uri(@"/EggFarmSystem.Client;component/Assets/Images/cost-menu.png", UriKind.Relative))
+                    },
+                    new ProgressBarTaskInfo
+                        {
+                            TaskId="EggProduction", 
+                            Description = "Manages egg production", 
+                            Done = false,
+                            Image =new BitmapImage(new Uri(@"/EggFarmSystem.Client;component/Assets/Images/house-menu.png", UriKind.Relative))
+                        },
+                    new ProgressBarTaskInfo
+                        {
+                            TaskId="HenDepreciation", 
+                            Description = "Manages hen depreciation", 
+                            Done = false,
+                            Image =new BitmapImage(new Uri(@"/EggFarmSystem.Client;component/Assets/Images/hen-menu.png", UriKind.Relative))
+                        }
+                };
+
             SetEventHandlers();
         }
 
         public List<ProgressBarTaskInfo> TaskList
         {
-            get { return taskList; }
+            get
+            {
+                return taskList;
+            }
             private set 
             { 
                 taskList = value;
@@ -37,13 +74,7 @@ namespace EggFarmSystem.Client.Modules.Dashboard.ViewModels
 
         void OnDateChanged(object param)
         {
-            TaskList = new List<ProgressBarTaskInfo>()
-                {
-                    new ProgressBarTaskInfo{TaskId="EmployeeCost", Description = "Manages employee cost", Done = false},
-                    new ProgressBarTaskInfo{TaskId="Usage", Description = "Manages usage", Done = false},
-                    new ProgressBarTaskInfo{TaskId="EggProduction", Description = "Manages egg production", Done = false},
-                    new ProgressBarTaskInfo{TaskId="HenDepreciation", Description = "Manages hen depreciation", Done = false}
-                };
+           
         }
 
         private void UnsetEventHandlers()
