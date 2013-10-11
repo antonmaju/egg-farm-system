@@ -201,6 +201,12 @@
   <data name="EggProductionDetail_RetailQuantityField" xml:space="preserve">
     <value>Retail Quantity</value>
   </data>
+  <data name="EggProductionReport_Description" xml:space="preserve">
+    <value>Gets egg production information in a time range</value>
+  </data>
+  <data name="EggProductionReport_Title" xml:space="preserve">
+    <value>Egg Production Report</value>
+  </data>
   <data name="EggProduction_DateField" xml:space="preserve">
     <value>Date</value>
   </data>
@@ -233,6 +239,12 @@
   </data>
   <data name="EmployeeCostDetail_SalaryField" xml:space="preserve">
     <value>Salary</value>
+  </data>
+  <data name="EmployeeCostReport_Description" xml:space="preserve">
+    <value>Gets total employee cost in a time range</value>
+  </data>
+  <data name="EmployeeCostReport_Title" xml:space="preserve">
+    <value>Employee Cost Report</value>
   </data>
   <data name="EmployeeCost_DateField" xml:space="preserve">
     <value>Date</value>
@@ -423,6 +435,12 @@
   <data name="Production_Title" xml:space="preserve">
     <value>Production</value>
   </data>
+  <data name="Reports_DescriptionField" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Reports_NameField" xml:space="preserve">
+    <value>Report Name</value>
+  </data>
   <data name="Reports_Title" xml:space="preserve">
     <value>Reports</value>
   </data>
@@ -437,6 +455,12 @@
   </data>
   <data name="UsageDetail_RequireHouse" xml:space="preserve">
     <value>House is required</value>
+  </data>
+  <data name="UsageReport_Description" xml:space="preserve">
+    <value>Gets total usage in a time range</value>
+  </data>
+  <data name="UsageReport_Title" xml:space="preserve">
+    <value>Usage Report</value>
   </data>
   <data name="Usage_ConsumableField" xml:space="preserve">
     <value>Consumable</value>
