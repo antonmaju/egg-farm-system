@@ -21,7 +21,7 @@ namespace EggFarmSystem.Client.Modules.MasterData
                     new MenuInfo
                         {
                             CommandType = typeof (ShowMasterDataCommand),
-                            Title = () => LanguageData.Master_Title
+                            Title = () => LanguageData.Master_Title.Replace(" ","\n")
                         }
                 };
         }

@@ -112,7 +112,7 @@ namespace EggFarmSystem.Client.Core
                 foreach (var menu in module.AvailableMenus)
                 {
                     var menuItem = new MenuItem();
-                    menuItem.Header = menu.Title().ToUpper().Replace(" ","\n");
+                    menuItem.Header = menu.Title().ToUpper();
                     if(menu.CommandType != null)
                         menuItem.Command = container.Resolve(menu.CommandType) as ICommand;
                     items.Add(menuItem);

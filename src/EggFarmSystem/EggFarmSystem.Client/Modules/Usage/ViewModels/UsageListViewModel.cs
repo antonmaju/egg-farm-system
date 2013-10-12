@@ -19,12 +19,14 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
         private readonly IMessageBroker messageBroker;
         private readonly IConsumableUsageService usageService;
 
-        public UsageListViewModel(IMessageBroker messageBroker, IConsumableUsageService usageService,
+        public UsageListViewModel(IMessageBroker messageBroker, IClientContext clientContext, IConsumableUsageService usageService,
             NewUsageCommand newCommand, EditUsageCommand editCommand, DeleteUsageCommand deleteCommand,
             RefreshCommand refreshCommand)
         {
             this.messageBroker = messageBroker;
             this.usageService = usageService;
+
+            pageSize = clientContext.PageSize;
 
             NewCommand = newCommand;
             EditCommand = editCommand;
@@ -62,7 +64,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
         #region properties
 
-        private ObservableCollection<ConsumableUsage> usageList;
+        private ObservableCollection<ConsumableUsage> usageList ;
 
         public ObservableCollection<ConsumableUsage> UsageList
         {
@@ -83,6 +85,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             {
                 pageIndex = value;
                 OnPropertyChanged("PageIndex");
+                OnRefreshList(null);
             }
         }
 
@@ -95,6 +98,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             { 
                 pageSize = value;
                 OnPropertyChanged("PageSize");
+                OnRefreshList(null);
             }
         }
 
@@ -108,6 +112,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             { 
                 startDate = value;
                 OnPropertyChanged("StartDate");
+                OnRefreshList(null);
             }
         }
 
@@ -121,6 +126,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             {
                 endDate = value;
                 OnPropertyChanged("EndDate");
+                OnRefreshList(null);
             }
         }
 
@@ -162,6 +168,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
         void OnRefreshList(object param)
         {
+
             var searchInfo = new ConsumableUsageSearchInfo
                 {
                     Start = startDate,

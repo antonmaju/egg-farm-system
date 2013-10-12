@@ -9,9 +9,8 @@
                             Background="White"
                             BorderBrush="White"
                             BorderThickness="3"
-                            ClipToBounds="True"
                              CornerRadius="{StaticResource ControlCorderRadius}">
-                    <TextBox x:Name="PART_TextBox"
+                    <TextBox x:Name="PART_TextBox" FontSize="25" FontFamily="{StaticResource QuattrocentoSans}" 
      Text="{Binding Path=SelectedDate, StringFormat='dd MMMM yyyy', 
      RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}"
                      Padding="5" BorderThickness="-1" BorderBrush="Black" />
@@ -34,7 +33,20 @@
         </Setter>
     </Style>-->
 
-    
+    <Style x:Key="DatePickerButton" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="Transparent">
+                        <ContentPresenter RecognizesAccessKey="True" Content="{TemplateBinding Content}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+
+        </Setter>
+    </Style>
+
+
     <Style TargetType="DatePicker" x:Key="FormDatePicker">
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="BorderThickness" Value="0" />
@@ -45,12 +57,21 @@
                 <ControlTemplate TargetType="{x:Type DatePicker}">
                     <Grid x:Name="PART_Root">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*"  />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <DatePickerTextBox x:Name="PART_TextBox" Grid.Column="0">
                         </DatePickerTextBox>
-                        <Button x:Name="PART_Button" Grid.Column="1" />
+                        <Button x:Name="PART_Button" Grid.Column="1">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="Transparent">
+                                        <ContentPresenter RecognizesAccessKey="True" Content="{TemplateBinding Content}" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Image Source="/EggFarmSystem.Client;component/Assets/Images/date-picker.png"></Image>
+                        </Button>    
                         <Popup x:Name="PART_Popup" StaysOpen="False" AllowsTransparency="True" />
                         </Grid>
                 </ControlTemplate>

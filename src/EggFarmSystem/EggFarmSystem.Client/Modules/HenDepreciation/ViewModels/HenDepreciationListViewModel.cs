@@ -18,11 +18,12 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
         private readonly IMessageBroker broker;
         private readonly IHenDepreciationService service;
 
-        public HenDepreciationListViewModel(IMessageBroker broker, IHenDepreciationService service,
+        public HenDepreciationListViewModel(IMessageBroker broker, IClientContext clientContext,  IHenDepreciationService service,
             NewHenDepreciationCommand newCommand, EditHenDepreciationCommand editCommand, DeleteHenDepreciationCommand deleteCommand, RefreshCommand refreshCommand)
         {
             this.broker = broker;
             this.service =service;
+            pageSize = clientContext.PageSize;
 
             NewCommand = newCommand;
             EditCommand = editCommand;
@@ -85,6 +86,7 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
             {
                 pageSize=value;
                 OnPropertyChanged("PageSize");
+                OnRefresh(null);
             }
         }
 
@@ -98,6 +100,7 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
             {
                 startDate = value;
                 OnPropertyChanged("StartDate");
+                OnRefresh(null);
             }
         }
 
@@ -111,6 +114,7 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
             {
                 endDate = value;
                 OnPropertyChanged("EndDate");
+                OnRefresh(null);
             }
         }
 
@@ -126,6 +130,7 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
             {
                 pageIndex = value;
                 OnPropertyChanged("PageIndex");
+                OnRefresh(null);
             }
         }
 

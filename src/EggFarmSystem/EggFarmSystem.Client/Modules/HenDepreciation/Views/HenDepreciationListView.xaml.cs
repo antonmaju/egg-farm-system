@@ -39,6 +39,12 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.Views
         {
             lvDepreciationList.MouseUp += lvDepreciationList_MouseUp;
             lvDepreciationList.MouseDoubleClick += lvDepreciationList_MouseDoubleClick;
+            pager.PageIndexChanged += pager_PageIndexChanged;
+        }
+
+        void pager_PageIndexChanged(object sender, Controls.PagerEventArgs args)
+        {
+            model.PageIndex = args.PageIndex;
         }
 
         void lvDepreciationList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -60,6 +66,7 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.Views
         {
             lvDepreciationList.MouseUp -= lvDepreciationList_MouseUp;
             lvDepreciationList.MouseDoubleClick -= lvDepreciationList_MouseDoubleClick;
+            pager.PageIndexChanged -= pager_PageIndexChanged;
         }
 
         public override void Dispose()

@@ -18,12 +18,13 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
         private readonly IMessageBroker broker;
         private readonly IEmployeeCostService costService;
 
-        public EmployeeCostListViewModel(IMessageBroker broker, IEmployeeCostService costService,
+        public EmployeeCostListViewModel(IMessageBroker broker, IClientContext clientContext, IEmployeeCostService costService,
             NewEmployeeCostCommand newCommand, EditEmployeeCostCommand editCommand, DeleteEmployeeCostCommand deleteCommand,
             RefreshCommand refreshCommand)
         {
             this.broker = broker;
             this.costService = costService;
+            pageSize = clientContext.PageSize;
 
             NewCommand = newCommand;
             EditCommand = editCommand;
@@ -83,6 +84,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
             {
                 pageSize= value;
                 OnPropertyChanged("PageSize");
+                OnRefresh(null);
             }
         }
 
@@ -98,6 +100,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
             {
                 pageIndex= value;
                 OnPropertyChanged("PageIndex");
+                OnRefresh(null);
             }
         }
 
@@ -111,6 +114,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
             {
                 startDate = value;
                 OnPropertyChanged("StartDate");
+                OnRefresh(null);
             }
         }
 
@@ -124,6 +128,7 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
             {
                 endDate = value;
                 OnPropertyChanged("EndDate");
+                OnRefresh(null);
             }
         }
 

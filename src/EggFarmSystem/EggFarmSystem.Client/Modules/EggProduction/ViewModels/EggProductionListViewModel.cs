@@ -19,12 +19,13 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
         private readonly IEggProductionService service;
 
         public EggProductionListViewModel(
-            IMessageBroker broker, IEggProductionService service, NewEggProductionCommand newCommand,
+            IMessageBroker broker, IEggProductionService service,IClientContext clientContext, NewEggProductionCommand newCommand,
             EditEggProductionCommand editCommand, DeleteEggProductionCommand deleteCommand, RefreshCommand refreshCommand
             )
         {
             this.broker = broker;
             this.service = service;
+            pageSize = clientContext.PageSize;
 
             NewCommand = newCommand;
             EditCommand = editCommand;
@@ -79,6 +80,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
             {
                 pageSize = value;
                 OnPropertyChanged("PageSize");
+                OnRefresh(null);
             }
         }
 
@@ -94,6 +96,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
             {
                 pageIndex = value;
                 OnPropertyChanged("PageIndex");
+                OnRefresh(null);
             }
         }
 
@@ -107,6 +110,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
             {
                 startDate = value;
                 OnPropertyChanged("StartDate");
+                OnRefresh(null);
             }
         }
 
@@ -120,6 +124,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
             {
                 endDate = value;
                 OnPropertyChanged("EndDate");
+                OnRefresh(null);
             }
         }
 

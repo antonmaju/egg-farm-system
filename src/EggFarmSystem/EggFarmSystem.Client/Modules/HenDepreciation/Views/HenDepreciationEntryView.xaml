@@ -9,18 +9,20 @@
     <Border  Style="{StaticResource ContainerBorder}">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="10" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
                 <RowDefinition Height="20" />
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Row="1">
-                <Label Style="{StaticResource FormLabel}" Width="100"
-               Content="{Binding Path=DateText}"/>
-                <DatePicker Width="250" SelectedDate="{Binding Path=Date}" Padding="10"
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <DatePicker SelectedDate="{Binding Path=Date}"  Margin="0,10,0,20" Grid.Column="1" Width="350"
                 Style="{StaticResource FormDatePicker}"></DatePicker>
-            </StackPanel>
-            <DataGrid Grid.Row="2" ScrollViewer.CanContentScroll="True"
+            </Grid>
+            <DataGrid Grid.Row="1" ScrollViewer.CanContentScroll="True"
                   ItemsSource="{Binding Path=Details}" AutoGenerateColumns="False"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"

@@ -126,8 +126,9 @@
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="Padding" Value="0,3,0,3" />
-        <Setter Property="FontSize" Value="17"></Setter>
-        <Setter Property="MinHeight" Value="30"></Setter>
+        <Setter Property="FontSize" Value="18"></Setter>
+        <Setter Property="FontFamily" Value="{StaticResource QuattrocentoSans}" />
+        <Setter Property="MinHeight" Value="35"></Setter>
         <Setter Property="Template" >
             <Setter.Value>
                 <ControlTemplate TargetType="GridViewColumnHeader">
@@ -202,9 +203,9 @@
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="Foreground" Value="Black"></Setter>
         <Setter Property="MinHeight" Value="40"></Setter>
-        <Setter Property="FontSize" Value="17"></Setter>
+        <Setter Property="FontSize" Value="18"></Setter>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
-        
+        <Setter Property="FontFamily" Value="{StaticResource QuattrocentoSans}"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">
@@ -248,8 +249,7 @@
             </Trigger>
             <Trigger Property="ItemsControl.IsFocused" Value="True">
                 <Setter Property="Background" Value="{StaticResource ListSelectedBrush}"></Setter>
-                <Setter Property="FontSize" Value="16" />
-                <Setter Property="FontWeight" Value="ExtraBold" />                
+                <Setter Property="FontFamily" Value="{StaticResource QuattrocentoSansBold}" />                
                 <Setter Property="FontStretch" Value="ExtraExpanded" />
             </Trigger>
         </Style.Triggers>

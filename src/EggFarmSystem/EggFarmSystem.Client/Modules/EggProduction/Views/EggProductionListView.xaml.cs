@@ -38,6 +38,12 @@ namespace EggFarmSystem.Client.Modules.EggProduction.Views
         {
             lvProductionList.MouseUp += lvProductionList_MouseUp;
             lvProductionList.MouseDoubleClick += lvProductionList_MouseDoubleClick;
+            pager.PageIndexChanged += pager_PageIndexChanged;
+        }
+
+        void pager_PageIndexChanged(object sender, Controls.PagerEventArgs args)
+        {
+            model.PageIndex = args.PageIndex;
         }
 
         void lvProductionList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -59,6 +65,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.Views
         {
             lvProductionList.MouseUp -= lvProductionList_MouseUp;
             lvProductionList.MouseDoubleClick -= lvProductionList_MouseDoubleClick;
+            pager.PageIndexChanged -= pager_PageIndexChanged;
         }
 
         public override void Dispose()

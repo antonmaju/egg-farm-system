@@ -4,29 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                                         xmlns:views="clr-namespace:EggFarmSystem.Client.Core.Views"
-                                        mc:Ignorable="d" 
+                       xmlns:controls="clr-namespace:EggFarmSystem.Client.Controls"
+                       mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Border  Style="{StaticResource ContainerBorder}">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>        
-        </Grid.RowDefinitions>
-        <ListView x:Name="lvProductionList"
-                  AlternationCount="2" ItemsSource="{Binding Path=ProductionList}">
-            <ListView.View>
-                <GridView x:Name="gvProductionList">
-                    <GridView.Columns>
-                        <GridViewColumn Header="{Binding Path=DateText}" 
-                                        DisplayMemberBinding="{Binding Path=Date, StringFormat='d MMM yyyy'}"
-                                        Width="300">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>        
+            </Grid.RowDefinitions>
+            <ListView x:Name="lvProductionList"
+                      AlternationCount="2" ItemsSource="{Binding Path=ProductionList}">
+                <ListView.View>
+                    <GridView x:Name="gvProductionList">
+                        <GridView.Columns>
+                            <GridViewColumn Header="{Binding Path=DateText}" 
+                                            DisplayMemberBinding="{Binding Path=Date, StringFormat='d MMM yyyy'}"
+                                            Width="300">
 
-                        </GridViewColumn>
-                    </GridView.Columns>
-                </GridView>
-            </ListView.View>
+                            </GridViewColumn>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
 
-        </ListView>
-    </Grid>
+            </ListView>
+             <controls:Pager x:Name="pager" PageIndex="{Binding Path=PageIndex}" TotalPage="{Binding Path=TotalPage}" Grid.Row="1"></controls:Pager>
+        </Grid>
     </Border>    
 </views:UserControlBase>

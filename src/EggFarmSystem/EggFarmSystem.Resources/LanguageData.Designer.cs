@@ -367,6 +367,24 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gets egg production information in a time range.
+        /// </summary>
+        public static string EggProductionReport_Description {
+            get {
+                return ResourceManager.GetString("EggProductionReport_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Egg Production Report.
+        /// </summary>
+        public static string EggProductionReport_Title {
+            get {
+                return ResourceManager.GetString("EggProductionReport_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active.
         /// </summary>
         public static string Employee_ActiveField {
@@ -516,6 +534,24 @@ namespace EggFarmSystem.Resources {
         public static string EmployeeCostDetail_SalaryField {
             get {
                 return ResourceManager.GetString("EmployeeCostDetail_SalaryField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gets total employee cost in a time range.
+        /// </summary>
+        public static string EmployeeCostReport_Description {
+            get {
+                return ResourceManager.GetString("EmployeeCostReport_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee Cost Report.
+        /// </summary>
+        public static string EmployeeCostReport_Title {
+            get {
+                return ResourceManager.GetString("EmployeeCostReport_Title", resourceCulture);
             }
         }
         
@@ -979,6 +1015,24 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Reports_DescriptionField {
+            get {
+                return ResourceManager.GetString("Reports_DescriptionField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report Name.
+        /// </summary>
+        public static string Reports_NameField {
+            get {
+                return ResourceManager.GetString("Reports_NameField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reports.
         /// </summary>
         public static string Reports_Title {
@@ -1110,6 +1164,24 @@ namespace EggFarmSystem.Resources {
         public static string UsageDetail_RequireHouse {
             get {
                 return ResourceManager.GetString("UsageDetail_RequireHouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gets total usage in a time range.
+        /// </summary>
+        public static string UsageReport_Description {
+            get {
+                return ResourceManager.GetString("UsageReport_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usage Report.
+        /// </summary>
+        public static string UsageReport_Title {
+            get {
+                return ResourceManager.GetString("UsageReport_Title", resourceCulture);
             }
         }
     }
