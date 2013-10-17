@@ -1,7 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
     <Style x:Key="RightAlignListViewCell" TargetType="TextBlock">
         <Setter Property="TextAlignment" Value="Right"></Setter>
         <Setter Property="Margin" Value="0,0,30,0"></Setter>
+    </Style>
+    
+    <Style x:Key="SelectorText" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="White"></Setter>
     </Style>
 </ResourceDictionary>
