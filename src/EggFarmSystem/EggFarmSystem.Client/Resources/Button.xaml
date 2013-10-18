@@ -113,12 +113,12 @@
     </Style>
     
     <Style x:Key="PagerButton" TargetType="Button">
-        <Setter Property="Foreground " Value="White"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
         <Setter Property="Width" Value="35"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="Transparent" Padding="10,7,10,7" BorderThickness="1" Width="{TemplateBinding Property=Width}" x:Name="pagerBorder">
+                    <Border Background="Transparent" BorderThickness="1" Width="{TemplateBinding Property=Width}" x:Name="pagerBorder">
                         <ContentPresenter 
                               HorizontalAlignment="Center"
                               VerticalAlignment="Center"

@@ -91,6 +91,7 @@
     <Compile Include="Models\HenHouse.cs" />
     <Compile Include="Models\Medicine.cs" />
     <Compile Include="Models\ErrorInfo.cs" />
+    <Compile Include="Models\Reporting\EmployeeCostSummary.cs" />
     <Compile Include="Models\SearchInfo.cs" />
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\Account.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Services\HenService.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\ReportingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
