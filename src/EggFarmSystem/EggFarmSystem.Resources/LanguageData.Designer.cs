@@ -601,6 +601,15 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to From.
+        /// </summary>
+        public static string General_From {
+            get {
+                return ResourceManager.GetString("General_From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New.
         /// </summary>
         public static string General_New {
@@ -624,6 +633,24 @@ namespace EggFarmSystem.Resources {
         public static string General_Save {
             get {
                 return ResourceManager.GetString("General_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To.
+        /// </summary>
+        public static string General_To {
+            get {
+                return ResourceManager.GetString("General_To", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        public static string General_View {
+            get {
+                return ResourceManager.GetString("General_View", resourceCulture);
             }
         }
         
