@@ -162,6 +162,7 @@
     <Compile Include="Core\Services\HenDepreciationServiceClient.cs" />
     <Compile Include="Core\Services\HenHouseServiceClient.cs" />
     <Compile Include="Core\Services\HenServiceClient.cs" />
+    <Compile Include="Core\Services\ReportingServiceClient.cs" />
     <Compile Include="Core\Services\ServiceClient.cs" />
     <Compile Include="Core\Services\ServiceClientRegistry.cs" />
     <Compile Include="Core\Services\JsonNetSerializer.cs" />

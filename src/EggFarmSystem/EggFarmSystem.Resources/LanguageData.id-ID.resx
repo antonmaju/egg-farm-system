@@ -471,4 +471,34 @@
   <data name="House_WeightField" xml:space="preserve">
     <value>Berat</value>
   </data>
+  <data name="EmployeeCostReport_DaysField" xml:space="preserve">
+    <value>Jumlah Hari</value>
+  </data>
+  <data name="EmployeeCostReport_Description" xml:space="preserve">
+    <value>Mendapatkan jumlah biaya karyawan dalam rentang waktu</value>
+  </data>
+  <data name="EmployeeCostReport_NameField" xml:space="preserve">
+    <value>Nama</value>
+  </data>
+  <data name="EmployeeCostReport_Title" xml:space="preserve">
+    <value>Laporan Biaya Karyawan</value>
+  </data>
+  <data name="EmployeeCostReport_TotalSalaryField" xml:space="preserve">
+    <value>Jumlah Gaji</value>
+  </data>
+  <data name="General_From" xml:space="preserve">
+    <value>Dari</value>
+  </data>
+  <data name="General_To" xml:space="preserve">
+    <value>Ke</value>
+  </data>
+  <data name="General_View" xml:space="preserve">
+    <value>Tampilkan</value>
+  </data>
+  <data name="Reports_DescriptionField" xml:space="preserve">
+    <value>Keterangan</value>
+  </data>
+  <data name="Reports_NameField" xml:space="preserve">
+    <value>Nama Laporan</value>
+  </data>
 </root>
