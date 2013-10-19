@@ -53,8 +53,6 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
         public CancelCommand CancelCommand { get; private set; }
         public IList<CommandBase> NavigationCommands { get; private set; }
 
-        
-
         private void InitializeCommands()
         {
             SaveCommand = new DelegateCommand(Save, CanSave) { Text = () => LanguageData.General_Save };
