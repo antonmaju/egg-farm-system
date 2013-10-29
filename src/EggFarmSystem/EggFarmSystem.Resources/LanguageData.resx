@@ -306,14 +306,26 @@
   <data name="General_Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="General_Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
   <data name="General_From" xml:space="preserve">
     <value>From</value>
   </data>
   <data name="General_New" xml:space="preserve">
     <value>New</value>
   </data>
+  <data name="General_PDF" xml:space="preserve">
+    <value>PDF</value>
+  </data>
+  <data name="General_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
   <data name="General_Refresh" xml:space="preserve">
     <value>Refresh</value>
+  </data>
+  <data name="General_RTF" xml:space="preserve">
+    <value>RTF</value>
   </data>
   <data name="General_Save" xml:space="preserve">
     <value>Save</value>

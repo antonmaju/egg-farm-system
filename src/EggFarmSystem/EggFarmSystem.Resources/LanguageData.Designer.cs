@@ -628,6 +628,15 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        public static string General_Export {
+            get {
+                return ResourceManager.GetString("General_Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to From.
         /// </summary>
         public static string General_From {
@@ -646,11 +655,38 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PDF.
+        /// </summary>
+        public static string General_PDF {
+            get {
+                return ResourceManager.GetString("General_PDF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print.
+        /// </summary>
+        public static string General_Print {
+            get {
+                return ResourceManager.GetString("General_Print", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh.
         /// </summary>
         public static string General_Refresh {
             get {
                 return ResourceManager.GetString("General_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RTF.
+        /// </summary>
+        public static string General_RTF {
+            get {
+                return ResourceManager.GetString("General_RTF", resourceCulture);
             }
         }
         
