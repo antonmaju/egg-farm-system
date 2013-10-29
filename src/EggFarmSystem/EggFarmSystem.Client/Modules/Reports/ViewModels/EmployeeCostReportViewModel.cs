@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
+using EggFarmSystem.Models.Reporting;
 using EggFarmSystem.Resources;
 using EggFarmSystem.Services;
 using MigraDoc.DocumentObjectModel;
+using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Tables;
 
 namespace EggFarmSystem.Client.Modules.Reports.ViewModels
@@ -70,30 +72,57 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
 
         void ViewReport(object param)
         {
-            var summary = service.GetEmployeeCostSummary(StartDate, EndDate);
+            //IList<Models.Reporting.EmployeeCostSummary> summary = service.GetEmployeeCostSummary(StartDate, EndDate);
+            IList<Models.Reporting.EmployeeCostSummary> summary = new List<EmployeeCostSummary>();
+
+            for (int i = 0; i < 100; i++)
+            {
+                summary.Add(new EmployeeCostSummary
+                    {
+                        Days = 50,
+                        Id = Guid.NewGuid(),
+                        Name ="Employee #"+i,
+                        TotalSalary = 100000
+                    });
+            }
 
             var document = new Document();
+
             document.UseCmykColor = true;
             var section = document.AddSection();
+            section.PageSetup.TopMargin = Unit.FromCentimeter(4);
 
             var header = section.Headers.Primary;
-            header.Format.SpaceAfter = Unit.FromCentimeter(2);
+            
+
             var paragraph = header.AddParagraph();
             paragraph.AddFormattedText(LanguageData.EmployeeCostReport_Title, TextFormat.Bold);
             paragraph.Format.Alignment = ParagraphAlignment.Center;
-            paragraph.AddLineBreak();
-            paragraph.AddLineBreak();
-            paragraph.AddFormattedText(string.Format("{0} {1} {2} {3}", LanguageData.General_From, StartDate.ToString("d MMMM yyyy"), LanguageData.General_To,
-                                                     EndDate.ToString("d MMMM yyyy")));
-            paragraph.Format.Alignment = ParagraphAlignment.Center;
-            paragraph.Format.SpaceAfter = Unit.FromCentimeter(2);
-            
+            paragraph.Format.Font.Size = Unit.FromPoint(12);
+            paragraph.Format.SpaceAfter = Unit.FromCentimeter(0.7);
 
-            var table = new Table();
+            paragraph = header.AddParagraph();
+            paragraph.AddFormattedText(string.Format("{0} {1} {2} {3}", LanguageData.General_From, StartDate.ToString("d MMMM yyyy"), LanguageData.General_To,
+                                                     EndDate.ToString("d MMMM yyyy")),TextFormat.Bold);
+            paragraph.Format.Alignment = ParagraphAlignment.Center;
+            paragraph.Format.SpaceAfter = Unit.FromCentimeter(0);
+            paragraph.Format.SpaceBefore = Unit.FromCentimeter(0);
+
+            //paragraph.AddLineBreak();
+            //paragraph.AddLineBreak();
+
+            //var tableFrame = new TextFrame();
+            //tableFrame.Left = ShapePosition.Center;
+            //tableFrame.Height = "15.0cm";//any number 
+            //tableFrame.Width = "10.0cm";
+            var table = section.AddTable();
+
+
+            table.KeepTogether = false;
             table.Borders.Width = 0.75;
             
-            var column = table.AddColumn(Unit.FromCentimeter(5));
-            column = table.AddColumn(Unit.FromCentimeter(2));
+            var column = table.AddColumn(Unit.FromCentimeter(3.5));
+            column = table.AddColumn(Unit.FromCentimeter(2.5));
             column.Format.Alignment = ParagraphAlignment.Right;
             column = table.AddColumn(Unit.FromCentimeter(4));
             column.Format.Alignment = ParagraphAlignment.Right;
@@ -101,6 +130,7 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
             Row row = table.AddRow();
             row.TopPadding = Unit.FromCentimeter(0.4);
             row.BottomPadding = Unit.FromCentimeter(0.4);
+            row.Format.Alignment = ParagraphAlignment.Center; 
             var cell = row.Cells[0];
             cell.AddParagraph(LanguageData.EmployeeCostReport_NameField);
             cell.Format.Alignment = ParagraphAlignment.Center; 
@@ -116,6 +146,7 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
                 row = table.AddRow();
                 row.TopPadding = Unit.FromCentimeter(0.2);
                 row.BottomPadding = Unit.FromCentimeter(0.2);
+                row.Format.Alignment = ParagraphAlignment.Center;
                 cell = row.Cells[0];
                 cell.AddParagraph(summaryItem.Name);
                 cell = row.Cells[1];
@@ -124,7 +155,7 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
                 cell.AddParagraph(summaryItem.TotalSalary.ToString());
             }
 
-            document.LastSection.Add(table);
+            //document.LastSection.Add(tableFrame);
 
             //var row2 = table1.AddRow();
             
