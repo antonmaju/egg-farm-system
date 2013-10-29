@@ -239,6 +239,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Modules\Reports\Views\UsageReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Modules\Reports\Views\EmployeeCostReportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -380,9 +384,13 @@
     <Compile Include="Modules\Reports\Commands\ShowReportListCommand.cs" />
     <Compile Include="Modules\Reports\ReportsModule.cs" />
     <Compile Include="Modules\Reports\ReportsRegistry.cs" />
+    <Compile Include="Modules\Reports\ViewModels\UsageReportViewModel.cs" />
     <Compile Include="Modules\Reports\ViewModels\EmployeeCostReportViewModel.cs" />
     <Compile Include="Modules\Reports\ViewModels\ReportInfo.cs" />
     <Compile Include="Modules\Reports\ViewModels\ReportListViewModel.cs" />
+    <Compile Include="Modules\Reports\Views\UsageReportView.xaml.cs">
+      <DependentUpon>UsageReportView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Reports\Views\EmployeeCostReportView.xaml.cs">
       <DependentUpon>EmployeeCostReportView.xaml</DependentUpon>
     </Compile>

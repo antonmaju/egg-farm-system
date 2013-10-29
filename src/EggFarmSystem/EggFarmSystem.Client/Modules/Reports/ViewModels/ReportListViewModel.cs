@@ -24,7 +24,8 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
                     new ReportInfo
                         {
                             Name = LanguageData.UsageReport_Title,
-                            Description = LanguageData.UsageReport_Description
+                            Description = LanguageData.UsageReport_Description,
+                            ViewType = typeof(IUsageReportView)
                         },
                      new ReportInfo
                          {
