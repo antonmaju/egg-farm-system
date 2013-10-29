@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -14,6 +15,8 @@ using System.Windows.Shapes;
 using EggFarmSystem.Client.Core.Views;
 using EggFarmSystem.Client.Modules.Reports.ViewModels;
 using MigraDoc.DocumentObjectModel.IO;
+using MigraDoc.Rendering;
+using PdfSharp.Pdf;
 
 namespace EggFarmSystem.Client.Modules.Reports.Views
 {
@@ -41,10 +44,20 @@ namespace EggFarmSystem.Client.Modules.Reports.Views
 
         void model_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            const bool unicode = false;
+            const PdfFontEmbedding embedding = PdfFontEmbedding.Always;
             if (e.PropertyName == "Document")
             {
                 if (model.Document != null)
                 {
+                    
+                    //PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(unicode, embedding);
+                    //pdfRenderer.Document = model.Document;
+                    //pdfRenderer.RenderDocument();
+                    //const string filename = "HelloWorld.pdf";
+                    //pdfRenderer.PdfDocument.Save(filename);
+                    //Process.Start(filename);
+
                     string ddl = DdlWriter.WriteToString(model.Document);
                     docViewer.Ddl = ddl;
                 }
