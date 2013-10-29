@@ -19,7 +19,7 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
         private DateTime endDate=DateTime.Today;
         private Document document;
 
-        public DelegateCommand ViewCommand;
+        public DelegateCommand ViewCommand, ExportCommand;
         private readonly IReportingService service;
 
         public EmployeeCostReportViewModel(IReportingService service)
@@ -62,32 +62,42 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
         private void InitializeCommands()
         {
             ViewCommand = new DelegateCommand(ViewReport, CanView){Text = ()=> LanguageData.General_View};
+            ExportCommand = new DelegateCommand(Export, CanExport){Text=()=>LanguageData.General_Export};
             NavigationCommands = new List<CommandBase>(){ViewCommand};
+        }
+
+        bool CanExport(object param)
+        {
+            return Document != null;
+        }
+
+        void Export(object param)
+        {
+            
         }
 
         bool CanView(object param)
         {
-            return EndDate <= StartDate;
+            return EndDate >= StartDate;
         }
 
         void ViewReport(object param)
         {
-            //IList<Models.Reporting.EmployeeCostSummary> summary = service.GetEmployeeCostSummary(StartDate, EndDate);
-            IList<Models.Reporting.EmployeeCostSummary> summary = new List<EmployeeCostSummary>();
+            IList<Models.Reporting.EmployeeCostSummary> summary = service.GetEmployeeCostSummary(StartDate, EndDate);
 
-            for (int i = 0; i < 100; i++)
-            {
-                summary.Add(new EmployeeCostSummary
-                    {
-                        Days = 50,
-                        Id = Guid.NewGuid(),
-                        Name ="Employee #"+i,
-                        TotalSalary = 100000
-                    });
-            }
+            //IList<Models.Reporting.EmployeeCostSummary> summary = new List<EmployeeCostSummary>();
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    summary.Add(new EmployeeCostSummary
+            //        {
+            //            Days = 50,
+            //            Id = Guid.NewGuid(),
+            //            Name ="Employee #"+i,
+            //            TotalSalary = 100000
+            //        });
+            //}
 
             var document = new Document();
-
             document.UseCmykColor = true;
             var section = document.AddSection();
             section.PageSetup.TopMargin = Unit.FromCentimeter(4);
@@ -108,29 +118,21 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
             paragraph.Format.SpaceAfter = Unit.FromCentimeter(0);
             paragraph.Format.SpaceBefore = Unit.FromCentimeter(0);
 
-            //paragraph.AddLineBreak();
-            //paragraph.AddLineBreak();
-
-            //var tableFrame = new TextFrame();
-            //tableFrame.Left = ShapePosition.Center;
-            //tableFrame.Height = "15.0cm";//any number 
-            //tableFrame.Width = "10.0cm";
             var table = section.AddTable();
-
-
             table.KeepTogether = false;
             table.Borders.Width = 0.75;
-            
-            var column = table.AddColumn(Unit.FromCentimeter(3.5));
-            column = table.AddColumn(Unit.FromCentimeter(2.5));
+
+            var column = table.AddColumn(Unit.FromCentimeter(8));
+            column = table.AddColumn(Unit.FromCentimeter(3));
             column.Format.Alignment = ParagraphAlignment.Right;
-            column = table.AddColumn(Unit.FromCentimeter(4));
+            column = table.AddColumn(Unit.FromCentimeter(5));
             column.Format.Alignment = ParagraphAlignment.Right;
 
             Row row = table.AddRow();
             row.TopPadding = Unit.FromCentimeter(0.4);
             row.BottomPadding = Unit.FromCentimeter(0.4);
             row.Format.Alignment = ParagraphAlignment.Center; 
+
             var cell = row.Cells[0];
             cell.AddParagraph(LanguageData.EmployeeCostReport_NameField);
             cell.Format.Alignment = ParagraphAlignment.Center; 
@@ -148,13 +150,17 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
                 row.BottomPadding = Unit.FromCentimeter(0.2);
                 row.Format.Alignment = ParagraphAlignment.Center;
                 cell = row.Cells[0];
+                cell.Format.Alignment = ParagraphAlignment.Left;
                 cell.AddParagraph(summaryItem.Name);
                 cell = row.Cells[1];
+                cell.Format.Alignment = ParagraphAlignment.Right;
                 cell.AddParagraph(summaryItem.Days.ToString());
                 cell = row.Cells[2];
+                cell.Format.Alignment = ParagraphAlignment.Right;
                 cell.AddParagraph(summaryItem.TotalSalary.ToString());
             }
 
+<<<<<<< HEAD
             //document.LastSection.Add(tableFrame);
 
             //var row2 = table1.AddRow();
@@ -168,6 +174,8 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
             //row2.Cells[2].AddParagraph("TOTALNYA");
             //row2.Cells[2].Format.Alignment = ParagraphAlignment.Right;
             
+=======
+>>>>>>> remotes/upstream/feature_reports
             Document = document;
         }
 

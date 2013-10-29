@@ -1,0 +1,43 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <LinearGradientBrush x:Key="LightBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#FFF" Offset="0.0"/>
+                <GradientStop Color="#EEE" Offset="1.0"/>
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <Style TargetType="{x:Type DocumentViewer}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DocumentViewer">
+                    <Border  BorderThickness="{TemplateBinding BorderThickness}"
+                BorderBrush="{TemplateBinding BorderBrush}" Focusable="False">
+                        <Grid Background="{StaticResource LightBrush}" KeyboardNavigation.TabNavigation="Local">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <ToolBar ToolBarTray.IsLocked="True" 
+              KeyboardNavigation.TabNavigation="Continue">
+                                <Button>Print</Button>
+                                <Separator />
+                                <Button>PDF</Button>
+                                <Button>RTF</Button>
+                            </ToolBar>
+                            <ScrollViewer Grid.Row="1"
+                              CanContentScroll="true"
+                              HorizontalScrollBarVisibility="Auto"
+                              x:Name="PART_ContentHost"
+                              IsTabStop="true"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>             
+    </Style>
+    
+</ResourceDictionary>
