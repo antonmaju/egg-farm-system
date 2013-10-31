@@ -1123,6 +1123,16 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There&apos;s an issue with file permission for reports folder. 
+        ///Please ensure you assign correct permission !.
+        /// </summary>
+        public static string Reports_PermissionIssue {
+            get {
+                return ResourceManager.GetString("Reports_PermissionIssue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reports.
         /// </summary>
         public static string Reports_Title {
