@@ -139,7 +139,6 @@
     <Compile Include="Controls\DateRangeSelector.xaml.cs">
       <DependentUpon>DateRangeSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ReportViewer.cs" />
     <Compile Include="Controls\ToggleButtonHelper.cs" />
     <Compile Include="Controls\Pager.xaml.cs">
       <DependentUpon>Pager.xaml</DependentUpon>
@@ -313,6 +312,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Shared.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ToolBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
