@@ -160,22 +160,6 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
                 cell.AddParagraph(summaryItem.TotalSalary.ToString());
             }
 
-<<<<<<< HEAD
-            //document.LastSection.Add(tableFrame);
-
-            //var row2 = table1.AddRow();
-            
-            //row2.Format.Alignment = ParagraphAlignment.Center;
-            //row2.Format.Font.Bold = true;
-            //row2.Shading.Color = TableBlue;
-            //row2.Cells[0].AddParagraph("Total");
-            //row2.Cells[0].MergeRight = 1;  
-            //row2.Cells[0].Format.Alignment = ParagraphAlignment.Center;
-            //row2.Cells[2].AddParagraph("TOTALNYA");
-            //row2.Cells[2].Format.Alignment = ParagraphAlignment.Right;
-            
-=======
->>>>>>> remotes/upstream/feature_reports
             Document = document;
         }
 
