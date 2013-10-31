@@ -15,9 +15,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DocumentViewer">
-                    <Border  BorderThickness="{TemplateBinding BorderThickness}"
+                    <Border  BorderThickness="{TemplateBinding BorderThickness}" 
                 BorderBrush="{TemplateBinding BorderBrush}" Focusable="False">
-                        <Grid Background="{StaticResource LightBrush}" KeyboardNavigation.TabNavigation="Local">
+                        <Grid  KeyboardNavigation.TabNavigation="Local">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
@@ -30,11 +30,14 @@
                                 <Button Click="ExportPdf_Click">PDF</Button>
                                 <Button Click="ExportRtf_Click">RTF</Button>
                             </ToolBar>
-                            <ScrollViewer Grid.Row="1"
+                            <Border Background="{StaticResource LightBrush}" Grid.Row="1">
+                                <ScrollViewer 
                               CanContentScroll="true"
                               HorizontalScrollBarVisibility="Auto"
                               x:Name="PART_ContentHost"
                               IsTabStop="true"/>
+                            </Border>
+                           
                         </Grid>
                     </Border>
                 </ControlTemplate>

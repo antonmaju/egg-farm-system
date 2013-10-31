@@ -57,6 +57,12 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
 
         #endregion
 
+        #region text
+
+        public string Title { get { return LanguageData.EmployeeCostReport_Title; } }
+
+        #endregion
+
         #region commands
 
         private void InitializeCommands()
@@ -84,18 +90,6 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
         void ViewReport(object param)
         {
             IList<Models.Reporting.EmployeeCostSummary> summary = service.GetEmployeeCostSummary(StartDate, EndDate);
-
-            //IList<Models.Reporting.EmployeeCostSummary> summary = new List<EmployeeCostSummary>();
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    summary.Add(new EmployeeCostSummary
-            //        {
-            //            Days = 50,
-            //            Id = Guid.NewGuid(),
-            //            Name ="Employee #"+i,
-            //            TotalSalary = 100000
-            //        });
-            //}
 
             var document = new Document();
             document.UseCmykColor = true;
