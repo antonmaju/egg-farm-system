@@ -66,12 +66,11 @@ ORDER BY Employee.Name";
         public IList<UsageSummary> GetUsageSummary(DateTime start, DateTime end)
         {
             string sql =
-                @"SELECT Consumable.Id, Consumable.Name, Sum(ConsumableUsageDetail.Count) AS 'Count', SUM(ConsumableUsageDetail.Subtotal) AS 'SubTotal'
+                @"SELECT Consumable.Id, Consumable.Name,ConsumableUsage.Date as UsageDate,ConsumableUsageDetail.Count AS 'Count', ConsumableUsageDetail.Subtotal AS 'SubTotal',ConsumableUsageDetail.UnitPrice,HenHouse.Name as 'HenHouseName'
 FROM ConsumableUsageDetail JOIN ConsumableUsage ON ConsumableUsageDetail.UsageId = ConsumableUsage.Id
-JOIN Consumable ON ConsumableUsageDetail.ConsumableId = Consumable.Id
+JOIN Consumable ON ConsumableUsageDetail.ConsumableId = Consumable.Id JOIN HenHouse on ConsumableUsageDetail.HouseId = HenHouse.Id
 WHERE ConsumableUsage.Date BETWEEN @start AND @end
-GROUP BY Consumable.Id
-ORDER BY Consumable.Type,Consumable.Name";
+ORDER BY ConsumableUsage.Date,ConsumableUsage.Date";
 
             var result = new List<UsageSummary>();
 
@@ -91,7 +90,11 @@ ORDER BY Consumable.Type,Consumable.Name";
                             Id = new Guid(reader["Id"].ToString()),
                             Name = reader["Name"].ToString(),
                             Count = Convert.ToInt32(reader["Count"]),
-                            SubTotal = Convert.ToInt64(reader["SubTotal"])
+                            SubTotal = Convert.ToInt64(reader["SubTotal"]),
+                            UnitPrice = Convert.ToInt64(reader["UnitPrice"]),
+                            UsageDate = Convert.ToDateTime(reader["UsageDate"]),
+                            HenHouseName = reader["HenHouseName"].ToString()
+                            
                         };
                         result.Add(item);
                     }

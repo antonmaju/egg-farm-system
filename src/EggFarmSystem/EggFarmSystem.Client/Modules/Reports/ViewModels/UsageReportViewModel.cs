@@ -79,7 +79,7 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
             document.UseCmykColor = true;
             var section = document.AddSection();
             section.PageSetup.TopMargin = Unit.FromCentimeter(4);
-
+            section.PageSetup.Orientation = Orientation.Landscape;
             var header = section.Headers.Primary;
             
             var paragraph = header.AddParagraph();
@@ -104,137 +104,118 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
             var TableGray = new Color(242, 242, 242);
 
             // Create the item table
-            var table1 = section.AddTable();
-            table1.Style = "Table";
-            table1.Borders.Color = TableBorder;
-            table1.KeepTogether = false;
-            table1.Borders.Width = 0.75;
+            Table table= new Table();
+            Row row;
+            Cell cell;
+            Column column;
+            long _subtotal = 0;
 
-            //Set Column
-            var column = table1.AddColumn(Unit.FromCentimeter(8));
-            column = table1.AddColumn(Unit.FromCentimeter(3));
-            column.Format.Alignment = ParagraphAlignment.Right;
-            column = table1.AddColumn(Unit.FromCentimeter(5));
-            column.Format.Alignment = ParagraphAlignment.Right;
-
-            //Set Header
-            var row = table1.AddRow();
-            row.HeadingFormat = true;
-            row.Format.Alignment = ParagraphAlignment.Center;
-            row.Format.Font.Bold = true;
-            row.Shading.Color = TableBlue;
-
-            var cell = row.Cells[0];
-            cell.AddParagraph("Nama Pakan/Ovk");
-            //cell.AddParagraph(LanguageData.EmployeeCostReport_NameField);
-            //row.Cells[0].AddParagraph("Nama Pakan/Ovk");
-            row.Cells[0].Format.Alignment = ParagraphAlignment.Center;
-            //row.Cells[0].VerticalAlignment = VerticalAlignment.Bottom;
-            //row.Cells[0].MergeDown = 1;
-            row.Cells[1].AddParagraph("Jumlah");
-            row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
-            //row.Cells[1].MergeRight = 3;            
-            row.Cells[2].AddParagraph("Total");
-            row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
-            //row.Cells[2].VerticalAlignment = VerticalAlignment.Bottom;
-            //row.Cells[2].MergeDown = 1;
-
+            var LastSummaryId = new Guid();
+            var LastUsageDate = "0";
             foreach (var summaryItem in summary)
             {
-                row = table1.AddRow();
+                
+                if (summaryItem.UsageDate.ToString() != LastUsageDate)
+                {
+                    //LastSummaryId = summaryItem.Id;
+                    if (LastUsageDate != "0")
+                    {
+                        row = table.AddRow();
+                        row.Format.Font.Bold = true;
+                        cell = row.Cells[0];
+                        cell.AddParagraph("Total");
+                        cell.MergeRight = 3;
+                        cell = row.Cells[4];
+                        cell.AddParagraph(_subtotal.ToString());
+                        _subtotal = 0;
+                        section.AddPageBreak();
+                    }
+                    table = section.AddTable();
+                    table.Style = "Table";
+                    table.Borders.Color = TableBorder;
+                    table.KeepTogether = false;
+                    table.Borders.Width = 0.75;
+
+                    //Set Column
+                    column = table.AddColumn(Unit.FromCentimeter(6));
+                    column = table.AddColumn(Unit.FromCentimeter(6));
+                    column.Format.Alignment = ParagraphAlignment.Right;
+                    column = table.AddColumn(Unit.FromCentimeter(4));
+                    column.Format.Alignment = ParagraphAlignment.Right;
+                    column = table.AddColumn(Unit.FromCentimeter(4));
+                    column.Format.Alignment = ParagraphAlignment.Right;
+                    column = table.AddColumn(Unit.FromCentimeter(4));
+                    column.Format.Alignment = ParagraphAlignment.Right;
+
+                    //Set Header
+                    row = table.AddRow();
+                    row.Format.Font.Bold = true;
+                    row.Shading.Color = TableBlue;
+                    cell = row.Cells[0];
+                    cell.AddParagraph(summaryItem.UsageDate.ToShortDateString());
+                    cell.MergeRight = 4;
+
+                    row = table.AddRow();
+                    row.HeadingFormat = true;
+                    row.Format.Font.Bold = true;
+                    row.Shading.Color = TableBlue;
+                    cell = row.Cells[0];
+                    cell.AddParagraph("Kandang");
+                    row.Cells[0].Format.Alignment = ParagraphAlignment.Center;
+                    cell = row.Cells[1];
+                    cell.AddParagraph("Nama Pakan/OVK");
+                    cell.Format.Alignment = ParagraphAlignment.Center;
+                    cell = row.Cells[2];
+                    cell.AddParagraph("Jumlah");
+                    cell.Format.Alignment = ParagraphAlignment.Center;
+                    cell = row.Cells[3];
+                    cell.AddParagraph("Harga Per Unit");
+                    cell.Format.Alignment = ParagraphAlignment.Center;
+                    cell = row.Cells[4];
+                    cell.AddParagraph("Subtotal");
+                    cell.Format.Alignment = ParagraphAlignment.Center;
+
+                    LastUsageDate = summaryItem.UsageDate.ToString();
+
+                    
+                    //cell.MergeDown = 1;
+                }
+                _subtotal = _subtotal+summaryItem.SubTotal;
+                
+                row = table.AddRow();
                 row.TopPadding = Unit.FromCentimeter(0.2);
                 row.BottomPadding = Unit.FromCentimeter(0.2);
                 row.Format.Alignment = ParagraphAlignment.Center;
                 cell = row.Cells[0];
                 cell.Format.Alignment = ParagraphAlignment.Left;
-                cell.AddParagraph(summaryItem.Name);
+                cell.AddParagraph(summaryItem.HenHouseName);
                 cell = row.Cells[1];
-                cell.Format.Alignment = ParagraphAlignment.Right;
-                cell.AddParagraph(summaryItem.Count.ToString());
+                cell.Format.Alignment = ParagraphAlignment.Left;
+                cell.AddParagraph(summaryItem.Name);
                 cell = row.Cells[2];
                 cell.Format.Alignment = ParagraphAlignment.Right;
+                cell.AddParagraph(summaryItem.Count.ToString());
+                cell = row.Cells[3];
+                cell.Format.Alignment = ParagraphAlignment.Right;
+                cell.AddParagraph(summaryItem.UnitPrice.ToString());
+                cell = row.Cells[4];
+                cell.Format.Alignment = ParagraphAlignment.Right;
                 cell.AddParagraph(summaryItem.SubTotal.ToString());
+
+                if(object.ReferenceEquals(summary.Last(), summaryItem))
+                {
+                    row = table.AddRow();
+                    row.Format.Font.Bold = true;
+                    cell = row.Cells[0];
+                    cell.AddParagraph("Total");
+                    cell.MergeRight = 3;
+                    cell = row.Cells[4];
+                    cell.AddParagraph(_subtotal.ToString());
+                    _subtotal = 0;
+                }
+
             }
 
-            var row2 = table1.AddRow();
-
-            row2.Format.Alignment = ParagraphAlignment.Center;
-            row2.Format.Font.Bold = true;
-            row2.Shading.Color = TableBlue;
-            row2.Cells[0].AddParagraph("Total");
-            row2.Cells[0].MergeRight = 1;
-            row2.Cells[0].Format.Alignment = ParagraphAlignment.Center;
-            row2.Cells[2].AddParagraph("TOTALNYA");
-            row2.Cells[2].Format.Alignment = ParagraphAlignment.Right;
-
-
-            //var summary = service.GetEmployeeCostSummary(StartDate, EndDate);
-
-            //var document = new Document();
-            //document.UseCmykColor = true;
-            //var section = document.AddSection();
-
-            //var header = section.Headers.Primary;
-            //header.Format.SpaceAfter = Unit.FromCentimeter(2);
-            //var paragraph = header.AddParagraph();
-            //paragraph.AddFormattedText(LanguageData.EmployeeCostReport_Title, TextFormat.Bold);
-            //paragraph.Format.Alignment = ParagraphAlignment.Center;
-            //paragraph.AddLineBreak();
-            //paragraph.AddLineBreak();
-            //paragraph.AddFormattedText(string.Format("{0} {1} {2} {3}", LanguageData.General_From, StartDate.ToString("d MMMM yyyy"), LanguageData.General_To,
-            //                                         EndDate.ToString("d MMMM yyyy")));
-            //paragraph.Format.Alignment = ParagraphAlignment.Center;
-            //paragraph.Format.SpaceAfter = Unit.FromCentimeter(2);
-            
-
-            //var table = new Table();
-            //table.Borders.Width = 0.75;
-            
-            //var column = table.AddColumn(Unit.FromCentimeter(5));
-            //column = table.AddColumn(Unit.FromCentimeter(2));
-            //column.Format.Alignment = ParagraphAlignment.Right;
-            //column = table.AddColumn(Unit.FromCentimeter(4));
-            //column.Format.Alignment = ParagraphAlignment.Right;
-
-            //Row row = table.AddRow();
-            //row.TopPadding = Unit.FromCentimeter(0.4);
-            //row.BottomPadding = Unit.FromCentimeter(0.4);
-            //var cell = row.Cells[0];
-            //cell.AddParagraph(LanguageData.EmployeeCostReport_NameField);
-            //cell.Format.Alignment = ParagraphAlignment.Center; 
-            //cell = row.Cells[1];
-            //cell.AddParagraph(LanguageData.EmployeeCostReport_DaysField);
-            //cell.Format.Alignment = ParagraphAlignment.Center; 
-            //cell = row.Cells[2];
-            //cell.AddParagraph(LanguageData.EmployeeCostReport_TotalSalaryField);
-            //cell.Format.Alignment = ParagraphAlignment.Center; 
-
-            //foreach (var summaryItem in summary)
-            //{
-            //    row = table.AddRow();
-            //    row.TopPadding = Unit.FromCentimeter(0.2);
-            //    row.BottomPadding = Unit.FromCentimeter(0.2);
-            //    cell = row.Cells[0];
-            //    cell.AddParagraph(summaryItem.Name);
-            //    cell = row.Cells[1];
-            //    cell.AddParagraph(summaryItem.Days.ToString());
-            //    cell = row.Cells[2];
-            //    cell.AddParagraph(summaryItem.TotalSalary.ToString());
-            //}
-
-            //document.LastSection.Add(table);
-
-            //var row2 = table1.AddRow();
-            
-            //row2.Format.Alignment = ParagraphAlignment.Center;
-            //row2.Format.Font.Bold = true;
-            //row2.Shading.Color = TableBlue;
-            //row2.Cells[0].AddParagraph("Total");
-            //row2.Cells[0].MergeRight = 1;  
-            //row2.Cells[0].Format.Alignment = ParagraphAlignment.Center;
-            //row2.Cells[2].AddParagraph("TOTALNYA");
-            //row2.Cells[2].Format.Alignment = ParagraphAlignment.Right;
-            
             Document = document;
         }
 
