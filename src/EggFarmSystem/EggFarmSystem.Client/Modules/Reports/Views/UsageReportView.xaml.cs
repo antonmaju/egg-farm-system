@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -14,11 +15,13 @@ using System.Windows.Shapes;
 using EggFarmSystem.Client.Core.Views;
 using EggFarmSystem.Client.Modules.Reports.ViewModels;
 using MigraDoc.DocumentObjectModel.IO;
+using MigraDoc.Rendering;
+using PdfSharp.Pdf;
 
 namespace EggFarmSystem.Client.Modules.Reports.Views
 {
     /// <summary>
-    /// Interaction logic for EmployeeCostReportView.xaml
+    /// Interaction logic for UsageReportView.xaml
     /// </summary>
     public partial class UsageReportView : UserControlBase, IUsageReportView
     {

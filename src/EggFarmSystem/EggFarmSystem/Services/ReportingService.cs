@@ -12,6 +12,8 @@ namespace EggFarmSystem.Services
     public interface IReportingService
     {
         IList<EmployeeCostSummary> GetEmployeeCostSummary(DateTime start, DateTime end);
+        IList<UsageSummary> GetUsageSummary(DateTime start, DateTime end);
+
     }
 
     public class ReportingService : IReportingService
@@ -56,6 +58,44 @@ ORDER BY Employee.Name";
                         result.Add(item);
                     }
                 }               
+            }
+
+            return result;
+        }
+
+        public IList<UsageSummary> GetUsageSummary(DateTime start, DateTime end)
+        {
+            string sql =
+                @"SELECT Consumable.Id, Consumable.Name, Sum(ConsumableUsageDetail.Count) AS 'Count', SUM(ConsumableUsageDetail.Subtotal) AS 'SubTotal'
+FROM ConsumableUsageDetail JOIN ConsumableUsage ON ConsumableUsageDetail.UsageId = ConsumableUsage.Id
+JOIN Consumable ON ConsumableUsageDetail.ConsumableId = Consumable.Id
+WHERE ConsumableUsage.Date BETWEEN @start AND @end
+GROUP BY Consumable.Id
+ORDER BY Consumable.Type,Consumable.Name";
+
+            var result = new List<UsageSummary>();
+
+            using (var conn = factory.OpenDbConnection())
+            {
+                var command = conn.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = sql;
+                command.Parameters.Add(new MySqlParameter("@start", MySqlDbType.Date) { Value = start });
+                command.Parameters.Add(new MySqlParameter("@end", MySqlDbType.Date) { Value = end });
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var item = new UsageSummary
+                        {
+                            Id = new Guid(reader["Id"].ToString()),
+                            Name = reader["Name"].ToString(),
+                            Count = Convert.ToInt32(reader["Count"]),
+                            SubTotal = Convert.ToInt64(reader["SubTotal"])
+                        };
+                        result.Add(item);
+                    }
+                }
             }
 
             return result;

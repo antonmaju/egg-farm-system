@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
+using EggFarmSystem.Models.Reporting;
 using EggFarmSystem.Resources;
 using EggFarmSystem.Services;
 using MigraDoc.DocumentObjectModel;
+using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Tables;
 
 namespace EggFarmSystem.Client.Modules.Reports.ViewModels
@@ -17,7 +19,7 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
         private DateTime endDate=DateTime.Today;
         private Document document;
 
-        public DelegateCommand ViewCommand;
+        public DelegateCommand ViewCommand, ExportCommand;
         private readonly IReportingService service;
 
         public UsageReportViewModel(IReportingService service)
@@ -65,11 +67,14 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
 
         bool CanView(object param)
         {
-            return EndDate <= StartDate;
+            return EndDate >= StartDate;
         }
 
         void ViewReport(object param)
         {
+            //EndDate = "12/12/2005";
+            IList<Models.Reporting.UsageSummary> summary = service.GetUsageSummary(StartDate, EndDate);
+            
             var document = new Document();
             document.UseCmykColor = true;
             var section = document.AddSection();
@@ -102,19 +107,14 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
             var table1 = section.AddTable();
             table1.Style = "Table";
             table1.Borders.Color = TableBorder;
-            table1.Borders.Width = 0.25;
-            table1.Borders.Left.Width = 0.5;
-            table1.Borders.Right.Width = 0.5;
-            table1.Rows.LeftIndent = 0;
+            table1.KeepTogether = false;
+            table1.Borders.Width = 0.75;
 
             //Set Column
-            var column = table1.AddColumn();
-            column.Format.Alignment = ParagraphAlignment.Center;
-
-            column = table1.AddColumn();
+            var column = table1.AddColumn(Unit.FromCentimeter(8));
+            column = table1.AddColumn(Unit.FromCentimeter(3));
             column.Format.Alignment = ParagraphAlignment.Right;
-
-            column = table1.AddColumn();
+            column = table1.AddColumn(Unit.FromCentimeter(5));
             column.Format.Alignment = ParagraphAlignment.Right;
 
             //Set Header
@@ -123,31 +123,37 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
             row.Format.Alignment = ParagraphAlignment.Center;
             row.Format.Font.Bold = true;
             row.Shading.Color = TableBlue;
-            row.Cells[0].AddParagraph("No");
-            //row.Cells[0].Format.Font.Bold = false;
+
+            var cell = row.Cells[0];
+            cell.AddParagraph("Nama Pakan/Ovk");
+            //cell.AddParagraph(LanguageData.EmployeeCostReport_NameField);
+            //row.Cells[0].AddParagraph("Nama Pakan/Ovk");
             row.Cells[0].Format.Alignment = ParagraphAlignment.Center;
             //row.Cells[0].VerticalAlignment = VerticalAlignment.Bottom;
             //row.Cells[0].MergeDown = 1;
-            row.Cells[1].AddParagraph("Tanggal");
-            //row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
+            row.Cells[1].AddParagraph("Jumlah");
+            row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
             //row.Cells[1].MergeRight = 3;            
-            row.Cells[2].AddParagraph("Jumlah");
+            row.Cells[2].AddParagraph("Total");
             row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
             //row.Cells[2].VerticalAlignment = VerticalAlignment.Bottom;
             //row.Cells[2].MergeDown = 1;
 
-            for (int i = 1; i <= 300; i++)
+            foreach (var summaryItem in summary)
             {
-                var row1 = table1.AddRow();
-                row1.Cells[0].AddParagraph(i.ToString());
-                row1.Cells[0].Format.Alignment = ParagraphAlignment.Left;
-
-                row1.Cells[1].AddParagraph("tanggal " + i.ToString());
-                row1.Cells[1].Format.Alignment = ParagraphAlignment.Left;
-
-                //row1.Cells[2].AddParagraph("jumlah " + i.ToString());
-                row1.Cells[2].AddParagraph(i.ToString());
-                row1.Cells[2].Format.Alignment = ParagraphAlignment.Right;
+                row = table1.AddRow();
+                row.TopPadding = Unit.FromCentimeter(0.2);
+                row.BottomPadding = Unit.FromCentimeter(0.2);
+                row.Format.Alignment = ParagraphAlignment.Center;
+                cell = row.Cells[0];
+                cell.Format.Alignment = ParagraphAlignment.Left;
+                cell.AddParagraph(summaryItem.Name);
+                cell = row.Cells[1];
+                cell.Format.Alignment = ParagraphAlignment.Right;
+                cell.AddParagraph(summaryItem.Count.ToString());
+                cell = row.Cells[2];
+                cell.Format.Alignment = ParagraphAlignment.Right;
+                cell.AddParagraph(summaryItem.SubTotal.ToString());
             }
 
             var row2 = table1.AddRow();
