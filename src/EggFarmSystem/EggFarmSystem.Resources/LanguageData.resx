@@ -522,4 +522,8 @@
   <data name="Usage_UnitPriceField" xml:space="preserve">
     <value>Unit Price</value>
   </data>
+  <data name="Reports_PermissionIssue" xml:space="preserve">
+    <value>There's an issue with file permission for reports folder. 
+Please ensure you assign correct permission !</value>
+  </data>
 </root>

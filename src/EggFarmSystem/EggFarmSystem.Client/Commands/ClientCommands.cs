@@ -29,5 +29,10 @@ namespace EggFarmSystem.Client.Commands
         /// </summary>
         /// <value>The maximize command.</value>
         public static RoutedUICommand Maximize { get; private set; }
+
     }
+
+
+
+    
 }
