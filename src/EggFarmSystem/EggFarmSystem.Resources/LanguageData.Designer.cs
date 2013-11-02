@@ -1277,6 +1277,15 @@ namespace EggFarmSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to House.
+        /// </summary>
+        public static string UsageReport_HenHouseName {
+            get {
+                return ResourceManager.GetString("UsageReport_HenHouseName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Usage Report.
         /// </summary>
         public static string UsageReport_Title {

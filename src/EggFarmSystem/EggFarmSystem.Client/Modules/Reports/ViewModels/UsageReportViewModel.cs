@@ -160,19 +160,19 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
                     row.Format.Font.Bold = true;
                     row.Shading.Color = TableBlue;
                     cell = row.Cells[0];
-                    cell.AddParagraph("Kandang");
+                    cell.AddParagraph(LanguageData.Usage_HouseField);
                     row.Cells[0].Format.Alignment = ParagraphAlignment.Center;
                     cell = row.Cells[1];
-                    cell.AddParagraph("Nama Pakan/OVK");
+                    cell.AddParagraph(LanguageData.Usage_ConsumableField);
                     cell.Format.Alignment = ParagraphAlignment.Center;
                     cell = row.Cells[2];
-                    cell.AddParagraph("Jumlah");
+                    cell.AddParagraph(LanguageData.Usage_CountField);
                     cell.Format.Alignment = ParagraphAlignment.Center;
                     cell = row.Cells[3];
-                    cell.AddParagraph("Harga Per Unit");
+                    cell.AddParagraph(LanguageData.Usage_UnitPriceField);
                     cell.Format.Alignment = ParagraphAlignment.Center;
                     cell = row.Cells[4];
-                    cell.AddParagraph("Subtotal");
+                    cell.AddParagraph(LanguageData.Usage_SubTotalField);
                     cell.Format.Alignment = ParagraphAlignment.Center;
 
                     LastUsageDate = summaryItem.UsageDate.ToString();
@@ -207,7 +207,7 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
                     row = table.AddRow();
                     row.Format.Font.Bold = true;
                     cell = row.Cells[0];
-                    cell.AddParagraph("Total");
+                    cell.AddParagraph(LanguageData.Usage_TotalField);
                     cell.MergeRight = 3;
                     cell = row.Cells[4];
                     cell.AddParagraph(_subtotal.ToString());
