@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using EggFarmSystem.Models.Reporting;
+using EggFarmSystem.Utilities;
 using ServiceStack.OrmLite;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace EggFarmSystem.Services
     public interface IReportingService
     {
         IList<EmployeeCostSummary> GetEmployeeCostSummary(DateTime start, DateTime end);
+
+        IList<EggProductionReport> GetEggProductionReport(DateTime start, DateTime end);
     }
 
     public class ReportingService : IReportingService
@@ -59,6 +62,62 @@ ORDER BY Employee.Name";
             }
 
             return result;
+        }
+
+
+        public IList<EggProductionReport> GetEggProductionReport(DateTime start, DateTime end)
+        {
+            string sql =
+                @"SELECT EggProductionDetail.*, HenHouse.Name AS 'HouseName' FROM EggProductionDetail JOIN HenHouse ON 
+EggProductionDetail.HouseId = HenHouse.Id where EggProductionDetail.ProductionId=@productionId order by HenHouse.Name";
+
+            using (var conn = factory.OpenDbConnection())
+            {
+
+                var ev = OrmLiteConfig.DialectProvider.ExpressionVisitor<Models.Data.EggProduction>()
+                                      .Where(e => e.Date >= start.Date && e.Date <= end.Date)
+                                      .OrderBy(e => e.Date);
+
+                var productionList = conn.Select(ev).Select(p => new EggProductionReport
+                    {
+                        Date = p.Date,
+                        Id = p.Id
+                    }).ToList();
+
+                var command = conn.CreateCommand();
+                command.CommandText = sql;
+                command.CommandType = CommandType.Text;
+
+                foreach (var productionData in productionList)
+                {
+                    command.Parameters.Clear();
+                    command.Parameters.Add(new MySqlParameter("@productionId", MySqlDbType.Guid)
+                        {
+                            Value = productionData.Id
+                        });
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var detail = new EggProductionReportDetail();
+                            detail.GoodEggCount = DataConverter.ToInt32(reader["GoodEggCount"]);
+                            detail.RetailQuantity = DataConverter.ToDecimal(reader["RetailQuantity"]);
+                            detail.CrackedEggCount = DataConverter.ToInt32(reader["CrackedEggCount"]);
+                            detail.Fcr = DataConverter.ToDecimal(reader["Fcr"]);
+                            detail.House = new HouseInfo
+                                {
+                                    Id = DataConverter.ToGuid(reader["HouseId"]),
+                                    Name = DataConverter.ToString(reader["HouseName"])
+                                };
+
+                            productionData.Details.Add(detail);
+                        }
+                    }
+                }
+
+                return productionList;
+            }
         }
     }
 }

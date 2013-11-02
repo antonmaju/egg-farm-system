@@ -117,6 +117,38 @@ namespace EggFarmSystem.Core.Tests.Services
             }
         }
 
+        [Fact]
+        public void Can_GetEggProductionReport()
+        {
+            var houses  = new List<HenHouse>
+                {
+                    new HenHouse
+                        {
+                           Id = Guid.Empty,
+                           Active = true,
+                           Depreciation = 120,
+                           Name = "House 1",
+                           ProductiveAge = 90,
+                           PurchaseCost = 120,
+                           Weight = 120,
+                           YearUsage = 5
+                        },
+                    new HenHouse
+                        {
+                           Id = Guid.Empty,
+                           Active = true,
+                           Depreciation = 100,
+                           Name = "House 2",
+                           ProductiveAge = 80,
+                           PurchaseCost = 100,
+                           Weight = 190,
+                           YearUsage = 3
+                        }
+                };
+
+            
+        }
+
 
         public void Dispose()
         {

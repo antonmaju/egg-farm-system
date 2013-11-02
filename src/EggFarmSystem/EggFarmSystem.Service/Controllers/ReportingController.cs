@@ -20,5 +20,6 @@ namespace EggFarmSystem.Service.Controllers
         {
             return service.GetEmployeeCostSummary(start, end);
         }
+
     }
 }
