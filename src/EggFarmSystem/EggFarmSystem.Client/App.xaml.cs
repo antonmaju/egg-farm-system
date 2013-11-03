@@ -14,6 +14,7 @@ using EggFarmSystem.Client.Modules.EggProduction;
 using EggFarmSystem.Client.Modules.EmployeeCost;
 using EggFarmSystem.Client.Modules.HenDepreciation;
 using EggFarmSystem.Client.Modules.MasterData;
+using EggFarmSystem.Client.Modules.Reports;
 using EggFarmSystem.Client.Modules.Usage;
 
 namespace EggFarmSystem.Client
@@ -54,6 +55,7 @@ namespace EggFarmSystem.Client
             bootstrapper.Register(new ConsumableUsageModule());
             bootstrapper.Register(new EggProductionModule());
             bootstrapper.Register(new HenDepreciationModule());
+            bootstrapper.Register(new ReportsModule());
         }
     }
 }

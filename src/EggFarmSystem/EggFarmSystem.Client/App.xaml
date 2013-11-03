@@ -19,6 +19,8 @@
                 <ResourceDictionary Source="Resources\DatePicker.xaml" />
                 <ResourceDictionary Source="Resources\ListView.xaml" />
                 <ResourceDictionary Source="Resources\DataGrid.xaml" />
+                <ResourceDictionary Source="Resources\ToolBar.xaml" />
+                <ResourceDictionary Source="Resources\DocumentViewer.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

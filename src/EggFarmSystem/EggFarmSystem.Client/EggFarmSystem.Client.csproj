@@ -46,12 +46,27 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="MigraDoc.DocumentObjectModel-WPF">
+      <HintPath>..\Libs\MigraDoc\MigraDoc.DocumentObjectModel-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering-WPF">
+      <HintPath>..\Libs\MigraDoc\MigraDoc.Rendering-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.RtfRendering-WPF">
+      <HintPath>..\Libs\MigraDoc\MigraDoc.RtfRendering-WPF.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.6.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\MySql.Data.6.6.5\lib\net40\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp-WPF">
+      <HintPath>..\Libs\MigraDoc\PdfSharp-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting-WPF">
+      <HintPath>..\Libs\MigraDoc\PdfSharp.Charting-WPF.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
@@ -98,6 +113,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Modules\Reports\ViewModels\EggProductionReportViewModel.cs" />
+    <Compile Include="Modules\Reports\Views\EggProductionReportView.xaml.cs">
+      <DependentUpon>EggProductionReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\DocumentViewer.xaml.cs">
+      <DependentUpon>DocumentViewer.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\DateRangeSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Pager.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -117,6 +143,9 @@
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\DeleteCommand.cs" />
     <Compile Include="Commands\RefreshCommand.cs" />
+    <Compile Include="Controls\DateRangeSelector.xaml.cs">
+      <DependentUpon>DateRangeSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ToggleButtonHelper.cs" />
     <Compile Include="Controls\Pager.xaml.cs">
       <DependentUpon>Pager.xaml</DependentUpon>
@@ -140,6 +169,7 @@
     <Compile Include="Core\Services\HenDepreciationServiceClient.cs" />
     <Compile Include="Core\Services\HenHouseServiceClient.cs" />
     <Compile Include="Core\Services\HenServiceClient.cs" />
+    <Compile Include="Core\Services\ReportingServiceClient.cs" />
     <Compile Include="Core\Services\ServiceClient.cs" />
     <Compile Include="Core\Services\ServiceClientRegistry.cs" />
     <Compile Include="Core\Services\JsonNetSerializer.cs" />
@@ -224,6 +254,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Modules\Reports\Views\EggProductionReportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Reports\Views\EmployeeCostReportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Reports\Views\ReportListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\Usage\Views\UsageEntryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -260,6 +302,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\DocumentViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\TextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -281,6 +327,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Shared.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ToolBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -367,10 +417,23 @@
     <Compile Include="Modules\MasterData\Views\AdditionalCostListView.xaml.cs">
       <DependentUpon>AdditionalCostListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Reports\Commands\ShowReportListCommand.cs" />
+    <Compile Include="Modules\Reports\ReportsModule.cs" />
+    <Compile Include="Modules\Reports\ReportsRegistry.cs" />
+    <Compile Include="Modules\Reports\ViewModels\EmployeeCostReportViewModel.cs" />
+    <Compile Include="Modules\Reports\ViewModels\ReportInfo.cs" />
+    <Compile Include="Modules\Reports\ViewModels\ReportListViewModel.cs" />
+    <Compile Include="Modules\Reports\Views\EmployeeCostReportView.xaml.cs">
+      <DependentUpon>EmployeeCostReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Reports\Views\ReportListView.xaml.cs">
+      <DependentUpon>ReportListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Usage\Commands\DeleteUsageCommand.cs" />
     <Compile Include="Modules\Usage\Commands\EditUsageCommand.cs" />
     <Compile Include="Modules\Usage\Commands\NewUsageCommand.cs" />
     <Compile Include="Modules\Usage\Commands\SaveUsageCommand.cs" />
+    <Compile Include="Modules\Usage\Commands\ShowReportListCommand.cs" />
     <Compile Include="Modules\Usage\Commands\ShowUsageCommand.cs" />
     <Compile Include="Modules\Usage\ConsumableUsageModule.cs" />
     <Compile Include="Modules\IModule.cs" />

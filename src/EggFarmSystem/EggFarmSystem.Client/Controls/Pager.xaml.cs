@@ -32,6 +32,7 @@ namespace EggFarmSystem.Client.Controls
         {
             InitializeComponent();
             SetCommandBindings();
+            this.Visibility = TotalPage <= 1 ? Visibility.Collapsed : Visibility.Visible;
         }
 
         public static readonly DependencyProperty PagesProperty = DependencyProperty.Register("Pages",
@@ -108,7 +109,7 @@ namespace EggFarmSystem.Client.Controls
 
             pager.Pages = new ObservableCollection<int>(Enumerable.Range(1,pager.TotalPage));
 
-            pager.Visibility = pager.TotalPage <= 1 ? Visibility.Hidden : Visibility.Visible;
+            pager.Visibility = pager.TotalPage <= 1 ? Visibility.Collapsed : Visibility.Visible;
         }
 
 

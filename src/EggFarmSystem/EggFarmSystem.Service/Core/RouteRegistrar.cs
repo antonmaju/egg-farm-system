@@ -26,6 +26,16 @@ namespace EggFarmSystem.Service.Core
                                 defaults: new {controller = "HenDepreciation", action = "GetInitialValues"}
                 );
 
+            //reporting
+            routes.MapHttpRoute(name: "EmployeeCostSummary",
+                                routeTemplate: "api/report/employeecost/{start}/{end}",
+                                defaults: new {controller = "EmployeeCostSummary", action = "Get"});
+
+            routes.MapHttpRoute(name: "EggProductionReport",
+                                routeTemplate: "api/report/eggproduction/{start}/{end}",
+                                defaults: new { controller = "EggProductionReport", action = "Get" });
+
+
 
             //default routings
             routes.MapHttpRoute(name: "DefaultApi",

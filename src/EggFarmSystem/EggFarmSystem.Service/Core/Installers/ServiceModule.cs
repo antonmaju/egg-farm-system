@@ -23,6 +23,7 @@ namespace EggFarmSystem.Service.Core.Installers
             builder.RegisterType<EmployeeCostService>().As<IEmployeeCostService>().SingleInstance();
             builder.RegisterType<EggProductionService>().As<IEggProductionService>().SingleInstance();
             builder.RegisterType<HenDepreciationService>().As<IHenDepreciationService>().SingleInstance();
+            builder.RegisterType<ReportingService>().As<IReportingService>().SingleInstance();
 
             base.Load(builder);
         }

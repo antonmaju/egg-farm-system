@@ -201,6 +201,12 @@
   <data name="EggProductionDetail_RetailQuantityField" xml:space="preserve">
     <value>Retail Quantity</value>
   </data>
+  <data name="EggProductionReport_Description" xml:space="preserve">
+    <value>Gets egg production information in a time range</value>
+  </data>
+  <data name="EggProductionReport_Title" xml:space="preserve">
+    <value>Egg Production Report</value>
+  </data>
   <data name="EggProduction_DateField" xml:space="preserve">
     <value>Date</value>
   </data>
@@ -233,6 +239,21 @@
   </data>
   <data name="EmployeeCostDetail_SalaryField" xml:space="preserve">
     <value>Salary</value>
+  </data>
+  <data name="EmployeeCostReport_DaysField" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="EmployeeCostReport_Description" xml:space="preserve">
+    <value>Gets total employee cost in a time range</value>
+  </data>
+  <data name="EmployeeCostReport_NameField" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="EmployeeCostReport_Title" xml:space="preserve">
+    <value>Employee Cost Report</value>
+  </data>
+  <data name="EmployeeCostReport_TotalSalaryField" xml:space="preserve">
+    <value>Total Salary</value>
   </data>
   <data name="EmployeeCost_DateField" xml:space="preserve">
     <value>Date</value>
@@ -285,14 +306,35 @@
   <data name="General_Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="General_Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="General_From" xml:space="preserve">
+    <value>From</value>
+  </data>
   <data name="General_New" xml:space="preserve">
     <value>New</value>
+  </data>
+  <data name="General_PDF" xml:space="preserve">
+    <value>PDF</value>
+  </data>
+  <data name="General_Print" xml:space="preserve">
+    <value>Print</value>
   </data>
   <data name="General_Refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="General_RTF" xml:space="preserve">
+    <value>RTF</value>
+  </data>
   <data name="General_Save" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="General_To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="General_View" xml:space="preserve">
+    <value>View</value>
   </data>
   <data name="HenDepreciationDetail_DepreciationField" xml:space="preserve">
     <value>Depreciation</value>
@@ -423,6 +465,12 @@
   <data name="Production_Title" xml:space="preserve">
     <value>Production</value>
   </data>
+  <data name="Reports_DescriptionField" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Reports_NameField" xml:space="preserve">
+    <value>Report Name</value>
+  </data>
   <data name="Reports_Title" xml:space="preserve">
     <value>Reports</value>
   </data>
@@ -437,6 +485,12 @@
   </data>
   <data name="UsageDetail_RequireHouse" xml:space="preserve">
     <value>House is required</value>
+  </data>
+  <data name="UsageReport_Description" xml:space="preserve">
+    <value>Gets total usage in a time range</value>
+  </data>
+  <data name="UsageReport_Title" xml:space="preserve">
+    <value>Usage Report</value>
   </data>
   <data name="Usage_ConsumableField" xml:space="preserve">
     <value>Consumable</value>
@@ -467,5 +521,9 @@
   </data>
   <data name="Usage_UnitPriceField" xml:space="preserve">
     <value>Unit Price</value>
+  </data>
+  <data name="Reports_PermissionIssue" xml:space="preserve">
+    <value>There's an issue with file permission for reports folder. 
+Please ensure you assign correct permission !</value>
   </data>
 </root>
