@@ -29,7 +29,8 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
                      new ReportInfo
                          {
                              Name = LanguageData.EggProductionReport_Title,
-                             Description = LanguageData.EggProductionReport_Description
+                             Description = LanguageData.EggProductionReport_Description,
+                             ViewType = typeof(IEggProductionReportView)
                          }
                 };
         }

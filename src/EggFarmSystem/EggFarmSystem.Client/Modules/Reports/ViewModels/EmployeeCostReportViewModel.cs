@@ -68,19 +68,10 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
         private void InitializeCommands()
         {
             ViewCommand = new DelegateCommand(ViewReport, CanView){Text = ()=> LanguageData.General_View};
-            ExportCommand = new DelegateCommand(Export, CanExport){Text=()=>LanguageData.General_Export};
+           
             NavigationCommands = new List<CommandBase>(){ViewCommand};
         }
-
-        bool CanExport(object param)
-        {
-            return Document != null;
-        }
-
-        void Export(object param)
-        {
-            
-        }
+        
 
         bool CanView(object param)
         {
@@ -158,8 +149,6 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
         }
 
         #endregion
-
-       
 
     }
 }

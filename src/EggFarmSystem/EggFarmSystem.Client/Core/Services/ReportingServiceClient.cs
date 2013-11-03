@@ -26,5 +26,13 @@ namespace EggFarmSystem.Client.Core.Services
 
             return CreateGetRequest<List<EmployeeCostSummary>>(Guid.Empty, url);
         }
+
+        public IList<EggProductionReport> GetEggProductionReport(DateTime start, DateTime end)
+        {
+            string url = string.Format("{0}/eggproduction/{1}/{2}",
+               ResourceUrl, start.ToString("yyyy-MM-dd"), end.ToString("yyyy-MM-dd"));
+
+            return CreateGetRequest<List<EggProductionReport>>(Guid.Empty, url);
+        }
     }
 }
