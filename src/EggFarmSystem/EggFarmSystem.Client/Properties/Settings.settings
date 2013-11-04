@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="PageSize" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="Culture" Type="System.String" Scope="User">
       <Value Profile="(Default)">id-ID</Value>

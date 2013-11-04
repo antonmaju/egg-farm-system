@@ -20,5 +20,21 @@ namespace EggFarmSystem.Service.Controllers
         {
             return service.GetEmployeeCostSummary(start, end);
         }
+
+    }
+
+    public class EggProductionReportController : ApiControllerBase
+    {
+        private readonly IReportingService service;
+
+        public EggProductionReportController(IReportingService service)
+        {
+            this.service = service;
+        }
+
+        public IList<EggProductionReport> Get(DateTime start, DateTime end)
+        {
+            return service.GetEggProductionReport(start, end);
+        }
     }
 }
