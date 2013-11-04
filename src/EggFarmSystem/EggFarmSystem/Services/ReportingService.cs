@@ -13,13 +13,9 @@ namespace EggFarmSystem.Services
     public interface IReportingService
     {
         IList<EmployeeCostSummary> GetEmployeeCostSummary(DateTime start, DateTime end);
-<<<<<<< HEAD
         IList<UsageSummary> GetUsageSummary(DateTime start, DateTime end);
-
-=======
-
         IList<EggProductionReport> GetEggProductionReport(DateTime start, DateTime end);
->>>>>>> remotes/upstream/master
+
     }
 
     public class ReportingService : IReportingService
@@ -69,7 +65,6 @@ ORDER BY Employee.Name";
             return result;
         }
 
-<<<<<<< HEAD
         public IList<UsageSummary> GetUsageSummary(DateTime start, DateTime end)
         {
             string sql =
@@ -86,30 +81,29 @@ ORDER BY ConsumableUsage.Date,ConsumableUsage.Date";
                 var command = conn.CreateCommand();
                 command.CommandType = CommandType.Text;
                 command.CommandText = sql;
-                command.Parameters.Add(new MySqlParameter("@start", MySqlDbType.Date) { Value = start });
-                command.Parameters.Add(new MySqlParameter("@end", MySqlDbType.Date) { Value = end });
+                command.Parameters.Add(new MySqlParameter("@start", MySqlDbType.Date) {Value = start});
+                command.Parameters.Add(new MySqlParameter("@end", MySqlDbType.Date) {Value = end});
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         var item = new UsageSummary
-                        {
-                            Id = new Guid(reader["Id"].ToString()),
-                            Name = reader["Name"].ToString(),
-                            Count = Convert.ToInt32(reader["Count"]),
-                            SubTotal = Convert.ToInt64(reader["SubTotal"]),
-                            UnitPrice = Convert.ToInt64(reader["UnitPrice"]),
-                            UsageDate = Convert.ToDateTime(reader["UsageDate"]),
-                            HenHouseName = reader["HenHouseName"].ToString()
-                            
-                        };
+                            {
+                                Id = new Guid(reader["Id"].ToString()),
+                                Name = reader["Name"].ToString(),
+                                Count = Convert.ToInt32(reader["Count"]),
+                                SubTotal = Convert.ToInt64(reader["SubTotal"]),
+                                UnitPrice = Convert.ToInt64(reader["UnitPrice"]),
+                                UsageDate = Convert.ToDateTime(reader["UsageDate"]),
+                                HenHouseName = reader["HenHouseName"].ToString()
+
+                            };
                         result.Add(item);
                     }
                 }
             }
-
             return result;
-=======
+        }
 
         public IList<EggProductionReport> GetEggProductionReport(DateTime start, DateTime end)
         {
@@ -164,7 +158,6 @@ EggProductionDetail.HouseId = HenHouse.Id where EggProductionDetail.ProductionId
 
                 return productionList;
             }
->>>>>>> remotes/upstream/master
         }
     }
 }

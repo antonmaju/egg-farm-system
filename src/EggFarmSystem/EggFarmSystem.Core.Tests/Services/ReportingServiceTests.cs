@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xunit;
+using ConsumableUsage = EggFarmSystem.Models.ConsumableUsage;
 
 namespace EggFarmSystem.Core.Tests.Services
 {
@@ -240,6 +241,173 @@ namespace EggFarmSystem.Core.Tests.Services
             }
         }
 
+        [Fact]
+        public void Can_GetUsageSummaryReport()
+        {
+            var houses = new List<HenHouse>
+                {
+                    new HenHouse
+                        {
+                           Id = Guid.NewGuid(),
+                           Active = true,
+                           Depreciation = 120,
+                           Name = "House 1",
+                           ProductiveAge = 90,
+                           PurchaseCost = 120,
+                           Weight = 120,
+                           YearUsage = 5
+                        },
+                    new HenHouse
+                        {
+                           Id = Guid.NewGuid(),
+                           Active = true,
+                           Depreciation = 100,
+                           Name = "House 2",
+                           ProductiveAge = 80,
+                           PurchaseCost = 100,
+                           Weight = 190,
+                           YearUsage = 3
+                        }
+                };
+
+            var consumables = new List<Consumable>
+                {
+                    new Consumable
+                        {
+                            Id = Guid.NewGuid(),
+                            Active = true,
+                            Name = "consumable #1",
+                            Type = 0,
+                            Unit = "kg",
+                            UnitPrice = 30000
+                        },
+                    new Consumable
+                        {
+                            Id = Guid.NewGuid(),
+                            Active = true,
+                            Name = "consumable #2",
+                            Type = 0,
+                            Unit = "kg",
+                            UnitPrice = 40000
+                        },
+                    new Consumable
+                        {
+                            Id = Guid.NewGuid(),
+                            Active = true,
+                            Name = "consumable #3",
+                            Type = 1,
+                            Unit = "kg",
+                            UnitPrice = 50000
+                        },
+                    new Consumable
+                        {
+                            Id = Guid.NewGuid(),
+                            Active = true,
+                            Name = "consumable #4",
+                            Type = 1,
+                            Unit = "kg",
+                            UnitPrice = 60000
+                        }
+
+                };
+            var consumableUsageList = new List<Models.Data.ConsumableUsage>
+                {
+                    new Models.Data.ConsumableUsage
+                        {
+                            Id = Guid.NewGuid(),
+                            Date = DateTime.Today.AddDays(-1),
+                            Total = 70000
+                        },
+                    new Models.Data.ConsumableUsage
+                        {
+                            Id = Guid.NewGuid(),
+                            Date = DateTime.Today.AddDays(1),
+                            Total = 110000
+                        }
+                };
+
+            var detailList = new List<Models.Data.ConsumableUsageDetail>
+                {
+                    new Models.Data.ConsumableUsageDetail
+                        {
+                            ConsumableId = consumables[0].Id,
+                            Count = 1,
+                            UnitPrice = consumables[0].UnitPrice,
+                            HouseId = houses[0].Id,
+                            SubTotal = 30000,
+                            UsageId = consumableUsageList[0].Id
+                            
+                        },
+                    new Models.Data.ConsumableUsageDetail
+                        {
+                            ConsumableId = consumables[1].Id,
+                            Count = 1,
+                            UnitPrice = consumables[1].UnitPrice,
+                            HouseId = houses[1].Id,
+                            SubTotal = 40000,
+                            UsageId = consumableUsageList[0].Id
+                            
+                        },
+                    new Models.Data.ConsumableUsageDetail
+                        {
+                            ConsumableId = consumables[2].Id,
+                            Count = 1,
+                            UnitPrice = consumables[2].UnitPrice,
+                            HouseId = houses[0].Id,
+                            SubTotal = 50000,
+                            UsageId = consumableUsageList[1].Id
+                            
+                        },
+                    new Models.Data.ConsumableUsageDetail
+                        {
+                            ConsumableId = consumables[3].Id,
+                            Count = 1,
+                            UnitPrice = consumables[3].UnitPrice,
+                            HouseId = houses[0].Id,
+                            SubTotal = 60000,
+                            UsageId = consumableUsageList[1].Id
+                            
+                        }
+                };
+
+
+
+            using (var conn = factory.OpenDbConnection())
+            {
+                foreach (var house in houses)
+                {
+                    conn.InsertParam(house);
+                }
+                foreach (var consumable in consumables)
+                {
+                    conn.InsertParam(consumable);
+                }
+
+                foreach (var usage in consumableUsageList)
+                {
+                    conn.InsertParam(usage);
+                }
+
+                foreach (var detail in detailList)
+                {
+                    conn.InsertParam(detail);
+                }
+            }
+
+            var list = service.GetUsageSummary(DateTime.Today.AddDays(-1), DateTime.Today);
+
+            foreach (var item in list)
+            {
+                var usage = consumableUsageList.First(p => p.Date == item.UsageDate );
+
+
+                var detail = detailList.First(p => p.UsageId == usage.Id && p.ConsumableId == item.Id);
+                Assert.Equal(detail.Count,item.Count);
+                Assert.Equal(detail.SubTotal, item.SubTotal);
+                Assert.Equal(detail.UnitPrice,item.UnitPrice);
+
+            }
+        }
 
         public void Dispose()
         {
@@ -249,6 +417,9 @@ namespace EggFarmSystem.Core.Tests.Services
                 conn.DeleteAll<Models.Data.EmployeeCost>();
                 conn.DeleteAll<Models.Data.EggProductionDetail>();
                 conn.DeleteAll<Models.Data.EggProduction>();
+                conn.DeleteAll<Models.Data.ConsumableUsageDetail>();
+                conn.DeleteAll<Models.Data.ConsumableUsage>();
+                conn.DeleteAll<Models.Consumable>();
                 conn.DeleteAll<Models.Employee>();
                 conn.DeleteAll<Models.HenHouse>();
             }

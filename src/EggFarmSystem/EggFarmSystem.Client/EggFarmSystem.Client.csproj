@@ -246,15 +246,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-<<<<<<< HEAD
     <Page Include="Modules\Reports\Views\UsageReportView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-=======
+	</Page>
     <Page Include="Modules\Reports\Views\EggProductionReportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
->>>>>>> remotes/upstream/master
     </Page>
     <Page Include="Modules\Reports\Views\EmployeeCostReportView.xaml">
       <SubType>Designer</SubType>

@@ -91,11 +91,8 @@
     <Compile Include="Models\HenHouse.cs" />
     <Compile Include="Models\Medicine.cs" />
     <Compile Include="Models\ErrorInfo.cs" />
-<<<<<<< HEAD
     <Compile Include="Models\Reporting\UsageSummary.cs" />
-=======
     <Compile Include="Models\Reporting\EggProductionReport.cs" />
->>>>>>> remotes/upstream/master
     <Compile Include="Models\Reporting\EmployeeCostSummary.cs" />
     <Compile Include="Models\Reporting\HouseInfo.cs" />
     <Compile Include="Models\SearchInfo.cs" />

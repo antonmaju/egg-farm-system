@@ -28,27 +28,17 @@ namespace EggFarmSystem.Client.Modules.Reports
         void RegisterViewModels(ContainerBuilder builder)
         {
             builder.RegisterType<ReportListViewModel>().InstancePerDependency();
-
             builder.RegisterType<EmployeeCostReportViewModel>().InstancePerDependency();
-<<<<<<< HEAD
-
             builder.RegisterType<UsageReportViewModel>().InstancePerDependency();
-=======
             builder.RegisterType<EggProductionReportViewModel>().InstancePerDependency();
->>>>>>> remotes/upstream/master
         }
 
         void RegisterModels(ContainerBuilder builder)
         {
             builder.RegisterType<ReportListView>().As<IReportListView>().InstancePerDependency();
-
             builder.RegisterType<EmployeeCostReportView>().As<IEmployeeCostReportView>().InstancePerDependency();
-<<<<<<< HEAD
-
             builder.RegisterType<UsageReportView>().As<IUsageReportView>().InstancePerDependency();
-=======
             builder.RegisterType<EggProductionReportView>().As<IEggProductionReportView>().InstancePerDependency();
->>>>>>> remotes/upstream/master
         }
     }
 }
