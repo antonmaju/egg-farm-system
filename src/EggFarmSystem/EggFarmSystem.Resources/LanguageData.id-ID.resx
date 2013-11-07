@@ -502,7 +502,7 @@
     <value>Nama Laporan</value>
   </data>
   <data name="UsageReport_Description" xml:space="preserve">
-    <value>Menampilkan laporan biaya pakan/ovk pada periode tertentu</value>
+    <value>Menampilkan laporan biaya pakan dan ovk pada periode tertentu</value>
   </data>
   <data name="UsageReport_Title" xml:space="preserve">
     <value>Laporan Biaya Pakan Dan OVK</value>
