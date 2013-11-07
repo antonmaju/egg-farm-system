@@ -526,4 +526,7 @@
     <value>There's an issue with file permission for reports folder. 
 Please ensure you assign correct permission !</value>
   </data>
+  <data name="UsageReport_HenHouseName" xml:space="preserve">
+    <value>House</value>
+  </data>
 </root>

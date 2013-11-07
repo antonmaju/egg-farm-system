@@ -37,4 +37,19 @@ namespace EggFarmSystem.Service.Controllers
             return service.GetEggProductionReport(start, end);
         }
     }
+
+    public class UsageSummaryController : ApiControllerBase
+    {
+        private readonly IReportingService service;
+
+        public UsageSummaryController(IReportingService service)
+        {
+            this.service = service;
+        }
+
+        public IList<UsageSummary> Get(DateTime start, DateTime end)
+        {
+            return service.GetUsageSummary(start, end);
+        }
+    }
 }

@@ -19,6 +19,14 @@ namespace EggFarmSystem.Client.Core.Services
             get { return "/usage"; }
         }
 
+        //public Models.SearchResult<Models.ConsumableUsage> Search(Models.DateRangeSearchInfo searchInfo)
+        //{
+        //    string url = string.Format("{0}?page={1}&limit={2}&start={3}&end={4}",
+        //        ResourceUrl, searchInfo.PageIndex, searchInfo.PageSize, searchInfo.Start, searchInfo.End);
+
+        //    return CreateGetRequest<SearchResult<Models.ConsumableUsage>>(Guid.Empty, url);
+        //}
+
         public Models.SearchResult<Models.ConsumableUsage> Search(Models.ConsumableUsageSearchInfo searchInfo)
         {
             string url = string.Format("{0}?page={1}&limit={2}&start={3}&end={4}",

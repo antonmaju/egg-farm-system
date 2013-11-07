@@ -91,6 +91,8 @@
     <Compile Include="Models\HenHouse.cs" />
     <Compile Include="Models\Medicine.cs" />
     <Compile Include="Models\ErrorInfo.cs" />
+    <Compile Include="Models\Reporting\ConsumableUsageInfo.cs" />
+    <Compile Include="Models\Reporting\UsageSummary.cs" />
     <Compile Include="Models\Reporting\EggProductionReport.cs" />
     <Compile Include="Models\Reporting\EmployeeCostSummary.cs" />
     <Compile Include="Models\Reporting\HouseInfo.cs" />
