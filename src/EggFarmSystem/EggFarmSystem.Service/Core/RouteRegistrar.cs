@@ -31,8 +31,8 @@ namespace EggFarmSystem.Service.Core
                                 routeTemplate: "api/report/employeecost/{start}/{end}",
                                 defaults: new {controller = "EmployeeCostSummary", action = "Get"});
             routes.MapHttpRoute(name: "UsageSummary",
-                                routeTemplate: "api/report/employeecost/{start}/{end}",
-                                defaults: new { controller = "EmployeeCostSummary", action = "Get" });
+                                routeTemplate: "api/report/usagesummary/{start}/{end}",
+                                defaults: new { controller = "UsageSummary", action = "Get" });
 
             routes.MapHttpRoute(name: "EggProductionReport",
                                 routeTemplate: "api/report/eggproduction/{start}/{end}",

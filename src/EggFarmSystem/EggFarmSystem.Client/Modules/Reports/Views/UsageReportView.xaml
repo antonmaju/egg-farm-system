@@ -14,8 +14,8 @@
                 <RowDefinition Height="55" />
                 <RowDefinition ></RowDefinition>
             </Grid.RowDefinitions>
-            <controls:DateRangeSelector From="{Binding Path=StartDate,Mode=TwoWay}" To="{Binding Path=EndDate, Mode=TwoWay}" Margin="0,0,0,15" x:Name="dateSelector"></controls:DateRangeSelector> 
-            <windows:DocumentPreview Grid.Row="1" Name="docViewer" ></windows:DocumentPreview>
+            <controls:DateRangeSelector From="{Binding Path=StartDate,Mode=TwoWay}" To="{Binding Path=EndDate, Mode=TwoWay}" Margin="0,0,0,15" x:Name="dateSelector"></controls:DateRangeSelector>
+            <windows:DocumentPreview Grid.Row="1" Name="docViewer" Tag="{Binding Path=Title}" ></windows:DocumentPreview>
         </Grid>
     </Border>
 </views:UserControlBase>

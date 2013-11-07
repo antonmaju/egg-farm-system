@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -15,7 +14,6 @@ using System.Windows.Shapes;
 using EggFarmSystem.Client.Core.Views;
 using EggFarmSystem.Client.Modules.Reports.ViewModels;
 using MigraDoc.DocumentObjectModel.IO;
-using MigraDoc.Rendering;
 using PdfSharp.Pdf;
 
 namespace EggFarmSystem.Client.Modules.Reports.Views
@@ -30,6 +28,7 @@ namespace EggFarmSystem.Client.Modules.Reports.Views
         public UsageReportView(UsageReportViewModel model)
         {
             InitializeComponent();
+
             this.DataContext = model;
             this.NavigationCommands = model.NavigationCommands;
             this.model = model;
@@ -44,12 +43,13 @@ namespace EggFarmSystem.Client.Modules.Reports.Views
 
         void model_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            const bool unicode = false;
+            const PdfFontEmbedding embedding = PdfFontEmbedding.Always;
             if (e.PropertyName == "Document")
             {
                 if (model.Document != null)
                 {
-                    string ddl = DdlWriter.WriteToString(model.Document);
-                    docViewer.Ddl = ddl;
+                    docViewer.Ddl = DdlWriter.WriteToString(model.Document);
                 }
             }
         }

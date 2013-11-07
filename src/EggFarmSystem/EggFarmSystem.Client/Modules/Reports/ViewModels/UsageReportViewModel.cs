@@ -57,6 +57,8 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
 
         #endregion
 
+        public string Title { get { return LanguageData.UsageReport_Title; } }
+
         #region commands
 
         private void InitializeCommands()
@@ -72,153 +74,106 @@ namespace EggFarmSystem.Client.Modules.Reports.ViewModels
 
         void ViewReport(object param)
         {
-            //EndDate = "12/12/2005";
-            IList<Models.Reporting.UsageSummary> summary = service.GetUsageSummary(StartDate, EndDate);
-            
+            IList<UsageSummary> reportList = service.GetUsageSummary(StartDate, EndDate);
+
             var document = new Document();
             document.UseCmykColor = true;
-            var section = document.AddSection();
-            section.PageSetup.TopMargin = Unit.FromCentimeter(4);
-            section.PageSetup.Orientation = Orientation.Landscape;
-            var header = section.Headers.Primary;
-            
-            var paragraph = header.AddParagraph();
 
-            //paragraph.Format.Font.Color = Color.FromCmyk(100, 30, 20, 50);
-            paragraph.AddFormattedText("Usage Report", TextFormat.Bold);
-            paragraph.Format.Alignment = ParagraphAlignment.Center;
-            paragraph.Format.Font.Size = Unit.FromPoint(12);
-            paragraph.Format.SpaceAfter = Unit.FromCentimeter(0.7);
-
-            paragraph = header.AddParagraph();
-            paragraph.AddFormattedText(string.Format("{0} {1} {2} {3}", LanguageData.General_From, StartDate.ToString("d MMMM yyyy"), LanguageData.General_To,
-                                                     EndDate.ToString("d MMMM yyyy")), TextFormat.Bold);
-            paragraph.Format.Alignment = ParagraphAlignment.Center;
-            paragraph.Format.SpaceAfter = Unit.FromCentimeter(0);
-            paragraph.Format.SpaceBefore = Unit.FromCentimeter(0);
-            section.AddParagraph();
-
-            //Table color etc
-            var TableBorder = new Color(81, 125, 192);
-            var TableBlue = new Color(235, 240, 249);
-            var TableGray = new Color(242, 242, 242);
-
-            // Create the item table
-            Table table= new Table();
-            Row row;
-            Cell cell;
-            Column column;
-            long _subtotal = 0;
-
-            var LastSummaryId = new Guid();
-            var LastUsageDate = "0";
-            foreach (var summaryItem in summary)
+            foreach (var report in reportList)
             {
-                
-                if (summaryItem.UsageDate.ToString() != LastUsageDate)
+                var section = document.AddSection();
+                section.PageSetup.TopMargin = Unit.FromCentimeter(2);
+                //section.PageSetup.Orientation = Orientation.Landscape;
+
+                var paragraph = section.AddParagraph();
+                paragraph.Format.Alignment = ParagraphAlignment.Center;
+                paragraph.Format.Font.Size = Unit.FromPoint(12);
+                paragraph.AddFormattedText(LanguageData.UsageReport_Title, TextFormat.Bold);
+                paragraph.AddLineBreak();
+
+                paragraph = section.AddParagraph();
+                paragraph.Format.Alignment = ParagraphAlignment.Center;
+                paragraph.AddFormattedText(report.Date.ToString("d MMMM yyyy"));
+                paragraph.Format.Alignment = ParagraphAlignment.Center;
+                paragraph.Format.SpaceAfter = Unit.FromCentimeter(1);
+                paragraph.Format.SpaceBefore = Unit.FromCentimeter(0);
+
+                var table = section.AddTable();
+                table.KeepTogether = false;
+                table.Borders.Width = 0.75;
+
+                var column = table.AddColumn(Unit.FromCentimeter(4));
+                column.Format.Alignment = ParagraphAlignment.Left;
+                column = table.AddColumn(Unit.FromCentimeter(4));
+                column.Format.Alignment = ParagraphAlignment.Right;
+                column = table.AddColumn(Unit.FromCentimeter(2));
+                column.Format.Alignment = ParagraphAlignment.Right;
+                column = table.AddColumn(Unit.FromCentimeter(3));
+                column.Format.Alignment = ParagraphAlignment.Right;
+                column = table.AddColumn(Unit.FromCentimeter(3));
+                column.Format.Alignment = ParagraphAlignment.Right;
+
+                var row = table.AddRow();
+                row.TopPadding = Unit.FromCentimeter(0.4);
+                row.BottomPadding = Unit.FromCentimeter(0.4);
+                row.Format.Alignment = ParagraphAlignment.Center;
+
+                var cell = row.Cells[0];
+                cell.AddParagraph(LanguageData.Usage_HouseField);
+                cell.Format.Alignment = ParagraphAlignment.Center;
+                cell = row.Cells[1];
+                cell.AddParagraph(LanguageData.Usage_ConsumableField);
+                cell.Format.Alignment = ParagraphAlignment.Center;
+                cell = row.Cells[2];
+                cell.AddParagraph(LanguageData.Usage_CountField);
+                cell.Format.Alignment = ParagraphAlignment.Center;
+                cell = row.Cells[3];
+                cell.AddParagraph(LanguageData.Usage_UnitPriceField);
+                cell.Format.Alignment = ParagraphAlignment.Center;
+                cell = row.Cells[4];
+                cell.AddParagraph(LanguageData.Usage_SubTotalField);
+                cell.Format.Alignment = ParagraphAlignment.Center;
+
+                foreach (var detail in report.Details)
                 {
-                    //LastSummaryId = summaryItem.Id;
-                    if (LastUsageDate != "0")
-                    {
-                        row = table.AddRow();
-                        row.Format.Font.Bold = true;
-                        cell = row.Cells[0];
-                        cell.AddParagraph("Total");
-                        cell.MergeRight = 3;
-                        cell = row.Cells[4];
-                        cell.AddParagraph(_subtotal.ToString());
-                        _subtotal = 0;
-                        section.AddPageBreak();
-                    }
-                    table = section.AddTable();
-                    table.Style = "Table";
-                    table.Borders.Color = TableBorder;
-                    table.KeepTogether = false;
-                    table.Borders.Width = 0.75;
-
-                    //Set Column
-                    column = table.AddColumn(Unit.FromCentimeter(6));
-                    column = table.AddColumn(Unit.FromCentimeter(6));
-                    column.Format.Alignment = ParagraphAlignment.Right;
-                    column = table.AddColumn(Unit.FromCentimeter(4));
-                    column.Format.Alignment = ParagraphAlignment.Right;
-                    column = table.AddColumn(Unit.FromCentimeter(4));
-                    column.Format.Alignment = ParagraphAlignment.Right;
-                    column = table.AddColumn(Unit.FromCentimeter(4));
-                    column.Format.Alignment = ParagraphAlignment.Right;
-
-                    //Set Header
                     row = table.AddRow();
-                    row.Format.Font.Bold = true;
-                    row.Shading.Color = TableBlue;
-                    cell = row.Cells[0];
-                    cell.AddParagraph(summaryItem.UsageDate.ToShortDateString());
-                    cell.MergeRight = 4;
+                    row.TopPadding = Unit.FromCentimeter(0.2);
+                    row.BottomPadding = Unit.FromCentimeter(0.2);
 
-                    row = table.AddRow();
-                    row.HeadingFormat = true;
-                    row.Format.Font.Bold = true;
-                    row.Shading.Color = TableBlue;
                     cell = row.Cells[0];
-                    cell.AddParagraph(LanguageData.Usage_HouseField);
-                    row.Cells[0].Format.Alignment = ParagraphAlignment.Center;
+                    cell.AddParagraph(detail.House.Name);
+                    cell.Format.Alignment = ParagraphAlignment.Left;
                     cell = row.Cells[1];
-                    cell.AddParagraph(LanguageData.Usage_ConsumableField);
-                    cell.Format.Alignment = ParagraphAlignment.Center;
+                    cell.AddParagraph(detail.Consumable.Name);
+                    cell.Format.Alignment = ParagraphAlignment.Left;
                     cell = row.Cells[2];
-                    cell.AddParagraph(LanguageData.Usage_CountField);
-                    cell.Format.Alignment = ParagraphAlignment.Center;
+                    cell.AddParagraph(detail.Count.ToString());
+                    cell.Format.Alignment = ParagraphAlignment.Right;
                     cell = row.Cells[3];
-                    cell.AddParagraph(LanguageData.Usage_UnitPriceField);
-                    cell.Format.Alignment = ParagraphAlignment.Center;
+                    cell.AddParagraph(detail.UnitPrice.ToString("0,00"));
+                    cell.Format.Alignment = ParagraphAlignment.Right;
                     cell = row.Cells[4];
-                    cell.AddParagraph(LanguageData.Usage_SubTotalField);
-                    cell.Format.Alignment = ParagraphAlignment.Center;
-
-                    LastUsageDate = summaryItem.UsageDate.ToString();
-
-                    
-                    //cell.MergeDown = 1;
+                    cell.AddParagraph(detail.SubTotal.ToString("#,##"));
+                    cell.Format.Alignment = ParagraphAlignment.Right;
                 }
-                _subtotal = _subtotal+summaryItem.SubTotal;
-                
                 row = table.AddRow();
                 row.TopPadding = Unit.FromCentimeter(0.2);
                 row.BottomPadding = Unit.FromCentimeter(0.2);
-                row.Format.Alignment = ParagraphAlignment.Center;
-                cell = row.Cells[0];
-                cell.Format.Alignment = ParagraphAlignment.Left;
-                cell.AddParagraph(summaryItem.HenHouseName);
-                cell = row.Cells[1];
-                cell.Format.Alignment = ParagraphAlignment.Left;
-                cell.AddParagraph(summaryItem.Name);
-                cell = row.Cells[2];
-                cell.Format.Alignment = ParagraphAlignment.Right;
-                cell.AddParagraph(summaryItem.Count.ToString());
-                cell = row.Cells[3];
-                cell.Format.Alignment = ParagraphAlignment.Right;
-                cell.AddParagraph(summaryItem.UnitPrice.ToString());
+
+                cell = row.Cells[0];                
+                cell.AddParagraph(LanguageData.Usage_TotalField);
+                cell.Format.Alignment = ParagraphAlignment.Center;
+                cell.MergeRight = 3;
+                cell.Format.Font.Bold = true;
                 cell = row.Cells[4];
+                cell.AddParagraph(report.Total.ToString("#,##"));
                 cell.Format.Alignment = ParagraphAlignment.Right;
-                cell.AddParagraph(summaryItem.SubTotal.ToString());
-
-                if(object.ReferenceEquals(summary.Last(), summaryItem))
-                {
-                    row = table.AddRow();
-                    row.Format.Font.Bold = true;
-                    cell = row.Cells[0];
-                    cell.AddParagraph(LanguageData.Usage_TotalField);
-                    cell.MergeRight = 3;
-                    cell = row.Cells[4];
-                    cell.AddParagraph(_subtotal.ToString());
-                    _subtotal = 0;
-                }
-
+                cell.Format.Font.Bold = true;
+                
             }
 
             Document = document;
         }
-
         #endregion
 
        

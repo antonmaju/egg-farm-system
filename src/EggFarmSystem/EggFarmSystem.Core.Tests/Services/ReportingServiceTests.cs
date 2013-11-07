@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using Xunit;
 using ConsumableUsage = EggFarmSystem.Models.ConsumableUsage;
+using ConsumableUsageDetail = EggFarmSystem.Models.Data.ConsumableUsageDetail;
 
 namespace EggFarmSystem.Core.Tests.Services
 {
@@ -321,7 +322,7 @@ namespace EggFarmSystem.Core.Tests.Services
                     new Models.Data.ConsumableUsage
                         {
                             Id = Guid.NewGuid(),
-                            Date = DateTime.Today.AddDays(1),
+                            Date = DateTime.Today,
                             Total = 110000
                         }
                 };
@@ -394,17 +395,34 @@ namespace EggFarmSystem.Core.Tests.Services
                 }
             }
 
-            var list = service.GetUsageSummary(DateTime.Today.AddDays(-1), DateTime.Today);
+            var list = service.GetUsageSummary(DateTime.Today.AddDays(-1), DateTime.Today.AddDays(3));
 
             foreach (var item in list)
             {
-                var usage = consumableUsageList.First(p => p.Date == item.UsageDate );
+                var usage = consumableUsageList.FirstOrDefault(p => p.Id == item.Id );
+                Assert.Equal(usage.Date, item.Date);
+                Assert.Equal(usage.Total,item.Total);
 
+                foreach (var detail in item.Details)
+                {
+                    
 
-                var detail = detailList.First(p => p.UsageId == usage.Id && p.ConsumableId == item.Id);
-                Assert.Equal(detail.Count,item.Count);
-                Assert.Equal(detail.SubTotal, item.SubTotal);
-                Assert.Equal(detail.UnitPrice,item.UnitPrice);
+                    foreach (var detailData in detailList)
+                    {
+                        //Console.WriteLine(detail.Consumable.Id);
+                        if(detailData.UsageId == item.Id && detailData.ConsumableId == detail.Consumable.Id && detailData.HouseId == detail.House.Id)
+                        {
+                            //Console.WriteLine(detailData.ConsumableId);
+                            //Console.WriteLine("----------");
+                            Assert.Equal(detailData.Count, detail.Count);
+                            Assert.Equal(detailData.SubTotal, detail.SubTotal);
+                            Assert.Equal(detailData.UnitPrice, detail.UnitPrice);
+                        }
+                        
+                    }
+                
+                }
+               
 
             }
         }

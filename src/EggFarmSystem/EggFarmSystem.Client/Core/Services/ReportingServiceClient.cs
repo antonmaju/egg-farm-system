@@ -29,7 +29,7 @@ namespace EggFarmSystem.Client.Core.Services
 
         public IList<UsageSummary> GetUsageSummary(DateTime start, DateTime end)
         {
-            string url = string.Format("{0}/usage/{1}/{2}",
+            string url = string.Format("{0}/usagesummary/{1}/{2}",
                ResourceUrl, start.ToString("YYYY-MM-dd"), end.ToString("YYYY-MM-dd"));
 
             return CreateGetRequest<List<UsageSummary>>(Guid.Empty, url);

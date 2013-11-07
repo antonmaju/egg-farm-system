@@ -67,42 +67,60 @@ ORDER BY Employee.Name";
 
         public IList<UsageSummary> GetUsageSummary(DateTime start, DateTime end)
         {
-            string sql =
-                @"SELECT Consumable.Id, Consumable.Name,ConsumableUsage.Date as UsageDate,ConsumableUsageDetail.Count AS 'Count', ConsumableUsageDetail.Subtotal AS 'SubTotal',ConsumableUsageDetail.UnitPrice,HenHouse.Name as 'HenHouseName'
-FROM ConsumableUsageDetail JOIN ConsumableUsage ON ConsumableUsageDetail.UsageId = ConsumableUsage.Id
-JOIN Consumable ON ConsumableUsageDetail.ConsumableId = Consumable.Id JOIN HenHouse on ConsumableUsageDetail.HouseId = HenHouse.Id
-WHERE ConsumableUsage.Date BETWEEN @start AND @end
-ORDER BY ConsumableUsage.Date,ConsumableUsage.Date";
-
-            var result = new List<UsageSummary>();
+            string sql = @"SELECT ConsumableUsageDetail.*, HenHouse.Name AS 'HouseName',Consumable.Name AS 'ConsumableName' FROM ConsumableUsageDetail JOIN HenHouse ON ConsumableUsageDetail.HouseId = HenHouse.Id Join Consumable ON ConsumableUsageDetail.ConsumableId = Consumable.Id where ConsumableUsageDetail.UsageId=@usageId order by HenHouse.Name";
 
             using (var conn = factory.OpenDbConnection())
             {
-                var command = conn.CreateCommand();
-                command.CommandType = CommandType.Text;
-                command.CommandText = sql;
-                command.Parameters.Add(new MySqlParameter("@start", MySqlDbType.Date) {Value = start});
-                command.Parameters.Add(new MySqlParameter("@end", MySqlDbType.Date) {Value = end});
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        var item = new UsageSummary
-                            {
-                                Id = new Guid(reader["Id"].ToString()),
-                                Name = reader["Name"].ToString(),
-                                Count = Convert.ToInt32(reader["Count"]),
-                                SubTotal = Convert.ToInt64(reader["SubTotal"]),
-                                UnitPrice = Convert.ToInt64(reader["UnitPrice"]),
-                                UsageDate = Convert.ToDateTime(reader["UsageDate"]),
-                                HenHouseName = reader["HenHouseName"].ToString()
 
-                            };
-                        result.Add(item);
+                var ev = OrmLiteConfig.DialectProvider.ExpressionVisitor<Models.Data.ConsumableUsage>()
+                                      .Where(e => e.Date >= start.Date && e.Date <= end.Date)
+                                      .OrderBy(e => e.Date);
+
+                var usageList = conn.Select(ev).Select(p => new UsageSummary
+                {
+                    Date = p.Date,
+                    Id = p.Id,
+                    Total = p.Total
+                }).ToList();
+
+                var command = conn.CreateCommand();
+                command.CommandText = sql;
+                command.CommandType = CommandType.Text;
+
+                foreach (var usageData in usageList)
+                {
+                    command.Parameters.Clear();
+                    command.Parameters.Add(new MySqlParameter("@usageId", MySqlDbType.Guid)
+                    {
+                        Value = usageData.Id
+                    });
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var detail = new UsageSummaryDetail();
+                            detail.Count = DataConverter.ToInt32(reader["Count"]);
+                            detail.SubTotal = DataConverter.ToInt32(reader["SubTotal"]);
+                            detail.UnitPrice = DataConverter.ToInt32(reader["UnitPrice"]);
+                            detail.House = new HouseInfo
+                                {
+                                    Id = DataConverter.ToGuid(reader["HouseId"]),
+                                    Name = DataConverter.ToString(reader["HouseName"])
+                                };
+                            detail.Consumable = new ConsumableUsageInfo
+                                {
+
+                                    Id = DataConverter.ToGuid(reader["HouseId"]),
+                                    Name = DataConverter.ToString(reader["ConsumableName"])
+                                };
+                            usageData.Details.Add(detail);
+                        }
                     }
                 }
+
+                return usageList;
             }
-            return result;
         }
 
         public IList<EggProductionReport> GetEggProductionReport(DateTime start, DateTime end)
