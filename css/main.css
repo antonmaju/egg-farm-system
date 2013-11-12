@@ -36,6 +36,7 @@ hr {
 
 img {
     vertical-align: middle;
+    max-width: 100%;
 }
 
 fieldset {
@@ -74,22 +75,22 @@ body {
    =================== */
 
 .header-container {
-    border-bottom: 20px solid #e44d26;
+    /* border-bottom: 20px solid #e44d26; */
 }
 
 .footer-container,
 .main aside {
-    border-top: 20px solid #e44d26;
+    /* border-top: 20px solid #e44d26; */
 }
 
 .header-container,
 .footer-container,
 .main aside {
-    background: #f16529;
+    /* background: #f16529; */
 }
 
 .title {
-    color: white;
+    color: black;
 }
 
 /* ==============
@@ -110,17 +111,19 @@ nav a {
     text-decoration: none;
     font-weight: bold;
 
-    color: white;
-    background: #e44d26;
+    color: #555;
+
 }
 
+/*
 nav a:hover,
 nav a:visited {
-    color: white;
+    color: #bbb;
 }
+*/
 
 nav a:hover {
-    text-decoration: underline;
+    color: #999;
 }
 
 /* ==============
@@ -157,12 +160,7 @@ nav a:hover {
    Author's custom styles
    ========================================================================== */
 
-
-
-
-
-
-
+#home .main-img { display: none;}
 
 
 
@@ -183,9 +181,9 @@ nav a:hover {
 
     nav a {
         float: left;
-        width: 27%;
+
         margin: 0 1.7%;
-        padding: 25px 2%;
+        padding: 7px 2%;
         margin-bottom: 0;
     }
 
@@ -196,6 +194,8 @@ nav a:hover {
     nav li:last-child a {
         margin-right: 0;
     }
+
+    #home .main-img { display: block;}
 
 /* ========================
     INTERMEDIATE: IE Fixes
@@ -218,9 +218,11 @@ nav a:hover {
 
     .header-container,
     .main aside {
+        /*
         -webkit-box-shadow: 0 5px 10px #aaa;
            -moz-box-shadow: 0 5px 10px #aaa;
                 box-shadow: 0 5px 10px #aaa;
+        */
     }
 
 /* ============
@@ -233,7 +235,13 @@ nav a:hover {
 
     nav {
         float: right;
-        width: 38%;
+        width: 60%;
+        margin-top:15px;
+    }
+
+    nav a
+    {
+        float:right;
     }
 
 /* ============
@@ -261,6 +269,7 @@ nav a:hover {
         width: 1026px; /* 1140px - 10% for margins */
         margin: 0 auto;
     }
+
 }
 
 /* ==========================================================================

@@ -13,17 +13,19 @@
     <link rel="stylesheet" href="{{ site.baseurl }}/css/normalize.min.css">
     <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
 
-    <script src="{{ site.baseurl }}//js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="{{ site.baseurl }}/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 </head>
 <body>
     <div class="header-container">
         <header class="wrapper clearfix">
+
             <h1 class="title">{{ site.name }}</h1>
-            <nav>
+            <nav class="clearfix">
                 <ul>
-                    <li><a href="#">nav ul li a</a></li>
-                    <li><a href="#">nav ul li a</a></li>
-                    <li><a href="#">nav ul li a</a></li>
+                    <li><a href="{{ site.baseurl }}/credits.html">Credits</a></li>
+                    <li><a href="{{ site.baseurl }}/download.html">Downloads</a></li>
+                    <li><a href="{{ site.baseurl }}/posts/">Posts</a></li>
+                    <li><a href="{{ site.baseurl }}/docs/">Documentation</a></li>
                 </ul>
             </nav>
         </header>
