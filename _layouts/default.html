@@ -9,9 +9,11 @@
     <title>{{ page.title }}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=PT+Sans">
     <link rel="stylesheet" href="{{ site.baseurl }}/css/normalize.min.css">
     <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
+
 
     <script src="{{ site.baseurl }}/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 </head>
@@ -19,7 +21,7 @@
     <div class="header-container">
         <header class="wrapper clearfix">
 
-            <h1 class="title">{{ site.name }}</h1>
+            <img id="logo" src="{{ site.baseurl }}/images/logo.png" {% if page.no_logo %} class="no-logo" {% endif %} />
             <nav class="clearfix">
                 <ul>
                     <li><a href="{{ site.baseurl }}/credits.html">Credits</a></li>
@@ -39,7 +41,7 @@
 
     <div class="footer-container">
         <footer class="wrapper">
-            <h3>footer</h3>
+
         </footer>
     </div>
 
