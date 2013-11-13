@@ -1,0 +1,37 @@
+---
+- title : Installation Guide
+  slug  : installation
+
+- title : Terms
+  slug  : terms
+
+- title : Data Entry
+  items :
+        - title : Hen Entry
+          slug  : hen-entry
+
+        - title : Hen House Entry
+          slug  : house-entry
+
+        - title : Consumable Entry
+          slug  : consumable-entry
+
+        - title : Employee Entry
+          slug  : employee-entry
+
+        - title : Additional Data Entry
+          slug  : additional-data-entry
+
+        - title : Employee Cost Entry
+          slug  : employee-cost-entry
+
+        - title : Usage Entry
+          slug  : usage-entry
+
+        - title : Egg Production Entry
+          slug  : egg-production-entry
+
+- title : Reporting
+  slug  : reporting
+
+---

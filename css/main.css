@@ -89,6 +89,8 @@ body {
     /* background: #f16529; */
 }
 
+
+
 .title {
     color: black;
 }
@@ -104,14 +106,16 @@ nav ul {
 
 nav a {
     display: block;
-    margin-bottom: 10px;
-    padding: 15px 0;
-
     text-align: center;
     text-decoration: none;
-    font-weight: bold;
-
     color: #555;
+}
+
+header nav a
+{
+    margin-bottom: 10px;
+    padding: 15px 0;
+    font-weight: bold;
 
 }
 
@@ -138,10 +142,6 @@ nav a:hover {
     font-size: 2em;
 }
 
-.main aside {
-    color: white;
-    padding: 0px 5% 10px;
-}
 
 .footer-container footer {
     color: white;
@@ -162,11 +162,28 @@ nav a:hover {
 
 #home .main-img { display: none;}
 
+aside nav a
+{
+    text-align: left;
+    color : #777;
+    font-weight:bold;
+    font-size: 0.9em;
+}
 
+aside nav a:hover
+{
+    cursor: pointer;
+}
 
+aside nav ul
+{
+    margin-left: 20px;
+}
 
-
-
+aside nav .active a
+{
+    color: #555;
+}
 
 
 /* ==========================================================================
@@ -179,7 +196,7 @@ nav a:hover {
     INTERMEDIATE: Menu
    ==================== */
 
-    nav a {
+    header nav a {
         float: left;
 
         margin: 0 1.7%;
@@ -187,12 +204,18 @@ nav a:hover {
         margin-bottom: 0;
     }
 
-    nav li:first-child a {
+    header nav li:first-child a {
         margin-left: 0;
     }
 
-    nav li:last-child a {
+    header nav li:last-child a {
         margin-right: 0;
+    }
+
+    #docs .content
+    {
+        float:left;
+        width: 70%;
     }
 
     #home .main-img { display: block;}
@@ -209,6 +232,7 @@ nav a:hover {
         margin: 0 0.7%;
     }
 }
+
 
 @media only screen and (min-width: 768px) {
 
@@ -233,13 +257,13 @@ nav a:hover {
         float: left;
     }
 
-    nav {
+    header nav {
         float: right;
         width: 60%;
         margin-top:15px;
     }
 
-    nav a
+    header nav a
     {
         float:right;
     }
@@ -254,7 +278,7 @@ nav a:hover {
     }
 
     .main aside {
-        float: right;
+        float: left;
         width: 28%;
     }
 }

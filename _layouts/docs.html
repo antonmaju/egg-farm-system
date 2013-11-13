@@ -1,0 +1,34 @@
+---
+layout: default
+---
+
+<div id="docs">
+    <aside>
+        <nav>
+            <ul>
+                {% for item in site.data.menu_items %}
+                <li {% if item.slug == page.slug %} class="active"  {% endif %} >
+                    <a href="{{ site.baseurl }}/docs/{{ item.slug }}.html">{{item.title}}</a>
+                    {% if item.items != nil %}
+                    <ul class="submenu">
+                        {% for subitem in item.items %}
+                        <li {% if subitem.slug == page.slug %} class="active"  {% endif %}>
+                            <a href="{{ site.baseurl }}/docs/{{ subitem.slug }}.html">{{subitem.title}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="content">
+        {{ content }}
+    </div>
+
+
+
+</div>
+
