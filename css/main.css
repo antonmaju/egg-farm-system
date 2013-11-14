@@ -161,6 +161,7 @@ nav a:hover {
    ========================================================================== */
 
 #home .main-img { display: none;}
+.docs-img { max-width: 100%; }
 
 aside nav a
 {
