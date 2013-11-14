@@ -124,7 +124,9 @@ header nav a
 
 #logo
 {
-    max-height:50px;
+    display:block;
+    margin:auto;
+    max-width:200px;
 }
 
 nav a:hover {
@@ -149,6 +151,25 @@ nav a:hover {
     padding: 20px 0;
 }
 
+#credits h3
+{
+    text-align: center;
+    padding:3px;
+    background-color: white;
+    color: #555;
+}
+
+#credits ul{
+    list-style-type: none;
+    padding:0;
+}
+
+#credits li
+{
+     text-align: center;
+    padding:0;
+    margin:0;
+}
 
 /* ===============
     ALL: IE Fixes
@@ -164,11 +185,6 @@ nav a:hover {
 
 #home .main-img { display: none;}
 .docs-img { max-width: 100%; }
-
-header nav a
-{
-    float:left;
-}
 
 aside nav a
 {
@@ -199,8 +215,6 @@ aside nav .active a
     display:none;
 }
 
-
-
 /* ==========================================================================
    Media Queries
    ========================================================================== */
@@ -212,9 +226,6 @@ aside nav .active a
    ==================== */
 
     header nav a {
-        float: left;
-
-        margin: 0 1.7%;
         padding: 7px 2%;
         margin-bottom: 0;
     }
@@ -237,12 +248,14 @@ aside nav .active a
 
     #logo
     {
-        max-height:70px;
+        max-width: 100%;
+        max-height:100px;
     }
+
 
     .no-logo
     {
-        display:none;
+        display:none !important;
     }
 
     #fw
@@ -254,9 +267,7 @@ aside nav .active a
     INTERMEDIATE: IE Fixes
    ======================== */
 
-    nav ul li {
-        display: inline;
-    }
+
 
     .oldie nav a {
         margin: 0 0.7%;
@@ -289,14 +300,24 @@ aside nav .active a
     }
 
     header nav {
-        float: right;
-        width: 60%;
+        text-align:right;
         margin-top:15px;
     }
 
-    header nav a
+
+    header nav li
     {
-        float:right;
+
+        display: inline-block;
+        text-align: center;
+        margin: 0 1%;
+        font-size:0.9em;
+    }
+
+    #logo
+    {
+
+        float:left;
     }
 
 /* ============
@@ -313,10 +334,7 @@ aside nav .active a
         width: 28%;
     }
 
-    #logo
-    {
-        max-height:100px;
-    }
+
 }
 
 @media only screen and (min-width: 1140px) {
@@ -330,6 +348,12 @@ aside nav .active a
         margin: 0 auto;
     }
 
+
+    header nav li
+    {
+        font-size: 1em;
+        margin: 0 1.7%;
+    }
 }
 
 /* ==========================================================================
