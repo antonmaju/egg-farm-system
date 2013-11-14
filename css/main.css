@@ -13,6 +13,7 @@ textarea {
 body {
     font-size: 1em;
     line-height: 1.4;
+    background:#000;
 }
 
 ::-moz-selection {
@@ -62,7 +63,8 @@ textarea {
    ========================================================================== */
 
 body {
-    font: 16px/26px Helvetica, Helvetica Neue, Arial;
+    font: 16px/26px 'PT Sans',Helvetica, Helvetica Neue, Arial;
+    color: #eee;
 }
 
 .wrapper {
@@ -108,7 +110,8 @@ nav a {
     display: block;
     text-align: center;
     text-decoration: none;
-    color: #555;
+    color: #fff;
+    font-family:'Roboto',Georgia, Times, serif;
 }
 
 header nav a
@@ -119,12 +122,10 @@ header nav a
 
 }
 
-/*
-nav a:hover,
-nav a:visited {
-    color: #bbb;
+#logo
+{
+    max-height:50px;
 }
-*/
 
 nav a:hover {
     color: #999;
@@ -148,6 +149,7 @@ nav a:hover {
     padding: 20px 0;
 }
 
+
 /* ===============
     ALL: IE Fixes
    =============== */
@@ -163,12 +165,17 @@ nav a:hover {
 #home .main-img { display: none;}
 .docs-img { max-width: 100%; }
 
+header nav a
+{
+    float:left;
+}
+
 aside nav a
 {
     text-align: left;
-    color : #777;
+    color : #999;
     font-weight:bold;
-    font-size: 0.9em;
+    font-size: 0.95em;
 }
 
 aside nav a:hover
@@ -183,8 +190,15 @@ aside nav ul
 
 aside nav .active a
 {
-    color: #555;
+    color: #fff;
 }
+
+#fw
+{
+    border: solid 1px #333;
+    display:none;
+}
+
 
 
 /* ==========================================================================
@@ -221,6 +235,21 @@ aside nav .active a
 
     #home .main-img { display: block;}
 
+    #logo
+    {
+        max-height:70px;
+    }
+
+    .no-logo
+    {
+        display:none;
+    }
+
+    #fw
+    {
+        display:block;
+    }
+
 /* ========================
     INTERMEDIATE: IE Fixes
    ======================== */
@@ -256,6 +285,7 @@ aside nav .active a
 
     .title {
         float: left;
+
     }
 
     header nav {
@@ -281,6 +311,11 @@ aside nav .active a
     .main aside {
         float: left;
         width: 28%;
+    }
+
+    #logo
+    {
+        max-height:100px;
     }
 }
 
