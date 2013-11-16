@@ -41,7 +41,7 @@
                   ItemsSource="{Binding Path=HenHouses}" 
                   DisplayMemberPath="Name"
                   SelectedValuePath="Id"
-                  SelectedValue="{Binding Path=HouseId, NotifyOnValidationError=True}"></ComboBox>
+                  SelectedValue="{Binding Path=HouseId, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"></ComboBox>
 
                 <Label Grid.Row="4"  Style="{StaticResource MasterDataLabel}"
                Content="{Binding Path=CostText}"/>

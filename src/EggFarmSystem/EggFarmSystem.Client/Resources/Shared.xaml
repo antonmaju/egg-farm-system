@@ -75,10 +75,12 @@
     
     <CornerRadius x:Key="ControlCorderRadius" TopLeft="5" TopRight="5" BottomLeft="5" BottomRight="5"></CornerRadius>
 
-    <SolidColorBrush Color="#CACACA" x:Key="ListFirstRowBrush"></SolidColorBrush>
-    <SolidColorBrush Color="#ACACAC" x:Key="ListSecondRowBrush"></SolidColorBrush>
-    <SolidColorBrush Color="#F7941D" x:Key="ListSelectedBrush"></SolidColorBrush>
-
+    <SolidColorBrush Color="#CACACA" x:Key="ListFirstRowBrush" />
+    <SolidColorBrush Color="#ACACAC" x:Key="ListSecondRowBrush" />
+    <SolidColorBrush Color="#F7941D" x:Key="ListSelectedBrush" />
+    <SolidColorBrush Color="Red" x:Key="ErrorBackgroundBrush" />
+    <SolidColorBrush Color="White" x:Key="ErrorTextBrush" />
+    
     <LinearGradientBrush x:Key="ListHeaderBrush" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Color="#222222" Offset="0" />
         <GradientStop Color="#434343" Offset="0.4" />

@@ -1,20 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!--<Style TargetType="ComboBox" x:Key="FormComboBox" >
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="FontSize" Value="19" />
-        <Setter Property="Padding" Value="3" />
-        <Setter Property="Width" Value="300" />
-        <Setter Property="Margin" Value="10" />
-
-    </Style>-->
-
-
-  
-
-
     <ControlTemplate x:Key="ComboBoxToggleButton"
                  TargetType="{x:Type ToggleButton}">
         <Grid>
@@ -151,7 +137,6 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
-
                     <Grid>
                             <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
@@ -187,13 +172,8 @@
                                 <VisualState x:Name="Uneditable" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ToggleButton x:Name="ToggleButton"
-                        Template="{StaticResource ComboBoxToggleButton}"
-                        Grid.Column="2"
-                        Focusable="false"
-                        ClickMode="Press"
-                        IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, 
-              RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <ToggleButton x:Name="ToggleButton" Template="{StaticResource ComboBoxToggleButton}" Grid.Column="2" Focusable="false" 
+                                      ClickMode="Press" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
                         <ContentPresenter x:Name="ContentSite"
                             IsHitTestVisible="False"
                             Content="{TemplateBinding SelectionBoxItem}"
@@ -241,35 +221,36 @@
                             </Grid>
                         </Popup>
                </Grid>
-
-
-                   
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="HasItems"
-                   Value="false">
-                            <Setter TargetName="DropDownBorder"
-                    Property="MinHeight"
-                    Value="95" />
-                        </Trigger>
-                        <Trigger Property="IsGrouping"
-                   Value="true">
-                            <Setter Property="ScrollViewer.CanContentScroll"
-                    Value="false" />
-                        </Trigger>
-                        <Trigger SourceName="Popup"
-                   Property="AllowsTransparency"
-                   Value="true">
-                            <Setter TargetName="DropDownBorder"
-                    Property="CornerRadius"
-                    Value="4" />
-                            <Setter TargetName="DropDownBorder"
-                    Property="Margin"
-                    Value="0,2,0,0" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="HasItems" Value="false">
+                        <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95" />
+                    </Trigger>
+                    <Trigger Property="IsGrouping" Value="true">
+                        <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+                    </Trigger>
+                    <Trigger SourceName="Popup" Property="AllowsTransparency" Value="true">
+                        <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="4" />
+                        <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <DockPanel>
+                        <Border Background="{StaticResource ErrorBackgroundBrush}" DockPanel.Dock="right" Margin="5,0,0,0" Width="25" Height="25" CornerRadius="{StaticResource ControlCorderRadius}"
+                            ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                            <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="{StaticResource ErrorTextBrush}" >
+                            </TextBlock>
+                        </Border>
+                        <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
+                            <Border BorderBrush="{StaticResource ErrorBackgroundBrush}" BorderThickness="1" CornerRadius="{StaticResource ControlCorderRadius}"/>
+                        </AdornedElementPlaceholder>
+                    </DockPanel>    
                 </ControlTemplate>
             </Setter.Value>
-            
         </Setter>
     </Style>
 

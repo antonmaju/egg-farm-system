@@ -26,13 +26,13 @@
             <Setter.Value>
                 <ControlTemplate>
                     <DockPanel>
-                        <Border Background="Red" DockPanel.Dock="right" Margin="5,0,0,0" Width="20" Height="20" CornerRadius="{StaticResource ControlCorderRadius}"
+                        <Border Background="{StaticResource ErrorBackgroundBrush}" DockPanel.Dock="right" Margin="5,0,0,0" Width="25" Height="25" CornerRadius="{StaticResource ControlCorderRadius}"
                             ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
-                            <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="white" >
+                            <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="{StaticResource ErrorTextBrush}" >
                             </TextBlock>
                         </Border>
                         <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
-                            <Border BorderBrush="Red" BorderThickness="1" CornerRadius="{StaticResource ControlCorderRadius}"/>
+                            <Border BorderBrush="{StaticResource ErrorBackgroundBrush}" BorderThickness="1" CornerRadius="{StaticResource ControlCorderRadius}"/>
                         </AdornedElementPlaceholder>
                     </DockPanel>
                 </ControlTemplate>
