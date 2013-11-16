@@ -35,5 +35,23 @@ namespace EggFarmSystem.Client.Core
         {
             get { return null; }
         }
+
+        protected IList<string> PropertiesToValidate { get; set; }
+
+        protected virtual bool IsValid()
+        {
+            bool valid = true;
+
+            foreach (var prop in PropertiesToValidate)
+            {
+                if (this[prop] != null)
+                {
+                    valid = false;
+                    break;
+                }
+            }
+
+            return valid;
+        }
     }
 }

@@ -32,6 +32,9 @@ namespace EggFarmSystem.Models
             if(Cost==0)
                 errors.Add(new ErrorInfo("Cost", "Hen_RequireCost"));
 
+            if(HouseId == Guid.Empty)
+                errors.Add(new ErrorInfo("HouseId", "Hen_RequireHouse"));
+
             return errors;
         }
     }

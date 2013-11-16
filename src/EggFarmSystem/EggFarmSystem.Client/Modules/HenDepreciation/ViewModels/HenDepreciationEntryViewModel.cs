@@ -40,6 +40,12 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
 
             InitializeCommands();
 
+            PropertiesToValidate = new List<string>
+            {
+                "Date",
+                "Details"
+            };
+
             NavigationCommands = new List<CommandBase>(){SaveCommand, CancelCommand, RefreshCommand};
 
 
@@ -170,12 +176,6 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
 
         #region validation
 
-        private static readonly string[] PropertiesToValidate =
-            {
-                "Date",
-                "Details"
-            };
-
         public override string this[string columnName]
         {
             get
@@ -204,22 +204,6 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.ViewModels
                 return result;
             }
         } 
-
-        private bool IsValid()
-        {
-            bool valid = true;
-
-            foreach (var prop in PropertiesToValidate)
-            {
-                if (this[prop] != null)
-                {
-                    valid = false;
-                    break;
-                }
-            }
-
-            return valid;
-        }
 
         #endregion
 

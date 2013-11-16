@@ -22,10 +22,12 @@ namespace EggFarmSystem.Client.Modules.MasterData.Commands
 
         protected override void OnSave(Consumable entity)
         {
+            var consumable = entity as Consumable ?? Entity;
+
             try
             {
-                consumableService.Save(entity);
-                messageBroker.Publish(CommonMessages.SaveConsumableSuccess, entity);
+                consumableService.Save(consumable);
+                messageBroker.Publish(CommonMessages.SaveConsumableSuccess, consumable);
             }
             catch(Exception ex)
             {

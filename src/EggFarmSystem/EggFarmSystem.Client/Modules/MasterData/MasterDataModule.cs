@@ -43,6 +43,10 @@ namespace EggFarmSystem.Client.Modules.MasterData
         void RegisterMappings()
         {
             Mapper.CreateMap<AdditionalCostEntryViewModel, AdditionalCost>();
+            Mapper.CreateMap<HenEntryViewModel, Hen>();
+            Mapper.CreateMap<HouseEntryViewModel,HenHouse>();
+            Mapper.CreateMap<EmployeeEntryViewModel, Employee>();
+            Mapper.CreateMap<ConsumableEntryViewModel, Consumable>();
             Mapper.CreateMap<Hen, HenListItem>();
         }
     }

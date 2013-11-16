@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using AutoMapper;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.MasterData.Commands;
@@ -17,29 +18,57 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
     {
         private readonly IHenHouseService houseService;
         private readonly IMessageBroker messageBroker;
-        private readonly HenHouse house;
 
         public HouseEntryViewModel(IMessageBroker messageBroker, IHenHouseService houseService,
             SaveHenHouseCommand saveCommand, CancelCommand cancelCommand)
         {
             this.houseService = houseService;
             this.messageBroker = messageBroker;
-            this.house = new HenHouse();
 
-            SaveCommand = saveCommand;
-            SaveCommand.HenHouse = house;
+            ActualSaveCommand = saveCommand;
             SubscribeMessages();
 
-            cancelCommand.Action = broker => messageBroker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.HenHouse);
+            PropertiesToValidate = new List<string>
+                {
+                    "Name",
+                    "PurchaseCost",
+                    "YearUsage",
+                    "ProductiveAge"
+                };
 
-           // messageBroker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.Consumable);
-
-            NavigationCommands = new List<CommandBase>() {SaveCommand, cancelCommand};
+            CancelCommand = cancelCommand;
+            InitializeCommands();
         }
+
+        #region commands
 
         public IList<CommandBase> NavigationCommands { get; private set; }
 
-        public SaveHenHouseCommand SaveCommand { get; private set; }
+        private SaveHenHouseCommand ActualSaveCommand { get; set; }
+
+        private CancelCommand CancelCommand { get; set; }
+
+        public DelegateCommand SaveCommand { get; private set; }
+
+        private void InitializeCommands()
+        {
+            CancelCommand.Action = broker => messageBroker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.HenHouse);
+            SaveCommand = new DelegateCommand(Save, CanSave){Text = ()=> LanguageData.General_Save};
+            NavigationCommands = new List<CommandBase> { SaveCommand, CancelCommand };
+        }
+
+        private void Save(object param)
+        {
+            var house = Mapper.Map<HouseEntryViewModel, HenHouse>(this);
+            ActualSaveCommand.Execute(house);
+        }
+
+        private bool CanSave(object param)
+        {
+            return IsValid();
+        }
+
+        #endregion
 
         #region text
 
@@ -101,8 +130,9 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         public Guid Id
         {
             get { return id; }
-            set { id = value;
-                house.Id = value;
+            set 
+            { 
+                id = value;
                 OnPropertyChanged("Id");
             }
         }
@@ -113,7 +143,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             set
             {
                 name = value;
-                house.Name = value;
                 OnPropertyChanged("Name");
             }
         }
@@ -124,7 +153,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             set
             {
                 purchaseCost = value;
-                house.PurchaseCost = value;
                 OnPropertyChanged("PurchaseCost");CalculateDepreciation();
             }
         }
@@ -132,10 +160,11 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         public int YearUsage
         {
             get { return yearUsage; }
-            set { 
-                yearUsage = value;
-                house.YearUsage = value;
-                OnPropertyChanged("YearUsage"); }
+            set 
+            { 
+                yearUsage = value;    
+                OnPropertyChanged("YearUsage"); 
+            }
         }
 
         public decimal Depreciation
@@ -144,7 +173,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             set
             {
                 depreciation = value;
-                house.Depreciation = value;
                 OnPropertyChanged("Depreciation");
             }
         }
@@ -152,9 +180,9 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         public bool Active
         {
             get { return active; }
-            set { 
+            set 
+            { 
                 active = value;
-                house.Active = active;
                 OnPropertyChanged("Active"); 
             }
         }
@@ -162,8 +190,12 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         public int Population
         {
             get { return population; }
-            set { population = value; 
-                OnPropertyChanged("Population"); CalculateDepreciation(); }
+            set 
+            { 
+                population = value; 
+                OnPropertyChanged("Population"); 
+                CalculateDepreciation(); 
+            }
         }
 
         public int ProductiveAge
@@ -172,7 +204,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             set 
             { 
                 productiveAge = value;
-                house.ProductiveAge = value;
                 OnPropertyChanged("ProductiveAge");
             }
         }
@@ -180,9 +211,9 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         public decimal Weight
         {
             get { return weight; }
-            set { 
+            set 
+            { 
                 weight = value;
-                house.Weight = value;
                 OnPropertyChanged("Weight");CalculateDepreciation();
             }
         }
@@ -199,6 +230,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
             Depreciation = Weight*PurchaseCost/Population;
         }
+
+        #region validation
 
         public override string this[string columnName]
         {
@@ -229,6 +262,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
                 return result;
             }
         }
+
+        #endregion
 
         void SubscribeMessages()
         {
@@ -281,7 +316,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         public override void Dispose()
         {
             UnsubscribeMessages();
-            SaveCommand.HenHouse = null;
             base.Dispose();
         }
     }

@@ -1,4 +1,5 @@
-﻿using EggFarmSystem.Client.Commands;
+﻿using AutoMapper;
+using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.MasterData.Commands;
 using EggFarmSystem.Client.Modules.MasterData.Views;
@@ -17,7 +18,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
     {
         private readonly IEmployeeService employeeService;
         private readonly IMessageBroker messageBroker;
-        private readonly Employee employee;
 
         public EmployeeEntryViewModel(IMessageBroker messageBroker, IEmployeeService employeeService,
                                       SaveEmployeeCommand saveCommand, CancelCommand cancelCommand)
@@ -25,21 +25,46 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             this.employeeService = employeeService;
             this.messageBroker = messageBroker;
 
-            employee = new Employee();
-            SaveCommand = saveCommand;
-            SaveCommand.Employee = employee;
+            PropertiesToValidate = new List<string> {"Name", "Salary"};
 
-            NavigationCommands = new List<CommandBase>{SaveCommand, cancelCommand};
-
-            cancelCommand.Action = broker => 
-                messageBroker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.Employee);
-
+            ActualSaveCommand = saveCommand;
+            CancelCommand = cancelCommand;
+           
+            InitializeCommands();
             SubscribeMessages();            
         }
 
+        #region commands
+
+        public CancelCommand CancelCommand { get; private set; }
+
+        public DelegateCommand SaveCommand { get; private set; }
+
         public IList<CommandBase> NavigationCommands { get; private set; }
 
-        public SaveEmployeeCommand SaveCommand { get; private set; }
+        private SaveEmployeeCommand ActualSaveCommand { get; set; }
+
+        private void InitializeCommands()
+        {
+            SaveCommand = new DelegateCommand(Save, CanSave){ Text =()=> LanguageData.General_Save};
+
+            CancelCommand.Action = broker => messageBroker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.Employee);
+
+            NavigationCommands = new List<CommandBase> { SaveCommand, CancelCommand };
+        }
+
+        void Save(object param)
+        {
+            var employee = Mapper.Map<EmployeeEntryViewModel, Employee>(this);
+            ActualSaveCommand.Execute(employee);
+        }
+
+        bool CanSave(object param)
+        {
+            return IsValid();
+        }
+
+        #endregion
 
         #region text
 
@@ -64,7 +89,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             set 
             { 
                 id = value;
-                employee.Id = value;
                 OnPropertyChanged("Id");
             }
         }
@@ -75,7 +99,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             set 
             { 
                 name = value;
-                employee.Name = value;
                 OnPropertyChanged("Name");
             }
         }
@@ -85,7 +108,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             get { return salary; }
             set { 
                 salary = value;
-                employee.Salary = value;
                 OnPropertyChanged("Salary");
             }
         }
@@ -97,7 +119,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             set
             {
                 active = value;
-                employee.Active = value;
                 OnPropertyChanged("Active");
             }
         }
@@ -165,7 +186,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         public override void Dispose()
         {
             UnsubscribeMessages();
-            SaveCommand.Employee = null;
             base.Dispose();
         }
     }

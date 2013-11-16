@@ -40,6 +40,13 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
             NavigationCommands = new List<CommandBase>{SaveCommand,CancelCommand};
             CancelCommand.Action = broker => showListCommand.Execute(null);
 
+            PropertiesToValidate = new List<string>()
+            {
+                "Date",
+                "Total",
+                "Details"
+            };
+            
             Employees = new ObservableCollection<Employee>(employeeService.GetAll());
 
             SubscribeMessages();
@@ -170,14 +177,6 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
 
         #region validation
 
-        private static readonly string[] PropertiesToValidate =
-            {
-                "Date",
-                "Total",
-                "Details"
-            };
-        
-
         public override string this[string columnName]
         {
             get
@@ -205,22 +204,6 @@ namespace EggFarmSystem.Client.Modules.EmployeeCost.ViewModels
 
                 return result;
             }
-        }
-
-        private bool IsValid()
-        {
-            bool valid = true;
-
-            foreach (var prop in PropertiesToValidate)
-            {
-                if (this[prop] != null)
-                {
-                    valid = false;
-                    break;
-                }
-            }
-
-            return valid;
         }
 
         #endregion

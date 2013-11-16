@@ -24,10 +24,11 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             this.costService = costService;
 
             ActualSaveCommand = saveCommand;
-            cancelCommand.Action = mBroker => mBroker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.AdditionalCost);
-            SaveCommand = new DelegateCommand(Save, CanSave){Text = ()=> LanguageData.General_Save};
-            NavigationCommands = new List<CommandBase>(){SaveCommand, cancelCommand};
-            
+            CancelCommand = cancelCommand;
+           
+            PropertiesToValidate = new List<string> { "Id","Name","Value"};
+
+            InitializeCommands();
             SubscribeMessages();
         }
 
@@ -37,7 +38,16 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         public DelegateCommand SaveCommand { get; private set; }
 
+        public CancelCommand CancelCommand { get; private set; }
+
         private SaveAdditionalCostCommand ActualSaveCommand { get; set; }
+
+        private void InitializeCommands()
+        {
+            CancelCommand.Action = mBroker => mBroker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.AdditionalCost);
+            SaveCommand = new DelegateCommand(Save, CanSave) { Text = () => LanguageData.General_Save };
+            NavigationCommands = new List<CommandBase> { SaveCommand, CancelCommand };
+        }
 
         void Save(object param)
         {
@@ -130,12 +140,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
         #region validation
 
-        private static readonly string[] PropertiesToValidate =
-            {
-                "Id",
-                "Name",
-                "Value"
-            };
 
         public override string this[string columnName]
         {
@@ -158,22 +162,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
 
                 return result;
             }
-        }
-
-        private bool IsValid()
-        {
-            bool isValid = true;
-
-            foreach (var prop in PropertiesToValidate)
-            {
-                if (this[prop] != null)
-                {
-                    isValid = false;
-                    break;
-                }
-            }
-
-            return isValid;
         }
 
         #endregion

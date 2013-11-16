@@ -25,17 +25,20 @@ namespace EggFarmSystem.Client.Modules.MasterData.Commands
 
         public override void Execute(object parameter)
         {
-            if (Employee == null)
+            var employee = parameter as Employee ?? Employee;
+
+            if (employee == null)
                 return;
 
             try
             {
-                employeeService.Save(Employee);
-                messageBroker.Publish(CommonMessages.SaveEmployeeSuccess, Employee);
+                employeeService.Save(employee);
+                messageBroker.Publish(CommonMessages.SaveEmployeeSuccess, employee);
             }
             catch (Exception ex)
             {
-                messageBroker.Publish(CommonMessages.SaveEmployeeFailed, ex.Message);
+                var error = new Error(ex, employee);
+                messageBroker.Publish(CommonMessages.SaveEmployeeFailed, error);
             }
         }
     }

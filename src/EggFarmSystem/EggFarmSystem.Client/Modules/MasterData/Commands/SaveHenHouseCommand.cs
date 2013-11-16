@@ -25,17 +25,19 @@ namespace EggFarmSystem.Client.Modules.MasterData.Commands
 
         public override void Execute(object parameter)
         {
-            if (HenHouse == null)
+            var house = parameter as HenHouse ?? HenHouse;
+
+            if (house == null)
                 return;
 
             try
             {
-                houseService.Save(HenHouse);
-                messageBroker.Publish(CommonMessages.SaveHouseSuccess, HenHouse);
+                houseService.Save(house);
+                messageBroker.Publish(CommonMessages.SaveHouseSuccess, house);
             }
             catch(Exception ex)
             {
-                var error = new Error(ex, HenHouse);
+                var error = new Error(ex, house);
                 messageBroker.Publish(CommonMessages.SaveHouseFailed, error);
             }
         }

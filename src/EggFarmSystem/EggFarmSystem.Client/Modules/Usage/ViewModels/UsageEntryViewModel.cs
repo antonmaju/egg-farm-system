@@ -45,17 +45,24 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
             CancelCommand = cancelCommand;
 
-            InitializeDelegateCommands();
+            PropertiesToValidate = new List<string>()
+            {
+                "Date",
+                "Total",
+                "Details"
+            };
 
-            NavigationCommands = new List<CommandBase>(){AddDetailCommand, DeleteDetailCommand, saveCommand, CancelCommand};
-
+            InitializeCommands();
+            
             HouseList = new ObservableCollection<HenHouse>(houseService.GetAll());
             ConsumableList = new ObservableCollection<Consumable>(consumableService.GetAll());
 
             SubscribeMessages();
         }
 
-        private void InitializeDelegateCommands()
+        #region commands
+
+        private void InitializeCommands()
         {
             saveCommand = new DelegateCommand(Save, CanSave);
             saveCommand.Text = () => LanguageData.General_Save;
@@ -64,9 +71,12 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             addDetailCommand.Text = () => LanguageData.General_New;
 
             deleteDetailCommand = new DelegateCommand<int>(DeleteDetail, CanDeleteDetail);
-            deleteDetailCommand.Text = () => LanguageData.General_Delete;
+            deleteDetailCommand.Text = () => LanguageData.General_Delete;            
 
             CancelCommand.Action = broker => showListCommand.Execute(null);
+
+            NavigationCommands = new List<CommandBase>() { AddDetailCommand, DeleteDetailCommand, saveCommand, CancelCommand };
+
         }
 
         public DelegateCommand AddDetailCommand { get { return addDetailCommand; } }
@@ -77,6 +87,10 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
 
         public IList<CommandBase> NavigationCommands { get; private set; }
 
+
+        #endregion
+
+       
         public ObservableCollection<HenHouse> HouseList { get; private set; }
 
         public ObservableCollection<Consumable> ConsumableList { get; private set; } 
@@ -190,32 +204,7 @@ namespace EggFarmSystem.Client.Modules.Usage.ViewModels
             }
         }
 
-        private static readonly string[] PropertiesToValidate =
-            {
-                "Date",
-                "Total",
-                "Details"
-            };
-        
-
-        private bool IsValid()
-        {
-            bool valid = true;
-
-            foreach (var prop in PropertiesToValidate)
-            {
-                if (this[prop] != null)
-                {
-                    valid = false;
-                    break;
-                }
-            }
-
-            return valid;
-        }
-
         #endregion
-
 
         void SubscribeMessages()
         {

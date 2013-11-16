@@ -20,11 +20,11 @@
         <Label Grid.Row="1" Style="{StaticResource MasterDataLabel}" TabIndex="0"
                Content="{Binding Path=NameText}" Target="{Binding ElementName=txtName}" />
         <TextBox Grid.Row="1" Style="{StaticResource FormTextBox}" Grid.Column="1" x:Name="txtName" 
-                Text="{Binding Path=Name}" TabIndex="1" />
+                Text="{Binding Path=Name, ValidatesOnDataErrors=True}" TabIndex="1" />
         <Label Grid.Row="2" Style="{StaticResource MasterDataLabel}" TabIndex="2"
                Content="{Binding Path=ValueText}" Target="{Binding ElementName=txtValue}" />
         <TextBox Grid.Row="2" Style="{StaticResource NumericTextBox}" Grid.Column="1" x:Name="txtValue"
-               Text="{Binding Path=Value}" TabIndex="3"  />
+               Text="{Binding Path=Value, ValidatesOnDataErrors=True}" TabIndex="3"  />
         
     </Grid>
 </views:UserControlBase>

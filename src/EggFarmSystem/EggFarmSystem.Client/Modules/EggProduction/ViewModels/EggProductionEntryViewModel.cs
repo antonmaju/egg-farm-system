@@ -33,6 +33,8 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
             CancelCommand = cancelCommand;
             ShowListCommand = showListCommand;
 
+            PropertiesToValidate = new List<string> { "Date", "Details" };
+
             InitializeCommands();
             NavigationCommands =new List<CommandBase>(){SaveCommand, CancelCommand, RefreshCommand};
             CancelCommand.Action = b => showListCommand.Execute(null);
@@ -148,12 +150,6 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
 
         #region validation
 
-        private static readonly string[] PropertiesToValidate =
-            {
-                "Date",
-                "Details"
-            };
-
         public override string this[string columnName]
         {
             get
@@ -184,21 +180,7 @@ namespace EggFarmSystem.Client.Modules.EggProduction.ViewModels
             }
         }
 
-        private bool IsValid()
-        {
-            bool valid = true;
-
-            foreach (var prop in PropertiesToValidate)
-            {
-                if (this[prop] != null)
-                {
-                    valid = false;
-                    break;
-                }
-            }
-
-            return valid;
-        }
+        
 
         #endregion
 

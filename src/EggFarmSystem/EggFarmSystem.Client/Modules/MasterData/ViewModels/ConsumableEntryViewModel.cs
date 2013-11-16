@@ -1,4 +1,5 @@
-﻿using EggFarmSystem.Client.Commands;
+﻿using AutoMapper;
+using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
 using EggFarmSystem.Client.Modules.MasterData.Commands;
 using EggFarmSystem.Client.Modules.MasterData.Views;
@@ -17,7 +18,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
     {
         private readonly IMessageBroker messageBroker;
         private readonly IConsumableService consumableService;
-        private Consumable consumable;
+
 
         public ConsumableEntryViewModel(IMessageBroker messageBroker, IConsumableService consumableService, 
             SaveConsumableCommand saveCommand, CancelCommand cancelCommand)
@@ -25,28 +26,50 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             this.consumableService = consumableService;
             this.messageBroker = messageBroker;
 
-            consumable = new Consumable();
-            SaveCommand = saveCommand;
-            saveCommand.Entity = consumable;
-
-            NavigationCommands= new List<CommandBase>(){SaveCommand, cancelCommand};
+            ActualSaveCommand = saveCommand;
+            CancelCommand = cancelCommand;
+          
             ConsumableTypes = new List<Tuple<byte, string>>()
                 {
                     Tuple.Create((byte)ConsumableType.Feed, LanguageData.ConsumableType_Feed),
                     Tuple.Create((byte)ConsumableType.Ovk, LanguageData.ConsumableType_Ovk)
                 };
 
-            cancelCommand.Action = broker => 
-                broker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.Consumable);
-
+            PropertiesToValidate = new List<string>() { "Name", "UnitPrice" };
+            
+            InitializeCommands();
             SubscribeMessages();
         }
 
+        
+        public IList<Tuple<byte, string>> ConsumableTypes { get; private set; }
+
+        #region commands
+
         public IList<CommandBase> NavigationCommands { get; private set; }
 
-        public SaveConsumableCommand SaveCommand { get; private set; }
+        public CancelCommand CancelCommand { get; private set; }
 
-        public IList<Tuple<byte, string>> ConsumableTypes { get; private set; } 
+        private SaveConsumableCommand ActualSaveCommand { get; set; }
+
+        public DelegateCommand SaveCommand { get; private set; }
+
+        private void InitializeCommands()
+        {
+            CancelCommand.Action = broker => broker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.Consumable);
+
+            SaveCommand = new DelegateCommand(Save, param => IsValid()) { Text=()=>LanguageData.General_Save };
+
+            NavigationCommands = new List<CommandBase>() { SaveCommand,CancelCommand }; 
+        }
+
+        private void Save(object param)
+        {
+            var consumable = Mapper.Map<ConsumableEntryViewModel, Consumable>(this);
+            ActualSaveCommand.Execute(consumable);
+        }
+
+        #endregion
 
         #region text
 
@@ -78,7 +101,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             set 
             { 
                 id = value;
-                consumable.Id = value;
                 OnPropertyChanged("Id");
             }
         }
@@ -89,7 +111,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             set
             {
                 type = value;
-                consumable.Type = value;
                 AdjustUnit();
                 OnPropertyChanged("Type");
                
@@ -102,7 +123,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             set
             {
                 unit = value;
-                consumable.Unit = value;
                 OnPropertyChanged("Unit");
             }
         }
@@ -113,7 +133,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             set
             {
                 unitPrice = value;
-                consumable.UnitPrice = value;
                 OnPropertyChanged("UnitPrice");
             }
         }
@@ -124,7 +143,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             set
             {
                 active = value;
-                consumable.Active = value;
                 OnPropertyChanged("Active");
             }
         }
@@ -133,7 +151,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         {
             get { return name; }
             set { name = value;
-                consumable.Name = value;
                 OnPropertyChanged("Name");
             }
         }
@@ -238,7 +255,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         public override void Dispose()
         {
             UnsubscribeMessages();
-            SaveCommand.Entity = null;
             base.Dispose();
         }
     }

@@ -4,8 +4,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using AutoMapper;
 using EggFarmSystem.Client.Commands;
 using EggFarmSystem.Client.Core;
+using EggFarmSystem.Client.Modules.EggProduction.ViewModels;
 using EggFarmSystem.Client.Modules.MasterData.Commands;
 using EggFarmSystem.Client.Modules.MasterData.Views;
 using EggFarmSystem.Models;
@@ -19,7 +21,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         private readonly IHenService henService;
         private readonly IHenHouseService houseService;
         private readonly IMessageBroker messageBroker;
-        private Hen hen;
+
 
         private ObservableCollection<HenHouse> henHouses;
 
@@ -30,23 +32,56 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             this.messageBroker = messageBroker;
             this.houseService = houseService;
 
-            NavigationCommands = new List<CommandBase>()
+            ActualSaveCommand = saveCommand;
+            CancelCommand = cancelCommand;
+            
+            PropertiesToValidate = new List<string>
                 {
-                    saveCommand, cancelCommand
+                    "Name",
+                    "Type",
+                    "HouseId"
                 };
-
-            hen = new Hen();
-            SaveCommand = saveCommand;
-            saveCommand.Hen = hen;
-
-            cancelCommand.Action = broker => messageBroker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.Hen);
 
             OnRefreshHouseList(null);
 
+            InitializeCommands();
             SubscribeMessages();
         }
 
-        public SaveHenCommand SaveCommand { get; private set; }
+        #region commands
+
+        private SaveHenCommand ActualSaveCommand { get; set; }
+
+        public DelegateCommand SaveCommand { get; private set; }
+
+        public CancelCommand CancelCommand { get; private set; }
+
+        public IList<CommandBase> NavigationCommands { get; private set; }
+
+        private void InitializeCommands()
+        {
+            CancelCommand.Action = broker => messageBroker.Publish(CommonMessages.ChangeMasterDataView, MasterDataTypes.Hen);
+
+            SaveCommand = new DelegateCommand(Save, CanSave){Text = () => LanguageData.General_Save};
+
+            NavigationCommands = new List<CommandBase>()
+                {
+                    SaveCommand, CancelCommand
+                };
+        }
+
+        void Save(object param)
+        {
+            var hen = Mapper.Map<HenEntryViewModel, Hen>(this);
+            ActualSaveCommand.Execute(hen);
+        }
+
+        bool CanSave(object param)
+        {
+            return IsValid();
+        }
+
+        #endregion
 
         public ObservableCollection<HenHouse> HenHouses
         {
@@ -56,9 +91,7 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
                 henHouses = value;
                 OnPropertyChanged("HenHouses");
             }
-        } 
-
-        public IList<CommandBase> NavigationCommands { get; private set; }
+        }  
       
         #region text
         
@@ -110,7 +143,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
             set
             {
                 id = value;
-                hen.Id = value;
                 OnPropertyChanged("Id");
             }
         }
@@ -118,27 +150,29 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         public string Name
         {
             get { return name; }
-            set { name = value;
+            set 
+            { 
+                name = value;
                 OnPropertyChanged("Name");
-                hen.Name = name;
-                
             }
         }
 
         public string Type
         {
             get { return type; }
-            set { type = value;
-                hen.Type = type;
-                OnPropertyChanged("Type"); }
+            set 
+            { 
+                type = value;
+                OnPropertyChanged("Type"); 
+            }
         }
 
         public int Count
         {
             get { return count; }
-            set { 
+            set 
+            { 
                 count = value;
-                hen.Count = count;
                 OnPropertyChanged("Count");
             }
         }
@@ -146,29 +180,38 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         public bool Active
         {
             get { return active; }
-            set { 
+            set 
+            { 
                 active = value;
-                hen.Active = active;
-                OnPropertyChanged("Active"); }
+                OnPropertyChanged("Active"); 
+            }
         }
 
         public long Cost
         {
             get { return cost; }
-            set { cost = value;
-                hen.Cost = value;
-                OnPropertyChanged("Cost"); }
+            set 
+            { 
+                cost = value;
+                OnPropertyChanged("Cost"); 
+            }
         }
 
         public Guid HouseId
         {
             get { return houseId; }
-            set { houseId = value;
-                hen.HouseId = value; OnPropertyChanged("HouseId"); }
+            set 
+            { 
+                houseId = value;
+                OnPropertyChanged("HouseId"); 
+            }
         }
 
         #endregion
 
+        #region validation
+
+       
         public override string this[string columnName]
         {
 
@@ -195,6 +238,8 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
                 return result;
             }
         }
+
+        #endregion
 
         void SubscribeMessages()
         {
@@ -251,7 +296,6 @@ namespace EggFarmSystem.Client.Modules.MasterData.ViewModels
         public override void Dispose()
         {
             UnsubscribeMessages();
-            SaveCommand.Hen = null;
             base.Dispose();
         }
 
