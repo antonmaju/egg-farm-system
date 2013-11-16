@@ -29,45 +29,10 @@ namespace EggFarmSystem.Client.Modules.EggProduction.Views
             this.model = model;
             this.DataContext = model;
             this.NavigationCommands = model.NavigationCommands;
-            SubscribeEvents();
-        }
-
-        void SubscribeEvents()
-        {
-            dgProduction.CellEditEnding += dgProduction_CellEditEnding;
-            dgProduction.GotFocus += dgProduction_GotFocus;
-        }
-
-        void dgProduction_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (e.OriginalSource.GetType() == typeof(DataGridCell))
-            {
-                var grd = (DataGrid)sender;
-                grd.BeginEdit(e);
-            }
-        }
-        
-        private bool isManualEditCommit;
-        void dgProduction_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            if (!isManualEditCommit)
-            {
-                isManualEditCommit = true;
-                var grid = (DataGrid)sender;
-                grid.CommitEdit(DataGridEditingUnit.Row, true);
-                isManualEditCommit = false;
-            }
-        }
-
-        void UnsubscribeEvents()
-        {
-            dgProduction.CellEditEnding -= dgProduction_CellEditEnding;
-            dgProduction.GotFocus -= dgProduction_GotFocus;
         }
 
         public override void Dispose()
         {
-            UnsubscribeEvents();
             model.Dispose();
             base.Dispose();
         }

@@ -117,6 +117,9 @@
     <Compile Include="Modules\Reports\Views\EggProductionReportView.xaml.cs">
       <DependentUpon>EggProductionReportView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\DataGrid.xaml.cs">
+      <DependentUpon>DataGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\DocumentViewer.xaml.cs">
       <DependentUpon>DocumentViewer.xaml</DependentUpon>
     </Compile>
@@ -249,7 +252,7 @@
     <Page Include="Modules\Reports\Views\UsageReportView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-	</Page>
+    </Page>
     <Page Include="Modules\Reports\Views\EggProductionReportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

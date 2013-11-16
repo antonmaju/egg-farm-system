@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:Class="EggFarmSystem.Client.Resources.DataGridResourceDictionary">
 
     <Style TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -91,6 +92,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="DataGridCell_PreviewMouseLeftButtonDown"></EventSetter>
     </Style>    
     
     <Style x:Key="NumericGridCell" TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">

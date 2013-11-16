@@ -14,8 +14,6 @@
               <RowDefinition Height="Auto"></RowDefinition>
               <RowDefinition Height="20"></RowDefinition>
           </Grid.RowDefinitions>
-
-
             <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -33,8 +31,7 @@
                   Name="dgUsage">
             <DataGrid.Columns>
                 <DataGridComboBoxColumn DisplayMemberPath="Name" SelectedValuePath="Id"
-                  SelectedValueBinding="{Binding Path=HouseId}" MinWidth="200"
-                     >
+                  SelectedValueBinding="{Binding Path=HouseId}" MinWidth="200">
                     <DataGridComboBoxColumn.ElementStyle>
                         <Style TargetType="{x:Type ComboBox}">
                             <Setter Property="ItemsSource" 

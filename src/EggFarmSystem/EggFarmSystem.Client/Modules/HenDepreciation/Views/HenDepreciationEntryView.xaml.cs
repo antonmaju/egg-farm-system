@@ -29,9 +29,7 @@ namespace EggFarmSystem.Client.Modules.HenDepreciation.Views
 
             this.model = model;
             this.DataContext = model;
-            this.NavigationCommands = model.NavigationCommands;
-
-            
+            this.NavigationCommands = model.NavigationCommands;           
         }
 
 
