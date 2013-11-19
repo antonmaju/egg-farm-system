@@ -215,6 +215,21 @@ aside nav .active a
     display:none;
 }
 
+.doc section
+{
+    margin: 0 0 35px 0;
+}
+
+.doc section h3
+{
+    font-size:1.1em;
+}
+
+.doc section img
+{
+    border: 1px solid #888;
+}
+
 /* ==========================================================================
    Media Queries
    ========================================================================== */
@@ -262,6 +277,7 @@ aside nav .active a
     {
         display:block;
     }
+
 
 /* ========================
     INTERMEDIATE: IE Fixes
@@ -323,11 +339,6 @@ aside nav .active a
 /* ============
     WIDE: Main
    ============ */
-
-    .main article {
-        float: left;
-        width: 57%;
-    }
 
     .main aside {
         float: left;
