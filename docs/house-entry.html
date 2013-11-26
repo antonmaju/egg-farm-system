@@ -9,9 +9,9 @@ slug: house-entry
         <h3>Overview</h3>
 
         <p>
-            <span>To manage Hen House data, you will need to use Hen House List Screen.</span>
+            <span>To manage hen house data, you will need to use hen house list screen.</span>
 			<br/>
-			<span>Hen House List Screen is located inside Master Data menu and under Hen House tab</span>
+			<span>Hen house list Screen is located inside master data menu and under hen house tab</span>
         </p>
 
     </section>
@@ -20,11 +20,48 @@ slug: house-entry
         <h3> Adding New Hen House</h3>
         <p>
             <img class="docs-img" src="{{ site.baseurl }}/images/ef_masterdata_house_add.png" />
-            <span> To add a new hen house entry, please press the "New" button in hen house list view.</span>
+            <span> To add a new hen house data, please press the "New" button in hen house list screen.</span>
         </p>
         <p>
             <img class="docs-img" src="{{ site.baseurl }}/images/ef_masterdata_house_add_detail.png"  />
-           <span> Fill hen house fields and ensure there is no warning sign.</span>
+           <span> The hen house entry screen consists of several important fields: </span>
+             <ul>
+                <li>
+                    <h4>Name</h4>
+                    <span>Name for the hen house.</span>
+                </li>
+				<li>
+                    <h4>Purchase Cost</h4>
+                    <span>Total cost spent for purchasing this hen house.</span>
+                </li>
+				<li>
+                    <h4>Year Usage</h4>
+                    <span>Estimation of total usage in year.</span>
+                </li>
+                <li>
+                    <h4>Weight</h4>
+                    <span>Weight of this hen house.</span>
+                </li>
+				<li>
+                    <h4>Hen's Productive Age</h4>
+                    <span>Estimation of total days needed for a hen to be productive.(will be used for other calculation)</span>
+                </li>
+				<li>
+                    <h4>Active</h4>
+                    <span>Active or not.</span>
+                </li>
+				<li>
+                    <h4>Population</h4>
+                    <span>Total hen population of this hen house.</span>
+                </li>
+				<li>
+                    <h4>Depreciation/day</h4>
+                    <span>Depreciation is taken from magic formula:</span>
+					<div class="formula" >Depreciation = Weight x PurchaseCost / Population</div>
+				</li>
+             </ul>
+            <br/>
+		   <span> Fill hen house fields and ensure there is no warning sign.</span>
 		   <br/> 
 		   <span>Please note that "Population" and "Depreciation/day" field is readonly.</span> 
 		   <br/>
@@ -32,7 +69,7 @@ slug: house-entry
         </p>
     </section>
     <section>
-        <h3>Editing Hen House</h3>
+        <h3>Editing Hen House</h3> 
         <p>
             <img class="docs-img" src="{{ site.baseurl }}/images/ef_masterdata_house_edit.png" />
 		    <span> To edit a house data, just double click the corresponding house in hen house list screen </span>
