@@ -28,6 +28,9 @@
         - title : Egg Production Entry
           slug  : egg-production-entry
 
+        - title : Hen Depreciation Entry
+          slug  : hen-depreciation-entry
+
 - title : Reporting
   slug  : reporting
 
